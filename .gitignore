@@ -1,0 +1,20 @@
+# See https://help.github.com/ignore-files/ for more about ignoring files.
+
+# dependencies
+/packages
+
+# I'm going to keep the PdfIum DLLs, just in case they beome unavailable in the future.
+#/x86
+#/x64
+
+# testing
+
+# production
+/JoeMidi1/bin
+
+# intermediate
+/JoeMidi1/obj
+
+# misc
+/_UpgradeReport_Files
+
