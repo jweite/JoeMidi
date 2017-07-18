@@ -40,11 +40,6 @@ namespace JoeMidi1
             // this.FormBorderStyle = FormBorderStyle.None;
             this.WindowState = FormWindowState.Maximized;
 
-            pdfChart.Left = rtbChart.Left;          // pdfChart component isn't sized in the designer.  Mimic the sized rtbChart.
-            pdfChart.Top = rtbChart.Top;
-            pdfChart.Width = rtbChart.Width;
-            pdfChart.Height = rtbChart.Height + 50;     //WTF?  Why doesn't this size its height similarly to rtbChart?
-
             currentlySelectedTabName = tabControl1.TabPages[0].Text;
 
             mapper = new Mapper();
@@ -154,6 +149,8 @@ namespace JoeMidi1
                 }
             }
 
+            cbPortaitMode.Checked = mapper.configuration.portraitMode;
+
             //-------------------------------------------
             // Activate the first MidiProgram known to the mapper
             //-------------------------------------------
@@ -169,12 +166,12 @@ namespace JoeMidi1
                 if (programNum == 0x3D)     // Button 8
                 {
                     // Select Next Song Program
-                    mbrcSongPatches.selectNextLogicalButton(true);
+                    mbccShowSongPatches.selectNextLogicalButton(true);
                 }
                 else if (programNum == 0x19)
                 {
                     // Select Prev Song Program
-                    mbrcSongPatches.selectPrevLogicalButton(true);
+                    mbccShowSongPatches.selectPrevLogicalButton(true);
                 }
                 else if (programNum == 0x30)
                 {
@@ -189,22 +186,22 @@ namespace JoeMidi1
                 else if (programNum == 0x7) 
                 {
                     // Pick song patch 1 - 4
-                    mbrcSongPatches.selectLogicalButton(3, true);
+                    mbccShowSongPatches.selectLogicalButton(3, true);
                 }
                 else if (programNum == 0x5)
                 {
                     // Pick song patch 1 - 4
-                    mbrcSongPatches.selectLogicalButton(2, true);
+                    mbccShowSongPatches.selectLogicalButton(2, true);
                 }
                 else if (programNum == 0x4)
                 {
                     // Pick song patch 1 - 4
-                    mbrcSongPatches.selectLogicalButton(1, true);
+                    mbccShowSongPatches.selectLogicalButton(1, true);
                 }
                 else if (programNum == 0x0)
                 {
                     // Pick song patch 1 - 4
-                    mbrcSongPatches.selectLogicalButton(0, true);
+                    mbccShowSongPatches.selectLogicalButton(0, true);
                 }
 
             }
@@ -917,7 +914,7 @@ namespace JoeMidi1
                 {
                     currentSong = null;
                     olvSongs.SelectObject(null);
-                    mbrcSongPatches.clearButtons();
+                    mbccShowSongPatches.clearButtons();
                     rtbChart.Clear();
                     pdfChart.Visible = false;
                 }
@@ -926,7 +923,7 @@ namespace JoeMidi1
             {
                 currentSong = null;
                 olvSongs.SetObjects(null);
-                mbrcSongPatches.clearButtons();
+                mbccShowSongPatches.clearButtons();
                 rtbChart.Clear();
                 pdfChart.Visible = false;
             }
@@ -947,14 +944,14 @@ namespace JoeMidi1
         private void olvSongs_SelectedIndexChanged(object sender, EventArgs e)
         {
             currentSong = (Song)olvSongs.SelectedObject;
-            
+
             // Refresh the SongPatches multi-button-row-control
-            mbrcSongPatches.clearButtons();
+            mbccShowSongPatches.clearButtons();
             if (currentSong != null)
             {
                 foreach (SongProgram songProgram in currentSong.programs)
                 {
-                    mbrcSongPatches.addButton(songProgram.name, songProgram);
+                    mbccShowSongPatches.addButton(songProgram.name, songProgram);
                 }
 
                 // And display the song's chart
@@ -963,7 +960,7 @@ namespace JoeMidi1
                 // Activate the first program for this song
                 if (currentSong.programs.Count > 0)
                 {
-                    mbrcSongPatches.selectLogicalButton(0, true);
+                    mbccShowSongPatches.selectLogicalButton(0, true);
                 }
 
                 mapper.masterTranspose = currentSong.songTranspose;
@@ -988,7 +985,7 @@ namespace JoeMidi1
             }
         }
 
-        private void mbrcSongPatches_Click(object sender, EventArgs e)
+        private void mbccShowSongPatches_Click(object sender, EventArgs e)
         {
             SongProgram songProgram = (SongProgram)(((Button)sender).Tag);
             if (songProgram != null && songProgram.mapping != null)
@@ -999,6 +996,8 @@ namespace JoeMidi1
 
         private void showChart(String chartFileName)
         {
+            if (chartFileName == null) return;
+
             String myDocsFolder = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
             String directoryPath = myDocsFolder + @"\JoeMidi";
             String filePath;
@@ -1024,16 +1023,14 @@ namespace JoeMidi1
                 {
                     String chartContent = File.ReadAllText(filePath);
                     rtbChart.Rtf = chartContent;
-                    pdfChart.Visible = false;
-                    rtbChart.Visible = true;
+                    positionAndShowChartControl(rtbChart, pdfChart);
                 }
                 else if (filePath.ToLower().EndsWith(".pdf"))
                 {
                     var doc = PdfDocument.Load(filePath);
                     pdfChart.Load(doc);
                     pdfChart.ZoomMode = PdfiumViewer.PdfViewerZoomMode.FitWidth;
-                    pdfChart.Visible = true;
-                    rtbChart.Visible = false;
+                    positionAndShowChartControl(pdfChart, rtbChart);
                 }
                 else
                 {
@@ -1046,10 +1043,38 @@ namespace JoeMidi1
             {
                 rtbChart.Rtf = "";
             }
-
         }
 
-        private void btnNextSongInSetlist_Click(object sender, EventArgs e)
+        private void positionAndShowChartControl(System.Windows.Forms.Control controlToShow, System.Windows.Forms.Control controlToHide)
+        {
+            controlToHide.Visible = false;
+
+            tlpShowOuter.SetRowSpan(controlToHide, 1);
+            tlpShowOuter.SetColumnSpan(controlToHide, 1);
+
+            if (mapper.configuration.portraitMode)
+            {
+                tlpShowOuter.SetColumn(controlToHide, 2);
+                tlpShowOuter.SetRow(controlToHide, 0);
+                tlpShowOuter.SetColumn(controlToShow, 1);
+                tlpShowOuter.SetRow(controlToShow, 0);
+                tlpShowOuter.SetColumnSpan(controlToShow, 2);
+                tlpShowOuter.SetRowSpan(controlToShow, 1);
+            }
+            else
+            {
+                tlpShowOuter.SetColumn(controlToHide, 2);
+                tlpShowOuter.SetRow(controlToHide, 1);
+                tlpShowOuter.SetColumn(controlToShow, 2);
+                tlpShowOuter.SetRow(controlToShow, 0);
+                tlpShowOuter.SetRowSpan(controlToShow, 2);
+                tlpShowOuter.SetColumnSpan(controlToShow, 1);
+            }
+
+            controlToShow.Visible = true;
+        }
+
+        private void btnNextSong_Click(object sender, EventArgs e)
         {
             if (olvSongs.SelectedIndex < olvSongs.Items.Count - 1)
             {
@@ -1059,7 +1084,7 @@ namespace JoeMidi1
 
         }
 
-        private void btnPrevSongInSetlist_Click(object sender, EventArgs e)
+        private void btnPrevSong_Click(object sender, EventArgs e)
         {
             if (olvSongs.SelectedIndex > 0)
             {
@@ -1092,7 +1117,6 @@ namespace JoeMidi1
                 }
             }
         }
-
 
         //**************************************************************************
         // Songs tab
@@ -2491,6 +2515,59 @@ namespace JoeMidi1
             fmShowFloat form = new fmShowFloat();
 //            form.Init(mapper.configuration.setlists);
             form.Show();
+        }
+
+        private void cbPortaitMode_CheckedChanged(object sender, EventArgs e)
+        {
+            mapper.configuration.portraitMode = cbPortaitMode.Checked;
+
+            if (mapper.configuration.portraitMode)
+            {
+                // Portrait
+                tlpShowOuter.ColumnStyles[0].SizeType = SizeType.Absolute;          // Vol Slider
+                tlpShowOuter.ColumnStyles[0].Width = 50;
+                tlpShowOuter.ColumnStyles[1].SizeType = SizeType.Percent;           // Even Split for Setlist/Patch controls.  Chart spans.
+                tlpShowOuter.ColumnStyles[1].Width = 50;
+                tlpShowOuter.ColumnStyles[2].SizeType = SizeType.Percent;           // Even Split for Setlist/Patch controls.  Chart spans.
+                tlpShowOuter.ColumnStyles[2].Width = 50;
+                tlpShowOuter.RowStyles[0].SizeType = SizeType.Percent;              // Remainder (after Row[1]) for Chart
+                tlpShowOuter.RowStyles[0].Height = 100;
+                tlpShowOuter.RowStyles[1].SizeType = SizeType.Absolute;             // Fixed for Setlist/Patch
+                tlpShowOuter.RowStyles[1].Height = 300;
+
+                tlpShowOuter.SetColumn(tlpSongSetlistOuter, 1);
+                tlpShowOuter.SetRow(tlpSongSetlistOuter, 1);
+                tlpShowOuter.SetColumn(mbccShowSongPatches, 2);
+                tlpShowOuter.SetRow(mbccShowSongPatches, 1);
+
+            }
+            else
+            {
+                // Landscape
+                tlpShowOuter.ColumnStyles[0].SizeType = SizeType.Absolute;          // Vol Slider
+                tlpShowOuter.ColumnStyles[0].Width = 50;
+                tlpShowOuter.ColumnStyles[1].SizeType = SizeType.Absolute;          // Setlist/Patch col
+                tlpShowOuter.ColumnStyles[1].Width = 320;
+                tlpShowOuter.ColumnStyles[2].SizeType = SizeType.Percent;           // Chart (spans)
+                tlpShowOuter.ColumnStyles[2].Width = 100;
+                tlpShowOuter.RowStyles[0].SizeType = SizeType.Percent;              // Setlist (Chart spans)
+                tlpShowOuter.RowStyles[0].Height = 50;
+                tlpShowOuter.RowStyles[1].SizeType = SizeType.Percent;              // Patches (Chart spans)
+                tlpShowOuter.RowStyles[1].Height = 50;
+
+                tlpShowOuter.SetColumn(tlpSongSetlistOuter, 1);
+                tlpShowOuter.SetRow(tlpSongSetlistOuter, 0);
+                tlpShowOuter.SetColumn(mbccShowSongPatches, 1);
+                tlpShowOuter.SetRow(mbccShowSongPatches, 1);
+
+            }
+
+
+            // Call showChart to move/span controls to appropriate position depending on the current chart type
+            if (currentSong != null)
+            {
+                showChart(currentSong.chartFile);
+            }
         }
 
     }

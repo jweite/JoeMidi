@@ -48,6 +48,8 @@ namespace JoeMidi1
 
         public int volSliderControlNum = 75;
 
+        public bool portraitMode = false;
+
         [JsonIgnore]
         public List<KeyValuePair<String, List<SoundGeneratorPatch>>> soundGeneratorPatchesByCategory
         {
