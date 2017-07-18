@@ -54,9 +54,8 @@
   <ItemGroup>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="Microsoft.VisualBasic.PowerPacks, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
-    <Reference Include="Midi, Version=1.1.0.0, Culture=neutral, processorArchitecture=x86">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\midi-dot-net\Midi\bin\x86\Debug\Midi.dll</HintPath>
+    <Reference Include="Midi, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\midi-dot-net.1.1.0\lib\net35\Midi.dll</HintPath>
     </Reference>
     <Reference Include="MultiButtonColControl2">
       <HintPath>..\..\MultiButtonRowControl2\MultiButtonColControl2\bin\Debug\MultiButtonColControl2.dll</HintPath>
@@ -170,6 +169,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="README.txt" />
     <Content Include="x64\pdfium.dll" />
     <Content Include="x86\pdfium.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
