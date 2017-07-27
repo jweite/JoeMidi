@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem(new string[] {
             "SG1",
             "Output Device 1",
             "1",
             "2"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem6 = new System.Windows.Forms.ListViewItem(new string[] {
             "SG2",
             "Output Device 1",
             "2",
@@ -268,16 +268,17 @@
             // 
             // contextMenuStrip1
             // 
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItem1});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(108, 26);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(123, 28);
             this.contextMenuStrip1.Text = "contextMenuStrip1";
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(107, 22);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(122, 24);
             this.toolStripMenuItem1.Text = "Delete";
             this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
@@ -297,9 +298,10 @@
             this.tabControl1.Font = new System.Drawing.Font("Arial", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabControl1.ItemSize = new System.Drawing.Size(90, 40);
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1347, 644);
+            this.tabControl1.Size = new System.Drawing.Size(1796, 793);
             this.tabControl1.TabIndex = 9;
             this.tabControl1.Selected += new System.Windows.Forms.TabControlEventHandler(this.tabControl1_Selected);
             // 
@@ -310,9 +312,10 @@
             this.tpRandomAccess1.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tpRandomAccess1.ForeColor = System.Drawing.Color.White;
             this.tpRandomAccess1.Location = new System.Drawing.Point(4, 44);
+            this.tpRandomAccess1.Margin = new System.Windows.Forms.Padding(4);
             this.tpRandomAccess1.Name = "tpRandomAccess1";
-            this.tpRandomAccess1.Padding = new System.Windows.Forms.Padding(3);
-            this.tpRandomAccess1.Size = new System.Drawing.Size(1339, 596);
+            this.tpRandomAccess1.Padding = new System.Windows.Forms.Padding(4);
+            this.tpRandomAccess1.Size = new System.Drawing.Size(1788, 745);
             this.tpRandomAccess1.TabIndex = 0;
             this.tpRandomAccess1.Tag = "0";
             this.tpRandomAccess1.Text = "Random Access 1";
@@ -321,7 +324,7 @@
             // 
             this.tlpRandomAccess.AllowDrop = true;
             this.tlpRandomAccess.ColumnCount = 10;
-            this.tlpRandomAccess.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.tlpRandomAccess.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 67F));
             this.tlpRandomAccess.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
             this.tlpRandomAccess.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
             this.tlpRandomAccess.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
@@ -330,7 +333,7 @@
             this.tlpRandomAccess.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
             this.tlpRandomAccess.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
             this.tlpRandomAccess.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
-            this.tlpRandomAccess.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 59F));
+            this.tlpRandomAccess.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 81F));
             this.tlpRandomAccess.Controls.Add(this.btnExpandRightPane, 9, 0);
             this.tlpRandomAccess.Controls.Add(this.btnRandAccessCol8, 8, 0);
             this.tlpRandomAccess.Controls.Add(this.btnRandAccessCol7, 7, 0);
@@ -347,10 +350,11 @@
             this.tlpRandomAccess.Controls.Add(this.label17, 6, 9);
             this.tlpRandomAccess.Controls.Add(this.vsbVol1, 0, 0);
             this.tlpRandomAccess.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpRandomAccess.Location = new System.Drawing.Point(3, 3);
+            this.tlpRandomAccess.Location = new System.Drawing.Point(4, 4);
+            this.tlpRandomAccess.Margin = new System.Windows.Forms.Padding(4);
             this.tlpRandomAccess.Name = "tlpRandomAccess";
             this.tlpRandomAccess.RowCount = 10;
-            this.tlpRandomAccess.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 46F));
+            this.tlpRandomAccess.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 57F));
             this.tlpRandomAccess.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
             this.tlpRandomAccess.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
             this.tlpRandomAccess.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
@@ -359,8 +363,8 @@
             this.tlpRandomAccess.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
             this.tlpRandomAccess.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
             this.tlpRandomAccess.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
-            this.tlpRandomAccess.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 46F));
-            this.tlpRandomAccess.Size = new System.Drawing.Size(1333, 590);
+            this.tlpRandomAccess.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 57F));
+            this.tlpRandomAccess.Size = new System.Drawing.Size(1780, 737);
             this.tlpRandomAccess.TabIndex = 13;
             this.tlpRandomAccess.DragDrop += new System.Windows.Forms.DragEventHandler(this.tlpRandomAccess_DragDrop);
             this.tlpRandomAccess.DragEnter += new System.Windows.Forms.DragEventHandler(this.tlpRandomAccess_DragEnter);
@@ -373,9 +377,10 @@
             this.btnExpandRightPane.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnExpandRightPane.FlatAppearance.BorderColor = System.Drawing.Color.LightGreen;
             this.btnExpandRightPane.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnExpandRightPane.Location = new System.Drawing.Point(1277, 3);
+            this.btnExpandRightPane.Location = new System.Drawing.Point(1703, 4);
+            this.btnExpandRightPane.Margin = new System.Windows.Forms.Padding(4);
             this.btnExpandRightPane.Name = "btnExpandRightPane";
-            this.btnExpandRightPane.Size = new System.Drawing.Size(53, 40);
+            this.btnExpandRightPane.Size = new System.Drawing.Size(73, 49);
             this.btnExpandRightPane.TabIndex = 17;
             this.btnExpandRightPane.Text = "<<";
             this.btnExpandRightPane.UseVisualStyleBackColor = false;
@@ -389,9 +394,10 @@
             this.btnRandAccessCol8.FlatAppearance.BorderColor = System.Drawing.Color.LightGreen;
             this.btnRandAccessCol8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRandAccessCol8.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRandAccessCol8.Location = new System.Drawing.Point(1124, 3);
+            this.btnRandAccessCol8.Location = new System.Drawing.Point(1499, 4);
+            this.btnRandAccessCol8.Margin = new System.Windows.Forms.Padding(4);
             this.btnRandAccessCol8.Name = "btnRandAccessCol8";
-            this.btnRandAccessCol8.Size = new System.Drawing.Size(147, 40);
+            this.btnRandAccessCol8.Size = new System.Drawing.Size(196, 49);
             this.btnRandAccessCol8.TabIndex = 16;
             this.btnRandAccessCol8.Text = "8";
             this.btnRandAccessCol8.UseVisualStyleBackColor = false;
@@ -407,9 +413,10 @@
             this.btnRandAccessCol7.FlatAppearance.BorderColor = System.Drawing.Color.LightGreen;
             this.btnRandAccessCol7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRandAccessCol7.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRandAccessCol7.Location = new System.Drawing.Point(971, 3);
+            this.btnRandAccessCol7.Location = new System.Drawing.Point(1295, 4);
+            this.btnRandAccessCol7.Margin = new System.Windows.Forms.Padding(4);
             this.btnRandAccessCol7.Name = "btnRandAccessCol7";
-            this.btnRandAccessCol7.Size = new System.Drawing.Size(147, 40);
+            this.btnRandAccessCol7.Size = new System.Drawing.Size(196, 49);
             this.btnRandAccessCol7.TabIndex = 15;
             this.btnRandAccessCol7.Text = "7";
             this.btnRandAccessCol7.UseVisualStyleBackColor = false;
@@ -425,9 +432,10 @@
             this.btnRandAccessCol6.FlatAppearance.BorderColor = System.Drawing.Color.LightGreen;
             this.btnRandAccessCol6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRandAccessCol6.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRandAccessCol6.Location = new System.Drawing.Point(818, 3);
+            this.btnRandAccessCol6.Location = new System.Drawing.Point(1091, 4);
+            this.btnRandAccessCol6.Margin = new System.Windows.Forms.Padding(4);
             this.btnRandAccessCol6.Name = "btnRandAccessCol6";
-            this.btnRandAccessCol6.Size = new System.Drawing.Size(147, 40);
+            this.btnRandAccessCol6.Size = new System.Drawing.Size(196, 49);
             this.btnRandAccessCol6.TabIndex = 14;
             this.btnRandAccessCol6.Text = "6";
             this.btnRandAccessCol6.UseVisualStyleBackColor = false;
@@ -443,9 +451,10 @@
             this.btnRandAccessCol5.FlatAppearance.BorderColor = System.Drawing.Color.LightGreen;
             this.btnRandAccessCol5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRandAccessCol5.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRandAccessCol5.Location = new System.Drawing.Point(665, 3);
+            this.btnRandAccessCol5.Location = new System.Drawing.Point(887, 4);
+            this.btnRandAccessCol5.Margin = new System.Windows.Forms.Padding(4);
             this.btnRandAccessCol5.Name = "btnRandAccessCol5";
-            this.btnRandAccessCol5.Size = new System.Drawing.Size(147, 40);
+            this.btnRandAccessCol5.Size = new System.Drawing.Size(196, 49);
             this.btnRandAccessCol5.TabIndex = 13;
             this.btnRandAccessCol5.Text = "5";
             this.btnRandAccessCol5.UseVisualStyleBackColor = false;
@@ -461,9 +470,10 @@
             this.btnRandAccessCol4.FlatAppearance.BorderColor = System.Drawing.Color.LightGreen;
             this.btnRandAccessCol4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRandAccessCol4.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRandAccessCol4.Location = new System.Drawing.Point(512, 3);
+            this.btnRandAccessCol4.Location = new System.Drawing.Point(683, 4);
+            this.btnRandAccessCol4.Margin = new System.Windows.Forms.Padding(4);
             this.btnRandAccessCol4.Name = "btnRandAccessCol4";
-            this.btnRandAccessCol4.Size = new System.Drawing.Size(147, 40);
+            this.btnRandAccessCol4.Size = new System.Drawing.Size(196, 49);
             this.btnRandAccessCol4.TabIndex = 12;
             this.btnRandAccessCol4.Text = "4";
             this.btnRandAccessCol4.UseVisualStyleBackColor = false;
@@ -479,9 +489,10 @@
             this.btnRandAccessCol3.FlatAppearance.BorderColor = System.Drawing.Color.LightGreen;
             this.btnRandAccessCol3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRandAccessCol3.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRandAccessCol3.Location = new System.Drawing.Point(359, 3);
+            this.btnRandAccessCol3.Location = new System.Drawing.Point(479, 4);
+            this.btnRandAccessCol3.Margin = new System.Windows.Forms.Padding(4);
             this.btnRandAccessCol3.Name = "btnRandAccessCol3";
-            this.btnRandAccessCol3.Size = new System.Drawing.Size(147, 40);
+            this.btnRandAccessCol3.Size = new System.Drawing.Size(196, 49);
             this.btnRandAccessCol3.TabIndex = 11;
             this.btnRandAccessCol3.Text = "3";
             this.btnRandAccessCol3.UseVisualStyleBackColor = false;
@@ -497,9 +508,10 @@
             this.btnRandAccessCol2.FlatAppearance.BorderColor = System.Drawing.Color.LightGreen;
             this.btnRandAccessCol2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRandAccessCol2.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRandAccessCol2.Location = new System.Drawing.Point(206, 3);
+            this.btnRandAccessCol2.Location = new System.Drawing.Point(275, 4);
+            this.btnRandAccessCol2.Margin = new System.Windows.Forms.Padding(4);
             this.btnRandAccessCol2.Name = "btnRandAccessCol2";
-            this.btnRandAccessCol2.Size = new System.Drawing.Size(147, 40);
+            this.btnRandAccessCol2.Size = new System.Drawing.Size(196, 49);
             this.btnRandAccessCol2.TabIndex = 10;
             this.btnRandAccessCol2.Text = "2";
             this.btnRandAccessCol2.UseVisualStyleBackColor = false;
@@ -515,9 +527,10 @@
             this.btnRandAccessCol1.FlatAppearance.BorderColor = System.Drawing.Color.LightGreen;
             this.btnRandAccessCol1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRandAccessCol1.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRandAccessCol1.Location = new System.Drawing.Point(53, 3);
+            this.btnRandAccessCol1.Location = new System.Drawing.Point(71, 4);
+            this.btnRandAccessCol1.Margin = new System.Windows.Forms.Padding(4);
             this.btnRandAccessCol1.Name = "btnRandAccessCol1";
-            this.btnRandAccessCol1.Size = new System.Drawing.Size(147, 40);
+            this.btnRandAccessCol1.Size = new System.Drawing.Size(196, 49);
             this.btnRandAccessCol1.TabIndex = 9;
             this.btnRandAccessCol1.Text = "1";
             this.btnRandAccessCol1.UseVisualStyleBackColor = false;
@@ -534,13 +547,14 @@
             this.tlpSoundGenTreeview.Controls.Add(this.btnPatchTreeViewBySG, 0, 1);
             this.tlpSoundGenTreeview.Controls.Add(this.btnPatchTreeViewByCategory, 1, 1);
             this.tlpSoundGenTreeview.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpSoundGenTreeview.Location = new System.Drawing.Point(1277, 49);
+            this.tlpSoundGenTreeview.Location = new System.Drawing.Point(1703, 61);
+            this.tlpSoundGenTreeview.Margin = new System.Windows.Forms.Padding(4);
             this.tlpSoundGenTreeview.Name = "tlpSoundGenTreeview";
             this.tlpSoundGenTreeview.RowCount = 2;
             this.tlpRandomAccess.SetRowSpan(this.tlpSoundGenTreeview, 8);
             this.tlpSoundGenTreeview.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpSoundGenTreeview.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tlpSoundGenTreeview.Size = new System.Drawing.Size(53, 490);
+            this.tlpSoundGenTreeview.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 62F));
+            this.tlpSoundGenTreeview.Size = new System.Drawing.Size(73, 608);
             this.tlpSoundGenTreeview.TabIndex = 19;
             this.tlpSoundGenTreeview.Visible = false;
             // 
@@ -549,9 +563,10 @@
             this.tlpSoundGenTreeview.SetColumnSpan(this.tvProgramPatches, 2);
             this.tvProgramPatches.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tvProgramPatches.HideSelection = false;
-            this.tvProgramPatches.Location = new System.Drawing.Point(3, 3);
+            this.tvProgramPatches.Location = new System.Drawing.Point(4, 4);
+            this.tvProgramPatches.Margin = new System.Windows.Forms.Padding(4);
             this.tvProgramPatches.Name = "tvProgramPatches";
-            this.tvProgramPatches.Size = new System.Drawing.Size(47, 434);
+            this.tvProgramPatches.Size = new System.Drawing.Size(65, 538);
             this.tvProgramPatches.TabIndex = 18;
             this.tvProgramPatches.Visible = false;
             this.tvProgramPatches.ItemDrag += new System.Windows.Forms.ItemDragEventHandler(this.tvProgramPatches_ItemDrag);
@@ -560,9 +575,10 @@
             // btnPatchTreeViewBySG
             // 
             this.btnPatchTreeViewBySG.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnPatchTreeViewBySG.Location = new System.Drawing.Point(3, 443);
+            this.btnPatchTreeViewBySG.Location = new System.Drawing.Point(4, 550);
+            this.btnPatchTreeViewBySG.Margin = new System.Windows.Forms.Padding(4);
             this.btnPatchTreeViewBySG.Name = "btnPatchTreeViewBySG";
-            this.btnPatchTreeViewBySG.Size = new System.Drawing.Size(20, 44);
+            this.btnPatchTreeViewBySG.Size = new System.Drawing.Size(28, 54);
             this.btnPatchTreeViewBySG.TabIndex = 19;
             this.btnPatchTreeViewBySG.Text = "SG";
             this.btnPatchTreeViewBySG.UseVisualStyleBackColor = true;
@@ -571,9 +587,10 @@
             // btnPatchTreeViewByCategory
             // 
             this.btnPatchTreeViewByCategory.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnPatchTreeViewByCategory.Location = new System.Drawing.Point(29, 443);
+            this.btnPatchTreeViewByCategory.Location = new System.Drawing.Point(40, 550);
+            this.btnPatchTreeViewByCategory.Margin = new System.Windows.Forms.Padding(4);
             this.btnPatchTreeViewByCategory.Name = "btnPatchTreeViewByCategory";
-            this.btnPatchTreeViewByCategory.Size = new System.Drawing.Size(21, 44);
+            this.btnPatchTreeViewByCategory.Size = new System.Drawing.Size(29, 54);
             this.btnPatchTreeViewByCategory.TabIndex = 20;
             this.btnPatchTreeViewByCategory.Text = "Cat";
             this.btnPatchTreeViewByCategory.UseVisualStyleBackColor = true;
@@ -583,9 +600,10 @@
             // 
             this.label18.AutoSize = true;
             this.label18.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label18.Location = new System.Drawing.Point(53, 542);
+            this.label18.Location = new System.Drawing.Point(71, 673);
+            this.label18.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(147, 24);
+            this.label18.Size = new System.Drawing.Size(196, 32);
             this.label18.TabIndex = 22;
             this.label18.Text = "Input Device:";
             this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -600,9 +618,10 @@
             this.cbRandomAccessInputDevice.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cbRandomAccessInputDevice.ForeColor = System.Drawing.Color.White;
             this.cbRandomAccessInputDevice.FormattingEnabled = true;
-            this.cbRandomAccessInputDevice.Location = new System.Drawing.Point(206, 545);
+            this.cbRandomAccessInputDevice.Location = new System.Drawing.Point(275, 677);
+            this.cbRandomAccessInputDevice.Margin = new System.Windows.Forms.Padding(4);
             this.cbRandomAccessInputDevice.Name = "cbRandomAccessInputDevice";
-            this.cbRandomAccessInputDevice.Size = new System.Drawing.Size(453, 32);
+            this.cbRandomAccessInputDevice.Size = new System.Drawing.Size(604, 39);
             this.cbRandomAccessInputDevice.TabIndex = 23;
             this.cbRandomAccessInputDevice.SelectedIndexChanged += new System.EventHandler(this.cbRandomAccessInputDevice_SelectedIndexChanged);
             // 
@@ -611,18 +630,31 @@
             this.nudRandomAccessTranspose.BackColor = System.Drawing.Color.DimGray;
             this.nudRandomAccessTranspose.Dock = System.Windows.Forms.DockStyle.Fill;
             this.nudRandomAccessTranspose.ForeColor = System.Drawing.Color.White;
-            this.nudRandomAccessTranspose.Location = new System.Drawing.Point(971, 545);
+            this.nudRandomAccessTranspose.Location = new System.Drawing.Point(1295, 677);
+            this.nudRandomAccessTranspose.Margin = new System.Windows.Forms.Padding(4);
+            this.nudRandomAccessTranspose.Maximum = new decimal(new int[] {
+            12,
+            0,
+            0,
+            0});
+            this.nudRandomAccessTranspose.Minimum = new decimal(new int[] {
+            12,
+            0,
+            0,
+            -2147483648});
             this.nudRandomAccessTranspose.Name = "nudRandomAccessTranspose";
-            this.nudRandomAccessTranspose.Size = new System.Drawing.Size(147, 32);
+            this.nudRandomAccessTranspose.Size = new System.Drawing.Size(196, 38);
             this.nudRandomAccessTranspose.TabIndex = 20;
+            this.nudRandomAccessTranspose.ValueChanged += new System.EventHandler(this.nudRandomAccessTranspose_ValueChanged);
             // 
             // label17
             // 
             this.label17.AutoSize = true;
             this.label17.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label17.Location = new System.Drawing.Point(818, 542);
+            this.label17.Location = new System.Drawing.Point(1091, 673);
+            this.label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(147, 24);
+            this.label17.Size = new System.Drawing.Size(196, 32);
             this.label17.TabIndex = 21;
             this.label17.Text = "Transpose:";
             this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -634,7 +666,7 @@
             this.vsbVol1.Maximum = 127;
             this.vsbVol1.Name = "vsbVol1";
             this.tlpRandomAccess.SetRowSpan(this.vsbVol1, 9);
-            this.vsbVol1.Size = new System.Drawing.Size(50, 542);
+            this.vsbVol1.Size = new System.Drawing.Size(67, 673);
             this.vsbVol1.TabIndex = 24;
             this.vsbVol1.Value = 27;
             this.vsbVol1.Scroll += new System.Windows.Forms.ScrollEventHandler(this.vsbVol1_Scroll);
@@ -643,8 +675,9 @@
             // 
             this.tpRandomAccess2.BackColor = System.Drawing.Color.Black;
             this.tpRandomAccess2.Location = new System.Drawing.Point(4, 44);
+            this.tpRandomAccess2.Margin = new System.Windows.Forms.Padding(4);
             this.tpRandomAccess2.Name = "tpRandomAccess2";
-            this.tpRandomAccess2.Size = new System.Drawing.Size(1339, 596);
+            this.tpRandomAccess2.Size = new System.Drawing.Size(1788, 745);
             this.tpRandomAccess2.TabIndex = 6;
             this.tpRandomAccess2.Tag = "1";
             this.tpRandomAccess2.Text = "Random Access 2";
@@ -653,8 +686,9 @@
             // 
             this.tpRandomAccess3.BackColor = System.Drawing.Color.Black;
             this.tpRandomAccess3.Location = new System.Drawing.Point(4, 44);
+            this.tpRandomAccess3.Margin = new System.Windows.Forms.Padding(4);
             this.tpRandomAccess3.Name = "tpRandomAccess3";
-            this.tpRandomAccess3.Size = new System.Drawing.Size(1339, 596);
+            this.tpRandomAccess3.Size = new System.Drawing.Size(1788, 745);
             this.tpRandomAccess3.TabIndex = 7;
             this.tpRandomAccess3.Tag = "2";
             this.tpRandomAccess3.Text = "Random Access 3";
@@ -663,8 +697,9 @@
             // 
             this.tpRandomAccess4.BackColor = System.Drawing.Color.Black;
             this.tpRandomAccess4.Location = new System.Drawing.Point(4, 44);
+            this.tpRandomAccess4.Margin = new System.Windows.Forms.Padding(4);
             this.tpRandomAccess4.Name = "tpRandomAccess4";
-            this.tpRandomAccess4.Size = new System.Drawing.Size(1339, 596);
+            this.tpRandomAccess4.Size = new System.Drawing.Size(1788, 745);
             this.tpRandomAccess4.TabIndex = 8;
             this.tpRandomAccess4.Tag = "3";
             this.tpRandomAccess4.Text = "Random Access 4";
@@ -675,9 +710,10 @@
             this.tpShow.Controls.Add(this.tlpShowOuter);
             this.tpShow.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tpShow.Location = new System.Drawing.Point(4, 44);
+            this.tpShow.Margin = new System.Windows.Forms.Padding(4);
             this.tpShow.Name = "tpShow";
-            this.tpShow.Padding = new System.Windows.Forms.Padding(3);
-            this.tpShow.Size = new System.Drawing.Size(1339, 596);
+            this.tpShow.Padding = new System.Windows.Forms.Padding(4);
+            this.tpShow.Size = new System.Drawing.Size(1788, 745);
             this.tpShow.TabIndex = 1;
             this.tpShow.Tag = "";
             this.tpShow.Text = "Show";
@@ -685,7 +721,7 @@
             // tlpShowOuter
             // 
             this.tlpShowOuter.ColumnCount = 3;
-            this.tlpShowOuter.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.tlpShowOuter.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 67F));
             this.tlpShowOuter.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tlpShowOuter.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tlpShowOuter.Controls.Add(this.pdfChart, 1, 0);
@@ -694,25 +730,26 @@
             this.tlpShowOuter.Controls.Add(this.mbccShowSongPatches, 3, 1);
             this.tlpShowOuter.Controls.Add(this.vsbVol2, 0, 0);
             this.tlpShowOuter.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpShowOuter.Location = new System.Drawing.Point(3, 3);
+            this.tlpShowOuter.Location = new System.Drawing.Point(4, 4);
+            this.tlpShowOuter.Margin = new System.Windows.Forms.Padding(4);
             this.tlpShowOuter.Name = "tlpShowOuter";
             this.tlpShowOuter.RowCount = 2;
             this.tlpShowOuter.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpShowOuter.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 300F));
-            this.tlpShowOuter.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tlpShowOuter.Size = new System.Drawing.Size(1333, 590);
+            this.tlpShowOuter.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 369F));
+            this.tlpShowOuter.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tlpShowOuter.Size = new System.Drawing.Size(1780, 737);
             this.tlpShowOuter.TabIndex = 2;
             // 
             // pdfChart
             // 
             this.pdfChart.BackColor = System.Drawing.Color.Maroon;
             this.pdfChart.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pdfChart.Location = new System.Drawing.Point(51, 1);
+            this.pdfChart.Location = new System.Drawing.Point(68, 1);
             this.pdfChart.Margin = new System.Windows.Forms.Padding(1);
             this.pdfChart.Name = "pdfChart";
             this.pdfChart.Page = 0;
             this.pdfChart.Rotation = PdfiumViewer.PdfRotation.Rotate0;
-            this.pdfChart.Size = new System.Drawing.Size(639, 288);
+            this.pdfChart.Size = new System.Drawing.Size(854, 366);
             this.pdfChart.TabIndex = 16;
             this.pdfChart.Text = "pdfRenderer1";
             this.pdfChart.Visible = false;
@@ -721,9 +758,10 @@
             // rtbChart
             // 
             this.rtbChart.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.rtbChart.Location = new System.Drawing.Point(694, 3);
+            this.rtbChart.Location = new System.Drawing.Point(927, 4);
+            this.rtbChart.Margin = new System.Windows.Forms.Padding(4);
             this.rtbChart.Name = "rtbChart";
-            this.rtbChart.Size = new System.Drawing.Size(636, 284);
+            this.rtbChart.Size = new System.Drawing.Size(849, 360);
             this.rtbChart.TabIndex = 15;
             this.rtbChart.Text = "";
             // 
@@ -740,36 +778,40 @@
             this.tlpSongSetlistOuter.Controls.Add(this.btnSetlistSongOrderToggle, 2, 0);
             this.tlpSongSetlistOuter.Controls.Add(this.btnPrevSong, 0, 0);
             this.tlpSongSetlistOuter.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpSongSetlistOuter.Location = new System.Drawing.Point(53, 293);
+            this.tlpSongSetlistOuter.Location = new System.Drawing.Point(71, 372);
+            this.tlpSongSetlistOuter.Margin = new System.Windows.Forms.Padding(4);
             this.tlpSongSetlistOuter.Name = "tlpSongSetlistOuter";
             this.tlpSongSetlistOuter.RowCount = 2;
-            this.tlpSongSetlistOuter.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 56F));
+            this.tlpSongSetlistOuter.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 69F));
             this.tlpSongSetlistOuter.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpSongSetlistOuter.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tlpSongSetlistOuter.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tlpSongSetlistOuter.Size = new System.Drawing.Size(635, 294);
+            this.tlpSongSetlistOuter.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tlpSongSetlistOuter.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tlpSongSetlistOuter.Size = new System.Drawing.Size(848, 361);
             this.tlpSongSetlistOuter.TabIndex = 13;
             // 
             // olvSongs
             // 
             this.olvSongs.AllColumns.Add(this.olvColSong);
             this.olvSongs.BackColor = System.Drawing.Color.DimGray;
+            this.olvSongs.CellEditUseWholeCell = false;
             this.olvSongs.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.olvColSong});
             this.tlpSongSetlistOuter.SetColumnSpan(this.olvSongs, 4);
+            this.olvSongs.Cursor = System.Windows.Forms.Cursors.Default;
             this.olvSongs.Dock = System.Windows.Forms.DockStyle.Fill;
             this.olvSongs.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.olvSongs.ForeColor = System.Drawing.Color.White;
             this.olvSongs.FullRowSelect = true;
             this.olvSongs.GridLines = true;
             this.olvSongs.HideSelection = false;
-            this.olvSongs.Location = new System.Drawing.Point(3, 59);
+            this.olvSongs.Location = new System.Drawing.Point(4, 73);
+            this.olvSongs.Margin = new System.Windows.Forms.Padding(4);
             this.olvSongs.MultiSelect = false;
             this.olvSongs.Name = "olvSongs";
             this.olvSongs.PersistentCheckBoxes = false;
             this.olvSongs.RowHeight = 50;
             this.olvSongs.ShowGroups = false;
-            this.olvSongs.Size = new System.Drawing.Size(629, 232);
+            this.olvSongs.Size = new System.Drawing.Size(840, 284);
             this.olvSongs.TabIndex = 0;
             this.olvSongs.UseCompatibleStateImageBehavior = false;
             this.olvSongs.View = System.Windows.Forms.View.Details;
@@ -791,9 +833,10 @@
             this.btnSetlists.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSetlists.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSetlists.ForeColor = System.Drawing.Color.White;
-            this.btnSetlists.Location = new System.Drawing.Point(161, 3);
+            this.btnSetlists.Location = new System.Drawing.Point(216, 4);
+            this.btnSetlists.Margin = new System.Windows.Forms.Padding(4);
             this.btnSetlists.Name = "btnSetlists";
-            this.btnSetlists.Size = new System.Drawing.Size(152, 50);
+            this.btnSetlists.Size = new System.Drawing.Size(204, 61);
             this.btnSetlists.TabIndex = 1;
             this.btnSetlists.Text = "SetL";
             this.btnSetlists.UseVisualStyleBackColor = false;
@@ -807,9 +850,10 @@
             this.btnNextSong.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNextSong.Font = new System.Drawing.Font("Wingdings", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
             this.btnNextSong.ForeColor = System.Drawing.Color.White;
-            this.btnNextSong.Location = new System.Drawing.Point(477, 3);
+            this.btnNextSong.Location = new System.Drawing.Point(640, 4);
+            this.btnNextSong.Margin = new System.Windows.Forms.Padding(4);
             this.btnNextSong.Name = "btnNextSong";
-            this.btnNextSong.Size = new System.Drawing.Size(155, 50);
+            this.btnNextSong.Size = new System.Drawing.Size(204, 61);
             this.btnNextSong.TabIndex = 2;
             this.btnNextSong.Text = "ê";
             this.btnNextSong.UseVisualStyleBackColor = false;
@@ -823,9 +867,10 @@
             this.btnSetlistSongOrderToggle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSetlistSongOrderToggle.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSetlistSongOrderToggle.ForeColor = System.Drawing.Color.White;
-            this.btnSetlistSongOrderToggle.Location = new System.Drawing.Point(319, 3);
+            this.btnSetlistSongOrderToggle.Location = new System.Drawing.Point(428, 4);
+            this.btnSetlistSongOrderToggle.Margin = new System.Windows.Forms.Padding(4);
             this.btnSetlistSongOrderToggle.Name = "btnSetlistSongOrderToggle";
-            this.btnSetlistSongOrderToggle.Size = new System.Drawing.Size(152, 50);
+            this.btnSetlistSongOrderToggle.Size = new System.Drawing.Size(204, 61);
             this.btnSetlistSongOrderToggle.TabIndex = 4;
             this.btnSetlistSongOrderToggle.Text = "Alpha";
             this.btnSetlistSongOrderToggle.UseVisualStyleBackColor = false;
@@ -839,9 +884,10 @@
             this.btnPrevSong.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPrevSong.Font = new System.Drawing.Font("Wingdings", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
             this.btnPrevSong.ForeColor = System.Drawing.Color.White;
-            this.btnPrevSong.Location = new System.Drawing.Point(3, 3);
+            this.btnPrevSong.Location = new System.Drawing.Point(4, 4);
+            this.btnPrevSong.Margin = new System.Windows.Forms.Padding(4);
             this.btnPrevSong.Name = "btnPrevSong";
-            this.btnPrevSong.Size = new System.Drawing.Size(152, 50);
+            this.btnPrevSong.Size = new System.Drawing.Size(204, 61);
             this.btnPrevSong.TabIndex = 5;
             this.btnPrevSong.Text = "é";
             this.btnPrevSong.UseVisualStyleBackColor = false;
@@ -851,11 +897,12 @@
             // 
             this.mbccShowSongPatches.ButtonBackColor = System.Drawing.SystemColors.Control;
             this.mbccShowSongPatches.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mbccShowSongPatches.Location = new System.Drawing.Point(691, 290);
+            this.mbccShowSongPatches.Location = new System.Drawing.Point(923, 368);
             this.mbccShowSongPatches.Margin = new System.Windows.Forms.Padding(0);
             this.mbccShowSongPatches.Name = "mbccShowSongPatches";
-            this.mbccShowSongPatches.Size = new System.Drawing.Size(642, 300);
+            this.mbccShowSongPatches.Size = new System.Drawing.Size(857, 369);
             this.mbccShowSongPatches.TabIndex = 10;
+            this.mbccShowSongPatches.Click += new System.EventHandler(this.mbccShowSongPatches_Click);
             // 
             // vsbVol2
             // 
@@ -864,7 +911,7 @@
             this.vsbVol2.Maximum = 127;
             this.vsbVol2.Name = "vsbVol2";
             this.tlpShowOuter.SetRowSpan(this.vsbVol2, 2);
-            this.vsbVol2.Size = new System.Drawing.Size(50, 590);
+            this.vsbVol2.Size = new System.Drawing.Size(67, 737);
             this.vsbVol2.TabIndex = 7;
             this.vsbVol2.Value = 27;
             // 
@@ -876,9 +923,10 @@
             this.tpSongs.Controls.Add(this.tlpSongSelOuter);
             this.tpSongs.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tpSongs.Location = new System.Drawing.Point(4, 44);
+            this.tpSongs.Margin = new System.Windows.Forms.Padding(4);
             this.tpSongs.Name = "tpSongs";
-            this.tpSongs.Padding = new System.Windows.Forms.Padding(3);
-            this.tpSongs.Size = new System.Drawing.Size(1339, 596);
+            this.tpSongs.Padding = new System.Windows.Forms.Padding(4);
+            this.tpSongs.Size = new System.Drawing.Size(1788, 745);
             this.tpSongs.TabIndex = 2;
             this.tpSongs.Text = "Songs";
             // 
@@ -893,9 +941,10 @@
             this.pnlPatchEdit.Controls.Add(this.lblSongPatchBank);
             this.pnlPatchEdit.Controls.Add(this.btnPatchEditCancel);
             this.pnlPatchEdit.Controls.Add(this.btnPatchEditOK);
-            this.pnlPatchEdit.Location = new System.Drawing.Point(915, 0);
+            this.pnlPatchEdit.Location = new System.Drawing.Point(1220, 0);
+            this.pnlPatchEdit.Margin = new System.Windows.Forms.Padding(4);
             this.pnlPatchEdit.Name = "pnlPatchEdit";
-            this.pnlPatchEdit.Size = new System.Drawing.Size(395, 558);
+            this.pnlPatchEdit.Size = new System.Drawing.Size(527, 687);
             this.pnlPatchEdit.TabIndex = 2;
             this.pnlPatchEdit.Visible = false;
             // 
@@ -904,9 +953,10 @@
             this.tvSongPatchPatches.BackColor = System.Drawing.Color.DimGray;
             this.tvSongPatchPatches.ForeColor = System.Drawing.Color.White;
             this.tvSongPatchPatches.HideSelection = false;
-            this.tvSongPatchPatches.Location = new System.Drawing.Point(74, 155);
+            this.tvSongPatchPatches.Location = new System.Drawing.Point(99, 191);
+            this.tvSongPatchPatches.Margin = new System.Windows.Forms.Padding(4);
             this.tvSongPatchPatches.Name = "tvSongPatchPatches";
-            this.tvSongPatchPatches.Size = new System.Drawing.Size(297, 260);
+            this.tvSongPatchPatches.Size = new System.Drawing.Size(395, 319);
             this.tvSongPatchPatches.TabIndex = 25;
             // 
             // lblSongPatchPart
@@ -914,9 +964,10 @@
             this.lblSongPatchPart.AutoSize = true;
             this.lblSongPatchPart.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSongPatchPart.ForeColor = System.Drawing.Color.White;
-            this.lblSongPatchPart.Location = new System.Drawing.Point(34, 82);
+            this.lblSongPatchPart.Location = new System.Drawing.Point(45, 101);
+            this.lblSongPatchPart.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSongPatchPart.Name = "lblSongPatchPart";
-            this.lblSongPatchPart.Size = new System.Drawing.Size(32, 15);
+            this.lblSongPatchPart.Size = new System.Drawing.Size(39, 17);
             this.lblSongPatchPart.TabIndex = 19;
             this.lblSongPatchPart.Text = "Part:";
             // 
@@ -924,7 +975,8 @@
             // 
             this.nudSongPatchProgramNo.BackColor = System.Drawing.Color.DimGray;
             this.nudSongPatchProgramNo.ForeColor = System.Drawing.Color.White;
-            this.nudSongPatchProgramNo.Location = new System.Drawing.Point(284, 114);
+            this.nudSongPatchProgramNo.Location = new System.Drawing.Point(379, 140);
+            this.nudSongPatchProgramNo.Margin = new System.Windows.Forms.Padding(4);
             this.nudSongPatchProgramNo.Maximum = new decimal(new int[] {
             127,
             0,
@@ -936,7 +988,7 @@
             0,
             -2147483648});
             this.nudSongPatchProgramNo.Name = "nudSongPatchProgramNo";
-            this.nudSongPatchProgramNo.Size = new System.Drawing.Size(87, 32);
+            this.nudSongPatchProgramNo.Size = new System.Drawing.Size(116, 38);
             this.nudSongPatchProgramNo.TabIndex = 24;
             this.nudSongPatchProgramNo.Value = new decimal(new int[] {
             1,
@@ -949,9 +1001,10 @@
             this.lblSongPatchProgramNo.AutoSize = true;
             this.lblSongPatchProgramNo.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSongPatchProgramNo.ForeColor = System.Drawing.Color.White;
-            this.lblSongPatchProgramNo.Location = new System.Drawing.Point(217, 121);
+            this.lblSongPatchProgramNo.Location = new System.Drawing.Point(289, 149);
+            this.lblSongPatchProgramNo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSongPatchProgramNo.Name = "lblSongPatchProgramNo";
-            this.lblSongPatchProgramNo.Size = new System.Drawing.Size(68, 15);
+            this.lblSongPatchProgramNo.Size = new System.Drawing.Size(81, 17);
             this.lblSongPatchProgramNo.TabIndex = 23;
             this.lblSongPatchProgramNo.Text = "Program #:";
             // 
@@ -959,7 +1012,8 @@
             // 
             this.nudSongPatchBank.BackColor = System.Drawing.Color.DimGray;
             this.nudSongPatchBank.ForeColor = System.Drawing.Color.White;
-            this.nudSongPatchBank.Location = new System.Drawing.Point(74, 115);
+            this.nudSongPatchBank.Location = new System.Drawing.Point(99, 142);
+            this.nudSongPatchBank.Margin = new System.Windows.Forms.Padding(4);
             this.nudSongPatchBank.Maximum = new decimal(new int[] {
             127,
             0,
@@ -971,7 +1025,7 @@
             0,
             -2147483648});
             this.nudSongPatchBank.Name = "nudSongPatchBank";
-            this.nudSongPatchBank.Size = new System.Drawing.Size(87, 32);
+            this.nudSongPatchBank.Size = new System.Drawing.Size(116, 38);
             this.nudSongPatchBank.TabIndex = 22;
             this.nudSongPatchBank.Value = new decimal(new int[] {
             1,
@@ -983,9 +1037,10 @@
             // 
             this.tbSongPatchPart.BackColor = System.Drawing.Color.DimGray;
             this.tbSongPatchPart.ForeColor = System.Drawing.Color.White;
-            this.tbSongPatchPart.Location = new System.Drawing.Point(72, 75);
+            this.tbSongPatchPart.Location = new System.Drawing.Point(96, 92);
+            this.tbSongPatchPart.Margin = new System.Windows.Forms.Padding(4);
             this.tbSongPatchPart.Name = "tbSongPatchPart";
-            this.tbSongPatchPart.Size = new System.Drawing.Size(297, 32);
+            this.tbSongPatchPart.Size = new System.Drawing.Size(395, 38);
             this.tbSongPatchPart.TabIndex = 20;
             // 
             // lblSongPatchBank
@@ -993,9 +1048,10 @@
             this.lblSongPatchBank.AutoSize = true;
             this.lblSongPatchBank.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSongPatchBank.ForeColor = System.Drawing.Color.White;
-            this.lblSongPatchBank.Location = new System.Drawing.Point(30, 123);
+            this.lblSongPatchBank.Location = new System.Drawing.Point(40, 151);
+            this.lblSongPatchBank.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSongPatchBank.Name = "lblSongPatchBank";
-            this.lblSongPatchBank.Size = new System.Drawing.Size(38, 15);
+            this.lblSongPatchBank.Size = new System.Drawing.Size(45, 17);
             this.lblSongPatchBank.TabIndex = 21;
             this.lblSongPatchBank.Text = "Bank:";
             // 
@@ -1004,9 +1060,10 @@
             this.btnPatchEditCancel.BackColor = System.Drawing.Color.DimGray;
             this.btnPatchEditCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnPatchEditCancel.ForeColor = System.Drawing.Color.White;
-            this.btnPatchEditCancel.Location = new System.Drawing.Point(72, 426);
+            this.btnPatchEditCancel.Location = new System.Drawing.Point(96, 524);
+            this.btnPatchEditCancel.Margin = new System.Windows.Forms.Padding(4);
             this.btnPatchEditCancel.Name = "btnPatchEditCancel";
-            this.btnPatchEditCancel.Size = new System.Drawing.Size(150, 54);
+            this.btnPatchEditCancel.Size = new System.Drawing.Size(200, 66);
             this.btnPatchEditCancel.TabIndex = 26;
             this.btnPatchEditCancel.Text = "Cancel";
             this.btnPatchEditCancel.UseVisualStyleBackColor = false;
@@ -1017,9 +1074,10 @@
             this.btnPatchEditOK.BackColor = System.Drawing.Color.DimGray;
             this.btnPatchEditOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnPatchEditOK.ForeColor = System.Drawing.Color.White;
-            this.btnPatchEditOK.Location = new System.Drawing.Point(226, 426);
+            this.btnPatchEditOK.Location = new System.Drawing.Point(301, 524);
+            this.btnPatchEditOK.Margin = new System.Windows.Forms.Padding(4);
             this.btnPatchEditOK.Name = "btnPatchEditOK";
-            this.btnPatchEditOK.Size = new System.Drawing.Size(145, 54);
+            this.btnPatchEditOK.Size = new System.Drawing.Size(193, 66);
             this.btnPatchEditOK.TabIndex = 27;
             this.btnPatchEditOK.Text = "OK";
             this.btnPatchEditOK.UseVisualStyleBackColor = false;
@@ -1043,15 +1101,17 @@
             this.pnlSongEdit.Controls.Add(this.label1);
             this.pnlSongEdit.Controls.Add(this.tbSongTitle);
             this.pnlSongEdit.Controls.Add(this.lblSongTitle);
-            this.pnlSongEdit.Location = new System.Drawing.Point(443, 6);
+            this.pnlSongEdit.Location = new System.Drawing.Point(591, 7);
+            this.pnlSongEdit.Margin = new System.Windows.Forms.Padding(4);
             this.pnlSongEdit.Name = "pnlSongEdit";
-            this.pnlSongEdit.Size = new System.Drawing.Size(447, 552);
+            this.pnlSongEdit.Size = new System.Drawing.Size(596, 679);
             this.pnlSongEdit.TabIndex = 1;
             this.pnlSongEdit.Visible = false;
             // 
             // nudSongTranspose
             // 
-            this.nudSongTranspose.Location = new System.Drawing.Point(99, 150);
+            this.nudSongTranspose.Location = new System.Drawing.Point(132, 185);
+            this.nudSongTranspose.Margin = new System.Windows.Forms.Padding(4);
             this.nudSongTranspose.Maximum = new decimal(new int[] {
             12,
             0,
@@ -1063,7 +1123,7 @@
             0,
             -2147483648});
             this.nudSongTranspose.Name = "nudSongTranspose";
-            this.nudSongTranspose.Size = new System.Drawing.Size(317, 32);
+            this.nudSongTranspose.Size = new System.Drawing.Size(423, 38);
             this.nudSongTranspose.TabIndex = 10;
             // 
             // label16
@@ -1071,9 +1131,10 @@
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label16.ForeColor = System.Drawing.Color.White;
-            this.label16.Location = new System.Drawing.Point(18, 157);
+            this.label16.Location = new System.Drawing.Point(24, 193);
+            this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(70, 15);
+            this.label16.Size = new System.Drawing.Size(81, 17);
             this.label16.TabIndex = 9;
             this.label16.Text = "Transpose:";
             this.label16.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -1083,9 +1144,10 @@
             this.btnPatchDel.BackColor = System.Drawing.Color.DimGray;
             this.btnPatchDel.Font = new System.Drawing.Font("Arial", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPatchDel.ForeColor = System.Drawing.Color.White;
-            this.btnPatchDel.Location = new System.Drawing.Point(372, 299);
+            this.btnPatchDel.Location = new System.Drawing.Point(496, 368);
+            this.btnPatchDel.Margin = new System.Windows.Forms.Padding(4);
             this.btnPatchDel.Name = "btnPatchDel";
-            this.btnPatchDel.Size = new System.Drawing.Size(44, 39);
+            this.btnPatchDel.Size = new System.Drawing.Size(59, 48);
             this.btnPatchDel.TabIndex = 15;
             this.btnPatchDel.Text = "-";
             this.btnPatchDel.UseVisualStyleBackColor = false;
@@ -1096,9 +1158,10 @@
             this.btnPatchAdd.BackColor = System.Drawing.Color.DimGray;
             this.btnPatchAdd.Font = new System.Drawing.Font("Arial", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPatchAdd.ForeColor = System.Drawing.Color.White;
-            this.btnPatchAdd.Location = new System.Drawing.Point(372, 254);
+            this.btnPatchAdd.Location = new System.Drawing.Point(496, 313);
+            this.btnPatchAdd.Margin = new System.Windows.Forms.Padding(4);
             this.btnPatchAdd.Name = "btnPatchAdd";
-            this.btnPatchAdd.Size = new System.Drawing.Size(44, 39);
+            this.btnPatchAdd.Size = new System.Drawing.Size(59, 48);
             this.btnPatchAdd.TabIndex = 14;
             this.btnPatchAdd.Text = "+";
             this.btnPatchAdd.UseVisualStyleBackColor = false;
@@ -1109,9 +1172,10 @@
             this.btnPatchDown.BackColor = System.Drawing.Color.DimGray;
             this.btnPatchDown.Font = new System.Drawing.Font("Wingdings", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
             this.btnPatchDown.ForeColor = System.Drawing.Color.White;
-            this.btnPatchDown.Location = new System.Drawing.Point(372, 346);
+            this.btnPatchDown.Location = new System.Drawing.Point(496, 426);
+            this.btnPatchDown.Margin = new System.Windows.Forms.Padding(4);
             this.btnPatchDown.Name = "btnPatchDown";
-            this.btnPatchDown.Size = new System.Drawing.Size(44, 61);
+            this.btnPatchDown.Size = new System.Drawing.Size(59, 75);
             this.btnPatchDown.TabIndex = 16;
             this.btnPatchDown.Text = "";
             this.btnPatchDown.UseVisualStyleBackColor = false;
@@ -1122,9 +1186,10 @@
             this.btnPatchUp.BackColor = System.Drawing.Color.DimGray;
             this.btnPatchUp.Font = new System.Drawing.Font("Wingdings", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
             this.btnPatchUp.ForeColor = System.Drawing.Color.White;
-            this.btnPatchUp.Location = new System.Drawing.Point(372, 187);
+            this.btnPatchUp.Location = new System.Drawing.Point(496, 230);
+            this.btnPatchUp.Margin = new System.Windows.Forms.Padding(4);
             this.btnPatchUp.Name = "btnPatchUp";
-            this.btnPatchUp.Size = new System.Drawing.Size(44, 61);
+            this.btnPatchUp.Size = new System.Drawing.Size(59, 75);
             this.btnPatchUp.TabIndex = 13;
             this.btnPatchUp.Text = "";
             this.btnPatchUp.UseVisualStyleBackColor = false;
@@ -1135,9 +1200,10 @@
             this.btnSongEditCancel.BackColor = System.Drawing.Color.DimGray;
             this.btnSongEditCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnSongEditCancel.ForeColor = System.Drawing.Color.White;
-            this.btnSongEditCancel.Location = new System.Drawing.Point(99, 420);
+            this.btnSongEditCancel.Location = new System.Drawing.Point(132, 517);
+            this.btnSongEditCancel.Margin = new System.Windows.Forms.Padding(4);
             this.btnSongEditCancel.Name = "btnSongEditCancel";
-            this.btnSongEditCancel.Size = new System.Drawing.Size(156, 54);
+            this.btnSongEditCancel.Size = new System.Drawing.Size(208, 66);
             this.btnSongEditCancel.TabIndex = 17;
             this.btnSongEditCancel.Text = "Cancel";
             this.btnSongEditCancel.UseVisualStyleBackColor = false;
@@ -1148,9 +1214,10 @@
             this.btnSongEditOK.BackColor = System.Drawing.Color.DimGray;
             this.btnSongEditOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnSongEditOK.ForeColor = System.Drawing.Color.White;
-            this.btnSongEditOK.Location = new System.Drawing.Point(271, 420);
+            this.btnSongEditOK.Location = new System.Drawing.Point(361, 517);
+            this.btnSongEditOK.Margin = new System.Windows.Forms.Padding(4);
             this.btnSongEditOK.Name = "btnSongEditOK";
-            this.btnSongEditOK.Size = new System.Drawing.Size(145, 54);
+            this.btnSongEditOK.Size = new System.Drawing.Size(193, 66);
             this.btnSongEditOK.TabIndex = 18;
             this.btnSongEditOK.Text = "OK";
             this.btnSongEditOK.UseVisualStyleBackColor = false;
@@ -1161,9 +1228,10 @@
             this.lblSongPatches.AutoSize = true;
             this.lblSongPatches.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSongPatches.ForeColor = System.Drawing.Color.White;
-            this.lblSongPatches.Location = new System.Drawing.Point(35, 194);
+            this.lblSongPatches.Location = new System.Drawing.Point(47, 239);
+            this.lblSongPatches.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSongPatches.Name = "lblSongPatches";
-            this.lblSongPatches.Size = new System.Drawing.Size(55, 15);
+            this.lblSongPatches.Size = new System.Drawing.Size(66, 17);
             this.lblSongPatches.TabIndex = 11;
             this.lblSongPatches.Text = "Patches:";
             this.lblSongPatches.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -1173,10 +1241,11 @@
             this.lbSongPatches.BackColor = System.Drawing.Color.DimGray;
             this.lbSongPatches.ForeColor = System.Drawing.Color.White;
             this.lbSongPatches.FormattingEnabled = true;
-            this.lbSongPatches.ItemHeight = 24;
-            this.lbSongPatches.Location = new System.Drawing.Point(99, 189);
+            this.lbSongPatches.ItemHeight = 31;
+            this.lbSongPatches.Location = new System.Drawing.Point(132, 233);
+            this.lbSongPatches.Margin = new System.Windows.Forms.Padding(4);
             this.lbSongPatches.Name = "lbSongPatches";
-            this.lbSongPatches.Size = new System.Drawing.Size(267, 172);
+            this.lbSongPatches.Size = new System.Drawing.Size(355, 190);
             this.lbSongPatches.TabIndex = 12;
             this.lbSongPatches.DoubleClick += new System.EventHandler(this.lbSongPatches_DoubleClick);
             // 
@@ -1184,9 +1253,10 @@
             // 
             this.tbSongChart.BackColor = System.Drawing.Color.DimGray;
             this.tbSongChart.ForeColor = System.Drawing.Color.White;
-            this.tbSongChart.Location = new System.Drawing.Point(99, 111);
+            this.tbSongChart.Location = new System.Drawing.Point(132, 137);
+            this.tbSongChart.Margin = new System.Windows.Forms.Padding(4);
             this.tbSongChart.Name = "tbSongChart";
-            this.tbSongChart.Size = new System.Drawing.Size(317, 32);
+            this.tbSongChart.Size = new System.Drawing.Size(421, 38);
             this.tbSongChart.TabIndex = 8;
             // 
             // lblSongChart
@@ -1194,9 +1264,10 @@
             this.lblSongChart.AutoSize = true;
             this.lblSongChart.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSongChart.ForeColor = System.Drawing.Color.White;
-            this.lblSongChart.Location = new System.Drawing.Point(49, 113);
+            this.lblSongChart.Location = new System.Drawing.Point(65, 139);
+            this.lblSongChart.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSongChart.Name = "lblSongChart";
-            this.lblSongChart.Size = new System.Drawing.Size(40, 15);
+            this.lblSongChart.Size = new System.Drawing.Size(48, 17);
             this.lblSongChart.TabIndex = 7;
             this.lblSongChart.Text = "Chart:";
             this.lblSongChart.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -1205,9 +1276,10 @@
             // 
             this.tbSongArtist.BackColor = System.Drawing.Color.DimGray;
             this.tbSongArtist.ForeColor = System.Drawing.Color.White;
-            this.tbSongArtist.Location = new System.Drawing.Point(99, 74);
+            this.tbSongArtist.Location = new System.Drawing.Point(132, 91);
+            this.tbSongArtist.Margin = new System.Windows.Forms.Padding(4);
             this.tbSongArtist.Name = "tbSongArtist";
-            this.tbSongArtist.Size = new System.Drawing.Size(317, 32);
+            this.tbSongArtist.Size = new System.Drawing.Size(421, 38);
             this.tbSongArtist.TabIndex = 6;
             // 
             // label1
@@ -1215,9 +1287,10 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(51, 77);
+            this.label1.Location = new System.Drawing.Point(68, 95);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(37, 15);
+            this.label1.Size = new System.Drawing.Size(45, 17);
             this.label1.TabIndex = 5;
             this.label1.Text = "Artist:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -1226,9 +1299,10 @@
             // 
             this.tbSongTitle.BackColor = System.Drawing.Color.DimGray;
             this.tbSongTitle.ForeColor = System.Drawing.Color.White;
-            this.tbSongTitle.Location = new System.Drawing.Point(99, 36);
+            this.tbSongTitle.Location = new System.Drawing.Point(132, 44);
+            this.tbSongTitle.Margin = new System.Windows.Forms.Padding(4);
             this.tbSongTitle.Name = "tbSongTitle";
-            this.tbSongTitle.Size = new System.Drawing.Size(317, 32);
+            this.tbSongTitle.Size = new System.Drawing.Size(421, 38);
             this.tbSongTitle.TabIndex = 4;
             // 
             // lblSongTitle
@@ -1236,9 +1310,10 @@
             this.lblSongTitle.AutoSize = true;
             this.lblSongTitle.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSongTitle.ForeColor = System.Drawing.Color.White;
-            this.lblSongTitle.Location = new System.Drawing.Point(23, 45);
+            this.lblSongTitle.Location = new System.Drawing.Point(31, 55);
+            this.lblSongTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSongTitle.Name = "lblSongTitle";
-            this.lblSongTitle.Size = new System.Drawing.Size(65, 15);
+            this.lblSongTitle.Size = new System.Drawing.Size(76, 17);
             this.lblSongTitle.TabIndex = 3;
             this.lblSongTitle.Text = "Song Title:";
             // 
@@ -1249,14 +1324,14 @@
             this.tlpSongSelOuter.Controls.Add(this.mbccSongEditSelector, 0, 1);
             this.tlpSongSelOuter.Controls.Add(this.tlpSongSelButtons, 0, 0);
             this.tlpSongSelOuter.Dock = System.Windows.Forms.DockStyle.Left;
-            this.tlpSongSelOuter.Location = new System.Drawing.Point(3, 3);
+            this.tlpSongSelOuter.Location = new System.Drawing.Point(4, 4);
             this.tlpSongSelOuter.Margin = new System.Windows.Forms.Padding(0);
             this.tlpSongSelOuter.Name = "tlpSongSelOuter";
             this.tlpSongSelOuter.RowCount = 2;
-            this.tlpSongSelOuter.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.tlpSongSelOuter.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 62F));
             this.tlpSongSelOuter.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpSongSelOuter.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tlpSongSelOuter.Size = new System.Drawing.Size(408, 590);
+            this.tlpSongSelOuter.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tlpSongSelOuter.Size = new System.Drawing.Size(544, 737);
             this.tlpSongSelOuter.TabIndex = 0;
             // 
             // mbccSongEditSelector
@@ -1264,10 +1339,11 @@
             this.mbccSongEditSelector.ButtonBackColor = System.Drawing.Color.DimGray;
             this.mbccSongEditSelector.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mbccSongEditSelector.ForeColor = System.Drawing.Color.White;
-            this.mbccSongEditSelector.Location = new System.Drawing.Point(3, 53);
+            this.mbccSongEditSelector.Location = new System.Drawing.Point(5, 67);
+            this.mbccSongEditSelector.Margin = new System.Windows.Forms.Padding(5);
             this.mbccSongEditSelector.Name = "mbccSongEditSelector";
             this.tlpSongSelOuter.SetRowSpan(this.mbccSongEditSelector, 2);
-            this.mbccSongEditSelector.Size = new System.Drawing.Size(402, 534);
+            this.mbccSongEditSelector.Size = new System.Drawing.Size(534, 665);
             this.mbccSongEditSelector.TabIndex = 0;
             this.mbccSongEditSelector.Click += new System.EventHandler(this.mbccSongEditSelector_Click);
             // 
@@ -1284,16 +1360,17 @@
             this.tlpSongSelButtons.Name = "tlpSongSelButtons";
             this.tlpSongSelButtons.RowCount = 1;
             this.tlpSongSelButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpSongSelButtons.Size = new System.Drawing.Size(408, 50);
+            this.tlpSongSelButtons.Size = new System.Drawing.Size(544, 62);
             this.tlpSongSelButtons.TabIndex = 1;
             // 
             // btnSongDel
             // 
             this.btnSongDel.BackColor = System.Drawing.Color.DimGray;
             this.btnSongDel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnSongDel.Location = new System.Drawing.Point(207, 3);
+            this.btnSongDel.Location = new System.Drawing.Point(276, 4);
+            this.btnSongDel.Margin = new System.Windows.Forms.Padding(4);
             this.btnSongDel.Name = "btnSongDel";
-            this.btnSongDel.Size = new System.Drawing.Size(198, 44);
+            this.btnSongDel.Size = new System.Drawing.Size(264, 54);
             this.btnSongDel.TabIndex = 2;
             this.btnSongDel.Text = "-";
             this.btnSongDel.UseVisualStyleBackColor = false;
@@ -1303,9 +1380,10 @@
             // 
             this.btnAddSong.BackColor = System.Drawing.Color.DimGray;
             this.btnAddSong.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnAddSong.Location = new System.Drawing.Point(3, 3);
+            this.btnAddSong.Location = new System.Drawing.Point(4, 4);
+            this.btnAddSong.Margin = new System.Windows.Forms.Padding(4);
             this.btnAddSong.Name = "btnAddSong";
-            this.btnAddSong.Size = new System.Drawing.Size(198, 44);
+            this.btnAddSong.Size = new System.Drawing.Size(264, 54);
             this.btnAddSong.TabIndex = 1;
             this.btnAddSong.Text = "+";
             this.btnAddSong.UseVisualStyleBackColor = false;
@@ -1318,8 +1396,9 @@
             this.tpSetlists.Controls.Add(this.pnlSetlistEdit);
             this.tpSetlists.Controls.Add(this.tlpSetlistSelOuter);
             this.tpSetlists.Location = new System.Drawing.Point(4, 44);
+            this.tpSetlists.Margin = new System.Windows.Forms.Padding(4);
             this.tpSetlists.Name = "tpSetlists";
-            this.tpSetlists.Size = new System.Drawing.Size(1339, 596);
+            this.tpSetlists.Size = new System.Drawing.Size(1788, 745);
             this.tpSetlists.TabIndex = 3;
             this.tpSetlists.Text = "Setlists";
             // 
@@ -1328,9 +1407,10 @@
             this.pnlSetlistSongSelector.Controls.Add(this.tvSongsForSetlists);
             this.pnlSetlistSongSelector.Controls.Add(this.btnSetlistSongSelCancel);
             this.pnlSetlistSongSelector.Controls.Add(this.btnSetlistSongSelOK);
-            this.pnlSetlistSongSelector.Location = new System.Drawing.Point(916, 32);
+            this.pnlSetlistSongSelector.Location = new System.Drawing.Point(1221, 39);
+            this.pnlSetlistSongSelector.Margin = new System.Windows.Forms.Padding(4);
             this.pnlSetlistSongSelector.Name = "pnlSetlistSongSelector";
-            this.pnlSetlistSongSelector.Size = new System.Drawing.Size(395, 459);
+            this.pnlSetlistSongSelector.Size = new System.Drawing.Size(527, 565);
             this.pnlSetlistSongSelector.TabIndex = 2;
             this.pnlSetlistSongSelector.Visible = false;
             // 
@@ -1340,9 +1420,10 @@
             this.tvSongsForSetlists.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tvSongsForSetlists.ForeColor = System.Drawing.Color.White;
             this.tvSongsForSetlists.HideSelection = false;
-            this.tvSongsForSetlists.Location = new System.Drawing.Point(40, 36);
+            this.tvSongsForSetlists.Location = new System.Drawing.Point(53, 44);
+            this.tvSongsForSetlists.Margin = new System.Windows.Forms.Padding(4);
             this.tvSongsForSetlists.Name = "tvSongsForSetlists";
-            this.tvSongsForSetlists.Size = new System.Drawing.Size(317, 335);
+            this.tvSongsForSetlists.Size = new System.Drawing.Size(421, 411);
             this.tvSongsForSetlists.TabIndex = 13;
             this.tvSongsForSetlists.DoubleClick += new System.EventHandler(this.tvSongsForSetlists_DoubleClick);
             // 
@@ -1352,9 +1433,10 @@
             this.btnSetlistSongSelCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnSetlistSongSelCancel.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSetlistSongSelCancel.ForeColor = System.Drawing.Color.White;
-            this.btnSetlistSongSelCancel.Location = new System.Drawing.Point(40, 392);
+            this.btnSetlistSongSelCancel.Location = new System.Drawing.Point(53, 482);
+            this.btnSetlistSongSelCancel.Margin = new System.Windows.Forms.Padding(4);
             this.btnSetlistSongSelCancel.Name = "btnSetlistSongSelCancel";
-            this.btnSetlistSongSelCancel.Size = new System.Drawing.Size(156, 54);
+            this.btnSetlistSongSelCancel.Size = new System.Drawing.Size(208, 66);
             this.btnSetlistSongSelCancel.TabIndex = 14;
             this.btnSetlistSongSelCancel.Text = "Cancel";
             this.btnSetlistSongSelCancel.UseVisualStyleBackColor = false;
@@ -1366,9 +1448,10 @@
             this.btnSetlistSongSelOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnSetlistSongSelOK.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSetlistSongSelOK.ForeColor = System.Drawing.Color.White;
-            this.btnSetlistSongSelOK.Location = new System.Drawing.Point(212, 392);
+            this.btnSetlistSongSelOK.Location = new System.Drawing.Point(283, 482);
+            this.btnSetlistSongSelOK.Margin = new System.Windows.Forms.Padding(4);
             this.btnSetlistSongSelOK.Name = "btnSetlistSongSelOK";
-            this.btnSetlistSongSelOK.Size = new System.Drawing.Size(145, 54);
+            this.btnSetlistSongSelOK.Size = new System.Drawing.Size(193, 66);
             this.btnSetlistSongSelOK.TabIndex = 15;
             this.btnSetlistSongSelOK.Text = "OK";
             this.btnSetlistSongSelOK.UseVisualStyleBackColor = false;
@@ -1386,9 +1469,10 @@
             this.pnlSetlistEdit.Controls.Add(this.lbSetlistSongs);
             this.pnlSetlistEdit.Controls.Add(this.tbSetlistName);
             this.pnlSetlistEdit.Controls.Add(this.label4);
-            this.pnlSetlistEdit.Location = new System.Drawing.Point(444, 32);
+            this.pnlSetlistEdit.Location = new System.Drawing.Point(592, 39);
+            this.pnlSetlistEdit.Margin = new System.Windows.Forms.Padding(4);
             this.pnlSetlistEdit.Name = "pnlSetlistEdit";
-            this.pnlSetlistEdit.Size = new System.Drawing.Size(447, 459);
+            this.pnlSetlistEdit.Size = new System.Drawing.Size(596, 565);
             this.pnlSetlistEdit.TabIndex = 1;
             this.pnlSetlistEdit.Visible = false;
             // 
@@ -1397,9 +1481,10 @@
             this.btnSetlistDeleteSong.BackColor = System.Drawing.Color.DimGray;
             this.btnSetlistDeleteSong.Font = new System.Drawing.Font("Arial", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSetlistDeleteSong.ForeColor = System.Drawing.Color.White;
-            this.btnSetlistDeleteSong.Location = new System.Drawing.Point(370, 227);
+            this.btnSetlistDeleteSong.Location = new System.Drawing.Point(493, 279);
+            this.btnSetlistDeleteSong.Margin = new System.Windows.Forms.Padding(4);
             this.btnSetlistDeleteSong.Name = "btnSetlistDeleteSong";
-            this.btnSetlistDeleteSong.Size = new System.Drawing.Size(44, 62);
+            this.btnSetlistDeleteSong.Size = new System.Drawing.Size(59, 76);
             this.btnSetlistDeleteSong.TabIndex = 9;
             this.btnSetlistDeleteSong.Text = "-";
             this.btnSetlistDeleteSong.UseVisualStyleBackColor = false;
@@ -1410,9 +1495,10 @@
             this.btnSetlistAddSong.BackColor = System.Drawing.Color.DimGray;
             this.btnSetlistAddSong.Font = new System.Drawing.Font("Arial", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSetlistAddSong.ForeColor = System.Drawing.Color.White;
-            this.btnSetlistAddSong.Location = new System.Drawing.Point(370, 161);
+            this.btnSetlistAddSong.Location = new System.Drawing.Point(493, 198);
+            this.btnSetlistAddSong.Margin = new System.Windows.Forms.Padding(4);
             this.btnSetlistAddSong.Name = "btnSetlistAddSong";
-            this.btnSetlistAddSong.Size = new System.Drawing.Size(44, 60);
+            this.btnSetlistAddSong.Size = new System.Drawing.Size(59, 74);
             this.btnSetlistAddSong.TabIndex = 8;
             this.btnSetlistAddSong.Text = "+";
             this.btnSetlistAddSong.UseVisualStyleBackColor = false;
@@ -1423,9 +1509,10 @@
             this.btnSetlistSongDown.BackColor = System.Drawing.Color.DimGray;
             this.btnSetlistSongDown.Font = new System.Drawing.Font("Wingdings", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
             this.btnSetlistSongDown.ForeColor = System.Drawing.Color.White;
-            this.btnSetlistSongDown.Location = new System.Drawing.Point(370, 310);
+            this.btnSetlistSongDown.Location = new System.Drawing.Point(493, 382);
+            this.btnSetlistSongDown.Margin = new System.Windows.Forms.Padding(4);
             this.btnSetlistSongDown.Name = "btnSetlistSongDown";
-            this.btnSetlistSongDown.Size = new System.Drawing.Size(44, 61);
+            this.btnSetlistSongDown.Size = new System.Drawing.Size(59, 75);
             this.btnSetlistSongDown.TabIndex = 10;
             this.btnSetlistSongDown.Text = "";
             this.btnSetlistSongDown.UseVisualStyleBackColor = false;
@@ -1436,9 +1523,10 @@
             this.btnSetlistSongUp.BackColor = System.Drawing.Color.DimGray;
             this.btnSetlistSongUp.Font = new System.Drawing.Font("Wingdings", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
             this.btnSetlistSongUp.ForeColor = System.Drawing.Color.White;
-            this.btnSetlistSongUp.Location = new System.Drawing.Point(370, 79);
+            this.btnSetlistSongUp.Location = new System.Drawing.Point(493, 97);
+            this.btnSetlistSongUp.Margin = new System.Windows.Forms.Padding(4);
             this.btnSetlistSongUp.Name = "btnSetlistSongUp";
-            this.btnSetlistSongUp.Size = new System.Drawing.Size(44, 61);
+            this.btnSetlistSongUp.Size = new System.Drawing.Size(59, 75);
             this.btnSetlistSongUp.TabIndex = 7;
             this.btnSetlistSongUp.Text = "";
             this.btnSetlistSongUp.UseVisualStyleBackColor = false;
@@ -1450,9 +1538,10 @@
             this.btnSetlistEditCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnSetlistEditCancel.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSetlistEditCancel.ForeColor = System.Drawing.Color.White;
-            this.btnSetlistEditCancel.Location = new System.Drawing.Point(97, 392);
+            this.btnSetlistEditCancel.Location = new System.Drawing.Point(129, 482);
+            this.btnSetlistEditCancel.Margin = new System.Windows.Forms.Padding(4);
             this.btnSetlistEditCancel.Name = "btnSetlistEditCancel";
-            this.btnSetlistEditCancel.Size = new System.Drawing.Size(156, 54);
+            this.btnSetlistEditCancel.Size = new System.Drawing.Size(208, 66);
             this.btnSetlistEditCancel.TabIndex = 11;
             this.btnSetlistEditCancel.Text = "Cancel";
             this.btnSetlistEditCancel.UseVisualStyleBackColor = false;
@@ -1464,9 +1553,10 @@
             this.btnSetlistEditOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnSetlistEditOK.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSetlistEditOK.ForeColor = System.Drawing.Color.White;
-            this.btnSetlistEditOK.Location = new System.Drawing.Point(269, 392);
+            this.btnSetlistEditOK.Location = new System.Drawing.Point(359, 482);
+            this.btnSetlistEditOK.Margin = new System.Windows.Forms.Padding(4);
             this.btnSetlistEditOK.Name = "btnSetlistEditOK";
-            this.btnSetlistEditOK.Size = new System.Drawing.Size(145, 54);
+            this.btnSetlistEditOK.Size = new System.Drawing.Size(193, 66);
             this.btnSetlistEditOK.TabIndex = 12;
             this.btnSetlistEditOK.Text = "OK";
             this.btnSetlistEditOK.UseVisualStyleBackColor = false;
@@ -1477,9 +1567,10 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(46, 79);
+            this.label5.Location = new System.Drawing.Point(61, 97);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(46, 15);
+            this.label5.Size = new System.Drawing.Size(54, 17);
             this.label5.TabIndex = 5;
             this.label5.Text = "Songs:";
             this.label5.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -1490,10 +1581,11 @@
             this.lbSetlistSongs.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbSetlistSongs.ForeColor = System.Drawing.Color.White;
             this.lbSetlistSongs.FormattingEnabled = true;
-            this.lbSetlistSongs.ItemHeight = 24;
-            this.lbSetlistSongs.Location = new System.Drawing.Point(97, 79);
+            this.lbSetlistSongs.ItemHeight = 31;
+            this.lbSetlistSongs.Location = new System.Drawing.Point(129, 97);
+            this.lbSetlistSongs.Margin = new System.Windows.Forms.Padding(4);
             this.lbSetlistSongs.Name = "lbSetlistSongs";
-            this.lbSetlistSongs.Size = new System.Drawing.Size(267, 244);
+            this.lbSetlistSongs.Size = new System.Drawing.Size(355, 283);
             this.lbSetlistSongs.TabIndex = 6;
             this.lbSetlistSongs.SelectedIndexChanged += new System.EventHandler(this.lbSetlistSongs_SelectedIndexChanged);
             // 
@@ -1502,9 +1594,10 @@
             this.tbSetlistName.BackColor = System.Drawing.Color.DimGray;
             this.tbSetlistName.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbSetlistName.ForeColor = System.Drawing.Color.White;
-            this.tbSetlistName.Location = new System.Drawing.Point(97, 36);
+            this.tbSetlistName.Location = new System.Drawing.Point(129, 44);
+            this.tbSetlistName.Margin = new System.Windows.Forms.Padding(4);
             this.tbSetlistName.Name = "tbSetlistName";
-            this.tbSetlistName.Size = new System.Drawing.Size(317, 32);
+            this.tbSetlistName.Size = new System.Drawing.Size(421, 38);
             this.tbSetlistName.TabIndex = 4;
             // 
             // label4
@@ -1512,9 +1605,10 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(13, 42);
+            this.label4.Location = new System.Drawing.Point(17, 52);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(81, 15);
+            this.label4.Size = new System.Drawing.Size(95, 17);
             this.label4.TabIndex = 3;
             this.label4.Text = "Setlist Name:";
             // 
@@ -1529,10 +1623,10 @@
             this.tlpSetlistSelOuter.Margin = new System.Windows.Forms.Padding(0);
             this.tlpSetlistSelOuter.Name = "tlpSetlistSelOuter";
             this.tlpSetlistSelOuter.RowCount = 3;
-            this.tlpSetlistSelOuter.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.tlpSetlistSelOuter.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 62F));
             this.tlpSetlistSelOuter.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpSetlistSelOuter.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tlpSetlistSelOuter.Size = new System.Drawing.Size(411, 596);
+            this.tlpSetlistSelOuter.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tlpSetlistSelOuter.Size = new System.Drawing.Size(548, 745);
             this.tlpSetlistSelOuter.TabIndex = 0;
             // 
             // mbccSetlistEditSelector
@@ -1540,10 +1634,11 @@
             this.mbccSetlistEditSelector.ButtonBackColor = System.Drawing.Color.DimGray;
             this.mbccSetlistEditSelector.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mbccSetlistEditSelector.ForeColor = System.Drawing.Color.White;
-            this.mbccSetlistEditSelector.Location = new System.Drawing.Point(3, 53);
+            this.mbccSetlistEditSelector.Location = new System.Drawing.Point(5, 67);
+            this.mbccSetlistEditSelector.Margin = new System.Windows.Forms.Padding(5);
             this.mbccSetlistEditSelector.Name = "mbccSetlistEditSelector";
             this.tlpSetlistSelOuter.SetRowSpan(this.mbccSetlistEditSelector, 2);
-            this.mbccSetlistEditSelector.Size = new System.Drawing.Size(405, 540);
+            this.mbccSetlistEditSelector.Size = new System.Drawing.Size(538, 673);
             this.mbccSetlistEditSelector.TabIndex = 2;
             this.mbccSetlistEditSelector.Click += new System.EventHandler(this.mbccSetlistEditSelector_Click);
             // 
@@ -1560,7 +1655,7 @@
             this.tlpSetlistSelButtons.Name = "tlpSetlistSelButtons";
             this.tlpSetlistSelButtons.RowCount = 1;
             this.tlpSetlistSelButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpSetlistSelButtons.Size = new System.Drawing.Size(411, 50);
+            this.tlpSetlistSelButtons.Size = new System.Drawing.Size(548, 62);
             this.tlpSetlistSelButtons.TabIndex = 0;
             // 
             // btnSetlistAdd
@@ -1569,9 +1664,10 @@
             this.btnSetlistAdd.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnSetlistAdd.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSetlistAdd.ForeColor = System.Drawing.Color.White;
-            this.btnSetlistAdd.Location = new System.Drawing.Point(3, 3);
+            this.btnSetlistAdd.Location = new System.Drawing.Point(4, 4);
+            this.btnSetlistAdd.Margin = new System.Windows.Forms.Padding(4);
             this.btnSetlistAdd.Name = "btnSetlistAdd";
-            this.btnSetlistAdd.Size = new System.Drawing.Size(199, 44);
+            this.btnSetlistAdd.Size = new System.Drawing.Size(266, 54);
             this.btnSetlistAdd.TabIndex = 0;
             this.btnSetlistAdd.Text = "+";
             this.btnSetlistAdd.UseVisualStyleBackColor = false;
@@ -1583,9 +1679,10 @@
             this.btnSetlistDel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnSetlistDel.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSetlistDel.ForeColor = System.Drawing.Color.White;
-            this.btnSetlistDel.Location = new System.Drawing.Point(208, 3);
+            this.btnSetlistDel.Location = new System.Drawing.Point(278, 4);
+            this.btnSetlistDel.Margin = new System.Windows.Forms.Padding(4);
             this.btnSetlistDel.Name = "btnSetlistDel";
-            this.btnSetlistDel.Size = new System.Drawing.Size(200, 44);
+            this.btnSetlistDel.Size = new System.Drawing.Size(266, 54);
             this.btnSetlistDel.TabIndex = 1;
             this.btnSetlistDel.Text = "-";
             this.btnSetlistDel.UseVisualStyleBackColor = false;
@@ -1596,17 +1693,18 @@
             this.tpMappings.BackColor = System.Drawing.Color.Black;
             this.tpMappings.Controls.Add(this.tlpMappingEditOuter);
             this.tpMappings.Location = new System.Drawing.Point(4, 44);
+            this.tpMappings.Margin = new System.Windows.Forms.Padding(4);
             this.tpMappings.Name = "tpMappings";
-            this.tpMappings.Size = new System.Drawing.Size(1339, 596);
+            this.tpMappings.Size = new System.Drawing.Size(1788, 745);
             this.tpMappings.TabIndex = 9;
             this.tpMappings.Text = "Mappings";
             // 
             // tlpMappingEditOuter
             // 
             this.tlpMappingEditOuter.ColumnCount = 3;
-            this.tlpMappingEditOuter.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 300F));
+            this.tlpMappingEditOuter.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 400F));
             this.tlpMappingEditOuter.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpMappingEditOuter.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 300F));
+            this.tlpMappingEditOuter.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 400F));
             this.tlpMappingEditOuter.Controls.Add(this.mbrcMappingSelect, 0, 1);
             this.tlpMappingEditOuter.Controls.Add(this.tlpMappingEditButtons, 0, 0);
             this.tlpMappingEditOuter.Controls.Add(this.tableLayoutPanel1, 2, 2);
@@ -1615,12 +1713,13 @@
             this.tlpMappingEditOuter.Controls.Add(this.pnlMappingEdit, 1, 1);
             this.tlpMappingEditOuter.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlpMappingEditOuter.Location = new System.Drawing.Point(0, 0);
+            this.tlpMappingEditOuter.Margin = new System.Windows.Forms.Padding(4);
             this.tlpMappingEditOuter.Name = "tlpMappingEditOuter";
             this.tlpMappingEditOuter.RowCount = 2;
-            this.tlpMappingEditOuter.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.tlpMappingEditOuter.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 62F));
             this.tlpMappingEditOuter.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpMappingEditOuter.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tlpMappingEditOuter.Size = new System.Drawing.Size(1339, 596);
+            this.tlpMappingEditOuter.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 62F));
+            this.tlpMappingEditOuter.Size = new System.Drawing.Size(1788, 745);
             this.tlpMappingEditOuter.TabIndex = 0;
             // 
             // mbrcMappingSelect
@@ -1628,11 +1727,11 @@
             this.mbrcMappingSelect.ButtonBackColor = System.Drawing.Color.DimGray;
             this.mbrcMappingSelect.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mbrcMappingSelect.ForeColor = System.Drawing.Color.White;
-            this.mbrcMappingSelect.Location = new System.Drawing.Point(6, 56);
-            this.mbrcMappingSelect.Margin = new System.Windows.Forms.Padding(6);
+            this.mbrcMappingSelect.Location = new System.Drawing.Point(8, 69);
+            this.mbrcMappingSelect.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
             this.mbrcMappingSelect.Name = "mbrcMappingSelect";
             this.tlpMappingEditOuter.SetRowSpan(this.mbrcMappingSelect, 2);
-            this.mbrcMappingSelect.Size = new System.Drawing.Size(288, 534);
+            this.mbrcMappingSelect.Size = new System.Drawing.Size(384, 669);
             this.mbrcMappingSelect.TabIndex = 2;
             this.mbrcMappingSelect.Click += new System.EventHandler(this.mbrcMappingSelect_Click);
             // 
@@ -1644,19 +1743,21 @@
             this.tlpMappingEditButtons.Controls.Add(this.btnMappingDelete, 1, 0);
             this.tlpMappingEditButtons.Controls.Add(this.btnMappingAdd, 0, 0);
             this.tlpMappingEditButtons.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpMappingEditButtons.Location = new System.Drawing.Point(3, 3);
+            this.tlpMappingEditButtons.Location = new System.Drawing.Point(4, 4);
+            this.tlpMappingEditButtons.Margin = new System.Windows.Forms.Padding(4);
             this.tlpMappingEditButtons.Name = "tlpMappingEditButtons";
             this.tlpMappingEditButtons.RowCount = 1;
             this.tlpMappingEditButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpMappingEditButtons.Size = new System.Drawing.Size(294, 44);
+            this.tlpMappingEditButtons.Size = new System.Drawing.Size(392, 54);
             this.tlpMappingEditButtons.TabIndex = 2;
             // 
             // btnMappingDelete
             // 
             this.btnMappingDelete.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnMappingDelete.Location = new System.Drawing.Point(150, 3);
+            this.btnMappingDelete.Location = new System.Drawing.Point(200, 4);
+            this.btnMappingDelete.Margin = new System.Windows.Forms.Padding(4);
             this.btnMappingDelete.Name = "btnMappingDelete";
-            this.btnMappingDelete.Size = new System.Drawing.Size(141, 38);
+            this.btnMappingDelete.Size = new System.Drawing.Size(188, 46);
             this.btnMappingDelete.TabIndex = 1;
             this.btnMappingDelete.Text = "-";
             this.btnMappingDelete.UseVisualStyleBackColor = true;
@@ -1665,9 +1766,10 @@
             // btnMappingAdd
             // 
             this.btnMappingAdd.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnMappingAdd.Location = new System.Drawing.Point(3, 3);
+            this.btnMappingAdd.Location = new System.Drawing.Point(4, 4);
+            this.btnMappingAdd.Margin = new System.Windows.Forms.Padding(4);
             this.btnMappingAdd.Name = "btnMappingAdd";
-            this.btnMappingAdd.Size = new System.Drawing.Size(141, 38);
+            this.btnMappingAdd.Size = new System.Drawing.Size(188, 46);
             this.btnMappingAdd.TabIndex = 0;
             this.btnMappingAdd.Text = "+";
             this.btnMappingAdd.UseVisualStyleBackColor = true;
@@ -1681,19 +1783,21 @@
             this.tableLayoutPanel1.Controls.Add(this.btnMappingEditPatchTreeViewBySG, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnMappingEditPatchTreeViewByCategory, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(1042, 549);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(1392, 687);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(294, 44);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(392, 54);
             this.tableLayoutPanel1.TabIndex = 3;
             // 
             // btnMappingEditPatchTreeViewBySG
             // 
             this.btnMappingEditPatchTreeViewBySG.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnMappingEditPatchTreeViewBySG.Location = new System.Drawing.Point(3, 3);
+            this.btnMappingEditPatchTreeViewBySG.Location = new System.Drawing.Point(4, 4);
+            this.btnMappingEditPatchTreeViewBySG.Margin = new System.Windows.Forms.Padding(4);
             this.btnMappingEditPatchTreeViewBySG.Name = "btnMappingEditPatchTreeViewBySG";
-            this.btnMappingEditPatchTreeViewBySG.Size = new System.Drawing.Size(141, 38);
+            this.btnMappingEditPatchTreeViewBySG.Size = new System.Drawing.Size(188, 46);
             this.btnMappingEditPatchTreeViewBySG.TabIndex = 16;
             this.btnMappingEditPatchTreeViewBySG.Text = "SG";
             this.btnMappingEditPatchTreeViewBySG.UseVisualStyleBackColor = true;
@@ -1702,9 +1806,10 @@
             // btnMappingEditPatchTreeViewByCategory
             // 
             this.btnMappingEditPatchTreeViewByCategory.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnMappingEditPatchTreeViewByCategory.Location = new System.Drawing.Point(150, 3);
+            this.btnMappingEditPatchTreeViewByCategory.Location = new System.Drawing.Point(200, 4);
+            this.btnMappingEditPatchTreeViewByCategory.Margin = new System.Windows.Forms.Padding(4);
             this.btnMappingEditPatchTreeViewByCategory.Name = "btnMappingEditPatchTreeViewByCategory";
-            this.btnMappingEditPatchTreeViewByCategory.Size = new System.Drawing.Size(141, 38);
+            this.btnMappingEditPatchTreeViewByCategory.Size = new System.Drawing.Size(188, 46);
             this.btnMappingEditPatchTreeViewByCategory.TabIndex = 17;
             this.btnMappingEditPatchTreeViewByCategory.Text = "Cat";
             this.btnMappingEditPatchTreeViewByCategory.UseVisualStyleBackColor = true;
@@ -1715,30 +1820,32 @@
             this.tvMappingEditorPrograms.BackColor = System.Drawing.Color.Black;
             this.tvMappingEditorPrograms.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tvMappingEditorPrograms.ForeColor = System.Drawing.Color.White;
-            this.tvMappingEditorPrograms.Location = new System.Drawing.Point(1042, 3);
+            this.tvMappingEditorPrograms.Location = new System.Drawing.Point(1392, 4);
+            this.tvMappingEditorPrograms.Margin = new System.Windows.Forms.Padding(4);
             this.tvMappingEditorPrograms.Name = "tvMappingEditorPrograms";
             this.tlpMappingEditOuter.SetRowSpan(this.tvMappingEditorPrograms, 2);
-            this.tvMappingEditorPrograms.Size = new System.Drawing.Size(294, 540);
+            this.tvMappingEditorPrograms.Size = new System.Drawing.Size(392, 675);
             this.tvMappingEditorPrograms.TabIndex = 4;
             this.tvMappingEditorPrograms.ItemDrag += new System.Windows.Forms.ItemDragEventHandler(this.tvMappingEditorPrograms_ItemDrag);
             // 
             // tlpMappingEditNameAndButtons
             // 
             this.tlpMappingEditNameAndButtons.ColumnCount = 4;
-            this.tlpMappingEditNameAndButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 170F));
+            this.tlpMappingEditNameAndButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 227F));
             this.tlpMappingEditNameAndButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpMappingEditNameAndButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tlpMappingEditNameAndButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tlpMappingEditNameAndButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 133F));
+            this.tlpMappingEditNameAndButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 133F));
             this.tlpMappingEditNameAndButtons.Controls.Add(this.btnMappingEditOK, 3, 0);
             this.tlpMappingEditNameAndButtons.Controls.Add(this.btnMappingEditCancel, 2, 0);
             this.tlpMappingEditNameAndButtons.Controls.Add(this.label15, 0, 0);
             this.tlpMappingEditNameAndButtons.Controls.Add(this.tbMappingName, 1, 0);
             this.tlpMappingEditNameAndButtons.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpMappingEditNameAndButtons.Location = new System.Drawing.Point(303, 3);
+            this.tlpMappingEditNameAndButtons.Location = new System.Drawing.Point(404, 4);
+            this.tlpMappingEditNameAndButtons.Margin = new System.Windows.Forms.Padding(4);
             this.tlpMappingEditNameAndButtons.Name = "tlpMappingEditNameAndButtons";
             this.tlpMappingEditNameAndButtons.RowCount = 1;
             this.tlpMappingEditNameAndButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpMappingEditNameAndButtons.Size = new System.Drawing.Size(733, 44);
+            this.tlpMappingEditNameAndButtons.Size = new System.Drawing.Size(980, 54);
             this.tlpMappingEditNameAndButtons.TabIndex = 5;
             this.tlpMappingEditNameAndButtons.Visible = false;
             // 
@@ -1749,9 +1856,10 @@
             this.btnMappingEditOK.FlatAppearance.BorderColor = System.Drawing.Color.LightGreen;
             this.btnMappingEditOK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMappingEditOK.ForeColor = System.Drawing.Color.White;
-            this.btnMappingEditOK.Location = new System.Drawing.Point(636, 3);
+            this.btnMappingEditOK.Location = new System.Drawing.Point(851, 4);
+            this.btnMappingEditOK.Margin = new System.Windows.Forms.Padding(4);
             this.btnMappingEditOK.Name = "btnMappingEditOK";
-            this.btnMappingEditOK.Size = new System.Drawing.Size(94, 38);
+            this.btnMappingEditOK.Size = new System.Drawing.Size(125, 46);
             this.btnMappingEditOK.TabIndex = 6;
             this.btnMappingEditOK.Text = "OK";
             this.btnMappingEditOK.UseVisualStyleBackColor = false;
@@ -1764,9 +1872,10 @@
             this.btnMappingEditCancel.FlatAppearance.BorderColor = System.Drawing.Color.LightGreen;
             this.btnMappingEditCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMappingEditCancel.ForeColor = System.Drawing.Color.White;
-            this.btnMappingEditCancel.Location = new System.Drawing.Point(536, 3);
+            this.btnMappingEditCancel.Location = new System.Drawing.Point(718, 4);
+            this.btnMappingEditCancel.Margin = new System.Windows.Forms.Padding(4);
             this.btnMappingEditCancel.Name = "btnMappingEditCancel";
-            this.btnMappingEditCancel.Size = new System.Drawing.Size(94, 38);
+            this.btnMappingEditCancel.Size = new System.Drawing.Size(125, 46);
             this.btnMappingEditCancel.TabIndex = 5;
             this.btnMappingEditCancel.Text = "Cancel";
             this.btnMappingEditCancel.UseVisualStyleBackColor = false;
@@ -1778,9 +1887,10 @@
             this.label15.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label15.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label15.ForeColor = System.Drawing.Color.White;
-            this.label15.Location = new System.Drawing.Point(3, 0);
+            this.label15.Location = new System.Drawing.Point(4, 0);
+            this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(164, 44);
+            this.label15.Size = new System.Drawing.Size(219, 54);
             this.label15.TabIndex = 3;
             this.label15.Text = "Mapping Name:";
             this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -1790,9 +1900,10 @@
             this.tbMappingName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.tbMappingName.BackColor = System.Drawing.Color.DimGray;
             this.tbMappingName.ForeColor = System.Drawing.Color.White;
-            this.tbMappingName.Location = new System.Drawing.Point(173, 6);
+            this.tbMappingName.Location = new System.Drawing.Point(231, 8);
+            this.tbMappingName.Margin = new System.Windows.Forms.Padding(4);
             this.tbMappingName.Name = "tbMappingName";
-            this.tbMappingName.Size = new System.Drawing.Size(357, 32);
+            this.tbMappingName.Size = new System.Drawing.Size(479, 38);
             this.tbMappingName.TabIndex = 4;
             // 
             // pnlMappingEdit
@@ -1821,9 +1932,10 @@
             this.pnlMappingEdit.Controls.Add(this.lbMappingDevice1LowerPatches);
             this.pnlMappingEdit.Controls.Add(this.lbMappingDevice1UpperPatches);
             this.pnlMappingEdit.Controls.Add(this.shapeContainer1);
-            this.pnlMappingEdit.Location = new System.Drawing.Point(303, 53);
+            this.pnlMappingEdit.Location = new System.Drawing.Point(404, 66);
+            this.pnlMappingEdit.Margin = new System.Windows.Forms.Padding(4);
             this.pnlMappingEdit.Name = "pnlMappingEdit";
-            this.pnlMappingEdit.Size = new System.Drawing.Size(733, 475);
+            this.pnlMappingEdit.Size = new System.Drawing.Size(977, 585);
             this.pnlMappingEdit.TabIndex = 6;
             this.pnlMappingEdit.Visible = false;
             // 
@@ -1831,9 +1943,10 @@
             // 
             this.cbMappingDefDamperToggle.AutoSize = true;
             this.cbMappingDefDamperToggle.ForeColor = System.Drawing.Color.White;
-            this.cbMappingDefDamperToggle.Location = new System.Drawing.Point(636, 431);
+            this.cbMappingDefDamperToggle.Location = new System.Drawing.Point(848, 530);
+            this.cbMappingDefDamperToggle.Margin = new System.Windows.Forms.Padding(4);
             this.cbMappingDefDamperToggle.Name = "cbMappingDefDamperToggle";
-            this.cbMappingDefDamperToggle.Size = new System.Drawing.Size(96, 29);
+            this.cbMappingDefDamperToggle.Size = new System.Drawing.Size(116, 36);
             this.cbMappingDefDamperToggle.TabIndex = 26;
             this.cbMappingDefDamperToggle.Text = "Toggle";
             this.cbMappingDefDamperToggle.UseVisualStyleBackColor = true;
@@ -1844,9 +1957,10 @@
             // 
             this.nudMappingDefDamperRemap.BackColor = System.Drawing.Color.DimGray;
             this.nudMappingDefDamperRemap.ForeColor = System.Drawing.Color.White;
-            this.nudMappingDefDamperRemap.Location = new System.Drawing.Point(539, 430);
+            this.nudMappingDefDamperRemap.Location = new System.Drawing.Point(719, 529);
+            this.nudMappingDefDamperRemap.Margin = new System.Windows.Forms.Padding(4);
             this.nudMappingDefDamperRemap.Name = "nudMappingDefDamperRemap";
-            this.nudMappingDefDamperRemap.Size = new System.Drawing.Size(77, 32);
+            this.nudMappingDefDamperRemap.Size = new System.Drawing.Size(103, 38);
             this.nudMappingDefDamperRemap.TabIndex = 25;
             this.nudMappingDefDamperRemap.Visible = false;
             this.nudMappingDefDamperRemap.ValueChanged += new System.EventHandler(this.nudMappingDefDamperRemap_ValueChanged);
@@ -1855,9 +1969,10 @@
             // 
             this.cbMappingDefDamperEna.AutoSize = true;
             this.cbMappingDefDamperEna.ForeColor = System.Drawing.Color.White;
-            this.cbMappingDefDamperEna.Location = new System.Drawing.Point(430, 431);
+            this.cbMappingDefDamperEna.Location = new System.Drawing.Point(573, 530);
+            this.cbMappingDefDamperEna.Margin = new System.Windows.Forms.Padding(4);
             this.cbMappingDefDamperEna.Name = "cbMappingDefDamperEna";
-            this.cbMappingDefDamperEna.Size = new System.Drawing.Size(108, 29);
+            this.cbMappingDefDamperEna.Size = new System.Drawing.Size(133, 36);
             this.cbMappingDefDamperEna.TabIndex = 24;
             this.cbMappingDefDamperEna.Text = "Damper";
             this.cbMappingDefDamperEna.UseVisualStyleBackColor = true;
@@ -1866,11 +1981,12 @@
             // 
             // tbMappingDefIniVol
             // 
-            this.tbMappingDefIniVol.Location = new System.Drawing.Point(539, 375);
+            this.tbMappingDefIniVol.Location = new System.Drawing.Point(719, 462);
+            this.tbMappingDefIniVol.Margin = new System.Windows.Forms.Padding(4);
             this.tbMappingDefIniVol.Maximum = 127;
             this.tbMappingDefIniVol.Minimum = -1;
             this.tbMappingDefIniVol.Name = "tbMappingDefIniVol";
-            this.tbMappingDefIniVol.Size = new System.Drawing.Size(202, 45);
+            this.tbMappingDefIniVol.Size = new System.Drawing.Size(269, 56);
             this.tbMappingDefIniVol.TabIndex = 23;
             this.tbMappingDefIniVol.Visible = false;
             this.tbMappingDefIniVol.Scroll += new System.EventHandler(this.tbMappingDefIniVol_Scroll);
@@ -1879,9 +1995,10 @@
             // 
             this.cbMappingDefVolEna.AutoSize = true;
             this.cbMappingDefVolEna.ForeColor = System.Drawing.Color.White;
-            this.cbMappingDefVolEna.Location = new System.Drawing.Point(430, 384);
+            this.cbMappingDefVolEna.Location = new System.Drawing.Point(573, 473);
+            this.cbMappingDefVolEna.Margin = new System.Windows.Forms.Padding(4);
             this.cbMappingDefVolEna.Name = "cbMappingDefVolEna";
-            this.cbMappingDefVolEna.Size = new System.Drawing.Size(103, 29);
+            this.cbMappingDefVolEna.Size = new System.Drawing.Size(126, 36);
             this.cbMappingDefVolEna.TabIndex = 22;
             this.cbMappingDefVolEna.Text = "Volume";
             this.cbMappingDefVolEna.UseVisualStyleBackColor = true;
@@ -1892,9 +2009,10 @@
             // 
             this.cbMappingDefModWheelEna.AutoSize = true;
             this.cbMappingDefModWheelEna.ForeColor = System.Drawing.Color.White;
-            this.cbMappingDefModWheelEna.Location = new System.Drawing.Point(430, 337);
+            this.cbMappingDefModWheelEna.Location = new System.Drawing.Point(573, 415);
+            this.cbMappingDefModWheelEna.Margin = new System.Windows.Forms.Padding(4);
             this.cbMappingDefModWheelEna.Name = "cbMappingDefModWheelEna";
-            this.cbMappingDefModWheelEna.Size = new System.Drawing.Size(141, 29);
+            this.cbMappingDefModWheelEna.Size = new System.Drawing.Size(177, 36);
             this.cbMappingDefModWheelEna.TabIndex = 21;
             this.cbMappingDefModWheelEna.Text = "Mod Wheel";
             this.cbMappingDefModWheelEna.UseVisualStyleBackColor = true;
@@ -1904,20 +2022,22 @@
             // lblMappingEditPBScale
             // 
             this.lblMappingEditPBScale.AutoSize = true;
-            this.lblMappingEditPBScale.Location = new System.Drawing.Point(39, 411);
+            this.lblMappingEditPBScale.Location = new System.Drawing.Point(52, 506);
+            this.lblMappingEditPBScale.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblMappingEditPBScale.Name = "lblMappingEditPBScale";
-            this.lblMappingEditPBScale.Size = new System.Drawing.Size(108, 25);
+            this.lblMappingEditPBScale.Size = new System.Drawing.Size(134, 32);
             this.lblMappingEditPBScale.TabIndex = 20;
             this.lblMappingEditPBScale.Text = "PB Scale:";
             this.lblMappingEditPBScale.Visible = false;
             // 
             // tbPBScale
             // 
-            this.tbPBScale.Location = new System.Drawing.Point(153, 401);
+            this.tbPBScale.Location = new System.Drawing.Point(204, 494);
+            this.tbPBScale.Margin = new System.Windows.Forms.Padding(4);
             this.tbPBScale.Maximum = 12;
             this.tbPBScale.Minimum = -12;
             this.tbPBScale.Name = "tbPBScale";
-            this.tbPBScale.Size = new System.Drawing.Size(202, 45);
+            this.tbPBScale.Size = new System.Drawing.Size(269, 56);
             this.tbPBScale.TabIndex = 19;
             this.tbPBScale.Visible = false;
             this.tbPBScale.ValueChanged += new System.EventHandler(this.tbPBScale_ValueChanged);
@@ -1926,7 +2046,8 @@
             // 
             this.nudMappingDefTransposeSemis.BackColor = System.Drawing.Color.DimGray;
             this.nudMappingDefTransposeSemis.ForeColor = System.Drawing.Color.White;
-            this.nudMappingDefTransposeSemis.Location = new System.Drawing.Point(267, 342);
+            this.nudMappingDefTransposeSemis.Location = new System.Drawing.Point(356, 421);
+            this.nudMappingDefTransposeSemis.Margin = new System.Windows.Forms.Padding(4);
             this.nudMappingDefTransposeSemis.Maximum = new decimal(new int[] {
             11,
             0,
@@ -1938,7 +2059,7 @@
             0,
             -2147483648});
             this.nudMappingDefTransposeSemis.Name = "nudMappingDefTransposeSemis";
-            this.nudMappingDefTransposeSemis.Size = new System.Drawing.Size(87, 32);
+            this.nudMappingDefTransposeSemis.Size = new System.Drawing.Size(116, 38);
             this.nudMappingDefTransposeSemis.TabIndex = 18;
             this.nudMappingDefTransposeSemis.Visible = false;
             this.nudMappingDefTransposeSemis.ValueChanged += new System.EventHandler(this.nudMappingDefTranspose_ValueChanged);
@@ -1946,9 +2067,10 @@
             // lblMappingEditTranspose
             // 
             this.lblMappingEditTranspose.AutoSize = true;
-            this.lblMappingEditTranspose.Location = new System.Drawing.Point(27, 344);
+            this.lblMappingEditTranspose.Location = new System.Drawing.Point(36, 423);
+            this.lblMappingEditTranspose.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblMappingEditTranspose.Name = "lblMappingEditTranspose";
-            this.lblMappingEditTranspose.Size = new System.Drawing.Size(120, 25);
+            this.lblMappingEditTranspose.Size = new System.Drawing.Size(150, 32);
             this.lblMappingEditTranspose.TabIndex = 17;
             this.lblMappingEditTranspose.Text = "Transpose:";
             this.lblMappingEditTranspose.Visible = false;
@@ -1957,7 +2079,8 @@
             // 
             this.nudMappingDefTransposeOct.BackColor = System.Drawing.Color.DimGray;
             this.nudMappingDefTransposeOct.ForeColor = System.Drawing.Color.White;
-            this.nudMappingDefTransposeOct.Location = new System.Drawing.Point(153, 342);
+            this.nudMappingDefTransposeOct.Location = new System.Drawing.Point(204, 421);
+            this.nudMappingDefTransposeOct.Margin = new System.Windows.Forms.Padding(4);
             this.nudMappingDefTransposeOct.Maximum = new decimal(new int[] {
             5,
             0,
@@ -1969,7 +2092,7 @@
             0,
             -2147483648});
             this.nudMappingDefTransposeOct.Name = "nudMappingDefTransposeOct";
-            this.nudMappingDefTransposeOct.Size = new System.Drawing.Size(91, 32);
+            this.nudMappingDefTransposeOct.Size = new System.Drawing.Size(121, 38);
             this.nudMappingDefTransposeOct.TabIndex = 16;
             this.nudMappingDefTransposeOct.Visible = false;
             this.nudMappingDefTransposeOct.ValueChanged += new System.EventHandler(this.nudMappingDefTranspose_ValueChanged);
@@ -1978,9 +2101,10 @@
             // 
             this.cbMappingSplitDevice2.AutoSize = true;
             this.cbMappingSplitDevice2.ForeColor = System.Drawing.Color.White;
-            this.cbMappingSplitDevice2.Location = new System.Drawing.Point(421, 133);
+            this.cbMappingSplitDevice2.Location = new System.Drawing.Point(561, 164);
+            this.cbMappingSplitDevice2.Margin = new System.Windows.Forms.Padding(4);
             this.cbMappingSplitDevice2.Name = "cbMappingSplitDevice2";
-            this.cbMappingSplitDevice2.Size = new System.Drawing.Size(73, 29);
+            this.cbMappingSplitDevice2.Size = new System.Drawing.Size(90, 36);
             this.cbMappingSplitDevice2.TabIndex = 13;
             this.cbMappingSplitDevice2.Text = "Split";
             this.cbMappingSplitDevice2.UseVisualStyleBackColor = true;
@@ -1990,14 +2114,15 @@
             // 
             this.nudMappingSplitDevice2.BackColor = System.Drawing.Color.DimGray;
             this.nudMappingSplitDevice2.ForeColor = System.Drawing.Color.White;
-            this.nudMappingSplitDevice2.Location = new System.Drawing.Point(417, 163);
+            this.nudMappingSplitDevice2.Location = new System.Drawing.Point(556, 201);
+            this.nudMappingSplitDevice2.Margin = new System.Windows.Forms.Padding(4);
             this.nudMappingSplitDevice2.Maximum = new decimal(new int[] {
             127,
             0,
             0,
             0});
             this.nudMappingSplitDevice2.Name = "nudMappingSplitDevice2";
-            this.nudMappingSplitDevice2.Size = new System.Drawing.Size(78, 32);
+            this.nudMappingSplitDevice2.Size = new System.Drawing.Size(104, 38);
             this.nudMappingSplitDevice2.TabIndex = 14;
             this.nudMappingSplitDevice2.Value = new decimal(new int[] {
             64,
@@ -2009,9 +2134,10 @@
             // 
             this.cbMappingSplitDevice1.AutoSize = true;
             this.cbMappingSplitDevice1.ForeColor = System.Drawing.Color.White;
-            this.cbMappingSplitDevice1.Location = new System.Drawing.Point(247, 132);
+            this.cbMappingSplitDevice1.Location = new System.Drawing.Point(329, 162);
+            this.cbMappingSplitDevice1.Margin = new System.Windows.Forms.Padding(4);
             this.cbMappingSplitDevice1.Name = "cbMappingSplitDevice1";
-            this.cbMappingSplitDevice1.Size = new System.Drawing.Size(73, 29);
+            this.cbMappingSplitDevice1.Size = new System.Drawing.Size(90, 36);
             this.cbMappingSplitDevice1.TabIndex = 9;
             this.cbMappingSplitDevice1.Text = "Split";
             this.cbMappingSplitDevice1.UseVisualStyleBackColor = true;
@@ -2021,9 +2147,10 @@
             // 
             this.label20.AutoSize = true;
             this.label20.ForeColor = System.Drawing.Color.White;
-            this.label20.Location = new System.Drawing.Point(335, 242);
+            this.label20.Location = new System.Drawing.Point(447, 298);
+            this.label20.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(71, 25);
+            this.label20.Size = new System.Drawing.Size(88, 32);
             this.label20.TabIndex = 10;
             this.label20.Text = "Lower";
             // 
@@ -2031,9 +2158,10 @@
             // 
             this.label19.AutoSize = true;
             this.label19.ForeColor = System.Drawing.Color.White;
-            this.label19.Location = new System.Drawing.Point(335, 60);
+            this.label19.Location = new System.Drawing.Point(447, 74);
+            this.label19.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(71, 25);
+            this.label19.Size = new System.Drawing.Size(88, 32);
             this.label19.TabIndex = 9;
             this.label19.Text = "Upper";
             // 
@@ -2041,14 +2169,15 @@
             // 
             this.nudMappingSplitDevice1.BackColor = System.Drawing.Color.DimGray;
             this.nudMappingSplitDevice1.ForeColor = System.Drawing.Color.White;
-            this.nudMappingSplitDevice1.Location = new System.Drawing.Point(243, 162);
+            this.nudMappingSplitDevice1.Location = new System.Drawing.Point(324, 199);
+            this.nudMappingSplitDevice1.Margin = new System.Windows.Forms.Padding(4);
             this.nudMappingSplitDevice1.Maximum = new decimal(new int[] {
             127,
             0,
             0,
             0});
             this.nudMappingSplitDevice1.Name = "nudMappingSplitDevice1";
-            this.nudMappingSplitDevice1.Size = new System.Drawing.Size(78, 32);
+            this.nudMappingSplitDevice1.Size = new System.Drawing.Size(104, 38);
             this.nudMappingSplitDevice1.TabIndex = 10;
             this.nudMappingSplitDevice1.Value = new decimal(new int[] {
             64,
@@ -2060,9 +2189,10 @@
             // 
             this.lblMappingInputDevice2.AutoSize = true;
             this.lblMappingInputDevice2.ForeColor = System.Drawing.Color.White;
-            this.lblMappingInputDevice2.Location = new System.Drawing.Point(420, 7);
+            this.lblMappingInputDevice2.Location = new System.Drawing.Point(560, 9);
+            this.lblMappingInputDevice2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblMappingInputDevice2.Name = "lblMappingInputDevice2";
-            this.lblMappingInputDevice2.Size = new System.Drawing.Size(80, 25);
+            this.lblMappingInputDevice2.Size = new System.Drawing.Size(102, 32);
             this.lblMappingInputDevice2.TabIndex = 6;
             this.lblMappingInputDevice2.Text = "label20";
             this.lblMappingInputDevice2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -2075,10 +2205,11 @@
             this.lbMappingDevice2LowerPatches.DisplayMember = "programName";
             this.lbMappingDevice2LowerPatches.ForeColor = System.Drawing.Color.White;
             this.lbMappingDevice2LowerPatches.FormattingEnabled = true;
-            this.lbMappingDevice2LowerPatches.ItemHeight = 24;
-            this.lbMappingDevice2LowerPatches.Location = new System.Drawing.Point(417, 220);
+            this.lbMappingDevice2LowerPatches.ItemHeight = 32;
+            this.lbMappingDevice2LowerPatches.Location = new System.Drawing.Point(556, 271);
+            this.lbMappingDevice2LowerPatches.Margin = new System.Windows.Forms.Padding(4);
             this.lbMappingDevice2LowerPatches.Name = "lbMappingDevice2LowerPatches";
-            this.lbMappingDevice2LowerPatches.Size = new System.Drawing.Size(299, 52);
+            this.lbMappingDevice2LowerPatches.Size = new System.Drawing.Size(397, 36);
             this.lbMappingDevice2LowerPatches.TabIndex = 15;
             this.lbMappingDevice2LowerPatches.ValueMember = "programName";
             this.lbMappingDevice2LowerPatches.DragDrop += new System.Windows.Forms.DragEventHandler(this.lbMappingDevicePatches_DragDrop);
@@ -2094,10 +2225,11 @@
             this.lbMappingDevice2UpperPatches.DisplayMember = "programName";
             this.lbMappingDevice2UpperPatches.ForeColor = System.Drawing.Color.White;
             this.lbMappingDevice2UpperPatches.FormattingEnabled = true;
-            this.lbMappingDevice2UpperPatches.ItemHeight = 24;
-            this.lbMappingDevice2UpperPatches.Location = new System.Drawing.Point(417, 37);
+            this.lbMappingDevice2UpperPatches.ItemHeight = 32;
+            this.lbMappingDevice2UpperPatches.Location = new System.Drawing.Point(556, 46);
+            this.lbMappingDevice2UpperPatches.Margin = new System.Windows.Forms.Padding(4);
             this.lbMappingDevice2UpperPatches.Name = "lbMappingDevice2UpperPatches";
-            this.lbMappingDevice2UpperPatches.Size = new System.Drawing.Size(299, 52);
+            this.lbMappingDevice2UpperPatches.Size = new System.Drawing.Size(397, 36);
             this.lbMappingDevice2UpperPatches.TabIndex = 12;
             this.lbMappingDevice2UpperPatches.ValueMember = "programName";
             this.lbMappingDevice2UpperPatches.DragDrop += new System.Windows.Forms.DragEventHandler(this.lbMappingDevicePatches_DragDrop);
@@ -2109,9 +2241,10 @@
             // 
             this.lblMappingInputDevice1.AutoSize = true;
             this.lblMappingInputDevice1.ForeColor = System.Drawing.Color.White;
-            this.lblMappingInputDevice1.Location = new System.Drawing.Point(24, 7);
+            this.lblMappingInputDevice1.Location = new System.Drawing.Point(32, 9);
+            this.lblMappingInputDevice1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblMappingInputDevice1.Name = "lblMappingInputDevice1";
-            this.lblMappingInputDevice1.Size = new System.Drawing.Size(80, 25);
+            this.lblMappingInputDevice1.Size = new System.Drawing.Size(102, 32);
             this.lblMappingInputDevice1.TabIndex = 7;
             this.lblMappingInputDevice1.Text = "label19";
             this.lblMappingInputDevice1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -2124,10 +2257,11 @@
             this.lbMappingDevice1LowerPatches.DisplayMember = "programName";
             this.lbMappingDevice1LowerPatches.ForeColor = System.Drawing.Color.White;
             this.lbMappingDevice1LowerPatches.FormattingEnabled = true;
-            this.lbMappingDevice1LowerPatches.ItemHeight = 24;
-            this.lbMappingDevice1LowerPatches.Location = new System.Drawing.Point(25, 220);
+            this.lbMappingDevice1LowerPatches.ItemHeight = 32;
+            this.lbMappingDevice1LowerPatches.Location = new System.Drawing.Point(33, 271);
+            this.lbMappingDevice1LowerPatches.Margin = new System.Windows.Forms.Padding(4);
             this.lbMappingDevice1LowerPatches.Name = "lbMappingDevice1LowerPatches";
-            this.lbMappingDevice1LowerPatches.Size = new System.Drawing.Size(299, 52);
+            this.lbMappingDevice1LowerPatches.Size = new System.Drawing.Size(397, 36);
             this.lbMappingDevice1LowerPatches.TabIndex = 11;
             this.lbMappingDevice1LowerPatches.ValueMember = "programName";
             this.lbMappingDevice1LowerPatches.DragDrop += new System.Windows.Forms.DragEventHandler(this.lbMappingDevicePatches_DragDrop);
@@ -2143,10 +2277,11 @@
             this.lbMappingDevice1UpperPatches.DisplayMember = "programName";
             this.lbMappingDevice1UpperPatches.ForeColor = System.Drawing.Color.White;
             this.lbMappingDevice1UpperPatches.FormattingEnabled = true;
-            this.lbMappingDevice1UpperPatches.ItemHeight = 24;
-            this.lbMappingDevice1UpperPatches.Location = new System.Drawing.Point(25, 37);
+            this.lbMappingDevice1UpperPatches.ItemHeight = 32;
+            this.lbMappingDevice1UpperPatches.Location = new System.Drawing.Point(33, 46);
+            this.lbMappingDevice1UpperPatches.Margin = new System.Windows.Forms.Padding(4);
             this.lbMappingDevice1UpperPatches.Name = "lbMappingDevice1UpperPatches";
-            this.lbMappingDevice1UpperPatches.Size = new System.Drawing.Size(299, 52);
+            this.lbMappingDevice1UpperPatches.Size = new System.Drawing.Size(397, 36);
             this.lbMappingDevice1UpperPatches.TabIndex = 8;
             this.lbMappingDevice1UpperPatches.ValueMember = "programName";
             this.lbMappingDevice1UpperPatches.DragDrop += new System.Windows.Forms.DragEventHandler(this.lbMappingDevicePatches_DragDrop);
@@ -2162,7 +2297,7 @@
             this.shapeContainer1.Shapes.AddRange(new Microsoft.VisualBasic.PowerPacks.Shape[] {
             this.lineShape2,
             this.lineShape1});
-            this.shapeContainer1.Size = new System.Drawing.Size(733, 475);
+            this.shapeContainer1.Size = new System.Drawing.Size(977, 585);
             this.shapeContainer1.TabIndex = 3;
             this.shapeContainer1.TabStop = false;
             // 
@@ -2188,8 +2323,9 @@
             // 
             this.tpSoundGenerators.Controls.Add(this.tlpSoundGeneratorsOuter);
             this.tpSoundGenerators.Location = new System.Drawing.Point(4, 44);
+            this.tpSoundGenerators.Margin = new System.Windows.Forms.Padding(4);
             this.tpSoundGenerators.Name = "tpSoundGenerators";
-            this.tpSoundGenerators.Size = new System.Drawing.Size(1339, 596);
+            this.tpSoundGenerators.Size = new System.Drawing.Size(1788, 745);
             this.tpSoundGenerators.TabIndex = 5;
             this.tpSoundGenerators.Text = "SoundGenerators";
             this.tpSoundGenerators.UseVisualStyleBackColor = true;
@@ -2206,11 +2342,12 @@
             this.tlpSoundGeneratorsOuter.Controls.Add(this.pnlSoundGeneratorPatchEdit, 2, 1);
             this.tlpSoundGeneratorsOuter.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlpSoundGeneratorsOuter.Location = new System.Drawing.Point(0, 0);
+            this.tlpSoundGeneratorsOuter.Margin = new System.Windows.Forms.Padding(4);
             this.tlpSoundGeneratorsOuter.Name = "tlpSoundGeneratorsOuter";
             this.tlpSoundGeneratorsOuter.RowCount = 2;
-            this.tlpSoundGeneratorsOuter.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tlpSoundGeneratorsOuter.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 49F));
             this.tlpSoundGeneratorsOuter.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpSoundGeneratorsOuter.Size = new System.Drawing.Size(1339, 596);
+            this.tlpSoundGeneratorsOuter.Size = new System.Drawing.Size(1788, 745);
             this.tlpSoundGeneratorsOuter.TabIndex = 0;
             // 
             // lvSoundGenerators
@@ -2224,12 +2361,13 @@
             this.lvSoundGenerators.FullRowSelect = true;
             this.lvSoundGenerators.GridLines = true;
             this.lvSoundGenerators.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem3,
-            listViewItem4});
-            this.lvSoundGenerators.Location = new System.Drawing.Point(3, 43);
+            listViewItem5,
+            listViewItem6});
+            this.lvSoundGenerators.Location = new System.Drawing.Point(4, 53);
+            this.lvSoundGenerators.Margin = new System.Windows.Forms.Padding(4);
             this.lvSoundGenerators.MultiSelect = false;
             this.lvSoundGenerators.Name = "lvSoundGenerators";
-            this.lvSoundGenerators.Size = new System.Drawing.Size(529, 550);
+            this.lvSoundGenerators.Size = new System.Drawing.Size(707, 688);
             this.lvSoundGenerators.TabIndex = 2;
             this.lvSoundGenerators.UseCompatibleStateImageBehavior = false;
             this.lvSoundGenerators.View = System.Windows.Forms.View.Details;
@@ -2263,11 +2401,12 @@
             this.tlpSoundGeneratorEditButtons.Controls.Add(this.btnDeleteSoundGenerator, 0, 0);
             this.tlpSoundGeneratorEditButtons.Controls.Add(this.btnAddSoundGenerator, 0, 0);
             this.tlpSoundGeneratorEditButtons.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpSoundGeneratorEditButtons.Location = new System.Drawing.Point(3, 3);
+            this.tlpSoundGeneratorEditButtons.Location = new System.Drawing.Point(4, 4);
+            this.tlpSoundGeneratorEditButtons.Margin = new System.Windows.Forms.Padding(4);
             this.tlpSoundGeneratorEditButtons.Name = "tlpSoundGeneratorEditButtons";
             this.tlpSoundGeneratorEditButtons.RowCount = 1;
             this.tlpSoundGeneratorEditButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpSoundGeneratorEditButtons.Size = new System.Drawing.Size(529, 34);
+            this.tlpSoundGeneratorEditButtons.Size = new System.Drawing.Size(707, 41);
             this.tlpSoundGeneratorEditButtons.TabIndex = 3;
             // 
             // btnDeleteSoundGenerator
@@ -2275,9 +2414,10 @@
             this.btnDeleteSoundGenerator.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnDeleteSoundGenerator.Enabled = false;
             this.btnDeleteSoundGenerator.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDeleteSoundGenerator.Location = new System.Drawing.Point(267, 3);
+            this.btnDeleteSoundGenerator.Location = new System.Drawing.Point(357, 4);
+            this.btnDeleteSoundGenerator.Margin = new System.Windows.Forms.Padding(4);
             this.btnDeleteSoundGenerator.Name = "btnDeleteSoundGenerator";
-            this.btnDeleteSoundGenerator.Size = new System.Drawing.Size(259, 28);
+            this.btnDeleteSoundGenerator.Size = new System.Drawing.Size(346, 33);
             this.btnDeleteSoundGenerator.TabIndex = 2;
             this.btnDeleteSoundGenerator.Text = "-";
             this.btnDeleteSoundGenerator.UseVisualStyleBackColor = true;
@@ -2287,9 +2427,10 @@
             // 
             this.btnAddSoundGenerator.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnAddSoundGenerator.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddSoundGenerator.Location = new System.Drawing.Point(3, 3);
+            this.btnAddSoundGenerator.Location = new System.Drawing.Point(4, 4);
+            this.btnAddSoundGenerator.Margin = new System.Windows.Forms.Padding(4);
             this.btnAddSoundGenerator.Name = "btnAddSoundGenerator";
-            this.btnAddSoundGenerator.Size = new System.Drawing.Size(258, 28);
+            this.btnAddSoundGenerator.Size = new System.Drawing.Size(345, 33);
             this.btnAddSoundGenerator.TabIndex = 1;
             this.btnAddSoundGenerator.Text = "+";
             this.btnAddSoundGenerator.UseVisualStyleBackColor = true;
@@ -2312,18 +2453,20 @@
             this.pnlSoundGeneratorEdit.Controls.Add(this.tbSoundGeneratorName);
             this.pnlSoundGeneratorEdit.Controls.Add(this.label10);
             this.pnlSoundGeneratorEdit.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlSoundGeneratorEdit.Location = new System.Drawing.Point(538, 43);
+            this.pnlSoundGeneratorEdit.Location = new System.Drawing.Point(719, 53);
+            this.pnlSoundGeneratorEdit.Margin = new System.Windows.Forms.Padding(4);
             this.pnlSoundGeneratorEdit.Name = "pnlSoundGeneratorEdit";
-            this.pnlSoundGeneratorEdit.Size = new System.Drawing.Size(395, 550);
+            this.pnlSoundGeneratorEdit.Size = new System.Drawing.Size(528, 688);
             this.pnlSoundGeneratorEdit.TabIndex = 4;
             this.pnlSoundGeneratorEdit.Visible = false;
             // 
             // btnSoundGeneratorEditOK
             // 
             this.btnSoundGeneratorEditOK.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSoundGeneratorEditOK.Location = new System.Drawing.Point(208, 345);
+            this.btnSoundGeneratorEditOK.Location = new System.Drawing.Point(277, 425);
+            this.btnSoundGeneratorEditOK.Margin = new System.Windows.Forms.Padding(4);
             this.btnSoundGeneratorEditOK.Name = "btnSoundGeneratorEditOK";
-            this.btnSoundGeneratorEditOK.Size = new System.Drawing.Size(115, 52);
+            this.btnSoundGeneratorEditOK.Size = new System.Drawing.Size(153, 64);
             this.btnSoundGeneratorEditOK.TabIndex = 38;
             this.btnSoundGeneratorEditOK.Text = "OK";
             this.btnSoundGeneratorEditOK.UseVisualStyleBackColor = true;
@@ -2332,9 +2475,10 @@
             // btnSoundGeneratorEditCancel
             // 
             this.btnSoundGeneratorEditCancel.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSoundGeneratorEditCancel.Location = new System.Drawing.Point(89, 345);
+            this.btnSoundGeneratorEditCancel.Location = new System.Drawing.Point(119, 425);
+            this.btnSoundGeneratorEditCancel.Margin = new System.Windows.Forms.Padding(4);
             this.btnSoundGeneratorEditCancel.Name = "btnSoundGeneratorEditCancel";
-            this.btnSoundGeneratorEditCancel.Size = new System.Drawing.Size(115, 52);
+            this.btnSoundGeneratorEditCancel.Size = new System.Drawing.Size(153, 64);
             this.btnSoundGeneratorEditCancel.TabIndex = 37;
             this.btnSoundGeneratorEditCancel.Text = "Cancel";
             this.btnSoundGeneratorEditCancel.UseVisualStyleBackColor = true;
@@ -2343,9 +2487,10 @@
             // btnSoundGeneratorPatchDel
             // 
             this.btnSoundGeneratorPatchDel.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSoundGeneratorPatchDel.Location = new System.Drawing.Point(330, 255);
+            this.btnSoundGeneratorPatchDel.Location = new System.Drawing.Point(440, 314);
+            this.btnSoundGeneratorPatchDel.Margin = new System.Windows.Forms.Padding(4);
             this.btnSoundGeneratorPatchDel.Name = "btnSoundGeneratorPatchDel";
-            this.btnSoundGeneratorPatchDel.Size = new System.Drawing.Size(35, 75);
+            this.btnSoundGeneratorPatchDel.Size = new System.Drawing.Size(47, 92);
             this.btnSoundGeneratorPatchDel.TabIndex = 36;
             this.btnSoundGeneratorPatchDel.Text = "-";
             this.btnSoundGeneratorPatchDel.UseVisualStyleBackColor = true;
@@ -2354,9 +2499,10 @@
             // btnSoundGeneratorPatchAdd
             // 
             this.btnSoundGeneratorPatchAdd.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSoundGeneratorPatchAdd.Location = new System.Drawing.Point(330, 154);
+            this.btnSoundGeneratorPatchAdd.Location = new System.Drawing.Point(440, 190);
+            this.btnSoundGeneratorPatchAdd.Margin = new System.Windows.Forms.Padding(4);
             this.btnSoundGeneratorPatchAdd.Name = "btnSoundGeneratorPatchAdd";
-            this.btnSoundGeneratorPatchAdd.Size = new System.Drawing.Size(35, 81);
+            this.btnSoundGeneratorPatchAdd.Size = new System.Drawing.Size(47, 100);
             this.btnSoundGeneratorPatchAdd.TabIndex = 35;
             this.btnSoundGeneratorPatchAdd.Text = "+";
             this.btnSoundGeneratorPatchAdd.UseVisualStyleBackColor = true;
@@ -2366,25 +2512,28 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(16, 156);
+            this.label6.Location = new System.Drawing.Point(21, 192);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(69, 18);
+            this.label6.Size = new System.Drawing.Size(87, 23);
             this.label6.TabIndex = 34;
             this.label6.Text = "Patches:";
             // 
             // lbSoundGeneratorPatches
             // 
             this.lbSoundGeneratorPatches.FormattingEnabled = true;
-            this.lbSoundGeneratorPatches.ItemHeight = 24;
-            this.lbSoundGeneratorPatches.Location = new System.Drawing.Point(89, 153);
+            this.lbSoundGeneratorPatches.ItemHeight = 32;
+            this.lbSoundGeneratorPatches.Location = new System.Drawing.Point(119, 188);
+            this.lbSoundGeneratorPatches.Margin = new System.Windows.Forms.Padding(4);
             this.lbSoundGeneratorPatches.Name = "lbSoundGeneratorPatches";
-            this.lbSoundGeneratorPatches.Size = new System.Drawing.Size(235, 76);
+            this.lbSoundGeneratorPatches.Size = new System.Drawing.Size(312, 68);
             this.lbSoundGeneratorPatches.TabIndex = 33;
             this.lbSoundGeneratorPatches.SelectedIndexChanged += new System.EventHandler(this.lbSoundGeneratorPatches_SelectedIndexChanged);
             // 
             // nudSoundGeneratorNumChannels
             // 
-            this.nudSoundGeneratorNumChannels.Location = new System.Drawing.Point(88, 111);
+            this.nudSoundGeneratorNumChannels.Location = new System.Drawing.Point(117, 137);
+            this.nudSoundGeneratorNumChannels.Margin = new System.Windows.Forms.Padding(4);
             this.nudSoundGeneratorNumChannels.Maximum = new decimal(new int[] {
             16,
             0,
@@ -2396,7 +2545,7 @@
             0,
             0});
             this.nudSoundGeneratorNumChannels.Name = "nudSoundGeneratorNumChannels";
-            this.nudSoundGeneratorNumChannels.Size = new System.Drawing.Size(54, 32);
+            this.nudSoundGeneratorNumChannels.Size = new System.Drawing.Size(72, 38);
             this.nudSoundGeneratorNumChannels.TabIndex = 32;
             this.nudSoundGeneratorNumChannels.Value = new decimal(new int[] {
             1,
@@ -2406,7 +2555,8 @@
             // 
             // nudSoundGeneratorBaseChannel
             // 
-            this.nudSoundGeneratorBaseChannel.Location = new System.Drawing.Point(269, 111);
+            this.nudSoundGeneratorBaseChannel.Location = new System.Drawing.Point(359, 137);
+            this.nudSoundGeneratorBaseChannel.Margin = new System.Windows.Forms.Padding(4);
             this.nudSoundGeneratorBaseChannel.Maximum = new decimal(new int[] {
             16,
             0,
@@ -2418,7 +2568,7 @@
             0,
             0});
             this.nudSoundGeneratorBaseChannel.Name = "nudSoundGeneratorBaseChannel";
-            this.nudSoundGeneratorBaseChannel.Size = new System.Drawing.Size(54, 32);
+            this.nudSoundGeneratorBaseChannel.Size = new System.Drawing.Size(72, 38);
             this.nudSoundGeneratorBaseChannel.TabIndex = 31;
             this.nudSoundGeneratorBaseChannel.Value = new decimal(new int[] {
             1,
@@ -2430,9 +2580,10 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(158, 115);
+            this.label7.Location = new System.Drawing.Point(211, 142);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(110, 18);
+            this.label7.Size = new System.Drawing.Size(137, 23);
             this.label7.TabIndex = 30;
             this.label7.Text = "Base Channel:";
             // 
@@ -2440,44 +2591,49 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(3, 117);
+            this.label8.Location = new System.Drawing.Point(4, 144);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(84, 18);
+            this.label8.Size = new System.Drawing.Size(105, 23);
             this.label8.TabIndex = 29;
             this.label8.Text = "Num Chns:";
             // 
             // cbSoundGeneratorDeviceName
             // 
             this.cbSoundGeneratorDeviceName.FormattingEnabled = true;
-            this.cbSoundGeneratorDeviceName.Location = new System.Drawing.Point(88, 68);
+            this.cbSoundGeneratorDeviceName.Location = new System.Drawing.Point(117, 84);
+            this.cbSoundGeneratorDeviceName.Margin = new System.Windows.Forms.Padding(4);
             this.cbSoundGeneratorDeviceName.Name = "cbSoundGeneratorDeviceName";
-            this.cbSoundGeneratorDeviceName.Size = new System.Drawing.Size(235, 32);
+            this.cbSoundGeneratorDeviceName.Size = new System.Drawing.Size(312, 40);
             this.cbSoundGeneratorDeviceName.TabIndex = 28;
             // 
             // label9
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(25, 74);
+            this.label9.Location = new System.Drawing.Point(33, 91);
+            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(61, 18);
+            this.label9.Size = new System.Drawing.Size(75, 23);
             this.label9.TabIndex = 27;
             this.label9.Text = "Device:";
             // 
             // tbSoundGeneratorName
             // 
-            this.tbSoundGeneratorName.Location = new System.Drawing.Point(88, 27);
+            this.tbSoundGeneratorName.Location = new System.Drawing.Point(117, 33);
+            this.tbSoundGeneratorName.Margin = new System.Windows.Forms.Padding(4);
             this.tbSoundGeneratorName.Name = "tbSoundGeneratorName";
-            this.tbSoundGeneratorName.Size = new System.Drawing.Size(236, 32);
+            this.tbSoundGeneratorName.Size = new System.Drawing.Size(313, 38);
             this.tbSoundGeneratorName.TabIndex = 26;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(31, 30);
+            this.label10.Location = new System.Drawing.Point(41, 37);
+            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(54, 18);
+            this.label10.Size = new System.Drawing.Size(67, 23);
             this.label10.TabIndex = 25;
             this.label10.Text = "Name:";
             // 
@@ -2494,18 +2650,20 @@
             this.pnlSoundGeneratorPatchEdit.Controls.Add(this.tbSoundGeneratorPatchName);
             this.pnlSoundGeneratorPatchEdit.Controls.Add(this.label14);
             this.pnlSoundGeneratorPatchEdit.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlSoundGeneratorPatchEdit.Location = new System.Drawing.Point(939, 43);
+            this.pnlSoundGeneratorPatchEdit.Location = new System.Drawing.Point(1255, 53);
+            this.pnlSoundGeneratorPatchEdit.Margin = new System.Windows.Forms.Padding(4);
             this.pnlSoundGeneratorPatchEdit.Name = "pnlSoundGeneratorPatchEdit";
-            this.pnlSoundGeneratorPatchEdit.Size = new System.Drawing.Size(397, 550);
+            this.pnlSoundGeneratorPatchEdit.Size = new System.Drawing.Size(529, 688);
             this.pnlSoundGeneratorPatchEdit.TabIndex = 5;
             this.pnlSoundGeneratorPatchEdit.Visible = false;
             // 
             // btnSoundGeneratorPatchEditOK
             // 
             this.btnSoundGeneratorPatchEditOK.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSoundGeneratorPatchEditOK.Location = new System.Drawing.Point(220, 164);
+            this.btnSoundGeneratorPatchEditOK.Location = new System.Drawing.Point(293, 202);
+            this.btnSoundGeneratorPatchEditOK.Margin = new System.Windows.Forms.Padding(4);
             this.btnSoundGeneratorPatchEditOK.Name = "btnSoundGeneratorPatchEditOK";
-            this.btnSoundGeneratorPatchEditOK.Size = new System.Drawing.Size(115, 52);
+            this.btnSoundGeneratorPatchEditOK.Size = new System.Drawing.Size(153, 64);
             this.btnSoundGeneratorPatchEditOK.TabIndex = 40;
             this.btnSoundGeneratorPatchEditOK.Text = "OK";
             this.btnSoundGeneratorPatchEditOK.UseVisualStyleBackColor = true;
@@ -2514,9 +2672,10 @@
             // btnSoundGeneratorPatchEditCancel
             // 
             this.btnSoundGeneratorPatchEditCancel.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSoundGeneratorPatchEditCancel.Location = new System.Drawing.Point(101, 164);
+            this.btnSoundGeneratorPatchEditCancel.Location = new System.Drawing.Point(135, 202);
+            this.btnSoundGeneratorPatchEditCancel.Margin = new System.Windows.Forms.Padding(4);
             this.btnSoundGeneratorPatchEditCancel.Name = "btnSoundGeneratorPatchEditCancel";
-            this.btnSoundGeneratorPatchEditCancel.Size = new System.Drawing.Size(115, 52);
+            this.btnSoundGeneratorPatchEditCancel.Size = new System.Drawing.Size(153, 64);
             this.btnSoundGeneratorPatchEditCancel.TabIndex = 39;
             this.btnSoundGeneratorPatchEditCancel.Text = "Cancel";
             this.btnSoundGeneratorPatchEditCancel.UseVisualStyleBackColor = true;
@@ -2524,7 +2683,8 @@
             // 
             // nudSoundGeneratorPatchProgramNo
             // 
-            this.nudSoundGeneratorPatchProgramNo.Location = new System.Drawing.Point(102, 114);
+            this.nudSoundGeneratorPatchProgramNo.Location = new System.Drawing.Point(136, 140);
+            this.nudSoundGeneratorPatchProgramNo.Margin = new System.Windows.Forms.Padding(4);
             this.nudSoundGeneratorPatchProgramNo.Maximum = new decimal(new int[] {
             127,
             0,
@@ -2536,7 +2696,7 @@
             0,
             -2147483648});
             this.nudSoundGeneratorPatchProgramNo.Name = "nudSoundGeneratorPatchProgramNo";
-            this.nudSoundGeneratorPatchProgramNo.Size = new System.Drawing.Size(54, 32);
+            this.nudSoundGeneratorPatchProgramNo.Size = new System.Drawing.Size(72, 38);
             this.nudSoundGeneratorPatchProgramNo.TabIndex = 30;
             this.nudSoundGeneratorPatchProgramNo.Value = new decimal(new int[] {
             1,
@@ -2546,7 +2706,8 @@
             // 
             // nudSoundGeneratorPatchBankNo
             // 
-            this.nudSoundGeneratorPatchBankNo.Location = new System.Drawing.Point(283, 114);
+            this.nudSoundGeneratorPatchBankNo.Location = new System.Drawing.Point(377, 140);
+            this.nudSoundGeneratorPatchBankNo.Margin = new System.Windows.Forms.Padding(4);
             this.nudSoundGeneratorPatchBankNo.Maximum = new decimal(new int[] {
             127,
             0,
@@ -2558,7 +2719,7 @@
             0,
             -2147483648});
             this.nudSoundGeneratorPatchBankNo.Name = "nudSoundGeneratorPatchBankNo";
-            this.nudSoundGeneratorPatchBankNo.Size = new System.Drawing.Size(54, 32);
+            this.nudSoundGeneratorPatchBankNo.Size = new System.Drawing.Size(72, 38);
             this.nudSoundGeneratorPatchBankNo.TabIndex = 29;
             this.nudSoundGeneratorPatchBankNo.Value = new decimal(new int[] {
             1,
@@ -2570,9 +2731,10 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(207, 119);
+            this.label11.Location = new System.Drawing.Point(276, 146);
+            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(72, 18);
+            this.label11.Size = new System.Drawing.Size(90, 23);
             this.label11.TabIndex = 28;
             this.label11.Text = "Bank No:";
             // 
@@ -2580,44 +2742,49 @@
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(21, 120);
+            this.label12.Location = new System.Drawing.Point(28, 148);
+            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(76, 18);
+            this.label12.Size = new System.Drawing.Size(96, 23);
             this.label12.TabIndex = 27;
             this.label12.Text = "Patch No:";
             // 
             // cbSoundGeneratorPatchCategory
             // 
             this.cbSoundGeneratorPatchCategory.FormattingEnabled = true;
-            this.cbSoundGeneratorPatchCategory.Location = new System.Drawing.Point(101, 69);
+            this.cbSoundGeneratorPatchCategory.Location = new System.Drawing.Point(135, 85);
+            this.cbSoundGeneratorPatchCategory.Margin = new System.Windows.Forms.Padding(4);
             this.cbSoundGeneratorPatchCategory.Name = "cbSoundGeneratorPatchCategory";
-            this.cbSoundGeneratorPatchCategory.Size = new System.Drawing.Size(235, 32);
+            this.cbSoundGeneratorPatchCategory.Size = new System.Drawing.Size(312, 40);
             this.cbSoundGeneratorPatchCategory.TabIndex = 26;
             // 
             // label13
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(21, 72);
+            this.label13.Location = new System.Drawing.Point(28, 89);
+            this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(76, 18);
+            this.label13.Size = new System.Drawing.Size(97, 23);
             this.label13.TabIndex = 25;
             this.label13.Text = "Category:";
             // 
             // tbSoundGeneratorPatchName
             // 
-            this.tbSoundGeneratorPatchName.Location = new System.Drawing.Point(101, 27);
+            this.tbSoundGeneratorPatchName.Location = new System.Drawing.Point(135, 33);
+            this.tbSoundGeneratorPatchName.Margin = new System.Windows.Forms.Padding(4);
             this.tbSoundGeneratorPatchName.Name = "tbSoundGeneratorPatchName";
-            this.tbSoundGeneratorPatchName.Size = new System.Drawing.Size(236, 32);
+            this.tbSoundGeneratorPatchName.Size = new System.Drawing.Size(313, 38);
             this.tbSoundGeneratorPatchName.TabIndex = 24;
             // 
             // label14
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(44, 31);
+            this.label14.Location = new System.Drawing.Point(59, 38);
+            this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(54, 18);
+            this.label14.Size = new System.Drawing.Size(67, 23);
             this.label14.TabIndex = 23;
             this.label14.Text = "Name:";
             // 
@@ -2630,8 +2797,9 @@
             this.tpMisc.Controls.Add(this.label3);
             this.tpMisc.Controls.Add(this.lbOutputDevices);
             this.tpMisc.Location = new System.Drawing.Point(4, 44);
+            this.tpMisc.Margin = new System.Windows.Forms.Padding(4);
             this.tpMisc.Name = "tpMisc";
-            this.tpMisc.Size = new System.Drawing.Size(1339, 596);
+            this.tpMisc.Size = new System.Drawing.Size(1788, 745);
             this.tpMisc.TabIndex = 4;
             this.tpMisc.Text = "Misc";
             this.tpMisc.UseVisualStyleBackColor = true;
@@ -2641,9 +2809,10 @@
             this.cbPortaitMode.AutoSize = true;
             this.cbPortaitMode.Checked = true;
             this.cbPortaitMode.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbPortaitMode.Location = new System.Drawing.Point(19, 461);
+            this.cbPortaitMode.Location = new System.Drawing.Point(25, 567);
+            this.cbPortaitMode.Margin = new System.Windows.Forms.Padding(4);
             this.cbPortaitMode.Name = "cbPortaitMode";
-            this.cbPortaitMode.Size = new System.Drawing.Size(164, 29);
+            this.cbPortaitMode.Size = new System.Drawing.Size(200, 36);
             this.cbPortaitMode.TabIndex = 16;
             this.cbPortaitMode.Text = "Portrait Mode";
             this.cbPortaitMode.UseVisualStyleBackColor = true;
@@ -2651,9 +2820,10 @@
             // 
             // btnQuit
             // 
-            this.btnQuit.Location = new System.Drawing.Point(19, 14);
+            this.btnQuit.Location = new System.Drawing.Point(25, 17);
+            this.btnQuit.Margin = new System.Windows.Forms.Padding(4);
             this.btnQuit.Name = "btnQuit";
-            this.btnQuit.Size = new System.Drawing.Size(167, 54);
+            this.btnQuit.Size = new System.Drawing.Size(223, 66);
             this.btnQuit.TabIndex = 15;
             this.btnQuit.Text = "Shutdown";
             this.btnQuit.UseVisualStyleBackColor = true;
@@ -2662,19 +2832,21 @@
             // lbInputDevices
             // 
             this.lbInputDevices.FormattingEnabled = true;
-            this.lbInputDevices.ItemHeight = 24;
-            this.lbInputDevices.Location = new System.Drawing.Point(19, 117);
+            this.lbInputDevices.ItemHeight = 32;
+            this.lbInputDevices.Location = new System.Drawing.Point(25, 144);
+            this.lbInputDevices.Margin = new System.Windows.Forms.Padding(4);
             this.lbInputDevices.Name = "lbInputDevices";
-            this.lbInputDevices.Size = new System.Drawing.Size(613, 52);
+            this.lbInputDevices.Size = new System.Drawing.Size(816, 36);
             this.lbInputDevices.TabIndex = 14;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(15, 89);
+            this.label2.Location = new System.Drawing.Point(20, 110);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(144, 24);
+            this.label2.Size = new System.Drawing.Size(189, 32);
             this.label2.TabIndex = 13;
             this.label2.Text = "Input Devices:";
             // 
@@ -2682,9 +2854,10 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(18, 217);
+            this.label3.Location = new System.Drawing.Point(24, 267);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(160, 24);
+            this.label3.Size = new System.Drawing.Size(210, 32);
             this.label3.TabIndex = 10;
             this.label3.Text = "Output Devices:";
             // 
@@ -2692,19 +2865,21 @@
             // 
             this.lbOutputDevices.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbOutputDevices.FormattingEnabled = true;
-            this.lbOutputDevices.ItemHeight = 24;
-            this.lbOutputDevices.Location = new System.Drawing.Point(19, 248);
+            this.lbOutputDevices.ItemHeight = 31;
+            this.lbOutputDevices.Location = new System.Drawing.Point(25, 305);
+            this.lbOutputDevices.Margin = new System.Windows.Forms.Padding(4);
             this.lbOutputDevices.Name = "lbOutputDevices";
-            this.lbOutputDevices.Size = new System.Drawing.Size(613, 172);
+            this.lbOutputDevices.Size = new System.Drawing.Size(816, 190);
             this.lbOutputDevices.TabIndex = 12;
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(1347, 644);
+            this.ClientSize = new System.Drawing.Size(1796, 793);
             this.Controls.Add(this.tabControl1);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
             this.Text = "JoeMidi";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);

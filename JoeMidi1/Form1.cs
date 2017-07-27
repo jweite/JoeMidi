@@ -162,7 +162,7 @@ namespace JoeMidi1
         {
             if (currentlySelectedTabName.Equals("Show"))
             {
-                // Casio PX3 Basic Program Changes
+                // Map the Casio PX3 Basic Program Change buttons to show functions.
                 if (programNum == 0x3D)     // Button 8
                 {
                     // Select Next Song Program
@@ -178,7 +178,7 @@ namespace JoeMidi1
                     // Select Next Song
                     olvSongs.BeginInvoke(new MethodInvoker(selectNextSong));
                 }
-                else if (programNum == 0x11)
+                else if (programNum == 0x12)
                 {
                     // Select Previous Song
                     olvSongs.BeginInvoke(new MethodInvoker(selectPrevSong));
@@ -207,6 +207,39 @@ namespace JoeMidi1
             }
             else if (currentlySelectedTabName.StartsWith("Random Access"))
             {
+                // Map the Casio buttons to programs 0-7
+                if (programNum == 0x3D)     // Button 8
+                {
+                    programNum = 7;
+                }
+                else if (programNum == 0x19)
+                {
+                    programNum = 6;
+                }
+                else if (programNum == 0x30)
+                {
+                    programNum = 5;
+                }
+                else if (programNum == 0x12)
+                {
+                    programNum = 4;
+                }
+                else if (programNum == 0x7)
+                {
+                    programNum = 3;
+                }
+                else if (programNum == 0x5)
+                {
+                    programNum = 2;
+                }
+                else if (programNum == 0x4)
+                {
+                    programNum = 1;
+                }
+                else if (programNum == 0x0)
+                {
+                    programNum = 0;
+                }
                 mapper.RotatingProgramChange((currentRandomAccessBank * 128) + programNum);
             }
         }
@@ -293,6 +326,9 @@ namespace JoeMidi1
                 {
                     cbRandomAccessInputDevice.Text = ((LogicalInputDevice)e.TabPage.Tag).logicalDeviceName;
                 }
+
+                mapper.masterTranspose = 0;
+                nudRandomAccessTranspose.Value = 0;
 
             }
             else
@@ -2570,5 +2606,9 @@ namespace JoeMidi1
             }
         }
 
+        private void nudRandomAccessTranspose_ValueChanged(object sender, EventArgs e)
+        {
+            mapper.masterTranspose = (int)nudRandomAccessTranspose.Value;
+        }
     }
 }
