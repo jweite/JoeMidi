@@ -1,4 +1,4 @@
-﻿using System;
+﻿    using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,10 +8,12 @@ namespace JoeMidi1
 {
     public class SoundGeneratorPatch
     {
+        // Represents a Patch (Sound) that can be requested of a SoundGenerator, with the midi params necessary to request it.
+
         public String name;
         public String patchCategoryName;   
         public int soundGeneratorBank;                            // Should only sent if positive int 
-        public int soundGeneratorPatchNumber;                     // Should only be sent if 0-127
+        public int soundGeneratorPatchNumber;                     // Should only be sent if 0-127.
 
         public SoundGeneratorPatch() { }
 

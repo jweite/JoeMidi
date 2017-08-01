@@ -292,6 +292,7 @@ namespace JoeMidi1
                 return;
             }
 
+
             // Find the per-device/channel mappings for the message's Device/Channel.  If there's none, nothing else to do.
             String deviceKey = Mapping.PerDeviceChannelMapping.createKey(msg.Device.Name, (int)msg.Channel);
             if (!m_perDeviceChannelMappings.ContainsKey(deviceKey)) {
@@ -310,7 +311,24 @@ namespace JoeMidi1
                         // Regular remap of incoming control message to a different outgoing control#, with value scaled from the incoming range of 
                         //  0-127 to an outgoing range of min-max.
                         int scaledValue = (int)(msg.Value * controlMapping.scale) + controlMapping.min;
-                        controlMapping.soundGenerator.device.SendControlChange((Channel)controlMapping.soundGeneratorPhysicalChannel, (Midi.Control)controlMapping.mappedControlNumber, scaledValue);
+
+                        // Special processing for sustain pedal
+                        if (controlMapping.mappedControlNumber == (int)Midi.Control.SustainPedal) {
+                            if (msg.Value > 0)
+                            {
+                                // Down: Record what physical device/channels are receiving it from the source device.
+                                recordSustainPedalDown(msg.Device, controlMapping.soundGenerator.device, (Channel)controlMapping.soundGeneratorPhysicalChannel);
+                                controlMapping.soundGenerator.device.SendControlChange((Channel)controlMapping.soundGeneratorPhysicalChannel, (Midi.Control)controlMapping.mappedControlNumber, scaledValue);
+                            }
+                            else
+                            {
+                                // Up: un-sustain any soundGen that was previously sustained by a message originating from the source input device
+                                sendSustainPedalUpToAllDeviceChannelsWithSustainPedalDown(msg.Device);
+                            }
+                        }
+                        else {
+                            controlMapping.soundGenerator.device.SendControlChange((Channel)controlMapping.soundGeneratorPhysicalChannel, (Midi.Control)controlMapping.mappedControlNumber, scaledValue);
+                        }
                     }
                     else 
                     {
@@ -333,6 +351,48 @@ namespace JoeMidi1
                     }
                 }
             }
+        }
+
+        // While named generically at this point in time we only record control messages about activation of the Sustain pedal.f
+        IList<MappedMidiControl> mappedMidiControls = new List<MappedMidiControl>();
+
+        private void recordSustainPedalDown(DeviceBase damperMsgSourceDevice, OutputDevice physicalDeviceWithDamperDown, Channel physicalChannelWithDamperDown)
+        {
+            // Create a control mapping entry for this damper-down
+            MappedMidiControl mappedControl = new MappedMidiControl();
+            mappedControl.sourceDeviceName = damperMsgSourceDevice.Name;
+            mappedControl.mappedDevice = physicalDeviceWithDamperDown;
+            mappedControl.mappedChannel = physicalChannelWithDamperDown;
+            mappedControl.mappedControl = Midi.Control.SustainPedal;  // Damper
+            mappedControl.mappedValue = 127;
+
+            // If, for some reason, there's an existing mapping of this control in the list delete it.
+            for (int i = mappedMidiControls.Count - 1; i >= 0; --i)
+            {
+                MappedMidiControl ctl = mappedMidiControls[i];
+                if (ctl.sourceDeviceName == damperMsgSourceDevice.Name && ctl.mappedDevice == physicalDeviceWithDamperDown && ctl.mappedChannel == physicalChannelWithDamperDown && ctl.mappedControl == Midi.Control.SustainPedal)
+                {
+                    mappedMidiControls.Remove(ctl);
+                }
+            }
+
+            // Add the newly created control to the list
+            mappedMidiControls.Add(mappedControl);
+
+        }
+
+        private void sendSustainPedalUpToAllDeviceChannelsWithSustainPedalDown(DeviceBase damperMsgSourceDevice)
+        {
+            // The idea being that lifting the sustain pedal un-sustains every soundGenerator previously 
+            for (int i = mappedMidiControls.Count-1; i >= 0 ; --i) { 
+                MappedMidiControl ctl = mappedMidiControls[i];
+                if (ctl.sourceDeviceName == damperMsgSourceDevice.Name && ctl.mappedControl == Midi.Control.SustainPedal)
+                {
+                    ctl.mappedDevice.SendControlChange(ctl.mappedChannel, Midi.Control.SustainPedal, 0);
+                    mappedMidiControls.Remove(ctl);
+                }
+            }
+
         }
 
         OutputDevice findOutputDeviceByName(String name, bool showErrorPopup)

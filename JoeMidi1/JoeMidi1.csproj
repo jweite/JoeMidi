@@ -105,6 +105,7 @@
       <DependentUpon>fmShowFloat.cs</DependentUpon>
     </Compile>
     <Compile Include="LogicalDevice.cs" />
+    <Compile Include="MappedMidiControl.cs" />
     <Compile Include="MappedNote.cs" />
     <Compile Include="MappingPatch.cs" />
     <Compile Include="MidiProgram.cs" />

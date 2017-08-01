@@ -9,6 +9,9 @@ namespace JoeMidi1
 {
     public class MidiProgram
     {
+        // Represents a sound (or mapping of multiple sounds) that can be requested of the JoeMidi managed SoundGenerators 
+        //  by sending a Program Change msg to JoeMidi (by a controller or via the JoeMidi Random Access buttons)
+
         public int myBankNumber = -1;                        // To activate me
         public int myPatchNumber = -1;                       // To activate me
         public bool bSingle = false;
@@ -100,7 +103,7 @@ namespace JoeMidi1
 
         virtual public bool bind(Dictionary<String, LogicalInputDevice> logicalInputDeviceDict, Dictionary<String, SoundGenerator> soundGenerators, Dictionary<String, Mapping> mappings, LogicalInputDevice primaryInputDevice)
         {
-            // Find or create a Mapping for this SongProgram that it will point to
+            // Find or create a Mapping for this MidiProgram that it will point to
 
             if (bSingle == false)       // If it's not a single, then it's a mapping, so just find the one named.
             {

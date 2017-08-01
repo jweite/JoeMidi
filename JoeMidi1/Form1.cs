@@ -699,7 +699,7 @@ namespace JoeMidi1
                     {
                         MidiProgram midiProgram = (MidiProgram)o;
                         mapper.configuration.midiPrograms.Remove(midiProgram.key);
-                        midiProgram.myPatchNumber += (N_RANDOMACCESS_COLS);
+                        midiProgram.myPatchNumber += N_RANDOMACCESS_COLS;
                         mapper.configuration.midiPrograms.Add(midiProgram.key, midiProgram);
                         mapper.configuration.dirty = true;
                     }
@@ -714,7 +714,7 @@ namespace JoeMidi1
             if (o2 is MidiProgram)
             {
                 MidiProgram midiProgram = (MidiProgram)o2;
-                midiProgram.myPatchNumber = ((tlpcp.Row - FIRST_RANDOMACCESS_BTN_ROW) * N_RANDOMACCESS_COLS) + tlpcp.Column;
+                midiProgram.myPatchNumber = ((tlpcp.Row - FIRST_RANDOMACCESS_BTN_ROW) * N_RANDOMACCESS_COLS) + (tlpcp.Column-1);
                 mapper.configuration.midiPrograms.Add(midiProgram.key, midiProgram);
             }
         }

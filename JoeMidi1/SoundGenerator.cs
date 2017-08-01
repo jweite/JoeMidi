@@ -9,12 +9,17 @@ namespace JoeMidi1
 {
     public class SoundGenerator
     {
-        public String name;
-        public String deviceName;
-        public int nChannels;
-        public int channelBase;
+        // A SoundGenerator is a named logical data structure that represents a midi device (physical or soft) that can, er, generate sounds.
+        //  JoeMidi communicates with this midi device via a JoeMidi Logical Output Device.
+        //  The sound generator is addressed on one or more contiguous midi channels.
 
-        // Dict, by name, of Patches available on the SoundGenerators.
+        public String name;
+        public String deviceName;       // JoeMidi Logical Output Device throught which the actual sound generating device is communicated with.
+        public int channelBase;         // The first midi channel allocated to this SoundGenerator, over which it will communicate with the actual sound generating device.
+        public int nChannels;           // Number of midi channels allocated to this SoundGenerator, typically to support multi-timbral use.
+
+        // Dict, by name, of Patches available on the SoundGenerators. 
+        //  Most critically each would typically have a midi Bank and program# for requesting it from the actual physical device.  
         public Dictionary<String, SoundGeneratorPatch> soundGeneratorPatchDict = new Dictionary<string, SoundGeneratorPatch>();
 
         public SoundGenerator() { }
