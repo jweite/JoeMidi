@@ -479,7 +479,20 @@ namespace JoeMidi1
             else
             {
                 configuration = JsonConvert.DeserializeObject<Configuration>(File.ReadAllText(filePath));
+                addAllPseudoSetlist();
             }
+        }
+
+        private void addAllPseudoSetlist()
+        {
+            Setlist setList = new Setlist();
+            setList.name = "(All)";
+            foreach(Song song in configuration.getSortedSongList())
+            {
+                setList.songTitles.Add(song.name);
+            }
+            setList.bind(configuration.songDict, configuration.logicalInputDeviceDict, configuration.soundGenerators, configuration.mappings, configuration.primaryInputDevice);
+            configuration.setlists.Insert(0, setList);
         }
 
         public void stopMapper()
@@ -509,6 +522,10 @@ namespace JoeMidi1
         {
             JsonSerializerSettings serializerSettings = new JsonSerializerSettings();
             serializerSettings.TypeNameHandling = TypeNameHandling.Objects;
+
+            // Remove (All) pseudo-setlist
+            Setlist setlistToRemove = configuration.setlists.Find(setlist => setlist.name == "(All)");
+            configuration.setlists.Remove(setlistToRemove);
 
             String json = JsonConvert.SerializeObject(configuration, Formatting.Indented, serializerSettings);
 

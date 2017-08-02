@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem(new string[] {
             "SG1",
             "Output Device 1",
             "1",
             "2"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem6 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem(new string[] {
             "SG2",
             "Output Device 1",
             "2",
@@ -218,6 +218,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.lbOutputDevices = new System.Windows.Forms.ListBox();
             this.serviceController1 = new System.ServiceProcess.ServiceController();
+            this.btnSetlistExpand = new System.Windows.Forms.Button();
             this.contextMenuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tpRandomAccess1.SuspendLayout();
@@ -767,14 +768,16 @@
             // 
             // tlpSongSetlistOuter
             // 
-            this.tlpSongSetlistOuter.ColumnCount = 4;
-            this.tlpSongSetlistOuter.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tlpSongSetlistOuter.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tlpSongSetlistOuter.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tlpSongSetlistOuter.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tlpSongSetlistOuter.ColumnCount = 5;
+            this.tlpSongSetlistOuter.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tlpSongSetlistOuter.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tlpSongSetlistOuter.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tlpSongSetlistOuter.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tlpSongSetlistOuter.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tlpSongSetlistOuter.Controls.Add(this.btnSetlistExpand, 3, 0);
             this.tlpSongSetlistOuter.Controls.Add(this.olvSongs, 0, 1);
             this.tlpSongSetlistOuter.Controls.Add(this.btnSetlists, 1, 0);
-            this.tlpSongSetlistOuter.Controls.Add(this.btnNextSong, 3, 0);
+            this.tlpSongSetlistOuter.Controls.Add(this.btnNextSong, 4, 0);
             this.tlpSongSetlistOuter.Controls.Add(this.btnSetlistSongOrderToggle, 2, 0);
             this.tlpSongSetlistOuter.Controls.Add(this.btnPrevSong, 0, 0);
             this.tlpSongSetlistOuter.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -784,8 +787,6 @@
             this.tlpSongSetlistOuter.RowCount = 2;
             this.tlpSongSetlistOuter.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 69F));
             this.tlpSongSetlistOuter.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpSongSetlistOuter.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tlpSongSetlistOuter.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tlpSongSetlistOuter.Size = new System.Drawing.Size(848, 361);
             this.tlpSongSetlistOuter.TabIndex = 13;
             // 
@@ -796,7 +797,7 @@
             this.olvSongs.CellEditUseWholeCell = false;
             this.olvSongs.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.olvColSong});
-            this.tlpSongSetlistOuter.SetColumnSpan(this.olvSongs, 4);
+            this.tlpSongSetlistOuter.SetColumnSpan(this.olvSongs, 5);
             this.olvSongs.Cursor = System.Windows.Forms.Cursors.Default;
             this.olvSongs.Dock = System.Windows.Forms.DockStyle.Fill;
             this.olvSongs.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -833,10 +834,10 @@
             this.btnSetlists.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSetlists.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSetlists.ForeColor = System.Drawing.Color.White;
-            this.btnSetlists.Location = new System.Drawing.Point(216, 4);
+            this.btnSetlists.Location = new System.Drawing.Point(173, 4);
             this.btnSetlists.Margin = new System.Windows.Forms.Padding(4);
             this.btnSetlists.Name = "btnSetlists";
-            this.btnSetlists.Size = new System.Drawing.Size(204, 61);
+            this.btnSetlists.Size = new System.Drawing.Size(161, 61);
             this.btnSetlists.TabIndex = 1;
             this.btnSetlists.Text = "SetL";
             this.btnSetlists.UseVisualStyleBackColor = false;
@@ -850,10 +851,10 @@
             this.btnNextSong.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNextSong.Font = new System.Drawing.Font("Wingdings", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
             this.btnNextSong.ForeColor = System.Drawing.Color.White;
-            this.btnNextSong.Location = new System.Drawing.Point(640, 4);
+            this.btnNextSong.Location = new System.Drawing.Point(680, 4);
             this.btnNextSong.Margin = new System.Windows.Forms.Padding(4);
             this.btnNextSong.Name = "btnNextSong";
-            this.btnNextSong.Size = new System.Drawing.Size(204, 61);
+            this.btnNextSong.Size = new System.Drawing.Size(164, 61);
             this.btnNextSong.TabIndex = 2;
             this.btnNextSong.Text = "ê";
             this.btnNextSong.UseVisualStyleBackColor = false;
@@ -867,10 +868,10 @@
             this.btnSetlistSongOrderToggle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSetlistSongOrderToggle.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSetlistSongOrderToggle.ForeColor = System.Drawing.Color.White;
-            this.btnSetlistSongOrderToggle.Location = new System.Drawing.Point(428, 4);
+            this.btnSetlistSongOrderToggle.Location = new System.Drawing.Point(342, 4);
             this.btnSetlistSongOrderToggle.Margin = new System.Windows.Forms.Padding(4);
             this.btnSetlistSongOrderToggle.Name = "btnSetlistSongOrderToggle";
-            this.btnSetlistSongOrderToggle.Size = new System.Drawing.Size(204, 61);
+            this.btnSetlistSongOrderToggle.Size = new System.Drawing.Size(161, 61);
             this.btnSetlistSongOrderToggle.TabIndex = 4;
             this.btnSetlistSongOrderToggle.Text = "Alpha";
             this.btnSetlistSongOrderToggle.UseVisualStyleBackColor = false;
@@ -887,7 +888,7 @@
             this.btnPrevSong.Location = new System.Drawing.Point(4, 4);
             this.btnPrevSong.Margin = new System.Windows.Forms.Padding(4);
             this.btnPrevSong.Name = "btnPrevSong";
-            this.btnPrevSong.Size = new System.Drawing.Size(204, 61);
+            this.btnPrevSong.Size = new System.Drawing.Size(161, 61);
             this.btnPrevSong.TabIndex = 5;
             this.btnPrevSong.Text = "é";
             this.btnPrevSong.UseVisualStyleBackColor = false;
@@ -1101,10 +1102,10 @@
             this.pnlSongEdit.Controls.Add(this.label1);
             this.pnlSongEdit.Controls.Add(this.tbSongTitle);
             this.pnlSongEdit.Controls.Add(this.lblSongTitle);
-            this.pnlSongEdit.Location = new System.Drawing.Point(591, 7);
+            this.pnlSongEdit.Location = new System.Drawing.Point(552, 4);
             this.pnlSongEdit.Margin = new System.Windows.Forms.Padding(4);
             this.pnlSongEdit.Name = "pnlSongEdit";
-            this.pnlSongEdit.Size = new System.Drawing.Size(596, 679);
+            this.pnlSongEdit.Size = new System.Drawing.Size(596, 586);
             this.pnlSongEdit.TabIndex = 1;
             this.pnlSongEdit.Visible = false;
             // 
@@ -2361,8 +2362,8 @@
             this.lvSoundGenerators.FullRowSelect = true;
             this.lvSoundGenerators.GridLines = true;
             this.lvSoundGenerators.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem5,
-            listViewItem6});
+            listViewItem3,
+            listViewItem4});
             this.lvSoundGenerators.Location = new System.Drawing.Point(4, 53);
             this.lvSoundGenerators.Margin = new System.Windows.Forms.Padding(4);
             this.lvSoundGenerators.MultiSelect = false;
@@ -2706,10 +2707,10 @@
             // 
             // nudSoundGeneratorPatchBankNo
             // 
-            this.nudSoundGeneratorPatchBankNo.Location = new System.Drawing.Point(377, 140);
+            this.nudSoundGeneratorPatchBankNo.Location = new System.Drawing.Point(322, 140);
             this.nudSoundGeneratorPatchBankNo.Margin = new System.Windows.Forms.Padding(4);
             this.nudSoundGeneratorPatchBankNo.Maximum = new decimal(new int[] {
-            127,
+            16129,
             0,
             0,
             0});
@@ -2719,7 +2720,7 @@
             0,
             -2147483648});
             this.nudSoundGeneratorPatchBankNo.Name = "nudSoundGeneratorPatchBankNo";
-            this.nudSoundGeneratorPatchBankNo.Size = new System.Drawing.Size(72, 38);
+            this.nudSoundGeneratorPatchBankNo.Size = new System.Drawing.Size(127, 38);
             this.nudSoundGeneratorPatchBankNo.TabIndex = 29;
             this.nudSoundGeneratorPatchBankNo.Value = new decimal(new int[] {
             1,
@@ -2731,7 +2732,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(276, 146);
+            this.label11.Location = new System.Drawing.Point(237, 146);
             this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(90, 23);
@@ -2871,6 +2872,23 @@
             this.lbOutputDevices.Name = "lbOutputDevices";
             this.lbOutputDevices.Size = new System.Drawing.Size(816, 190);
             this.lbOutputDevices.TabIndex = 12;
+            // 
+            // btnSetlistExpand
+            // 
+            this.btnSetlistExpand.BackColor = System.Drawing.Color.DimGray;
+            this.btnSetlistExpand.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnSetlistExpand.FlatAppearance.BorderColor = System.Drawing.Color.LimeGreen;
+            this.btnSetlistExpand.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSetlistExpand.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSetlistExpand.ForeColor = System.Drawing.Color.White;
+            this.btnSetlistExpand.Location = new System.Drawing.Point(511, 4);
+            this.btnSetlistExpand.Margin = new System.Windows.Forms.Padding(4);
+            this.btnSetlistExpand.Name = "btnSetlistExpand";
+            this.btnSetlistExpand.Size = new System.Drawing.Size(161, 61);
+            this.btnSetlistExpand.TabIndex = 6;
+            this.btnSetlistExpand.Text = "^^^";
+            this.btnSetlistExpand.UseVisualStyleBackColor = false;
+            this.btnSetlistExpand.Click += new System.EventHandler(this.btnSetlistExpand_Click);
             // 
             // Form1
             // 
@@ -3124,6 +3142,7 @@
         private PdfiumViewer.PdfRenderer pdfChart;
         private System.Windows.Forms.RichTextBox rtbChart;
         private System.Windows.Forms.CheckBox cbPortaitMode;
+        private System.Windows.Forms.Button btnSetlistExpand;
     }
 }
 

@@ -150,6 +150,7 @@ namespace JoeMidi1
             }
 
             cbPortaitMode.Checked = mapper.configuration.portraitMode;
+            cbPortaitMode_CheckedChanged(null, null);
 
             //-------------------------------------------
             // Activate the first MidiProgram known to the mapper
@@ -990,6 +991,11 @@ namespace JoeMidi1
                     mbccShowSongPatches.addButton(songProgram.name, songProgram);
                 }
 
+                if (setlistControlExpanded == true)
+                {
+                    btnSetlistExpand_Click(null, null);     // Shrink it back down
+                }
+
                 // And display the song's chart
                 showChart(currentSong.chartFile);
 
@@ -1085,13 +1091,8 @@ namespace JoeMidi1
         {
             controlToHide.Visible = false;
 
-            tlpShowOuter.SetRowSpan(controlToHide, 1);
-            tlpShowOuter.SetColumnSpan(controlToHide, 1);
-
             if (mapper.configuration.portraitMode)
             {
-                tlpShowOuter.SetColumn(controlToHide, 2);
-                tlpShowOuter.SetRow(controlToHide, 0);
                 tlpShowOuter.SetColumn(controlToShow, 1);
                 tlpShowOuter.SetRow(controlToShow, 0);
                 tlpShowOuter.SetColumnSpan(controlToShow, 2);
@@ -1099,8 +1100,6 @@ namespace JoeMidi1
             }
             else
             {
-                tlpShowOuter.SetColumn(controlToHide, 2);
-                tlpShowOuter.SetRow(controlToHide, 1);
                 tlpShowOuter.SetColumn(controlToShow, 2);
                 tlpShowOuter.SetRow(controlToShow, 0);
                 tlpShowOuter.SetRowSpan(controlToShow, 2);
@@ -1153,6 +1152,48 @@ namespace JoeMidi1
                 }
             }
         }
+
+        bool setlistControlExpanded = false;
+
+        private void btnSetlistExpand_Click(object sender, EventArgs e)
+        {
+            if (setlistControlExpanded == false)
+            {
+                if (mapper.configuration.portraitMode == true)
+                {
+                    // For mysterious reasons I can't move the control in Row1 up into Row 0 if there's a control there...
+                    tlpShowOuter.Controls.Remove(pdfChart);
+                    tlpShowOuter.Controls.Remove(rtbChart);
+                    tlpShowOuter.SetRow(tlpSongSetlistOuter, 0);
+                    tlpShowOuter.SetRowSpan(tlpSongSetlistOuter, 2);
+                }
+                else
+                {
+                    // ...though I don't have that problem spanning down into a cell with a control.
+                    tlpShowOuter.SetRow(tlpSongSetlistOuter, 0);
+                    tlpShowOuter.SetRowSpan(tlpSongSetlistOuter, 2);
+                }
+                setlistControlExpanded = true;
+            }
+            else
+            {
+                if (mapper.configuration.portraitMode == true)
+                {
+                    tlpShowOuter.SetRowSpan(tlpSongSetlistOuter, 1);
+                    tlpShowOuter.SetRow(tlpSongSetlistOuter, 1);
+                    tlpShowOuter.Controls.Add(pdfChart, 0, 0);
+                    tlpShowOuter.Controls.Add(rtbChart, 1, 0);
+                }
+                else
+                {
+                    tlpShowOuter.SetRowSpan(tlpSongSetlistOuter, 1);
+                    tlpShowOuter.SetRow(tlpSongSetlistOuter, 0);
+                }
+                showChart(currentSong.chartFile);
+                setlistControlExpanded = false;
+            }
+        }
+
 
         //**************************************************************************
         // Songs tab
@@ -2576,6 +2617,9 @@ namespace JoeMidi1
                 tlpShowOuter.SetColumn(mbccShowSongPatches, 2);
                 tlpShowOuter.SetRow(mbccShowSongPatches, 1);
 
+                pnlPatchEdit.Left = pnlSongEdit.Left;
+                pnlPatchEdit.Top = pnlSongEdit.Top + pnlSongEdit.Height;
+
             }
             else
             {
@@ -2596,6 +2640,9 @@ namespace JoeMidi1
                 tlpShowOuter.SetColumn(mbccShowSongPatches, 1);
                 tlpShowOuter.SetRow(mbccShowSongPatches, 1);
 
+                pnlPatchEdit.Top = pnlSongEdit.Top;
+                pnlPatchEdit.Left = pnlSongEdit.Left + pnlSongEdit.Width + 70;
+
             }
 
 
@@ -2610,5 +2657,7 @@ namespace JoeMidi1
         {
             mapper.masterTranspose = (int)nudRandomAccessTranspose.Value;
         }
+
+
     }
 }
