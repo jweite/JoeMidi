@@ -70,6 +70,7 @@
             this.pdfChart = new PdfiumViewer.PdfRenderer();
             this.rtbChart = new System.Windows.Forms.RichTextBox();
             this.tlpSongSetlistOuter = new System.Windows.Forms.TableLayoutPanel();
+            this.btnSetlistExpand = new System.Windows.Forms.Button();
             this.olvSongs = new BrightIdeasSoftware.ObjectListView();
             this.olvColSong = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.btnSetlists = new System.Windows.Forms.Button();
@@ -218,7 +219,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.lbOutputDevices = new System.Windows.Forms.ListBox();
             this.serviceController1 = new System.ServiceProcess.ServiceController();
-            this.btnSetlistExpand = new System.Windows.Forms.Button();
             this.contextMenuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tpRandomAccess1.SuspendLayout();
@@ -790,6 +790,23 @@
             this.tlpSongSetlistOuter.Size = new System.Drawing.Size(848, 361);
             this.tlpSongSetlistOuter.TabIndex = 13;
             // 
+            // btnSetlistExpand
+            // 
+            this.btnSetlistExpand.BackColor = System.Drawing.Color.DimGray;
+            this.btnSetlistExpand.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnSetlistExpand.FlatAppearance.BorderColor = System.Drawing.Color.LimeGreen;
+            this.btnSetlistExpand.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSetlistExpand.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSetlistExpand.ForeColor = System.Drawing.Color.White;
+            this.btnSetlistExpand.Location = new System.Drawing.Point(511, 4);
+            this.btnSetlistExpand.Margin = new System.Windows.Forms.Padding(4);
+            this.btnSetlistExpand.Name = "btnSetlistExpand";
+            this.btnSetlistExpand.Size = new System.Drawing.Size(161, 61);
+            this.btnSetlistExpand.TabIndex = 6;
+            this.btnSetlistExpand.Text = "^^^";
+            this.btnSetlistExpand.UseVisualStyleBackColor = false;
+            this.btnSetlistExpand.Click += new System.EventHandler(this.btnSetlistExpand_Click);
+            // 
             // olvSongs
             // 
             this.olvSongs.AllColumns.Add(this.olvColSong);
@@ -901,6 +918,8 @@
             this.mbccShowSongPatches.Location = new System.Drawing.Point(923, 368);
             this.mbccShowSongPatches.Margin = new System.Windows.Forms.Padding(0);
             this.mbccShowSongPatches.Name = "mbccShowSongPatches";
+            this.mbccShowSongPatches.ShowArrowButtons = true;
+            this.mbccShowSongPatches.ShowScrollbar = false;
             this.mbccShowSongPatches.Size = new System.Drawing.Size(857, 369);
             this.mbccShowSongPatches.TabIndex = 10;
             this.mbccShowSongPatches.Click += new System.EventHandler(this.mbccShowSongPatches_Click);
@@ -1344,6 +1363,8 @@
             this.mbccSongEditSelector.Margin = new System.Windows.Forms.Padding(5);
             this.mbccSongEditSelector.Name = "mbccSongEditSelector";
             this.tlpSongSelOuter.SetRowSpan(this.mbccSongEditSelector, 2);
+            this.mbccSongEditSelector.ShowArrowButtons = false;
+            this.mbccSongEditSelector.ShowScrollbar = true;
             this.mbccSongEditSelector.Size = new System.Drawing.Size(534, 665);
             this.mbccSongEditSelector.TabIndex = 0;
             this.mbccSongEditSelector.Click += new System.EventHandler(this.mbccSongEditSelector_Click);
@@ -1639,6 +1660,8 @@
             this.mbccSetlistEditSelector.Margin = new System.Windows.Forms.Padding(5);
             this.mbccSetlistEditSelector.Name = "mbccSetlistEditSelector";
             this.tlpSetlistSelOuter.SetRowSpan(this.mbccSetlistEditSelector, 2);
+            this.mbccSetlistEditSelector.ShowArrowButtons = true;
+            this.mbccSetlistEditSelector.ShowScrollbar = true;
             this.mbccSetlistEditSelector.Size = new System.Drawing.Size(538, 673);
             this.mbccSetlistEditSelector.TabIndex = 2;
             this.mbccSetlistEditSelector.Click += new System.EventHandler(this.mbccSetlistEditSelector_Click);
@@ -1732,6 +1755,8 @@
             this.mbrcMappingSelect.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
             this.mbrcMappingSelect.Name = "mbrcMappingSelect";
             this.tlpMappingEditOuter.SetRowSpan(this.mbrcMappingSelect, 2);
+            this.mbrcMappingSelect.ShowArrowButtons = true;
+            this.mbrcMappingSelect.ShowScrollbar = true;
             this.mbrcMappingSelect.Size = new System.Drawing.Size(384, 669);
             this.mbrcMappingSelect.TabIndex = 2;
             this.mbrcMappingSelect.Click += new System.EventHandler(this.mbrcMappingSelect_Click);
@@ -2872,23 +2897,6 @@
             this.lbOutputDevices.Name = "lbOutputDevices";
             this.lbOutputDevices.Size = new System.Drawing.Size(816, 190);
             this.lbOutputDevices.TabIndex = 12;
-            // 
-            // btnSetlistExpand
-            // 
-            this.btnSetlistExpand.BackColor = System.Drawing.Color.DimGray;
-            this.btnSetlistExpand.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnSetlistExpand.FlatAppearance.BorderColor = System.Drawing.Color.LimeGreen;
-            this.btnSetlistExpand.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSetlistExpand.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSetlistExpand.ForeColor = System.Drawing.Color.White;
-            this.btnSetlistExpand.Location = new System.Drawing.Point(511, 4);
-            this.btnSetlistExpand.Margin = new System.Windows.Forms.Padding(4);
-            this.btnSetlistExpand.Name = "btnSetlistExpand";
-            this.btnSetlistExpand.Size = new System.Drawing.Size(161, 61);
-            this.btnSetlistExpand.TabIndex = 6;
-            this.btnSetlistExpand.Text = "^^^";
-            this.btnSetlistExpand.UseVisualStyleBackColor = false;
-            this.btnSetlistExpand.Click += new System.EventHandler(this.btnSetlistExpand_Click);
             // 
             // Form1
             // 
