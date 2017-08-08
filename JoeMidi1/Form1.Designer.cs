@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem(new string[] {
             "SG1",
             "Output Device 1",
             "1",
             "2"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem6 = new System.Windows.Forms.ListViewItem(new string[] {
             "SG2",
             "Output Device 1",
             "2",
@@ -77,6 +77,8 @@
             this.btnNextSong = new System.Windows.Forms.Button();
             this.btnSetlistSongOrderToggle = new System.Windows.Forms.Button();
             this.btnPrevSong = new System.Windows.Forms.Button();
+            this.flpAlphaButtons = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnAlpha0 = new System.Windows.Forms.Button();
             this.mbccShowSongPatches = new MultiButtonColControl2.MultiButtonColControl();
             this.vsbVol2 = new System.Windows.Forms.VScrollBar();
             this.tpSongs = new System.Windows.Forms.TabPage();
@@ -219,6 +221,32 @@
             this.label3 = new System.Windows.Forms.Label();
             this.lbOutputDevices = new System.Windows.Forms.ListBox();
             this.serviceController1 = new System.ServiceProcess.ServiceController();
+            this.btnAlphaA = new System.Windows.Forms.Button();
+            this.btnAlphaB = new System.Windows.Forms.Button();
+            this.btnAlphaC = new System.Windows.Forms.Button();
+            this.btnAlphaD = new System.Windows.Forms.Button();
+            this.btnAlpheE = new System.Windows.Forms.Button();
+            this.btnAlphaF = new System.Windows.Forms.Button();
+            this.btnAlphaG = new System.Windows.Forms.Button();
+            this.btnAlphaH = new System.Windows.Forms.Button();
+            this.btnAlphaI = new System.Windows.Forms.Button();
+            this.btnAlphaJ = new System.Windows.Forms.Button();
+            this.btnAlphaK = new System.Windows.Forms.Button();
+            this.btnAlphaL = new System.Windows.Forms.Button();
+            this.btnAlphaM = new System.Windows.Forms.Button();
+            this.btnAlphaN = new System.Windows.Forms.Button();
+            this.btnAlphaO = new System.Windows.Forms.Button();
+            this.btnAlphaP = new System.Windows.Forms.Button();
+            this.btnAlphaQ = new System.Windows.Forms.Button();
+            this.btnAlphaR = new System.Windows.Forms.Button();
+            this.btnAlphaS = new System.Windows.Forms.Button();
+            this.btnAlphaT = new System.Windows.Forms.Button();
+            this.btnAlphaU = new System.Windows.Forms.Button();
+            this.btnAlphaV = new System.Windows.Forms.Button();
+            this.btnAlphaW = new System.Windows.Forms.Button();
+            this.btnAlphaX = new System.Windows.Forms.Button();
+            this.btnAlphaY = new System.Windows.Forms.Button();
+            this.btnAlphaZ = new System.Windows.Forms.Button();
             this.contextMenuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tpRandomAccess1.SuspendLayout();
@@ -229,6 +257,7 @@
             this.tlpShowOuter.SuspendLayout();
             this.tlpSongSetlistOuter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.olvSongs)).BeginInit();
+            this.flpAlphaButtons.SuspendLayout();
             this.tpSongs.SuspendLayout();
             this.pnlPatchEdit.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudSongPatchProgramNo)).BeginInit();
@@ -768,18 +797,20 @@
             // 
             // tlpSongSetlistOuter
             // 
-            this.tlpSongSetlistOuter.ColumnCount = 5;
+            this.tlpSongSetlistOuter.ColumnCount = 6;
             this.tlpSongSetlistOuter.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tlpSongSetlistOuter.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tlpSongSetlistOuter.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tlpSongSetlistOuter.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tlpSongSetlistOuter.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tlpSongSetlistOuter.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 33F));
             this.tlpSongSetlistOuter.Controls.Add(this.btnSetlistExpand, 3, 0);
             this.tlpSongSetlistOuter.Controls.Add(this.olvSongs, 0, 1);
             this.tlpSongSetlistOuter.Controls.Add(this.btnSetlists, 1, 0);
             this.tlpSongSetlistOuter.Controls.Add(this.btnNextSong, 4, 0);
             this.tlpSongSetlistOuter.Controls.Add(this.btnSetlistSongOrderToggle, 2, 0);
             this.tlpSongSetlistOuter.Controls.Add(this.btnPrevSong, 0, 0);
+            this.tlpSongSetlistOuter.Controls.Add(this.flpAlphaButtons, 5, 0);
             this.tlpSongSetlistOuter.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlpSongSetlistOuter.Location = new System.Drawing.Point(71, 372);
             this.tlpSongSetlistOuter.Margin = new System.Windows.Forms.Padding(4);
@@ -787,6 +818,7 @@
             this.tlpSongSetlistOuter.RowCount = 2;
             this.tlpSongSetlistOuter.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 69F));
             this.tlpSongSetlistOuter.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tlpSongSetlistOuter.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tlpSongSetlistOuter.Size = new System.Drawing.Size(848, 361);
             this.tlpSongSetlistOuter.TabIndex = 13;
             // 
@@ -798,10 +830,10 @@
             this.btnSetlistExpand.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSetlistExpand.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSetlistExpand.ForeColor = System.Drawing.Color.White;
-            this.btnSetlistExpand.Location = new System.Drawing.Point(511, 4);
+            this.btnSetlistExpand.Location = new System.Drawing.Point(493, 4);
             this.btnSetlistExpand.Margin = new System.Windows.Forms.Padding(4);
             this.btnSetlistExpand.Name = "btnSetlistExpand";
-            this.btnSetlistExpand.Size = new System.Drawing.Size(161, 61);
+            this.btnSetlistExpand.Size = new System.Drawing.Size(155, 61);
             this.btnSetlistExpand.TabIndex = 6;
             this.btnSetlistExpand.Text = "^^^";
             this.btnSetlistExpand.UseVisualStyleBackColor = false;
@@ -829,7 +861,7 @@
             this.olvSongs.PersistentCheckBoxes = false;
             this.olvSongs.RowHeight = 50;
             this.olvSongs.ShowGroups = false;
-            this.olvSongs.Size = new System.Drawing.Size(840, 284);
+            this.olvSongs.Size = new System.Drawing.Size(807, 284);
             this.olvSongs.TabIndex = 0;
             this.olvSongs.UseCompatibleStateImageBehavior = false;
             this.olvSongs.View = System.Windows.Forms.View.Details;
@@ -851,10 +883,10 @@
             this.btnSetlists.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSetlists.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSetlists.ForeColor = System.Drawing.Color.White;
-            this.btnSetlists.Location = new System.Drawing.Point(173, 4);
+            this.btnSetlists.Location = new System.Drawing.Point(167, 4);
             this.btnSetlists.Margin = new System.Windows.Forms.Padding(4);
             this.btnSetlists.Name = "btnSetlists";
-            this.btnSetlists.Size = new System.Drawing.Size(161, 61);
+            this.btnSetlists.Size = new System.Drawing.Size(155, 61);
             this.btnSetlists.TabIndex = 1;
             this.btnSetlists.Text = "SetL";
             this.btnSetlists.UseVisualStyleBackColor = false;
@@ -868,10 +900,10 @@
             this.btnNextSong.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNextSong.Font = new System.Drawing.Font("Wingdings", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
             this.btnNextSong.ForeColor = System.Drawing.Color.White;
-            this.btnNextSong.Location = new System.Drawing.Point(680, 4);
+            this.btnNextSong.Location = new System.Drawing.Point(656, 4);
             this.btnNextSong.Margin = new System.Windows.Forms.Padding(4);
             this.btnNextSong.Name = "btnNextSong";
-            this.btnNextSong.Size = new System.Drawing.Size(164, 61);
+            this.btnNextSong.Size = new System.Drawing.Size(155, 61);
             this.btnNextSong.TabIndex = 2;
             this.btnNextSong.Text = "ê";
             this.btnNextSong.UseVisualStyleBackColor = false;
@@ -885,10 +917,10 @@
             this.btnSetlistSongOrderToggle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSetlistSongOrderToggle.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSetlistSongOrderToggle.ForeColor = System.Drawing.Color.White;
-            this.btnSetlistSongOrderToggle.Location = new System.Drawing.Point(342, 4);
+            this.btnSetlistSongOrderToggle.Location = new System.Drawing.Point(330, 4);
             this.btnSetlistSongOrderToggle.Margin = new System.Windows.Forms.Padding(4);
             this.btnSetlistSongOrderToggle.Name = "btnSetlistSongOrderToggle";
-            this.btnSetlistSongOrderToggle.Size = new System.Drawing.Size(161, 61);
+            this.btnSetlistSongOrderToggle.Size = new System.Drawing.Size(155, 61);
             this.btnSetlistSongOrderToggle.TabIndex = 4;
             this.btnSetlistSongOrderToggle.Text = "Alpha";
             this.btnSetlistSongOrderToggle.UseVisualStyleBackColor = false;
@@ -905,11 +937,60 @@
             this.btnPrevSong.Location = new System.Drawing.Point(4, 4);
             this.btnPrevSong.Margin = new System.Windows.Forms.Padding(4);
             this.btnPrevSong.Name = "btnPrevSong";
-            this.btnPrevSong.Size = new System.Drawing.Size(161, 61);
+            this.btnPrevSong.Size = new System.Drawing.Size(155, 61);
             this.btnPrevSong.TabIndex = 5;
             this.btnPrevSong.Text = "é";
             this.btnPrevSong.UseVisualStyleBackColor = false;
             this.btnPrevSong.Click += new System.EventHandler(this.btnPrevSong_Click);
+            // 
+            // flpAlphaButtons
+            // 
+            this.flpAlphaButtons.Controls.Add(this.btnAlpha0);
+            this.flpAlphaButtons.Controls.Add(this.btnAlphaA);
+            this.flpAlphaButtons.Controls.Add(this.btnAlphaB);
+            this.flpAlphaButtons.Controls.Add(this.btnAlphaC);
+            this.flpAlphaButtons.Controls.Add(this.btnAlphaD);
+            this.flpAlphaButtons.Controls.Add(this.btnAlpheE);
+            this.flpAlphaButtons.Controls.Add(this.btnAlphaF);
+            this.flpAlphaButtons.Controls.Add(this.btnAlphaG);
+            this.flpAlphaButtons.Controls.Add(this.btnAlphaH);
+            this.flpAlphaButtons.Controls.Add(this.btnAlphaI);
+            this.flpAlphaButtons.Controls.Add(this.btnAlphaJ);
+            this.flpAlphaButtons.Controls.Add(this.btnAlphaK);
+            this.flpAlphaButtons.Controls.Add(this.btnAlphaL);
+            this.flpAlphaButtons.Controls.Add(this.btnAlphaM);
+            this.flpAlphaButtons.Controls.Add(this.btnAlphaN);
+            this.flpAlphaButtons.Controls.Add(this.btnAlphaO);
+            this.flpAlphaButtons.Controls.Add(this.btnAlphaP);
+            this.flpAlphaButtons.Controls.Add(this.btnAlphaQ);
+            this.flpAlphaButtons.Controls.Add(this.btnAlphaR);
+            this.flpAlphaButtons.Controls.Add(this.btnAlphaS);
+            this.flpAlphaButtons.Controls.Add(this.btnAlphaT);
+            this.flpAlphaButtons.Controls.Add(this.btnAlphaU);
+            this.flpAlphaButtons.Controls.Add(this.btnAlphaV);
+            this.flpAlphaButtons.Controls.Add(this.btnAlphaW);
+            this.flpAlphaButtons.Controls.Add(this.btnAlphaX);
+            this.flpAlphaButtons.Controls.Add(this.btnAlphaY);
+            this.flpAlphaButtons.Controls.Add(this.btnAlphaZ);
+            this.flpAlphaButtons.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flpAlphaButtons.Location = new System.Drawing.Point(818, 3);
+            this.flpAlphaButtons.Name = "flpAlphaButtons";
+            this.tlpSongSetlistOuter.SetRowSpan(this.flpAlphaButtons, 2);
+            this.flpAlphaButtons.Size = new System.Drawing.Size(27, 355);
+            this.flpAlphaButtons.TabIndex = 7;
+            this.flpAlphaButtons.Resize += new System.EventHandler(this.flpAlphaButtons_Resize);
+            // 
+            // btnAlpha0
+            // 
+            this.btnAlpha0.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAlpha0.Location = new System.Drawing.Point(0, 0);
+            this.btnAlpha0.Margin = new System.Windows.Forms.Padding(0);
+            this.btnAlpha0.Name = "btnAlpha0";
+            this.btnAlpha0.Size = new System.Drawing.Size(24, 10);
+            this.btnAlpha0.TabIndex = 1;
+            this.btnAlpha0.Text = "0";
+            this.btnAlpha0.UseVisualStyleBackColor = true;
+            this.btnAlpha0.Click += new System.EventHandler(this.btnAlpha_Click_1);
             // 
             // mbccShowSongPatches
             // 
@@ -918,6 +999,7 @@
             this.mbccShowSongPatches.Location = new System.Drawing.Point(923, 368);
             this.mbccShowSongPatches.Margin = new System.Windows.Forms.Padding(0);
             this.mbccShowSongPatches.Name = "mbccShowSongPatches";
+            this.mbccShowSongPatches.ShowAlphaButtons = false;
             this.mbccShowSongPatches.ShowArrowButtons = true;
             this.mbccShowSongPatches.ShowScrollbar = false;
             this.mbccShowSongPatches.Size = new System.Drawing.Size(857, 369);
@@ -1363,6 +1445,7 @@
             this.mbccSongEditSelector.Margin = new System.Windows.Forms.Padding(5);
             this.mbccSongEditSelector.Name = "mbccSongEditSelector";
             this.tlpSongSelOuter.SetRowSpan(this.mbccSongEditSelector, 2);
+            this.mbccSongEditSelector.ShowAlphaButtons = false;
             this.mbccSongEditSelector.ShowArrowButtons = false;
             this.mbccSongEditSelector.ShowScrollbar = true;
             this.mbccSongEditSelector.Size = new System.Drawing.Size(534, 665);
@@ -1660,6 +1743,7 @@
             this.mbccSetlistEditSelector.Margin = new System.Windows.Forms.Padding(5);
             this.mbccSetlistEditSelector.Name = "mbccSetlistEditSelector";
             this.tlpSetlistSelOuter.SetRowSpan(this.mbccSetlistEditSelector, 2);
+            this.mbccSetlistEditSelector.ShowAlphaButtons = false;
             this.mbccSetlistEditSelector.ShowArrowButtons = true;
             this.mbccSetlistEditSelector.ShowScrollbar = true;
             this.mbccSetlistEditSelector.Size = new System.Drawing.Size(538, 673);
@@ -1755,6 +1839,7 @@
             this.mbrcMappingSelect.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
             this.mbrcMappingSelect.Name = "mbrcMappingSelect";
             this.tlpMappingEditOuter.SetRowSpan(this.mbrcMappingSelect, 2);
+            this.mbrcMappingSelect.ShowAlphaButtons = false;
             this.mbrcMappingSelect.ShowArrowButtons = true;
             this.mbrcMappingSelect.ShowScrollbar = true;
             this.mbrcMappingSelect.Size = new System.Drawing.Size(384, 669);
@@ -2387,8 +2472,8 @@
             this.lvSoundGenerators.FullRowSelect = true;
             this.lvSoundGenerators.GridLines = true;
             this.lvSoundGenerators.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem3,
-            listViewItem4});
+            listViewItem5,
+            listViewItem6});
             this.lvSoundGenerators.Location = new System.Drawing.Point(4, 53);
             this.lvSoundGenerators.Margin = new System.Windows.Forms.Padding(4);
             this.lvSoundGenerators.MultiSelect = false;
@@ -2898,6 +2983,318 @@
             this.lbOutputDevices.Size = new System.Drawing.Size(816, 190);
             this.lbOutputDevices.TabIndex = 12;
             // 
+            // btnAlphaA
+            // 
+            this.btnAlphaA.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAlphaA.Location = new System.Drawing.Point(0, 10);
+            this.btnAlphaA.Margin = new System.Windows.Forms.Padding(0);
+            this.btnAlphaA.Name = "btnAlphaA";
+            this.btnAlphaA.Size = new System.Drawing.Size(24, 10);
+            this.btnAlphaA.TabIndex = 2;
+            this.btnAlphaA.Text = "A";
+            this.btnAlphaA.UseVisualStyleBackColor = true;
+            this.btnAlphaA.Click += new System.EventHandler(this.btnAlpha_Click_1);
+            // 
+            // btnAlphaB
+            // 
+            this.btnAlphaB.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAlphaB.Location = new System.Drawing.Point(0, 20);
+            this.btnAlphaB.Margin = new System.Windows.Forms.Padding(0);
+            this.btnAlphaB.Name = "btnAlphaB";
+            this.btnAlphaB.Size = new System.Drawing.Size(24, 10);
+            this.btnAlphaB.TabIndex = 3;
+            this.btnAlphaB.Text = "B";
+            this.btnAlphaB.UseVisualStyleBackColor = true;
+            this.btnAlphaB.Click += new System.EventHandler(this.btnAlpha_Click_1);
+            // 
+            // btnAlphaC
+            // 
+            this.btnAlphaC.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAlphaC.Location = new System.Drawing.Point(0, 30);
+            this.btnAlphaC.Margin = new System.Windows.Forms.Padding(0);
+            this.btnAlphaC.Name = "btnAlphaC";
+            this.btnAlphaC.Size = new System.Drawing.Size(24, 10);
+            this.btnAlphaC.TabIndex = 4;
+            this.btnAlphaC.Text = "C";
+            this.btnAlphaC.UseVisualStyleBackColor = true;
+            this.btnAlphaC.Click += new System.EventHandler(this.btnAlpha_Click_1);
+            // 
+            // btnAlphaD
+            // 
+            this.btnAlphaD.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAlphaD.Location = new System.Drawing.Point(0, 40);
+            this.btnAlphaD.Margin = new System.Windows.Forms.Padding(0);
+            this.btnAlphaD.Name = "btnAlphaD";
+            this.btnAlphaD.Size = new System.Drawing.Size(24, 10);
+            this.btnAlphaD.TabIndex = 5;
+            this.btnAlphaD.Text = "D";
+            this.btnAlphaD.UseVisualStyleBackColor = true;
+            this.btnAlphaD.Click += new System.EventHandler(this.btnAlpha_Click_1);
+            // 
+            // btnAlpheE
+            // 
+            this.btnAlpheE.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAlpheE.Location = new System.Drawing.Point(0, 50);
+            this.btnAlpheE.Margin = new System.Windows.Forms.Padding(0);
+            this.btnAlpheE.Name = "btnAlpheE";
+            this.btnAlpheE.Size = new System.Drawing.Size(24, 10);
+            this.btnAlpheE.TabIndex = 6;
+            this.btnAlpheE.Text = "E";
+            this.btnAlpheE.UseVisualStyleBackColor = true;
+            this.btnAlpheE.Click += new System.EventHandler(this.btnAlpha_Click_1);
+            // 
+            // btnAlphaF
+            // 
+            this.btnAlphaF.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAlphaF.Location = new System.Drawing.Point(0, 60);
+            this.btnAlphaF.Margin = new System.Windows.Forms.Padding(0);
+            this.btnAlphaF.Name = "btnAlphaF";
+            this.btnAlphaF.Size = new System.Drawing.Size(24, 10);
+            this.btnAlphaF.TabIndex = 7;
+            this.btnAlphaF.Text = "F";
+            this.btnAlphaF.UseVisualStyleBackColor = true;
+            this.btnAlphaF.Click += new System.EventHandler(this.btnAlpha_Click_1);
+            // 
+            // btnAlphaG
+            // 
+            this.btnAlphaG.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAlphaG.Location = new System.Drawing.Point(0, 70);
+            this.btnAlphaG.Margin = new System.Windows.Forms.Padding(0);
+            this.btnAlphaG.Name = "btnAlphaG";
+            this.btnAlphaG.Size = new System.Drawing.Size(24, 10);
+            this.btnAlphaG.TabIndex = 8;
+            this.btnAlphaG.Text = "G";
+            this.btnAlphaG.UseVisualStyleBackColor = true;
+            this.btnAlphaG.Click += new System.EventHandler(this.btnAlpha_Click_1);
+            // 
+            // btnAlphaH
+            // 
+            this.btnAlphaH.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAlphaH.Location = new System.Drawing.Point(0, 80);
+            this.btnAlphaH.Margin = new System.Windows.Forms.Padding(0);
+            this.btnAlphaH.Name = "btnAlphaH";
+            this.btnAlphaH.Size = new System.Drawing.Size(24, 10);
+            this.btnAlphaH.TabIndex = 9;
+            this.btnAlphaH.Text = "H";
+            this.btnAlphaH.UseVisualStyleBackColor = true;
+            this.btnAlphaH.Click += new System.EventHandler(this.btnAlpha_Click_1);
+            // 
+            // btnAlphaI
+            // 
+            this.btnAlphaI.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAlphaI.Location = new System.Drawing.Point(0, 90);
+            this.btnAlphaI.Margin = new System.Windows.Forms.Padding(0);
+            this.btnAlphaI.Name = "btnAlphaI";
+            this.btnAlphaI.Size = new System.Drawing.Size(24, 10);
+            this.btnAlphaI.TabIndex = 10;
+            this.btnAlphaI.Text = "I";
+            this.btnAlphaI.UseVisualStyleBackColor = true;
+            this.btnAlphaI.Click += new System.EventHandler(this.btnAlpha_Click_1);
+            // 
+            // btnAlphaJ
+            // 
+            this.btnAlphaJ.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAlphaJ.Location = new System.Drawing.Point(0, 100);
+            this.btnAlphaJ.Margin = new System.Windows.Forms.Padding(0);
+            this.btnAlphaJ.Name = "btnAlphaJ";
+            this.btnAlphaJ.Size = new System.Drawing.Size(24, 10);
+            this.btnAlphaJ.TabIndex = 11;
+            this.btnAlphaJ.Text = "J";
+            this.btnAlphaJ.UseVisualStyleBackColor = true;
+            this.btnAlphaJ.Click += new System.EventHandler(this.btnAlpha_Click_1);
+            // 
+            // btnAlphaK
+            // 
+            this.btnAlphaK.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAlphaK.Location = new System.Drawing.Point(0, 110);
+            this.btnAlphaK.Margin = new System.Windows.Forms.Padding(0);
+            this.btnAlphaK.Name = "btnAlphaK";
+            this.btnAlphaK.Size = new System.Drawing.Size(24, 10);
+            this.btnAlphaK.TabIndex = 12;
+            this.btnAlphaK.Text = "K";
+            this.btnAlphaK.UseVisualStyleBackColor = true;
+            this.btnAlphaK.Click += new System.EventHandler(this.btnAlpha_Click_1);
+            // 
+            // btnAlphaL
+            // 
+            this.btnAlphaL.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAlphaL.Location = new System.Drawing.Point(0, 120);
+            this.btnAlphaL.Margin = new System.Windows.Forms.Padding(0);
+            this.btnAlphaL.Name = "btnAlphaL";
+            this.btnAlphaL.Size = new System.Drawing.Size(24, 10);
+            this.btnAlphaL.TabIndex = 13;
+            this.btnAlphaL.Text = "L";
+            this.btnAlphaL.UseVisualStyleBackColor = true;
+            this.btnAlphaL.Click += new System.EventHandler(this.btnAlpha_Click_1);
+            // 
+            // btnAlphaM
+            // 
+            this.btnAlphaM.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAlphaM.Location = new System.Drawing.Point(0, 130);
+            this.btnAlphaM.Margin = new System.Windows.Forms.Padding(0);
+            this.btnAlphaM.Name = "btnAlphaM";
+            this.btnAlphaM.Size = new System.Drawing.Size(24, 10);
+            this.btnAlphaM.TabIndex = 14;
+            this.btnAlphaM.Text = "M";
+            this.btnAlphaM.UseVisualStyleBackColor = true;
+            this.btnAlphaM.Click += new System.EventHandler(this.btnAlpha_Click_1);
+            // 
+            // btnAlphaN
+            // 
+            this.btnAlphaN.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAlphaN.Location = new System.Drawing.Point(0, 140);
+            this.btnAlphaN.Margin = new System.Windows.Forms.Padding(0);
+            this.btnAlphaN.Name = "btnAlphaN";
+            this.btnAlphaN.Size = new System.Drawing.Size(24, 10);
+            this.btnAlphaN.TabIndex = 15;
+            this.btnAlphaN.Text = "N";
+            this.btnAlphaN.UseVisualStyleBackColor = true;
+            this.btnAlphaN.Click += new System.EventHandler(this.btnAlpha_Click_1);
+            // 
+            // btnAlphaO
+            // 
+            this.btnAlphaO.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAlphaO.Location = new System.Drawing.Point(0, 150);
+            this.btnAlphaO.Margin = new System.Windows.Forms.Padding(0);
+            this.btnAlphaO.Name = "btnAlphaO";
+            this.btnAlphaO.Size = new System.Drawing.Size(24, 10);
+            this.btnAlphaO.TabIndex = 16;
+            this.btnAlphaO.Text = "O";
+            this.btnAlphaO.UseVisualStyleBackColor = true;
+            this.btnAlphaO.Click += new System.EventHandler(this.btnAlpha_Click_1);
+            // 
+            // btnAlphaP
+            // 
+            this.btnAlphaP.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAlphaP.Location = new System.Drawing.Point(0, 160);
+            this.btnAlphaP.Margin = new System.Windows.Forms.Padding(0);
+            this.btnAlphaP.Name = "btnAlphaP";
+            this.btnAlphaP.Size = new System.Drawing.Size(24, 10);
+            this.btnAlphaP.TabIndex = 17;
+            this.btnAlphaP.Text = "P";
+            this.btnAlphaP.UseVisualStyleBackColor = true;
+            this.btnAlphaP.Click += new System.EventHandler(this.btnAlpha_Click_1);
+            // 
+            // btnAlphaQ
+            // 
+            this.btnAlphaQ.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAlphaQ.Location = new System.Drawing.Point(0, 170);
+            this.btnAlphaQ.Margin = new System.Windows.Forms.Padding(0);
+            this.btnAlphaQ.Name = "btnAlphaQ";
+            this.btnAlphaQ.Size = new System.Drawing.Size(24, 10);
+            this.btnAlphaQ.TabIndex = 18;
+            this.btnAlphaQ.Text = "Q";
+            this.btnAlphaQ.UseVisualStyleBackColor = true;
+            this.btnAlphaQ.Click += new System.EventHandler(this.btnAlpha_Click_1);
+            // 
+            // btnAlphaR
+            // 
+            this.btnAlphaR.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAlphaR.Location = new System.Drawing.Point(0, 180);
+            this.btnAlphaR.Margin = new System.Windows.Forms.Padding(0);
+            this.btnAlphaR.Name = "btnAlphaR";
+            this.btnAlphaR.Size = new System.Drawing.Size(24, 10);
+            this.btnAlphaR.TabIndex = 19;
+            this.btnAlphaR.Text = "R";
+            this.btnAlphaR.UseVisualStyleBackColor = true;
+            this.btnAlphaR.Click += new System.EventHandler(this.btnAlpha_Click_1);
+            // 
+            // btnAlphaS
+            // 
+            this.btnAlphaS.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAlphaS.Location = new System.Drawing.Point(0, 190);
+            this.btnAlphaS.Margin = new System.Windows.Forms.Padding(0);
+            this.btnAlphaS.Name = "btnAlphaS";
+            this.btnAlphaS.Size = new System.Drawing.Size(24, 10);
+            this.btnAlphaS.TabIndex = 20;
+            this.btnAlphaS.Text = "S";
+            this.btnAlphaS.UseVisualStyleBackColor = true;
+            this.btnAlphaS.Click += new System.EventHandler(this.btnAlpha_Click_1);
+            // 
+            // btnAlphaT
+            // 
+            this.btnAlphaT.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAlphaT.Location = new System.Drawing.Point(0, 200);
+            this.btnAlphaT.Margin = new System.Windows.Forms.Padding(0);
+            this.btnAlphaT.Name = "btnAlphaT";
+            this.btnAlphaT.Size = new System.Drawing.Size(24, 10);
+            this.btnAlphaT.TabIndex = 21;
+            this.btnAlphaT.Text = "T";
+            this.btnAlphaT.UseVisualStyleBackColor = true;
+            this.btnAlphaT.Click += new System.EventHandler(this.btnAlpha_Click_1);
+            // 
+            // btnAlphaU
+            // 
+            this.btnAlphaU.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAlphaU.Location = new System.Drawing.Point(0, 210);
+            this.btnAlphaU.Margin = new System.Windows.Forms.Padding(0);
+            this.btnAlphaU.Name = "btnAlphaU";
+            this.btnAlphaU.Size = new System.Drawing.Size(24, 10);
+            this.btnAlphaU.TabIndex = 22;
+            this.btnAlphaU.Text = "U";
+            this.btnAlphaU.UseVisualStyleBackColor = true;
+            this.btnAlphaU.Click += new System.EventHandler(this.btnAlpha_Click_1);
+            // 
+            // btnAlphaV
+            // 
+            this.btnAlphaV.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAlphaV.Location = new System.Drawing.Point(0, 220);
+            this.btnAlphaV.Margin = new System.Windows.Forms.Padding(0);
+            this.btnAlphaV.Name = "btnAlphaV";
+            this.btnAlphaV.Size = new System.Drawing.Size(24, 10);
+            this.btnAlphaV.TabIndex = 23;
+            this.btnAlphaV.Text = "V";
+            this.btnAlphaV.UseVisualStyleBackColor = true;
+            this.btnAlphaV.Click += new System.EventHandler(this.btnAlpha_Click_1);
+            // 
+            // btnAlphaW
+            // 
+            this.btnAlphaW.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAlphaW.Location = new System.Drawing.Point(0, 230);
+            this.btnAlphaW.Margin = new System.Windows.Forms.Padding(0);
+            this.btnAlphaW.Name = "btnAlphaW";
+            this.btnAlphaW.Size = new System.Drawing.Size(24, 10);
+            this.btnAlphaW.TabIndex = 24;
+            this.btnAlphaW.Text = "W";
+            this.btnAlphaW.UseVisualStyleBackColor = true;
+            this.btnAlphaW.Click += new System.EventHandler(this.btnAlpha_Click_1);
+            // 
+            // btnAlphaX
+            // 
+            this.btnAlphaX.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAlphaX.Location = new System.Drawing.Point(0, 240);
+            this.btnAlphaX.Margin = new System.Windows.Forms.Padding(0);
+            this.btnAlphaX.Name = "btnAlphaX";
+            this.btnAlphaX.Size = new System.Drawing.Size(24, 10);
+            this.btnAlphaX.TabIndex = 25;
+            this.btnAlphaX.Text = "X";
+            this.btnAlphaX.UseVisualStyleBackColor = true;
+            this.btnAlphaX.Click += new System.EventHandler(this.btnAlpha_Click_1);
+            // 
+            // btnAlphaY
+            // 
+            this.btnAlphaY.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAlphaY.Location = new System.Drawing.Point(0, 250);
+            this.btnAlphaY.Margin = new System.Windows.Forms.Padding(0);
+            this.btnAlphaY.Name = "btnAlphaY";
+            this.btnAlphaY.Size = new System.Drawing.Size(24, 10);
+            this.btnAlphaY.TabIndex = 26;
+            this.btnAlphaY.Text = "Y";
+            this.btnAlphaY.UseVisualStyleBackColor = true;
+            this.btnAlphaY.Click += new System.EventHandler(this.btnAlpha_Click_1);
+            // 
+            // btnAlphaZ
+            // 
+            this.btnAlphaZ.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAlphaZ.Location = new System.Drawing.Point(0, 260);
+            this.btnAlphaZ.Margin = new System.Windows.Forms.Padding(0);
+            this.btnAlphaZ.Name = "btnAlphaZ";
+            this.btnAlphaZ.Size = new System.Drawing.Size(24, 10);
+            this.btnAlphaZ.TabIndex = 27;
+            this.btnAlphaZ.Text = "Z";
+            this.btnAlphaZ.UseVisualStyleBackColor = true;
+            this.btnAlphaZ.Click += new System.EventHandler(this.btnAlpha_Click_1);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -2921,6 +3318,7 @@
             this.tlpShowOuter.ResumeLayout(false);
             this.tlpSongSetlistOuter.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.olvSongs)).EndInit();
+            this.flpAlphaButtons.ResumeLayout(false);
             this.tpSongs.ResumeLayout(false);
             this.pnlPatchEdit.ResumeLayout(false);
             this.pnlPatchEdit.PerformLayout();
@@ -3151,6 +3549,34 @@
         private System.Windows.Forms.RichTextBox rtbChart;
         private System.Windows.Forms.CheckBox cbPortaitMode;
         private System.Windows.Forms.Button btnSetlistExpand;
+        private System.Windows.Forms.FlowLayoutPanel flpAlphaButtons;
+        private System.Windows.Forms.Button btnAlpha0;
+        private System.Windows.Forms.Button btnAlphaA;
+        private System.Windows.Forms.Button btnAlphaB;
+        private System.Windows.Forms.Button btnAlphaC;
+        private System.Windows.Forms.Button btnAlphaD;
+        private System.Windows.Forms.Button btnAlpheE;
+        private System.Windows.Forms.Button btnAlphaF;
+        private System.Windows.Forms.Button btnAlphaG;
+        private System.Windows.Forms.Button btnAlphaH;
+        private System.Windows.Forms.Button btnAlphaI;
+        private System.Windows.Forms.Button btnAlphaJ;
+        private System.Windows.Forms.Button btnAlphaK;
+        private System.Windows.Forms.Button btnAlphaL;
+        private System.Windows.Forms.Button btnAlphaM;
+        private System.Windows.Forms.Button btnAlphaN;
+        private System.Windows.Forms.Button btnAlphaO;
+        private System.Windows.Forms.Button btnAlphaP;
+        private System.Windows.Forms.Button btnAlphaQ;
+        private System.Windows.Forms.Button btnAlphaR;
+        private System.Windows.Forms.Button btnAlphaS;
+        private System.Windows.Forms.Button btnAlphaT;
+        private System.Windows.Forms.Button btnAlphaU;
+        private System.Windows.Forms.Button btnAlphaV;
+        private System.Windows.Forms.Button btnAlphaW;
+        private System.Windows.Forms.Button btnAlphaX;
+        private System.Windows.Forms.Button btnAlphaY;
+        private System.Windows.Forms.Button btnAlphaZ;
     }
 }
 

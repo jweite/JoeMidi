@@ -964,6 +964,36 @@ namespace JoeMidi1
                 rtbChart.Clear();
                 pdfChart.Visible = false;
             }
+
+            setupAlphaButtons();
+            flpAlphaButtons.Visible = false;
+        }
+
+        private void setupAlphaButtons()
+        {
+            foreach (System.Windows.Forms.Control c in flpAlphaButtons.Controls)
+            {
+                c.Visible = false;
+            }
+
+            foreach (Song s in currentSetlist.songs)
+            {
+                string firstLetter = s.name.Substring(0, 1).ToUpper();
+                if (firstLetter.CompareTo("A") < 0 || firstLetter.CompareTo("Z") > 0)
+                {
+                    firstLetter = "0";
+                }
+
+                foreach (System.Windows.Forms.Control c in flpAlphaButtons.Controls)
+                {
+                    Button b = (Button)c;
+                    if (b.Text == firstLetter)
+                    {
+                        b.Visible = true;
+                        break;
+                    }
+                }
+            }
         }
 
         private void btnSetlists_Click(object sender, EventArgs e)
@@ -1173,6 +1203,7 @@ namespace JoeMidi1
                     tlpShowOuter.SetRow(tlpSongSetlistOuter, 0);
                     tlpShowOuter.SetRowSpan(tlpSongSetlistOuter, 2);
                 }
+                flpAlphaButtons.Visible = true;
                 setlistControlExpanded = true;
             }
             else
@@ -1190,6 +1221,7 @@ namespace JoeMidi1
                     tlpShowOuter.SetRow(tlpSongSetlistOuter, 0);
                 }
                 showChart(currentSong.chartFile);
+                flpAlphaButtons.Visible = false;
                 setlistControlExpanded = false;
             }
         }
@@ -2658,6 +2690,47 @@ namespace JoeMidi1
             mapper.masterTranspose = (int)nudRandomAccessTranspose.Value;
         }
 
+        private void flpAlphaButtons_Resize(object sender, EventArgs e)
+        {
+            const int MIN_ALPHA_BUTTON_HEIGHT = 20;     // Based on font used for this button.
 
+            int alphaButtonHeight = (flpAlphaButtons.Height - (flpAlphaButtons.Margin.Top + flpAlphaButtons.Margin.Bottom)) / 27;
+            if (alphaButtonHeight < MIN_ALPHA_BUTTON_HEIGHT)
+            {
+                alphaButtonHeight = MIN_ALPHA_BUTTON_HEIGHT;
+            }
+
+            foreach (System.Windows.Forms.Control ctl in flpAlphaButtons.Controls)
+            {
+                // if typeof(ctl) != Button then next...
+
+                Button b2 = (Button)ctl;
+                b2.Height = alphaButtonHeight;
+            }
+        }
+
+        private void btnAlpha_Click_1(object sender, EventArgs e)
+        {
+            string letterClicked = ((Button)sender).Text;
+            if (letterClicked == "0")
+            {
+                olvSongs.EnsureVisible(0);
+            }
+            else
+            {
+                int i = 0;
+                foreach (Object o in olvSongs.Objects)
+                {
+
+                    Song s = (Song)o;
+                    if (s.name.StartsWith(letterClicked))
+                    {
+                        olvSongs.TopItemIndex = i;
+                        break;
+                    }
+                    ++i;
+                }
+            }
+        }
     }
 }
