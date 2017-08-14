@@ -187,22 +187,22 @@ namespace JoeMidi1
                 else if (programNum == 0x7) 
                 {
                     // Pick song patch 1 - 4
-                    mbccShowSongPatches.selectLogicalButton(3, true);
+                    mbccShowSongPatches.selectLogicalButton(3, true, false);
                 }
                 else if (programNum == 0x5)
                 {
                     // Pick song patch 1 - 4
-                    mbccShowSongPatches.selectLogicalButton(2, true);
+                    mbccShowSongPatches.selectLogicalButton(2, true, false);
                 }
                 else if (programNum == 0x4)
                 {
                     // Pick song patch 1 - 4
-                    mbccShowSongPatches.selectLogicalButton(1, true);
+                    mbccShowSongPatches.selectLogicalButton(1, true, false);
                 }
                 else if (programNum == 0x0)
                 {
                     // Pick song patch 1 - 4
-                    mbccShowSongPatches.selectLogicalButton(0, true);
+                    mbccShowSongPatches.selectLogicalButton(0, true, false);
                 }
 
             }
@@ -1032,7 +1032,7 @@ namespace JoeMidi1
                 // Activate the first program for this song
                 if (currentSong.programs.Count > 0)
                 {
-                    mbccShowSongPatches.selectLogicalButton(0, true);
+                    mbccShowSongPatches.selectLogicalButton(0, true, false);
                 }
 
                 mapper.masterTranspose = currentSong.songTranspose;
