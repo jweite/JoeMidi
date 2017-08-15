@@ -878,6 +878,11 @@ namespace JoeMidi1
             }
         }
 
+        private void tvProgramPatches_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            tvProgramPatches_Click(sender, null);
+        }
+
         //--------------------------------------------------------------------------
         // Button to switch the Program treeview to SoundGenerator/Program org
         //--------------------------------------------------------------------------
@@ -925,6 +930,18 @@ namespace JoeMidi1
                 String tabInputDeviceName = ((LogicalInputDevice)tabControl1.SelectedTab.Tag).logicalDeviceName;
                 cbRandomAccessInputDevice.Text = tabInputDeviceName;
             }
+        }
+
+        private void nudRandomAccessTranspose_ValueChanged(object sender, EventArgs e)
+        {
+            mapper.masterTranspose = (int)nudRandomAccessTranspose.Value;
+        }
+
+        private void vsbVol1_Scroll(object sender, ScrollEventArgs e)
+        {
+            vsbVol2.Value = vsbVol1.Value;      // Vol Control on Show tab tracks this one
+            int vol = 127 - vsbVol1.Value;
+            mapper.changeMasterVol(vol);
         }
 
         //**************************************************************************
@@ -1226,6 +1243,55 @@ namespace JoeMidi1
             }
         }
 
+        private void flpAlphaButtons_Resize(object sender, EventArgs e)
+        {
+            const int MIN_ALPHA_BUTTON_HEIGHT = 20;     // Based on font used for this button.
+
+            int alphaButtonHeight = (flpAlphaButtons.Height - (flpAlphaButtons.Margin.Top + flpAlphaButtons.Margin.Bottom)) / 27;
+            if (alphaButtonHeight < MIN_ALPHA_BUTTON_HEIGHT)
+            {
+                alphaButtonHeight = MIN_ALPHA_BUTTON_HEIGHT;
+            }
+
+            foreach (System.Windows.Forms.Control ctl in flpAlphaButtons.Controls)
+            {
+                // if typeof(ctl) != Button then next...
+
+                Button b2 = (Button)ctl;
+                b2.Height = alphaButtonHeight;
+            }
+        }
+
+        private void btnAlpha_Click_1(object sender, EventArgs e)
+        {
+            string letterClicked = ((Button)sender).Text;
+            if (letterClicked == "0")
+            {
+                olvSongs.EnsureVisible(0);
+            }
+            else
+            {
+                int i = 0;
+                foreach (Object o in olvSongs.Objects)
+                {
+
+                    Song s = (Song)o;
+                    if (s.name.StartsWith(letterClicked))
+                    {
+                        olvSongs.TopItemIndex = i;
+                        break;
+                    }
+                    ++i;
+                }
+            }
+        }
+
+        private void vsbVol2_Scroll(object sender, ScrollEventArgs e)
+        {
+            vsbVol1.Value = vsbVol2.Value;      // Vol Control on Random Access tabs track this one.
+            int vol = 127 - vsbVol2.Value;
+            mapper.changeMasterVol(vol);
+        }
 
         //**************************************************************************
         // Songs tab
@@ -1235,12 +1301,16 @@ namespace JoeMidi1
         bool creatingNewSong = false;
         bool creatingNewSongProgram = false;
 
-        private void refreshSongEditSelector()
+        private void refreshSongEditSelector(string selectSong = null)
         {
             mbccSongEditSelector.clearButtons();
             foreach (Song song in mapper.configuration.getSortedSongList())
             {
                 mbccSongEditSelector.addButton(song.name, song);
+            }
+            if (selectSong != null && selectSong != "")
+            {
+                mbccSongEditSelector.selectByName(selectSong);
             }
         }
 
@@ -1344,7 +1414,7 @@ namespace JoeMidi1
             pnlPatchEdit.Visible = false;
 
             // Refresh the SongEditSelector in case this is a new song or its title changed
-            refreshSongEditSelector();
+            refreshSongEditSelector(tbSongTitle.Text);
         }
 
         private void btnSongDel_Click(object sender, EventArgs e)
@@ -2600,26 +2670,7 @@ namespace JoeMidi1
             Application.Exit();
         }
 
-        private void tvProgramPatches_AfterSelect(object sender, TreeViewEventArgs e)
-        {
-            tvProgramPatches_Click(sender, null);
-        }
-
-        private void vsbVol1_Scroll(object sender, ScrollEventArgs e)
-        {
-            vsbVol2.Value = vsbVol1.Value;      // Vol Control on Show tab tracks this one
-            int vol = 127 - vsbVol1.Value;
-            mapper.changeMasterVol(vol);
-        }
-
-        private void vsbVol2_Scroll(object sender, ScrollEventArgs e)
-        {
-            vsbVol1.Value = vsbVol2.Value;      // Vol Control on Random Access tabs track this one.
-            int vol = 127 - vsbVol2.Value;
-            mapper.changeMasterVol(vol);
-        }
-
-        private void btnShowFS_Click(object sender, EventArgs e)
+        private void btnShowFS_Click(object sender, EventArgs e)            // Archaic...
         {
             fmShowFloat form = new fmShowFloat();
 //            form.Init(mapper.configuration.setlists);
@@ -2677,7 +2728,6 @@ namespace JoeMidi1
 
             }
 
-
             // Call showChart to move/span controls to appropriate position depending on the current chart type
             if (currentSong != null)
             {
@@ -2685,52 +2735,5 @@ namespace JoeMidi1
             }
         }
 
-        private void nudRandomAccessTranspose_ValueChanged(object sender, EventArgs e)
-        {
-            mapper.masterTranspose = (int)nudRandomAccessTranspose.Value;
-        }
-
-        private void flpAlphaButtons_Resize(object sender, EventArgs e)
-        {
-            const int MIN_ALPHA_BUTTON_HEIGHT = 20;     // Based on font used for this button.
-
-            int alphaButtonHeight = (flpAlphaButtons.Height - (flpAlphaButtons.Margin.Top + flpAlphaButtons.Margin.Bottom)) / 27;
-            if (alphaButtonHeight < MIN_ALPHA_BUTTON_HEIGHT)
-            {
-                alphaButtonHeight = MIN_ALPHA_BUTTON_HEIGHT;
-            }
-
-            foreach (System.Windows.Forms.Control ctl in flpAlphaButtons.Controls)
-            {
-                // if typeof(ctl) != Button then next...
-
-                Button b2 = (Button)ctl;
-                b2.Height = alphaButtonHeight;
-            }
-        }
-
-        private void btnAlpha_Click_1(object sender, EventArgs e)
-        {
-            string letterClicked = ((Button)sender).Text;
-            if (letterClicked == "0")
-            {
-                olvSongs.EnsureVisible(0);
-            }
-            else
-            {
-                int i = 0;
-                foreach (Object o in olvSongs.Objects)
-                {
-
-                    Song s = (Song)o;
-                    if (s.name.StartsWith(letterClicked))
-                    {
-                        olvSongs.TopItemIndex = i;
-                        break;
-                    }
-                    ++i;
-                }
-            }
-        }
     }
 }
