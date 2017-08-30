@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem(new string[] {
             "SG1",
             "Output Device 1",
             "1",
             "2"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem(new string[] {
             "SG2",
             "Output Device 1",
             "2",
@@ -142,9 +142,8 @@
             this.btnAddSong = new System.Windows.Forms.Button();
             this.tpSetlists = new System.Windows.Forms.TabPage();
             this.pnlSetlistSongSelector = new System.Windows.Forms.Panel();
+            this.cbSetEditorSonglistSetSelector = new System.Windows.Forms.ComboBox();
             this.tvSongsForSetlists = new System.Windows.Forms.TreeView();
-            this.btnSetlistSongSelCancel = new System.Windows.Forms.Button();
-            this.btnSetlistSongSelOK = new System.Windows.Forms.Button();
             this.pnlSetlistEdit = new System.Windows.Forms.Panel();
             this.btnSetlistDeleteSong = new System.Windows.Forms.Button();
             this.btnSetlistAddSong = new System.Windows.Forms.Button();
@@ -1821,9 +1820,8 @@
             // 
             // pnlSetlistSongSelector
             // 
+            this.pnlSetlistSongSelector.Controls.Add(this.cbSetEditorSonglistSetSelector);
             this.pnlSetlistSongSelector.Controls.Add(this.tvSongsForSetlists);
-            this.pnlSetlistSongSelector.Controls.Add(this.btnSetlistSongSelCancel);
-            this.pnlSetlistSongSelector.Controls.Add(this.btnSetlistSongSelOK);
             this.pnlSetlistSongSelector.Location = new System.Drawing.Point(1221, 39);
             this.pnlSetlistSongSelector.Margin = new System.Windows.Forms.Padding(4);
             this.pnlSetlistSongSelector.Name = "pnlSetlistSongSelector";
@@ -1831,48 +1829,27 @@
             this.pnlSetlistSongSelector.TabIndex = 2;
             this.pnlSetlistSongSelector.Visible = false;
             // 
+            // cbSetEditorSonglistSetSelector
+            // 
+            this.cbSetEditorSonglistSetSelector.FormattingEnabled = true;
+            this.cbSetEditorSonglistSetSelector.Location = new System.Drawing.Point(53, 42);
+            this.cbSetEditorSonglistSetSelector.Name = "cbSetEditorSonglistSetSelector";
+            this.cbSetEditorSonglistSetSelector.Size = new System.Drawing.Size(421, 40);
+            this.cbSetEditorSonglistSetSelector.TabIndex = 14;
+            this.cbSetEditorSonglistSetSelector.SelectedIndexChanged += new System.EventHandler(this.cbSetEditorSonglistSetSelector_SelectedIndexChanged);
+            // 
             // tvSongsForSetlists
             // 
             this.tvSongsForSetlists.BackColor = System.Drawing.Color.DimGray;
             this.tvSongsForSetlists.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tvSongsForSetlists.ForeColor = System.Drawing.Color.White;
             this.tvSongsForSetlists.HideSelection = false;
-            this.tvSongsForSetlists.Location = new System.Drawing.Point(53, 44);
+            this.tvSongsForSetlists.Location = new System.Drawing.Point(53, 97);
             this.tvSongsForSetlists.Margin = new System.Windows.Forms.Padding(4);
             this.tvSongsForSetlists.Name = "tvSongsForSetlists";
-            this.tvSongsForSetlists.Size = new System.Drawing.Size(421, 411);
+            this.tvSongsForSetlists.Size = new System.Drawing.Size(421, 451);
             this.tvSongsForSetlists.TabIndex = 13;
             this.tvSongsForSetlists.DoubleClick += new System.EventHandler(this.tvSongsForSetlists_DoubleClick);
-            // 
-            // btnSetlistSongSelCancel
-            // 
-            this.btnSetlistSongSelCancel.BackColor = System.Drawing.Color.DimGray;
-            this.btnSetlistSongSelCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnSetlistSongSelCancel.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSetlistSongSelCancel.ForeColor = System.Drawing.Color.White;
-            this.btnSetlistSongSelCancel.Location = new System.Drawing.Point(53, 482);
-            this.btnSetlistSongSelCancel.Margin = new System.Windows.Forms.Padding(4);
-            this.btnSetlistSongSelCancel.Name = "btnSetlistSongSelCancel";
-            this.btnSetlistSongSelCancel.Size = new System.Drawing.Size(208, 66);
-            this.btnSetlistSongSelCancel.TabIndex = 14;
-            this.btnSetlistSongSelCancel.Text = "Cancel";
-            this.btnSetlistSongSelCancel.UseVisualStyleBackColor = false;
-            this.btnSetlistSongSelCancel.Click += new System.EventHandler(this.btnSetlistSongSelCancel_Click);
-            // 
-            // btnSetlistSongSelOK
-            // 
-            this.btnSetlistSongSelOK.BackColor = System.Drawing.Color.DimGray;
-            this.btnSetlistSongSelOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnSetlistSongSelOK.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSetlistSongSelOK.ForeColor = System.Drawing.Color.White;
-            this.btnSetlistSongSelOK.Location = new System.Drawing.Point(283, 482);
-            this.btnSetlistSongSelOK.Margin = new System.Windows.Forms.Padding(4);
-            this.btnSetlistSongSelOK.Name = "btnSetlistSongSelOK";
-            this.btnSetlistSongSelOK.Size = new System.Drawing.Size(193, 66);
-            this.btnSetlistSongSelOK.TabIndex = 15;
-            this.btnSetlistSongSelOK.Text = "OK";
-            this.btnSetlistSongSelOK.UseVisualStyleBackColor = false;
-            this.btnSetlistSongSelOK.Click += new System.EventHandler(this.btnSetlistSongSelOK_Click);
             // 
             // pnlSetlistEdit
             // 
@@ -1903,7 +1880,7 @@
             this.btnSetlistDeleteSong.Name = "btnSetlistDeleteSong";
             this.btnSetlistDeleteSong.Size = new System.Drawing.Size(59, 76);
             this.btnSetlistDeleteSong.TabIndex = 9;
-            this.btnSetlistDeleteSong.Text = "-";
+            this.btnSetlistDeleteSong.Text = ">";
             this.btnSetlistDeleteSong.UseVisualStyleBackColor = false;
             this.btnSetlistDeleteSong.Click += new System.EventHandler(this.btnSetlistDeleteSong_Click);
             // 
@@ -1917,7 +1894,7 @@
             this.btnSetlistAddSong.Name = "btnSetlistAddSong";
             this.btnSetlistAddSong.Size = new System.Drawing.Size(59, 74);
             this.btnSetlistAddSong.TabIndex = 8;
-            this.btnSetlistAddSong.Text = "+";
+            this.btnSetlistAddSong.Text = "<";
             this.btnSetlistAddSong.UseVisualStyleBackColor = false;
             this.btnSetlistAddSong.Click += new System.EventHandler(this.btnSetlistAddSong_Click);
             // 
@@ -2004,7 +1981,6 @@
             this.lbSetlistSongs.Name = "lbSetlistSongs";
             this.lbSetlistSongs.Size = new System.Drawing.Size(355, 283);
             this.lbSetlistSongs.TabIndex = 6;
-            this.lbSetlistSongs.SelectedIndexChanged += new System.EventHandler(this.lbSetlistSongs_SelectedIndexChanged);
             // 
             // tbSetlistName
             // 
@@ -2097,6 +2073,7 @@
             // 
             this.btnSetlistDel.BackColor = System.Drawing.Color.DimGray;
             this.btnSetlistDel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnSetlistDel.Enabled = false;
             this.btnSetlistDel.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSetlistDel.ForeColor = System.Drawing.Color.White;
             this.btnSetlistDel.Location = new System.Drawing.Point(278, 4);
@@ -2784,8 +2761,8 @@
             this.lvSoundGenerators.FullRowSelect = true;
             this.lvSoundGenerators.GridLines = true;
             this.lvSoundGenerators.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1,
-            listViewItem2});
+            listViewItem3,
+            listViewItem4});
             this.lvSoundGenerators.Location = new System.Drawing.Point(4, 53);
             this.lvSoundGenerators.Margin = new System.Windows.Forms.Padding(4);
             this.lvSoundGenerators.MultiSelect = false;
@@ -2886,7 +2863,7 @@
             // btnSoundGeneratorEditOK
             // 
             this.btnSoundGeneratorEditOK.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSoundGeneratorEditOK.Location = new System.Drawing.Point(277, 425);
+            this.btnSoundGeneratorEditOK.Location = new System.Drawing.Point(287, 479);
             this.btnSoundGeneratorEditOK.Margin = new System.Windows.Forms.Padding(4);
             this.btnSoundGeneratorEditOK.Name = "btnSoundGeneratorEditOK";
             this.btnSoundGeneratorEditOK.Size = new System.Drawing.Size(153, 64);
@@ -2898,7 +2875,7 @@
             // btnSoundGeneratorEditCancel
             // 
             this.btnSoundGeneratorEditCancel.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSoundGeneratorEditCancel.Location = new System.Drawing.Point(119, 425);
+            this.btnSoundGeneratorEditCancel.Location = new System.Drawing.Point(129, 479);
             this.btnSoundGeneratorEditCancel.Margin = new System.Windows.Forms.Padding(4);
             this.btnSoundGeneratorEditCancel.Name = "btnSoundGeneratorEditCancel";
             this.btnSoundGeneratorEditCancel.Size = new System.Drawing.Size(153, 64);
@@ -2949,7 +2926,7 @@
             this.lbSoundGeneratorPatches.Location = new System.Drawing.Point(119, 188);
             this.lbSoundGeneratorPatches.Margin = new System.Windows.Forms.Padding(4);
             this.lbSoundGeneratorPatches.Name = "lbSoundGeneratorPatches";
-            this.lbSoundGeneratorPatches.Size = new System.Drawing.Size(312, 68);
+            this.lbSoundGeneratorPatches.Size = new System.Drawing.Size(312, 260);
             this.lbSoundGeneratorPatches.TabIndex = 33;
             this.lbSoundGeneratorPatches.SelectedIndexChanged += new System.EventHandler(this.lbSoundGeneratorPatches_SelectedIndexChanged);
             // 
@@ -3419,8 +3396,6 @@
         private System.Windows.Forms.TabPage tpSetlists;
         private System.Windows.Forms.Panel pnlSetlistSongSelector;
         private System.Windows.Forms.TreeView tvSongsForSetlists;
-        private System.Windows.Forms.Button btnSetlistSongSelCancel;
-        private System.Windows.Forms.Button btnSetlistSongSelOK;
         private System.Windows.Forms.Panel pnlSetlistEdit;
         private System.Windows.Forms.Button btnSetlistDeleteSong;
         private System.Windows.Forms.Button btnSetlistAddSong;
@@ -3577,6 +3552,7 @@
         private System.Windows.Forms.Button btnAlphaX;
         private System.Windows.Forms.Button btnAlphaY;
         private System.Windows.Forms.Button btnAlphaZ;
+        private System.Windows.Forms.ComboBox cbSetEditorSonglistSetSelector;
     }
 }
 

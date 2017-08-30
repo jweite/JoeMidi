@@ -1131,6 +1131,8 @@ namespace JoeMidi1
             else
             {
                 rtbChart.Rtf = "";
+                rtbChart.Visible = false;
+                pdfChart.Visible = false;
             }
         }
 
@@ -1626,7 +1628,6 @@ namespace JoeMidi1
         Setlist setlistBeingEdited;
         String originalSetlistName = "";
         bool creatingNewSetlist = false;
-        bool bAddingNewSong = false;
 
         private void refreshSetlistEditSelector()
         {
@@ -1635,6 +1636,12 @@ namespace JoeMidi1
             foreach (Setlist setlist in l)
             {
                 mbccSetlistEditSelector.addButton(setlist.name, setlist);
+                cbSetEditorSonglistSetSelector.Items.Add(setlist.name);
+            }
+
+            if (cbSetEditorSonglistSetSelector.SelectedIndex < 0)
+            {
+                cbSetEditorSonglistSetSelector.SelectedIndex = 0;
             }
         }
 
@@ -1651,9 +1658,12 @@ namespace JoeMidi1
             creatingNewSetlist = true;
 
             // Show the setlist editor controls. 
-            pnlSetlistEdit.Visible = true;
-            tbSetlistName.Select();
+            refreshSongsForSetlistsControl();
 
+            pnlSetlistSongSelector.Visible = true;
+            pnlSetlistEdit.Visible = true;
+
+            tbSetlistName.Select();
         }
 
         private void mbccSetlistEditSelector_Click(object sender, EventArgs e)
@@ -1680,16 +1690,18 @@ namespace JoeMidi1
             // Set the setlist editor UI fields with info from the selected setlist
             tbSetlistName.Text = setlistBeingEdited.name;
 
+            // Refresh the list controls' content
             refreshLbSetlistSongs();
+            refreshSongsForSetlistsControl();
 
             // Make note for commit-time that we're updating (not creating.)
             creatingNewSetlist = false;
 
             // Show the setlist editor controls.  Hide the song selector in case it happened to be up for the previous setlist. (Any edits to its songs are implicity abandoned...)
             pnlSetlistEdit.Visible = true;
-            pnlSetlistSongSelector.Visible = false;
+            pnlSetlistSongSelector.Visible = true;
             tbSetlistName.Select();
-
+            btnSetlistDel.Enabled = true;
         }
 
         private void btnSetlistEditCancel_Click(object sender, EventArgs e)
@@ -1703,11 +1715,20 @@ namespace JoeMidi1
             originalSetlistName = "";
             pnlSetlistEdit.Visible = false;
             pnlSetlistSongSelector.Visible = false;
+            btnSetlistDel.Enabled = false;
         }
 
         private void btnSetlistEditOK_Click(object sender, EventArgs e)
         {
-            completeSetlistEdit();
+            if (tbSetlistName.Text.Length == 0)
+            {
+                MessageBox.Show("You must enter a setlist name.");
+                return;
+            }
+            else
+            {
+                completeSetlistEdit();
+            }
         }
 
         private void completeSetlistEdit()
@@ -1738,13 +1759,13 @@ namespace JoeMidi1
             // Hide setlist edit controls
             pnlSetlistEdit.Visible = false;
             pnlSetlistSongSelector.Visible = false;
+            btnSetlistDel.Enabled = false;
 
             // Refresh the SetlistEditSelector in case this is a new setlist or its name changed
             refreshSetlistEditSelector();
 
             // The edit could change what's on the Show tab.  Refresh it.
             refreshShowControls();
-
         }
 
         private void btnSetlistDel_Click(object sender, EventArgs e)
@@ -1773,7 +1794,7 @@ namespace JoeMidi1
             // Hide setlist edit controls in case they were open.
             pnlSetlistEdit.Visible = false;
             pnlSetlistSongSelector.Visible = false;
-
+            btnSetlistDel.Enabled = false;
         }
 
         private void btnSetlistDeleteSong_Click(object sender, EventArgs e)
@@ -1786,48 +1807,51 @@ namespace JoeMidi1
             }
         }
 
-        private void btnSetlistAddSong_Click(object sender, EventArgs e)
+        private void cbSetEditorSonglistSetSelector_SelectedIndexChanged(object sender, EventArgs e)
         {
-            tvSongsForSetlists.Nodes.Clear();
-            foreach (Song song in mapper.configuration.getSortedSongList())
-            {
-                TreeNode node = new TreeNode(song.name + " - " + song.artist);
-                node.Tag = song;
-                tvSongsForSetlists.Nodes.Add(node);
-            }
-            bAddingNewSong = true;
-            originalSetlistSongTitle = "";
-            pnlSetlistSongSelector.Visible = true;
+            refreshSongsForSetlistsControl();
         }
 
-        String originalSetlistSongTitle;
-
-        private void lbSetlistSongs_SelectedIndexChanged(object sender, EventArgs e)
+        private void refreshSongsForSetlistsControl()
         {
-            bAddingNewSong = false;
-            originalSetlistSongTitle = (String)lbSetlistSongs.SelectedItem;
-
             tvSongsForSetlists.Nodes.Clear();
-            foreach (Song song in mapper.configuration.getSortedSongList())
-            {
-                TreeNode node = new TreeNode(song.name + " - " + song.artist);
-                node.Tag = song;
-                tvSongsForSetlists.Nodes.Add(node);
+            IList<Song> songs = null;
 
-                if (song.name.Equals(originalSetlistSongTitle))
+            if (cbSetEditorSonglistSetSelector.SelectedIndex >= 0)
+            {
+                string selectedSetlist = (string)cbSetEditorSonglistSetSelector.Items[cbSetEditorSonglistSetSelector.SelectedIndex];
+                Setlist setlist = mapper.configuration.setlists.Find(sl => sl.name == selectedSetlist);
+                if (setlist != null)
                 {
-                    tvSongsForSetlists.SelectedNode = node;
+                    songs = setlist.songs;
                 }
             }
-            pnlSetlistSongSelector.Visible = true;
+
+            if (songs == null)
+            {
+                songs = mapper.configuration.getSortedSongList();
+            }
+
+            foreach (Song song in songs)
+            {
+                TreeNode node = new TreeNode(song.name + " - " + song.artist);
+                node.Tag = song;
+                tvSongsForSetlists.Nodes.Add(node);
+            }
         }
 
-        private void btnSetlistSongSelCancel_Click(object sender, EventArgs e)
+        private void btnSetlistAddSong_Click(object sender, EventArgs e)
         {
-            pnlSetlistSongSelector.Visible = false;
+            setlistAddSong();
+            tvSongsForSetlists.Focus();
         }
 
-        private void btnSetlistSongSelOK_Click(object sender, EventArgs e)
+        private void tvSongsForSetlists_DoubleClick(object sender, EventArgs e)
+        {
+            setlistAddSong();
+        }
+
+        private void setlistAddSong()
         {
             TreeNode selectedSongNode = tvSongsForSetlists.SelectedNode;
             if (selectedSongNode == null)
@@ -1837,24 +1861,12 @@ namespace JoeMidi1
             }
             Song selectedSong = (Song)selectedSongNode.Tag;
 
-            if (bAddingNewSong == true)
-            {
-                setlistBeingEdited.songTitles.Add(selectedSong.name);
-            }
-            else {
-                int songIndex = setlistBeingEdited.songTitles.IndexOf(originalSetlistSongTitle);
-                setlistBeingEdited.songTitles[songIndex] = selectedSong.name;
-            }
+            setlistBeingEdited.songTitles.Add(selectedSong.name);
             
             refreshLbSetlistSongs();
 
-            pnlSetlistSongSelector.Visible = false;
+            pnlSetlistSongSelector.Visible = true;
 
-        }
-
-        private void tvSongsForSetlists_DoubleClick(object sender, EventArgs e)
-        {
-            btnSetlistSongSelOK_Click(sender, null);
         }
 
         private void btnSetlistSongUp_Click(object sender, EventArgs e)
@@ -2734,6 +2746,5 @@ namespace JoeMidi1
                 showChart(currentSong.chartFile);
             }
         }
-
     }
 }
