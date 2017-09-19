@@ -128,6 +128,7 @@ namespace JoeMidi1
             originalSong.name = newSongValues.name;
             originalSong.artist = newSongValues.artist;
             originalSong.chartFile = newSongValues.chartFile;
+            originalSong.chartPage = newSongValues.chartPage;
             
             // There are no external references to the SongPrograms so we remove/forget the old and insert the new in their place.
             originalSong.programs.Clear();

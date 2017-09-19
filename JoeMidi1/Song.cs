@@ -11,16 +11,21 @@ namespace JoeMidi1
         public String name;
         public String artist;
         public String chartFile;
+        public int chartPage;
         public List<SongProgram> programs = new List<SongProgram>();
-        public int songTranspose = 0;
+        public int songTranspose;
 
-        public Song() {}
+        public Song() {
+            chartPage = 1;
+            songTranspose = 0;
+        }
 
         public Song(Song orig)
         {
             name = orig.name;
             artist = orig.artist;
             chartFile = orig.chartFile;
+            chartPage = orig.chartPage;
             foreach (SongProgram program in orig.programs)
             {
                 programs.Add(new SongProgram(program));
@@ -35,6 +40,7 @@ namespace JoeMidi1
                 song.name = "Josie";
                 song.artist = "Steely Dan";
                 song.chartFile = "Josie 2.rtf";
+                song.chartPage = 1;
                 SongProgram.createTrialConfiguration(song);
 
                 songDict.Add(song.name, song);

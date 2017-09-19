@@ -1044,7 +1044,7 @@ namespace JoeMidi1
                 }
 
                 // And display the song's chart
-                showChart(currentSong.chartFile);
+                showChart(currentSong.chartFile, currentSong.chartPage);
 
                 // Activate the first program for this song
                 if (currentSong.programs.Count > 0)
@@ -1083,7 +1083,7 @@ namespace JoeMidi1
             }
         }
 
-        private void showChart(String chartFileName)
+        private void showChart(String chartFileName, int chartPage)
         {
             if (chartFileName == null) return;
 
@@ -1112,6 +1112,7 @@ namespace JoeMidi1
                 {
                     String chartContent = File.ReadAllText(filePath);
                     rtbChart.Rtf = chartContent;
+                    // For consistency it'd be nice if we could honor chart-page for rtfs, though less essential, since they're less likely to be scans of songbooks.
                     positionAndShowChartControl(rtbChart, pdfChart);
                 }
                 else if (filePath.ToLower().EndsWith(".pdf"))
@@ -1119,6 +1120,7 @@ namespace JoeMidi1
                     var doc = PdfDocument.Load(filePath);
                     pdfChart.Load(doc);
                     pdfChart.ZoomMode = PdfiumViewer.PdfViewerZoomMode.FitWidth;
+                    pdfChart.Page = chartPage - 1;
                     positionAndShowChartControl(pdfChart, rtbChart);
                 }
                 else
@@ -1239,7 +1241,7 @@ namespace JoeMidi1
                     tlpShowOuter.SetRowSpan(tlpSongSetlistOuter, 1);
                     tlpShowOuter.SetRow(tlpSongSetlistOuter, 0);
                 }
-                showChart(currentSong.chartFile);
+                showChart(currentSong.chartFile, currentSong.chartPage);
                 flpAlphaButtons.Visible = false;
                 setlistControlExpanded = false;
             }
@@ -1325,6 +1327,7 @@ namespace JoeMidi1
             tbSongTitle.Text = "";
             tbSongArtist.Text = "";
             tbSongChart.Text = "";
+            nudSongChartPage.Value = 1;
             nudSongTranspose.Value = 0;
             lbSongPatches.Items.Clear();
 
@@ -1351,7 +1354,16 @@ namespace JoeMidi1
             // Set the song editor UI fields with info from the selected song
             tbSongTitle.Text = songBeingEdited.name;
             tbSongArtist.Text = songBeingEdited.artist;
-            tbSongChart.Text = songBeingEdited.chartFile;
+            string chartsFolder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\charts\";
+            if (songBeingEdited.chartFile.ToLower().StartsWith(chartsFolder.ToLower()))
+            {
+                tbSongChart.Text = songBeingEdited.chartFile.Substring(chartsFolder.Length);
+            }
+            else
+            {
+                tbSongChart.Text = songBeingEdited.chartFile;
+            }
+            nudSongChartPage.Value = songBeingEdited.chartPage;
             nudSongTranspose.Value = songBeingEdited.songTranspose;
             lbSongPatches.Items.Clear();
             foreach (SongProgram songProgram in songBeingEdited.programs)
@@ -1391,7 +1403,18 @@ namespace JoeMidi1
             // Gather the changed fields into the temp song object.  (Edits to its Programs will have already been applied...)
             songBeingEdited.name = tbSongTitle.Text;
             songBeingEdited.artist = tbSongArtist.Text;
-            songBeingEdited.chartFile = tbSongChart.Text;
+            if (tbSongChart.Text.Substring(1, 1) != ":" && tbSongChart.Text.Substring(0, 1) != "\\")
+            {
+                // Relative.  Make it absolute to the charts directory.
+                string chartsFolder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\charts\";
+                songBeingEdited.chartFile = chartsFolder + tbSongChart.Text;
+            }
+            else
+            {
+                // Absolute.  Leave it alone
+                songBeingEdited.chartFile = tbSongChart.Text;
+            }
+            songBeingEdited.chartPage = (int)nudSongChartPage.Value;
             songBeingEdited.songTranspose = (int)nudSongTranspose.Value;
 
             // Make the changes to the actual model objects
@@ -1874,10 +1897,15 @@ namespace JoeMidi1
             int songIndex = lbSetlistSongs.SelectedIndex;
             if (songIndex > 0 && songIndex < setlistBeingEdited.songTitles.Count)
             {
+                // Change setlist
                 String songTitleBeingMoved = setlistBeingEdited.songTitles[songIndex];
                 setlistBeingEdited.songTitles.RemoveAt(songIndex);
                 setlistBeingEdited.songTitles.Insert(songIndex - 1, songTitleBeingMoved);
-                refreshLbSetlistSongs();
+
+                // Make identical change to list box
+                object songListBoxItem = lbSetlistSongs.Items[songIndex];
+                lbSetlistSongs.Items[songIndex] = lbSetlistSongs.Items[songIndex - 1];
+                lbSetlistSongs.Items[songIndex - 1] = songListBoxItem;
                 lbSetlistSongs.SelectedIndex = songIndex - 1;
             }
         }
@@ -1887,10 +1915,15 @@ namespace JoeMidi1
             int songIndex = lbSetlistSongs.SelectedIndex;
             if (songIndex >= 0 && songIndex < setlistBeingEdited.songTitles.Count-1)
             {
+                // Change setlist
                 String songTitleBeingMoved = setlistBeingEdited.songTitles[songIndex];
                 setlistBeingEdited.songTitles.RemoveAt(songIndex);
                 setlistBeingEdited.songTitles.Insert(songIndex + 1, songTitleBeingMoved);
-                refreshLbSetlistSongs();
+
+                // Make identical change to list box
+                object songListBoxItem = lbSetlistSongs.Items[songIndex];
+                lbSetlistSongs.Items[songIndex] = lbSetlistSongs.Items[songIndex + 1];
+                lbSetlistSongs.Items[songIndex + 1] = songListBoxItem;
                 lbSetlistSongs.SelectedIndex = songIndex + 1;
             }
         }
@@ -2584,6 +2617,9 @@ namespace JoeMidi1
         {
             lblMappingEditPBScale.Visible = show;
             lblMappingEditTranspose.Visible = show;
+            lblMappingPBScale.Visible = show;
+            lblMappingTransOcts.Visible = show;
+            lblMappingTransSemis.Visible = show;
             nudMappingDefTransposeOct.Visible = show;
             nudMappingDefTransposeSemis.Visible = show;
             cbMappingDefDamperEna.Visible = show;
@@ -2715,6 +2751,23 @@ namespace JoeMidi1
                 pnlPatchEdit.Left = pnlSongEdit.Left;
                 pnlPatchEdit.Top = pnlSongEdit.Top + pnlSongEdit.Height;
 
+                pnlSetlistSongSelector.Left = pnlSetlistEdit.Left;
+                pnlSetlistSongSelector.Top = pnlSetlistEdit.Top + pnlSetlistEdit.Height;
+
+                tlpMappingEditOuter.SetRowSpan(mbrcMappingSelect, 2);
+                tlpMappingEditOuter.SetColumnSpan(pnlMappingEdit, 2);
+                tlpMappingEditOuter.SetColumnSpan(tlpMappingEditNameAndButtons, 2);
+                tlpMappingEditOuter.RowStyles[1].Height = 40;
+                tlpMappingEditOuter.RowStyles[2].Height = 60;
+                tlpMappingEditOuter.SetColumn(tlpMappingEditorPatches, 1);
+                tlpMappingEditOuter.SetRow(tlpMappingEditorPatches, 2);
+
+                tlpSoundGeneratorsOuter.SetRow(pnlSoundGeneratorPatchEdit, 2);
+                tlpSoundGeneratorsOuter.SetColumn(pnlSoundGeneratorPatchEdit, 1);
+                tlpSoundGeneratorsOuter.SetColumnSpan(pnlSoundGeneratorPatchEdit, 2);
+                tlpSoundGeneratorsOuter.SetColumnSpan(pnlSoundGeneratorEdit, 2);
+                tlpSoundGeneratorsOuter.RowStyles[1].Height = 50;
+                tlpSoundGeneratorsOuter.RowStyles[2].Height = 50;
             }
             else
             {
@@ -2738,12 +2791,60 @@ namespace JoeMidi1
                 pnlPatchEdit.Top = pnlSongEdit.Top;
                 pnlPatchEdit.Left = pnlSongEdit.Left + pnlSongEdit.Width + 70;
 
+                pnlSetlistSongSelector.Top = pnlSetlistEdit.Top;
+                pnlSetlistSongSelector.Left = pnlSetlistEdit.Left + pnlSetlistEdit.Width + 70;
+
+                tlpMappingEditOuter.SetRowSpan(mbrcMappingSelect, 1);
+                tlpMappingEditOuter.SetColumnSpan(pnlMappingEdit, 1);
+                tlpMappingEditOuter.SetColumnSpan(tlpMappingEditNameAndButtons, 2);
+                tlpMappingEditOuter.RowStyles[1].Height = 90;
+                tlpMappingEditOuter.RowStyles[2].Height = 10;
+                tlpMappingEditOuter.SetColumn(tlpMappingEditorPatches, 2);
+                tlpMappingEditOuter.SetRow(tlpMappingEditorPatches, 1);
+
+                tlpSoundGeneratorsOuter.SetColumnSpan(pnlSoundGeneratorPatchEdit, 1);
+                tlpSoundGeneratorsOuter.SetColumnSpan(pnlSoundGeneratorEdit, 1);
+                tlpSoundGeneratorsOuter.SetRow(pnlSoundGeneratorPatchEdit, 1);
+                tlpSoundGeneratorsOuter.SetColumn(pnlSoundGeneratorPatchEdit, 2);
+                tlpSoundGeneratorsOuter.RowStyles[1].Height = 90;
+                tlpSoundGeneratorsOuter.RowStyles[2].Height = 10;
+
             }
 
             // Call showChart to move/span controls to appropriate position depending on the current chart type
             if (currentSong != null)
             {
-                showChart(currentSong.chartFile);
+                showChart(currentSong.chartFile, currentSong.chartPage);
+            }
+        }
+
+        private void btnOpenFilesCharts_Click(object sender, EventArgs e)
+        {
+            string defaultChartFolder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments).ToLower() + "\\charts";
+            openFileDialog1.InitialDirectory = defaultChartFolder;
+
+            FileInfo fi = new FileInfo(tbSongChart.Text);
+            string directory = fi.Directory.Name;
+            string baseFileName = fi.Name;
+
+            if (directory.Substring(1,1) == ":" || directory.Substring(0, 1) == "\\")
+            {
+                openFileDialog1.InitialDirectory = directory;
+            }
+            else
+            {
+                openFileDialog1.InitialDirectory = defaultChartFolder + "\\" + directory;
+            }
+            openFileDialog1.FileName = baseFileName;
+
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                if (openFileDialog1.FileName.ToLower().StartsWith(defaultChartFolder)) {
+                    tbSongChart.Text = openFileDialog1.FileName.Substring(defaultChartFolder.Length+1);
+                }
+                else {
+                    tbSongChart.Text = openFileDialog1.FileName;
+                }
             }
         }
     }
