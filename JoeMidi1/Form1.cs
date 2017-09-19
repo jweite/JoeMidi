@@ -1403,7 +1403,8 @@ namespace JoeMidi1
             // Gather the changed fields into the temp song object.  (Edits to its Programs will have already been applied...)
             songBeingEdited.name = tbSongTitle.Text;
             songBeingEdited.artist = tbSongArtist.Text;
-            if (tbSongChart.Text.Substring(1, 1) != ":" && tbSongChart.Text.Substring(0, 1) != "\\")
+
+            if (tbSongChart.Text.Length > 0 && tbSongChart.Text.Substring(1, 1) != ":" && tbSongChart.Text.Substring(0, 1) != "\\")
             {
                 // Relative.  Make it absolute to the charts directory.
                 string chartsFolder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\charts\";
@@ -1429,7 +1430,10 @@ namespace JoeMidi1
                 // Force the Setlist Songs list to reflect any change made to songs of the current setlist
                 olvSongs.SetObjects(currentSetlist.songs);
             }
-            
+
+            // Make sure these edits are reflected in the "All" setlist.
+            mapper.refreshAllPseudoSetlist();
+
             // Clean up edit state
             songBeingEdited = null;
             originalSongTitle = "";
@@ -1457,6 +1461,9 @@ namespace JoeMidi1
 
             // Force the Setlist Songs list to reflect any change made to songs of the current setlist
             olvSongs.SetObjects(currentSetlist.songs);
+
+            // Make sure this delete is reflected in the "All" setlist.
+            mapper.refreshAllPseudoSetlist();
 
             // Clean up editor state
             songBeingEdited = null;

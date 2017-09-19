@@ -495,6 +495,22 @@ namespace JoeMidi1
             configuration.setlists.Insert(0, setList);
         }
 
+        public void refreshAllPseudoSetlist()
+        {
+            Setlist setList = configuration.setlists.Find(sl => sl.name == "(All)");
+            if (setList != null)
+            {
+                setList.songs.Clear();
+                setList.songTitles.Clear();
+
+                foreach (Song song in configuration.getSortedSongList())
+                {
+                    setList.songTitles.Add(song.name);
+                }
+                setList.bind(configuration.songDict, configuration.logicalInputDeviceDict, configuration.soundGenerators, configuration.mappings, configuration.primaryInputDevice);
+            }
+        }
+
         public void stopMapper()
         {
             if (configuration != null && configuration.logicalInputDeviceDict != null)
