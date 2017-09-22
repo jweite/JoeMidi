@@ -993,6 +993,11 @@ namespace JoeMidi1
                 c.Visible = false;
             }
 
+            if (currentSetlist == null)
+            {
+                return;
+            }
+
             foreach (Song s in currentSetlist.songs)
             {
                 string firstLetter = s.name.Substring(0, 1).ToUpper();
@@ -1028,12 +1033,16 @@ namespace JoeMidi1
         private void olvSongs_SelectedIndexChanged(object sender, EventArgs e)
         {
             currentSong = (Song)olvSongs.SelectedObject;
+            RefreshShowSongPatches(currentSong);
+        }
 
+        private void RefreshShowSongPatches(Song song)
+        {
             // Refresh the SongPatches multi-button-row-control
             mbccShowSongPatches.clearButtons();
-            if (currentSong != null)
+            if (song != null)
             {
-                foreach (SongProgram songProgram in currentSong.programs)
+                foreach (SongProgram songProgram in song.programs)
                 {
                     mbccShowSongPatches.addButton(songProgram.name, songProgram);
                 }
@@ -1044,15 +1053,15 @@ namespace JoeMidi1
                 }
 
                 // And display the song's chart
-                showChart(currentSong.chartFile, currentSong.chartPage);
+                showChart(song.chartFile, song.chartPage);
 
                 // Activate the first program for this song
-                if (currentSong.programs.Count > 0)
+                if (song.programs.Count > 0)
                 {
                     mbccShowSongPatches.selectLogicalButton(0, true, false);
                 }
 
-                mapper.masterTranspose = currentSong.songTranspose;
+                mapper.masterTranspose = song.songTranspose;
             }
         }
 
@@ -1079,6 +1088,8 @@ namespace JoeMidi1
             SongProgram songProgram = (SongProgram)(((Button)sender).Tag);
             if (songProgram != null && songProgram.mapping != null)
             {
+                // NOTE: if patch is deleted from sound gen, the songProgram still exists, but has no mapping.  For now we do nothing,
+                //  but perhaps it'd be better to notify user...  But, maybe best not to interrupt the performance...
                 mapper.SetMapping(songProgram.mapping);
             }
         }
@@ -1428,11 +1439,18 @@ namespace JoeMidi1
                 mapper.configuration.updateSong(originalSongTitle, songBeingEdited);
 
                 // Force the Setlist Songs list to reflect any change made to songs of the current setlist
+                Song currentlySelectedSong = (Song)olvSongs.SelectedObject;
                 olvSongs.SetObjects(currentSetlist.songs);
+                olvSongs.SelectedObject = currentlySelectedSong;
+                currentSong = currentlySelectedSong;
             }
 
-            // Make sure these edits are reflected in the "All" setlist.
+            // Make sure edits are reflected in the "All" setlist.
             mapper.refreshAllPseudoSetlist();
+            if (currentSetlist.name == "(All)")
+            {
+                refreshShowControls();
+            }
 
             // Clean up edit state
             songBeingEdited = null;
@@ -1448,13 +1466,23 @@ namespace JoeMidi1
 
         private void btnSongDel_Click(object sender, EventArgs e)
         {
-            deleteSongSelectedForEditing();
+            // If a song's open for editing and delete is pressed, delete the song open for editing.
+            if (songBeingEdited != null)
+            {
+                deleteSong(songBeingEdited);
+            }
+            else if (mbccSongEditSelector.LastSelectedButtonTag != null)
+            {
+                // Otherwise, if there's a currently selected song in the Song Editor Selector delete it.
+                deleteSong((Song)mbccSongEditSelector.LastSelectedButtonTag);
+            }
         }
 
-        private void deleteSongSelectedForEditing()
+        private void deleteSong(Song songToDelete)
         {
+
             // Do the delete in the model
-            mapper.configuration.deleteSong(songBeingEdited);
+            mapper.configuration.deleteSong(songToDelete);
 
             // Refresh the SongEditSelector to reflect the deletion
             refreshSongEditSelector();
@@ -1464,15 +1492,18 @@ namespace JoeMidi1
 
             // Make sure this delete is reflected in the "All" setlist.
             mapper.refreshAllPseudoSetlist();
+            if (currentSetlist.name == "(All)")
+            {
+                refreshShowControls();
+            }
 
-            // Clean up editor state
+            // Clean up editor state: you can no longer be editing a song you deleted.
             songBeingEdited = null;
             originalSongTitle = "";
 
             // Hide song edit controls in case they were open.
             pnlSongEdit.Visible = false;
             pnlPatchEdit.Visible = false;
-
         }
 
         SongProgram songProgramBeingEdited;
@@ -1731,7 +1762,7 @@ namespace JoeMidi1
             pnlSetlistEdit.Visible = true;
             pnlSetlistSongSelector.Visible = true;
             tbSetlistName.Select();
-            btnSetlistDel.Enabled = true;
+            // btnSetlistDel.Enabled = true;
         }
 
         private void btnSetlistEditCancel_Click(object sender, EventArgs e)
@@ -1745,7 +1776,7 @@ namespace JoeMidi1
             originalSetlistName = "";
             pnlSetlistEdit.Visible = false;
             pnlSetlistSongSelector.Visible = false;
-            btnSetlistDel.Enabled = false;
+            // btnSetlistDel.Enabled = false;
         }
 
         private void btnSetlistEditOK_Click(object sender, EventArgs e)
@@ -1782,6 +1813,16 @@ namespace JoeMidi1
                 // TBD: change any UI elements dependent on this setlist.
             }
 
+            // The edit could change what's on the Show tab.  Refresh it.
+            if (currentSetlist.name == originalSetlistName)
+            {
+                currentSetlist = setlistBeingEdited;
+                refreshShowControls();
+            }
+
+            // Refresh the SetlistEditSelector in case this is a new setlist or its name changed
+            refreshSetlistEditSelector();
+
             // Clean up edit state
             setlistBeingEdited = null;
             originalSetlistName = "";
@@ -1789,31 +1830,32 @@ namespace JoeMidi1
             // Hide setlist edit controls
             pnlSetlistEdit.Visible = false;
             pnlSetlistSongSelector.Visible = false;
-            btnSetlistDel.Enabled = false;
-
-            // Refresh the SetlistEditSelector in case this is a new setlist or its name changed
-            refreshSetlistEditSelector();
-
-            // The edit could change what's on the Show tab.  Refresh it.
-            refreshShowControls();
+            // btnSetlistDel.Enabled = false;
         }
 
         private void btnSetlistDel_Click(object sender, EventArgs e)
         {
-            deleteSetlistSelectedForEditing();
+            if (setlistBeingEdited != null)
+            {
+                deleteSetlistSelectedForEditing(setlistBeingEdited.name);
+            }
+            else if (mbccSetlistEditSelector.LastSelectedButtonText != null)
+            {
+                deleteSetlistSelectedForEditing(mbccSetlistEditSelector.LastSelectedButtonText);
+            }
         }
 
-        private void deleteSetlistSelectedForEditing()
+        private void deleteSetlistSelectedForEditing(string setlistName)
         {
             // Do the delete in the model
-            mapper.configuration.deleteSetlistByName(setlistBeingEdited.name);
+            mapper.configuration.deleteSetlistByName(setlistName);
 
             // Refresh the SetlistEditSelector to reflect the deletion
             refreshSetlistEditSelector();
 
-            if (currentSetlist.name.Equals(setlistBeingEdited.name))
+            if (currentSetlist.name.Equals(setlistName))
             {
-                currentSetlist = null;
+                currentSetlist = mapper.configuration.setlists.Find(sl => sl.name == "(All)");
                 refreshShowControls();
             }
 
@@ -1824,7 +1866,7 @@ namespace JoeMidi1
             // Hide setlist edit controls in case they were open.
             pnlSetlistEdit.Visible = false;
             pnlSetlistSongSelector.Visible = false;
-            btnSetlistDel.Enabled = false;
+            // btnSetlistDel.Enabled = false;
         }
 
         private void btnSetlistDeleteSong_Click(object sender, EventArgs e)
@@ -2232,7 +2274,7 @@ namespace JoeMidi1
 
                 // Populate UI fields.
                 tbMappingName.Text = mapping.name;
-                tbMappingName.Enabled = false;              // You can't edit mapping name.
+                tbMappingName.ReadOnly = true;              // You can't edit mapping name.
 
                 // If there are mappings defined for at least one Input Device then update the UI elements on the left side with data from the first one defined.
                 if (mapping.perDeviceSimpleMappings.Count > 0)
@@ -2298,14 +2340,13 @@ namespace JoeMidi1
                 // Expose the Mapping Editor UI elements
                 pnlMappingEdit.Visible = true;
                 tlpMappingEditNameAndButtons.Visible = true;
-                tbMappingName.Select();
+                tvMappingEditorPrograms.Focus();
             }
             else
             {
                 MessageBox.Show("Presently one can only edit SimpleMappings with this UI");
             }
         }
-
 
         private void btnMappingAdd_Click(object sender, EventArgs e)
         {
@@ -2315,7 +2356,7 @@ namespace JoeMidi1
 
             // Initialize the UI elements
             tbMappingName.Text = "";
-            tbMappingName.Enabled = true;
+            tbMappingName.ReadOnly = false;
 
             enableUiDeviceLabelsForFirstTwoInputDevices();
             showSimpleMappingDefEditorControls(false);
