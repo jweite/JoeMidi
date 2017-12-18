@@ -105,6 +105,7 @@
             this.btnAlphaX = new System.Windows.Forms.Button();
             this.btnAlphaY = new System.Windows.Forms.Button();
             this.btnAlphaZ = new System.Windows.Forms.Button();
+            this.mbccShowSongPatches = new MultiButtonColControl2.MultiButtonColControl();
             this.vsbVol2 = new System.Windows.Forms.VScrollBar();
             this.tpSongs = new System.Windows.Forms.TabPage();
             this.pnlPatchEdit = new System.Windows.Forms.Panel();
@@ -138,6 +139,7 @@
             this.tbSongTitle = new System.Windows.Forms.TextBox();
             this.lblSongTitle = new System.Windows.Forms.Label();
             this.tlpSongSelOuter = new System.Windows.Forms.TableLayoutPanel();
+            this.mbccSongEditSelector = new MultiButtonColControl2.MultiButtonColControl();
             this.tlpSongSelButtons = new System.Windows.Forms.TableLayoutPanel();
             this.btnSongDel = new System.Windows.Forms.Button();
             this.btnAddSong = new System.Windows.Forms.Button();
@@ -157,11 +159,13 @@
             this.tbSetlistName = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.tlpSetlistSelOuter = new System.Windows.Forms.TableLayoutPanel();
+            this.mbccSetlistEditSelector = new MultiButtonColControl2.MultiButtonColControl();
             this.tlpSetlistSelButtons = new System.Windows.Forms.TableLayoutPanel();
             this.btnSetlistAdd = new System.Windows.Forms.Button();
             this.btnSetlistDel = new System.Windows.Forms.Button();
             this.tpMappings = new System.Windows.Forms.TabPage();
             this.tlpMappingEditOuter = new System.Windows.Forms.TableLayoutPanel();
+            this.mbrcMappingSelect = new MultiButtonColControl2.MultiButtonColControl();
             this.tlpMappingEditButtons = new System.Windows.Forms.TableLayoutPanel();
             this.btnMappingDelete = new System.Windows.Forms.Button();
             this.btnMappingAdd = new System.Windows.Forms.Button();
@@ -247,10 +251,11 @@
             this.lbOutputDevices = new System.Windows.Forms.ListBox();
             this.serviceController1 = new System.ServiceProcess.ServiceController();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.mbccShowSongPatches = new MultiButtonColControl2.MultiButtonColControl();
-            this.mbccSongEditSelector = new MultiButtonColControl2.MultiButtonColControl();
-            this.mbccSetlistEditSelector = new MultiButtonColControl2.MultiButtonColControl();
-            this.mbrcMappingSelect = new MultiButtonColControl2.MultiButtonColControl();
+            this.lbPhysicalInputDevices = new System.Windows.Forms.ListBox();
+            this.label22 = new System.Windows.Forms.Label();
+            this.lbPhysicalOutputDevices = new System.Windows.Forms.ListBox();
+            this.label23 = new System.Windows.Forms.Label();
+            this.btnSaveConfig = new System.Windows.Forms.Button();
             this.contextMenuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tpRandomAccess1.SuspendLayout();
@@ -1310,6 +1315,20 @@
             this.btnAlphaZ.UseVisualStyleBackColor = true;
             this.btnAlphaZ.Click += new System.EventHandler(this.btnAlpha_Click_1);
             // 
+            // mbccShowSongPatches
+            // 
+            this.mbccShowSongPatches.ButtonBackColor = System.Drawing.SystemColors.Control;
+            this.mbccShowSongPatches.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mbccShowSongPatches.Location = new System.Drawing.Point(923, 368);
+            this.mbccShowSongPatches.Margin = new System.Windows.Forms.Padding(0);
+            this.mbccShowSongPatches.Name = "mbccShowSongPatches";
+            this.mbccShowSongPatches.ShowAlphaButtons = false;
+            this.mbccShowSongPatches.ShowArrowButtons = true;
+            this.mbccShowSongPatches.ShowScrollbar = false;
+            this.mbccShowSongPatches.Size = new System.Drawing.Size(857, 369);
+            this.mbccShowSongPatches.TabIndex = 10;
+            this.mbccShowSongPatches.Click += new System.EventHandler(this.mbccShowSongPatches_Click);
+            // 
             // vsbVol2
             // 
             this.vsbVol2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -1793,6 +1812,22 @@
             this.tlpSongSelOuter.Size = new System.Drawing.Size(544, 737);
             this.tlpSongSelOuter.TabIndex = 0;
             // 
+            // mbccSongEditSelector
+            // 
+            this.mbccSongEditSelector.ButtonBackColor = System.Drawing.Color.DimGray;
+            this.mbccSongEditSelector.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mbccSongEditSelector.ForeColor = System.Drawing.Color.White;
+            this.mbccSongEditSelector.Location = new System.Drawing.Point(5, 67);
+            this.mbccSongEditSelector.Margin = new System.Windows.Forms.Padding(5);
+            this.mbccSongEditSelector.Name = "mbccSongEditSelector";
+            this.tlpSongSelOuter.SetRowSpan(this.mbccSongEditSelector, 2);
+            this.mbccSongEditSelector.ShowAlphaButtons = true;
+            this.mbccSongEditSelector.ShowArrowButtons = false;
+            this.mbccSongEditSelector.ShowScrollbar = true;
+            this.mbccSongEditSelector.Size = new System.Drawing.Size(534, 665);
+            this.mbccSongEditSelector.TabIndex = 0;
+            this.mbccSongEditSelector.Click += new System.EventHandler(this.mbccSongEditSelector_Click);
+            // 
             // tlpSongSelButtons
             // 
             this.tlpSongSelButtons.ColumnCount = 2;
@@ -2052,6 +2087,22 @@
             this.tlpSetlistSelOuter.Size = new System.Drawing.Size(548, 745);
             this.tlpSetlistSelOuter.TabIndex = 0;
             // 
+            // mbccSetlistEditSelector
+            // 
+            this.mbccSetlistEditSelector.ButtonBackColor = System.Drawing.Color.DimGray;
+            this.mbccSetlistEditSelector.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mbccSetlistEditSelector.ForeColor = System.Drawing.Color.White;
+            this.mbccSetlistEditSelector.Location = new System.Drawing.Point(5, 67);
+            this.mbccSetlistEditSelector.Margin = new System.Windows.Forms.Padding(5);
+            this.mbccSetlistEditSelector.Name = "mbccSetlistEditSelector";
+            this.tlpSetlistSelOuter.SetRowSpan(this.mbccSetlistEditSelector, 2);
+            this.mbccSetlistEditSelector.ShowAlphaButtons = false;
+            this.mbccSetlistEditSelector.ShowArrowButtons = true;
+            this.mbccSetlistEditSelector.ShowScrollbar = true;
+            this.mbccSetlistEditSelector.Size = new System.Drawing.Size(538, 673);
+            this.mbccSetlistEditSelector.TabIndex = 2;
+            this.mbccSetlistEditSelector.Click += new System.EventHandler(this.mbccSetlistEditSelector_Click);
+            // 
             // tlpSetlistSelButtons
             // 
             this.tlpSetlistSelButtons.ColumnCount = 2;
@@ -2130,6 +2181,21 @@
             this.tlpMappingEditOuter.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tlpMappingEditOuter.Size = new System.Drawing.Size(1788, 745);
             this.tlpMappingEditOuter.TabIndex = 0;
+            // 
+            // mbrcMappingSelect
+            // 
+            this.mbrcMappingSelect.ButtonBackColor = System.Drawing.Color.DimGray;
+            this.mbrcMappingSelect.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mbrcMappingSelect.ForeColor = System.Drawing.Color.White;
+            this.mbrcMappingSelect.Location = new System.Drawing.Point(16, 78);
+            this.mbrcMappingSelect.Margin = new System.Windows.Forms.Padding(16);
+            this.mbrcMappingSelect.Name = "mbrcMappingSelect";
+            this.mbrcMappingSelect.ShowAlphaButtons = false;
+            this.mbrcMappingSelect.ShowArrowButtons = true;
+            this.mbrcMappingSelect.ShowScrollbar = true;
+            this.mbrcMappingSelect.Size = new System.Drawing.Size(415, 582);
+            this.mbrcMappingSelect.TabIndex = 2;
+            this.mbrcMappingSelect.Click += new System.EventHandler(this.mbrcMappingSelect_Click);
             // 
             // tlpMappingEditButtons
             // 
@@ -3206,6 +3272,11 @@
             // 
             // tpMisc
             // 
+            this.tpMisc.Controls.Add(this.btnSaveConfig);
+            this.tpMisc.Controls.Add(this.label23);
+            this.tpMisc.Controls.Add(this.lbPhysicalOutputDevices);
+            this.tpMisc.Controls.Add(this.label22);
+            this.tpMisc.Controls.Add(this.lbPhysicalInputDevices);
             this.tpMisc.Controls.Add(this.cbPortaitMode);
             this.tpMisc.Controls.Add(this.btnQuit);
             this.tpMisc.Controls.Add(this.lbInputDevices);
@@ -3225,7 +3296,7 @@
             this.cbPortaitMode.AutoSize = true;
             this.cbPortaitMode.Checked = true;
             this.cbPortaitMode.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbPortaitMode.Location = new System.Drawing.Point(25, 519);
+            this.cbPortaitMode.Location = new System.Drawing.Point(25, 710);
             this.cbPortaitMode.Margin = new System.Windows.Forms.Padding(4);
             this.cbPortaitMode.Name = "cbPortaitMode";
             this.cbPortaitMode.Size = new System.Drawing.Size(200, 36);
@@ -3239,7 +3310,7 @@
             this.btnQuit.Location = new System.Drawing.Point(25, 17);
             this.btnQuit.Margin = new System.Windows.Forms.Padding(4);
             this.btnQuit.Name = "btnQuit";
-            this.btnQuit.Size = new System.Drawing.Size(223, 66);
+            this.btnQuit.Size = new System.Drawing.Size(417, 66);
             this.btnQuit.TabIndex = 15;
             this.btnQuit.Text = "Shutdown";
             this.btnQuit.UseVisualStyleBackColor = true;
@@ -3249,109 +3320,94 @@
             // 
             this.lbInputDevices.FormattingEnabled = true;
             this.lbInputDevices.ItemHeight = 32;
-            this.lbInputDevices.Location = new System.Drawing.Point(25, 144);
+            this.lbInputDevices.Location = new System.Drawing.Point(25, 134);
             this.lbInputDevices.Margin = new System.Windows.Forms.Padding(4);
             this.lbInputDevices.Name = "lbInputDevices";
-            this.lbInputDevices.Size = new System.Drawing.Size(816, 36);
+            this.lbInputDevices.Size = new System.Drawing.Size(816, 100);
             this.lbInputDevices.TabIndex = 14;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(20, 110);
+            this.label2.Location = new System.Drawing.Point(20, 100);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(189, 32);
+            this.label2.Size = new System.Drawing.Size(283, 32);
             this.label2.TabIndex = 13;
-            this.label2.Text = "Input Devices:";
+            this.label2.Text = "Logical Input Devices:";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(24, 267);
+            this.label3.Location = new System.Drawing.Point(24, 419);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(210, 32);
+            this.label3.Size = new System.Drawing.Size(304, 32);
             this.label3.TabIndex = 10;
-            this.label3.Text = "Output Devices:";
+            this.label3.Text = "Logical Output Devices:";
             // 
             // lbOutputDevices
             // 
             this.lbOutputDevices.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbOutputDevices.FormattingEnabled = true;
             this.lbOutputDevices.ItemHeight = 31;
-            this.lbOutputDevices.Location = new System.Drawing.Point(25, 305);
+            this.lbOutputDevices.Location = new System.Drawing.Point(25, 457);
             this.lbOutputDevices.Margin = new System.Windows.Forms.Padding(4);
             this.lbOutputDevices.Name = "lbOutputDevices";
-            this.lbOutputDevices.Size = new System.Drawing.Size(816, 190);
+            this.lbOutputDevices.Size = new System.Drawing.Size(816, 97);
             this.lbOutputDevices.TabIndex = 12;
             // 
             // openFileDialog1
             // 
             this.openFileDialog1.Filter = "Chart files|*.pdf;*.rtf|All files|*.*";
             // 
-            // mbccShowSongPatches
+            // lbPhysicalInputDevices
             // 
-            this.mbccShowSongPatches.ButtonBackColor = System.Drawing.SystemColors.Control;
-            this.mbccShowSongPatches.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mbccShowSongPatches.Location = new System.Drawing.Point(923, 368);
-            this.mbccShowSongPatches.Margin = new System.Windows.Forms.Padding(0);
-            this.mbccShowSongPatches.Name = "mbccShowSongPatches";
-            this.mbccShowSongPatches.ShowAlphaButtons = false;
-            this.mbccShowSongPatches.ShowArrowButtons = true;
-            this.mbccShowSongPatches.ShowScrollbar = false;
-            this.mbccShowSongPatches.Size = new System.Drawing.Size(857, 369);
-            this.mbccShowSongPatches.TabIndex = 10;
-            this.mbccShowSongPatches.Click += new System.EventHandler(this.mbccShowSongPatches_Click);
+            this.lbPhysicalInputDevices.FormattingEnabled = true;
+            this.lbPhysicalInputDevices.ItemHeight = 32;
+            this.lbPhysicalInputDevices.Location = new System.Drawing.Point(26, 276);
+            this.lbPhysicalInputDevices.Name = "lbPhysicalInputDevices";
+            this.lbPhysicalInputDevices.Size = new System.Drawing.Size(815, 100);
+            this.lbPhysicalInputDevices.TabIndex = 17;
             // 
-            // mbccSongEditSelector
+            // label22
             // 
-            this.mbccSongEditSelector.ButtonBackColor = System.Drawing.Color.DimGray;
-            this.mbccSongEditSelector.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mbccSongEditSelector.ForeColor = System.Drawing.Color.White;
-            this.mbccSongEditSelector.Location = new System.Drawing.Point(5, 67);
-            this.mbccSongEditSelector.Margin = new System.Windows.Forms.Padding(5);
-            this.mbccSongEditSelector.Name = "mbccSongEditSelector";
-            this.tlpSongSelOuter.SetRowSpan(this.mbccSongEditSelector, 2);
-            this.mbccSongEditSelector.ShowAlphaButtons = true;
-            this.mbccSongEditSelector.ShowArrowButtons = false;
-            this.mbccSongEditSelector.ShowScrollbar = true;
-            this.mbccSongEditSelector.Size = new System.Drawing.Size(534, 665);
-            this.mbccSongEditSelector.TabIndex = 0;
-            this.mbccSongEditSelector.Click += new System.EventHandler(this.mbccSongEditSelector_Click);
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(24, 241);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(290, 32);
+            this.label22.TabIndex = 18;
+            this.label22.Text = "Physical Input Devices";
             // 
-            // mbccSetlistEditSelector
+            // lbPhysicalOutputDevices
             // 
-            this.mbccSetlistEditSelector.ButtonBackColor = System.Drawing.Color.DimGray;
-            this.mbccSetlistEditSelector.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mbccSetlistEditSelector.ForeColor = System.Drawing.Color.White;
-            this.mbccSetlistEditSelector.Location = new System.Drawing.Point(5, 67);
-            this.mbccSetlistEditSelector.Margin = new System.Windows.Forms.Padding(5);
-            this.mbccSetlistEditSelector.Name = "mbccSetlistEditSelector";
-            this.tlpSetlistSelOuter.SetRowSpan(this.mbccSetlistEditSelector, 2);
-            this.mbccSetlistEditSelector.ShowAlphaButtons = false;
-            this.mbccSetlistEditSelector.ShowArrowButtons = true;
-            this.mbccSetlistEditSelector.ShowScrollbar = true;
-            this.mbccSetlistEditSelector.Size = new System.Drawing.Size(538, 673);
-            this.mbccSetlistEditSelector.TabIndex = 2;
-            this.mbccSetlistEditSelector.Click += new System.EventHandler(this.mbccSetlistEditSelector_Click);
+            this.lbPhysicalOutputDevices.FormattingEnabled = true;
+            this.lbPhysicalOutputDevices.ItemHeight = 32;
+            this.lbPhysicalOutputDevices.Location = new System.Drawing.Point(25, 596);
+            this.lbPhysicalOutputDevices.Name = "lbPhysicalOutputDevices";
+            this.lbPhysicalOutputDevices.Size = new System.Drawing.Size(816, 100);
+            this.lbPhysicalOutputDevices.TabIndex = 19;
             // 
-            // mbrcMappingSelect
+            // label23
             // 
-            this.mbrcMappingSelect.ButtonBackColor = System.Drawing.Color.DimGray;
-            this.mbrcMappingSelect.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mbrcMappingSelect.ForeColor = System.Drawing.Color.White;
-            this.mbrcMappingSelect.Location = new System.Drawing.Point(16, 78);
-            this.mbrcMappingSelect.Margin = new System.Windows.Forms.Padding(16);
-            this.mbrcMappingSelect.Name = "mbrcMappingSelect";
-            this.mbrcMappingSelect.ShowAlphaButtons = false;
-            this.mbrcMappingSelect.ShowArrowButtons = true;
-            this.mbrcMappingSelect.ShowScrollbar = true;
-            this.mbrcMappingSelect.Size = new System.Drawing.Size(415, 582);
-            this.mbrcMappingSelect.TabIndex = 2;
-            this.mbrcMappingSelect.Click += new System.EventHandler(this.mbrcMappingSelect_Click);
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(24, 561);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(311, 32);
+            this.label23.TabIndex = 20;
+            this.label23.Text = "Physical Output Devices";
+            // 
+            // btnSaveConfig
+            // 
+            this.btnSaveConfig.Location = new System.Drawing.Point(458, 17);
+            this.btnSaveConfig.Name = "btnSaveConfig";
+            this.btnSaveConfig.Size = new System.Drawing.Size(383, 66);
+            this.btnSaveConfig.TabIndex = 21;
+            this.btnSaveConfig.Text = "Save Config";
+            this.btnSaveConfig.UseVisualStyleBackColor = true;
+            this.btnSaveConfig.Click += new System.EventHandler(this.btnSaveConfig_Click);
             // 
             // Form1
             // 
@@ -3641,6 +3697,11 @@
         private System.Windows.Forms.Button btnMappingEditPatchTreeViewBySG;
         private System.Windows.Forms.Button btnMappingEditPatchTreeViewByCategory;
         private System.Windows.Forms.TreeView tvMappingEditorPrograms;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.ListBox lbPhysicalInputDevices;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.ListBox lbPhysicalOutputDevices;
+        private System.Windows.Forms.Button btnSaveConfig;
     }
 }
 

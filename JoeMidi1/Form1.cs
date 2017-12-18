@@ -71,7 +71,7 @@ namespace JoeMidi1
             btnPatchTreeViewBySG_Click(null, null);
             btnMappingEditPatchTreeViewBySG_Click(null, null);
 
-            // Initialize the Input Device dropdown on the RandomAccess pages.
+            // Initialize the Input Device dropdown on the RandomAccess (and Misc) pages.
             foreach (String sourceDeviceLogicalName in mapper.configuration.logicalInputDeviceDict.Keys)
             {
                 LogicalInputDevice logicalInputDevice = mapper.configuration.logicalInputDeviceDict[sourceDeviceLogicalName];
@@ -147,6 +147,18 @@ namespace JoeMidi1
                 {
                     lbOutputDevices.Items.Add(logicalOutputDevice.logicalDeviceName + " -> " + logicalOutputDevice.device.Name);
                 }
+            }
+
+            lbPhysicalInputDevices.Items.Clear();
+            foreach (InputDevice device in InputDevice.InstalledDevices)
+            {
+                lbPhysicalInputDevices.Items.Add(device.Name);
+            }
+
+            lbPhysicalOutputDevices.Items.Clear();
+            foreach (OutputDevice device in OutputDevice.InstalledDevices)
+            {
+                lbPhysicalOutputDevices.Items.Add(device.Name);
             }
 
             cbPortaitMode.Checked = mapper.configuration.portraitMode;
@@ -2894,6 +2906,11 @@ namespace JoeMidi1
                     tbSongChart.Text = openFileDialog1.FileName;
                 }
             }
+        }
+
+        private void btnSaveConfig_Click(object sender, EventArgs e)
+        {
+            mapper.saveConfiguration();
         }
     }
 }

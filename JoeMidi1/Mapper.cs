@@ -513,6 +513,11 @@ namespace JoeMidi1
 
         public void stopMapper()
         {
+            if (configuration.dirty == true)
+            {
+                saveConfiguration();
+            }
+
             if (configuration != null && configuration.logicalInputDeviceDict != null)
             {
                 foreach (LogicalInputDevice inputDevice in configuration.logicalInputDeviceDict.Values) 
@@ -527,14 +532,9 @@ namespace JoeMidi1
                     }
                 }
             }
-
-            if (configuration.dirty == true)
-            {
-                saveConfiguration();
-            }
         }
 
-        private void saveConfiguration()
+        public void saveConfiguration()
         {
             JsonSerializerSettings serializerSettings = new JsonSerializerSettings();
             serializerSettings.TypeNameHandling = TypeNameHandling.Objects;
@@ -561,6 +561,8 @@ namespace JoeMidi1
             }
 
             File.WriteAllText(filePath, json);
+
+            configuration.dirty = false;
         }
 
         void openSourceDevices()
