@@ -6,6 +6,7 @@ using System.IO;
 using Midi;
 using Newtonsoft.Json;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace JoeMidi1
 {
@@ -229,6 +230,8 @@ namespace JoeMidi1
                 // Send out initial values for all mapped controls that have them
                 foreach (ControlMapping controlMapping in perDeviceChannelMapping.controlMappings)
                 {
+                    Thread.Sleep(5);       // Some weird race condition exists.  Without a pause vol is always 100%
+                    
                     if (controlMapping.mappedControlNumber >= 0 && controlMapping.mappedControlNumber < 127 && controlMapping.initialValue >= 0 && controlMapping.initialValue < 128)
                     {
                         controlMapping.soundGenerator.device.SendControlChange((Channel)controlMapping.soundGeneratorPhysicalChannel, (Midi.Control)controlMapping.mappedControlNumber, controlMapping.initialValue);

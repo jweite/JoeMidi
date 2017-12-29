@@ -26,6 +26,8 @@ namespace JoeMidi1
             artist = orig.artist;
             chartFile = orig.chartFile;
             chartPage = orig.chartPage;
+            songTranspose = orig.songTranspose;
+
             foreach (SongProgram program in orig.programs)
             {
                 programs.Add(new SongProgram(program));

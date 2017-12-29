@@ -243,6 +243,11 @@
             this.tbSoundGeneratorPatchName = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.tpMisc = new System.Windows.Forms.TabPage();
+            this.btnSaveConfig = new System.Windows.Forms.Button();
+            this.label23 = new System.Windows.Forms.Label();
+            this.lbPhysicalOutputDevices = new System.Windows.Forms.ListBox();
+            this.label22 = new System.Windows.Forms.Label();
+            this.lbPhysicalInputDevices = new System.Windows.Forms.ListBox();
             this.cbPortaitMode = new System.Windows.Forms.CheckBox();
             this.btnQuit = new System.Windows.Forms.Button();
             this.lbInputDevices = new System.Windows.Forms.ListBox();
@@ -251,11 +256,6 @@
             this.lbOutputDevices = new System.Windows.Forms.ListBox();
             this.serviceController1 = new System.ServiceProcess.ServiceController();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.lbPhysicalInputDevices = new System.Windows.Forms.ListBox();
-            this.label22 = new System.Windows.Forms.Label();
-            this.lbPhysicalOutputDevices = new System.Windows.Forms.ListBox();
-            this.label23 = new System.Windows.Forms.Label();
-            this.btnSaveConfig = new System.Windows.Forms.Button();
             this.contextMenuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tpRandomAccess1.SuspendLayout();
@@ -3291,6 +3291,52 @@
             this.tpMisc.Text = "Misc";
             this.tpMisc.UseVisualStyleBackColor = true;
             // 
+            // btnSaveConfig
+            // 
+            this.btnSaveConfig.Location = new System.Drawing.Point(458, 17);
+            this.btnSaveConfig.Name = "btnSaveConfig";
+            this.btnSaveConfig.Size = new System.Drawing.Size(383, 66);
+            this.btnSaveConfig.TabIndex = 21;
+            this.btnSaveConfig.Text = "Save Config";
+            this.btnSaveConfig.UseVisualStyleBackColor = true;
+            this.btnSaveConfig.Click += new System.EventHandler(this.btnSaveConfig_Click);
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(24, 561);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(311, 32);
+            this.label23.TabIndex = 20;
+            this.label23.Text = "Physical Output Devices";
+            // 
+            // lbPhysicalOutputDevices
+            // 
+            this.lbPhysicalOutputDevices.FormattingEnabled = true;
+            this.lbPhysicalOutputDevices.ItemHeight = 32;
+            this.lbPhysicalOutputDevices.Location = new System.Drawing.Point(25, 596);
+            this.lbPhysicalOutputDevices.Name = "lbPhysicalOutputDevices";
+            this.lbPhysicalOutputDevices.Size = new System.Drawing.Size(816, 100);
+            this.lbPhysicalOutputDevices.TabIndex = 19;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(24, 241);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(290, 32);
+            this.label22.TabIndex = 18;
+            this.label22.Text = "Physical Input Devices";
+            // 
+            // lbPhysicalInputDevices
+            // 
+            this.lbPhysicalInputDevices.FormattingEnabled = true;
+            this.lbPhysicalInputDevices.ItemHeight = 32;
+            this.lbPhysicalInputDevices.Location = new System.Drawing.Point(26, 276);
+            this.lbPhysicalInputDevices.Name = "lbPhysicalInputDevices";
+            this.lbPhysicalInputDevices.Size = new System.Drawing.Size(815, 100);
+            this.lbPhysicalInputDevices.TabIndex = 17;
+            // 
             // cbPortaitMode
             // 
             this.cbPortaitMode.AutoSize = true;
@@ -3362,52 +3408,6 @@
             // openFileDialog1
             // 
             this.openFileDialog1.Filter = "Chart files|*.pdf;*.rtf|All files|*.*";
-            // 
-            // lbPhysicalInputDevices
-            // 
-            this.lbPhysicalInputDevices.FormattingEnabled = true;
-            this.lbPhysicalInputDevices.ItemHeight = 32;
-            this.lbPhysicalInputDevices.Location = new System.Drawing.Point(26, 276);
-            this.lbPhysicalInputDevices.Name = "lbPhysicalInputDevices";
-            this.lbPhysicalInputDevices.Size = new System.Drawing.Size(815, 100);
-            this.lbPhysicalInputDevices.TabIndex = 17;
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(24, 241);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(290, 32);
-            this.label22.TabIndex = 18;
-            this.label22.Text = "Physical Input Devices";
-            // 
-            // lbPhysicalOutputDevices
-            // 
-            this.lbPhysicalOutputDevices.FormattingEnabled = true;
-            this.lbPhysicalOutputDevices.ItemHeight = 32;
-            this.lbPhysicalOutputDevices.Location = new System.Drawing.Point(25, 596);
-            this.lbPhysicalOutputDevices.Name = "lbPhysicalOutputDevices";
-            this.lbPhysicalOutputDevices.Size = new System.Drawing.Size(816, 100);
-            this.lbPhysicalOutputDevices.TabIndex = 19;
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(24, 561);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(311, 32);
-            this.label23.TabIndex = 20;
-            this.label23.Text = "Physical Output Devices";
-            // 
-            // btnSaveConfig
-            // 
-            this.btnSaveConfig.Location = new System.Drawing.Point(458, 17);
-            this.btnSaveConfig.Name = "btnSaveConfig";
-            this.btnSaveConfig.Size = new System.Drawing.Size(383, 66);
-            this.btnSaveConfig.TabIndex = 21;
-            this.btnSaveConfig.Text = "Save Config";
-            this.btnSaveConfig.UseVisualStyleBackColor = true;
-            this.btnSaveConfig.Click += new System.EventHandler(this.btnSaveConfig_Click);
             // 
             // Form1
             // 
