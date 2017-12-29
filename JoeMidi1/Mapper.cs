@@ -15,7 +15,7 @@ namespace JoeMidi1
         public Configuration configuration = new Configuration();
         public Dictionary<String, Mapping.PerDeviceChannelMapping> m_perDeviceChannelMappings = new Dictionary<String, Mapping.PerDeviceChannelMapping>();
 
-        Dictionary<String, MappedNote> m_mappedNotesDict = new Dictionary<string, MappedNote>();
+        List<MappedNote> m_mappedNotesList = new List<MappedNote>();
 
         const int NUM_PROGRAM_BUTTONS = 8;
         int[] m_programButtonLastProgramNo = new int[NUM_PROGRAM_BUTTONS];
@@ -69,19 +69,18 @@ namespace JoeMidi1
                     }
 
                     // See if this note is already sounding.  Look it up based on it's unmapped device, channel and note#.
-                    String mappingKey = getMappingKey(mappedNoteRecord.sourceDeviceName, mappedNoteRecord.sourceChannel, mappedNoteRecord.origNote);
-                    if (m_mappedNotesDict.ContainsKey(mappingKey))
+                    MappedNote matchingMappedNoteAlreadySounding = FindMappedNote(mappedNoteRecord);
+                    if (matchingMappedNoteAlreadySounding != null)
                     {
-                        // It is: shut off the note it was (previously) mapped to and remove the mapping record from the dict of sounding notes.
-                        mappedNoteRecord.mappedDevice.SendNoteOff(mappedNoteRecord.mappedChannel, mappedNoteRecord.mappedNote, 127);
-                        m_mappedNotesDict.Remove(mappingKey);
+                        matchingMappedNoteAlreadySounding.mappedDevice.SendNoteOff(matchingMappedNoteAlreadySounding.mappedChannel, matchingMappedNoteAlreadySounding.mappedNote, 127);
+                        m_mappedNotesList.Remove(matchingMappedNoteAlreadySounding);
                     }
 
                     // Now, play the new mapping of the source note.
                     mappedNoteRecord.mappedDevice.SendNoteOn(mappedNoteRecord.mappedChannel, mappedNoteRecord.mappedNote, msg.Velocity);
 
                     // And add it to the dictionary of sounding notes.
-                    m_mappedNotesDict.Add(mappingKey, mappedNoteRecord);
+                    m_mappedNotesList.Add(mappedNoteRecord);
 
                 }
             }
@@ -94,15 +93,17 @@ namespace JoeMidi1
             String sourceDeviceName = msg.Device.Name;
             Channel sourceChannel = msg.Channel;
             Pitch origNote = msg.Pitch;
-            String mappingKey = getMappingKey(sourceDeviceName, sourceChannel, origNote);
-                    
+
             // Look up this note in the mapped notes dict to find what it was mapped to
-            if (m_mappedNotesDict.ContainsKey(mappingKey))
+            List<MappedNote> mappedNotesAlreadySounding = FindMappedNote(sourceDeviceName, sourceChannel, origNote);
+            if (mappedNotesAlreadySounding.Count > 0)
             {
-                // Send a note off for what it was mapped to, and remove this entry from the mapped notes dict.
-                MappedNote mappedNoteRecord = m_mappedNotesDict[mappingKey];
-                mappedNoteRecord.mappedDevice.SendNoteOff(mappedNoteRecord.mappedChannel, mappedNoteRecord.mappedNote, msg.Velocity);
-                m_mappedNotesDict.Remove(mappingKey);
+                foreach(MappedNote noteToSilence in mappedNotesAlreadySounding)
+                {
+                    // Send a note off for what it was mapped to, and remove this entry from the mapped notes dict.
+                    noteToSilence.mappedDevice.SendNoteOff(noteToSilence.mappedChannel, noteToSilence.mappedNote, msg.Velocity);
+                    m_mappedNotesList.Remove(noteToSilence);
+                }
             }
             else
             {
@@ -598,17 +599,53 @@ namespace JoeMidi1
             }
         }
 
-        private String getMappingKey(String deviceName, Channel channel, Pitch pitch) 
-        {
-            return "_" + (int)channel + "_" + (int)pitch + "_" + deviceName;
-        }
-
         public void changeMasterVol(int vol)
         {
             LogicalInputDevice logicalInputDevice = configuration.logicalInputDeviceDict[configuration.volSliderInputDeviceName];
             if (logicalInputDevice != null)
             {
                 ControlChange(logicalInputDevice.device, configuration.volSliderMidiChannel, configuration.volSliderControlNum, vol); // Ctl 75 is assigned in the 
+            }
+        }
+
+        List<MappedNote> FindMappedNote(String sourceDeviceName, Channel sourceChannel, Pitch origNote )
+        {
+            List<MappedNote> foundMappedNotes = new List<MappedNote>();
+
+            foreach (MappedNote mappedNote in m_mappedNotesList)
+            {
+                if (mappedNote.sourceDeviceName == sourceDeviceName && mappedNote.sourceChannel == sourceChannel && mappedNote.origNote == origNote)
+                {
+                    foundMappedNotes.Add(mappedNote);
+                }
+            }
+
+            return foundMappedNotes;
+        }
+
+        MappedNote FindMappedNote(MappedNote noteToRemove)
+        {
+            foreach (MappedNote note in m_mappedNotesList)
+            {
+                if (note.sourceDeviceName == noteToRemove.sourceDeviceName && note.sourceChannel == noteToRemove.sourceChannel && note.origNote == noteToRemove.origNote &&
+                        note.mappedDevice.Name == noteToRemove.mappedDevice.Name && note.mappedChannel == noteToRemove.mappedChannel && note.mappedNote == noteToRemove.mappedNote)
+                {
+                    return note;
+                }
+            }
+            return null;
+        }
+
+        void RemoveMappedNote(MappedNote noteToRemove)
+        {
+            foreach(MappedNote note in m_mappedNotesList)
+            {
+                if (note.sourceDeviceName == noteToRemove.sourceDeviceName && note.sourceChannel == noteToRemove.sourceChannel && note.origNote == noteToRemove.origNote &&
+                        note.mappedDevice.Name == noteToRemove.mappedDevice.Name && note.mappedChannel == noteToRemove.mappedChannel && note.mappedNote == noteToRemove.mappedNote)
+                {
+                    m_mappedNotesList.Remove(note);
+                    break;
+                }
             }
         }
     }

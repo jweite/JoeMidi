@@ -2739,34 +2739,30 @@ namespace JoeMidi1
 
         private void btnMappingDelete_Click(object sender, EventArgs e)
         {
-            // Make sure it's a SimpleMapping
-            if (((Button)sender).Tag is SimpleMapping)
-            {
-                // Remove the mapping
-                SimpleMapping mapping = (SimpleMapping)(((Button)sender).Tag);
-                mapper.configuration.mappings.Remove(mapping.name);
+            SimpleMapping mapping = mappingBeingEdited;
+            if (mapping == null) return;
 
-                //Remove any SongPrograms that pointed to this mapping from their Songs.
-                foreach (Song song in mapper.configuration.songDict.Values)
+            mapper.configuration.mappings.Remove(mapping.name);
+
+            //Remove any SongPrograms that pointed to this mapping from their Songs.
+            foreach (Song song in mapper.configuration.songDict.Values)
+            {
+                List<SongProgram> songProgramListClone = song.programs.ToList<SongProgram>();
+                foreach (SongProgram songProgram in songProgramListClone) 
                 {
-                    List<SongProgram> songProgramListClone = song.programs.ToList<SongProgram>();
-                    foreach (SongProgram songProgram in songProgramListClone) 
+                    if (songProgram.mapping == mapping)
                     {
-                        if (songProgram.mapping == mapping)
-                        {
-                            song.programs.Remove(songProgram);
-                        }
+                        song.programs.Remove(songProgram);
                     }
                 }
-
-                refreshMappingToEditSelector();
-                btnPatchTreeViewBySG_Click(null, null);
-
-                
-                // Hide any editor UI elements that may be visible.
-                pnlMappingEdit.Visible = false;
-                tlpMappingEditNameAndButtons.Visible = false;
             }
+
+            refreshMappingToEditSelector();
+            btnPatchTreeViewBySG_Click(null, null);
+                
+            // Hide any editor UI elements that may be visible.
+            pnlMappingEdit.Visible = false;
+            tlpMappingEditNameAndButtons.Visible = false;
         }
 
         //**************************************************************************
