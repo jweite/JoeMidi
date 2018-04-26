@@ -2879,9 +2879,18 @@ namespace JoeMidi1
             string defaultChartFolder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments).ToLower() + "\\charts";
             openFileDialog1.InitialDirectory = defaultChartFolder;
 
-            FileInfo fi = new FileInfo(tbSongChart.Text);
-            string directory = fi.Directory.Name;
-            string baseFileName = fi.Name;
+            string directory, baseFileName;
+            try
+            {
+                FileInfo fi = new FileInfo(tbSongChart.Text);
+                directory = fi.Directory.Name;
+                baseFileName = fi.Name;
+            }
+            catch (ArgumentException)
+            {
+                directory = defaultChartFolder;
+                baseFileName = "";
+            }
 
             if (directory.Substring(1,1) == ":" || directory.Substring(0, 1) == "\\")
             {
