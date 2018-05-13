@@ -23,6 +23,8 @@ namespace JoeMidi1
 
         public Dictionary<String, String> randomAccessTabInputDeviceNames = new Dictionary<string, string>();
 
+        public IDictionary<String, int[]> primaryControllerButtonProgramNumbers = new Dictionary<String, int[]>(); 
+
         [JsonIgnore]
         public LogicalInputDevice primaryInputDevice;
 
@@ -49,6 +51,9 @@ namespace JoeMidi1
         public int volSliderControlNum = 75;
 
         public bool portraitMode = false;
+
+        [JsonIgnore]
+        public int[] currentPrimaryControllerButtonProgramNumbers = new int[8];
 
         [JsonIgnore]
         public List<KeyValuePair<String, List<SoundGeneratorPatch>>> soundGeneratorPatchesByCategory
@@ -390,6 +395,20 @@ namespace JoeMidi1
             foreach (Setlist setlist in setlists)
             {
                 setlist.bind(songDict, logicalInputDeviceDict, soundGenerators, mappings, primaryInputDevice);
+            }
+
+
+            if (primaryControllerButtonProgramNumbers.Count == 0)
+            {
+                int[] casioPx3Buttons = new int[8] {0x0, 0x4, 0x5, 0x7, 0x12, 0x30, 0x19, 0x3D};
+                primaryControllerButtonProgramNumbers.Add("CASIO USB-MIDI", casioPx3Buttons);
+            }
+
+            if (primaryControllerButtonProgramNumbers.ContainsKey(primaryInputDevice.device.Name)) {
+                currentPrimaryControllerButtonProgramNumbers = primaryControllerButtonProgramNumbers[primaryInputDevice.device.Name];
+            }
+            else {
+                currentPrimaryControllerButtonProgramNumbers = new int[8] { -1, -1, -1, -1, -1, -1, -1, -1 };
             }
 
             return true;

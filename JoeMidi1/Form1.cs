@@ -176,42 +176,42 @@ namespace JoeMidi1
             if (currentlySelectedTabName.Equals("Show"))
             {
                 // Map the Casio PX3 Basic Program Change buttons to show functions.
-                if (programNum == 0x3D)     // Button 8
+                if (programNum == mapper.configuration.currentPrimaryControllerButtonProgramNumbers[7])     // Button 8
                 {
                     // Select Next Song Program
                     mbccShowSongPatches.selectNextLogicalButton(true);
                 }
-                else if (programNum == 0x19)
+                else if (programNum == mapper.configuration.currentPrimaryControllerButtonProgramNumbers[6])
                 {
                     // Select Prev Song Program
                     mbccShowSongPatches.selectPrevLogicalButton(true);
                 }
-                else if (programNum == 0x30)
+                else if (programNum == mapper.configuration.currentPrimaryControllerButtonProgramNumbers[5])
                 {
                     // Select Next Song
                     olvSongs.BeginInvoke(new MethodInvoker(selectNextSong));
                 }
-                else if (programNum == 0x12)
+                else if (programNum == mapper.configuration.currentPrimaryControllerButtonProgramNumbers[4])
                 {
                     // Select Previous Song
                     olvSongs.BeginInvoke(new MethodInvoker(selectPrevSong));
                 }
-                else if (programNum == 0x7) 
+                else if (programNum == mapper.configuration.currentPrimaryControllerButtonProgramNumbers[3]) 
                 {
                     // Pick song patch 1 - 4
                     mbccShowSongPatches.selectLogicalButton(3, true, false);
                 }
-                else if (programNum == 0x5)
+                else if (programNum == mapper.configuration.currentPrimaryControllerButtonProgramNumbers[2])
                 {
                     // Pick song patch 1 - 4
                     mbccShowSongPatches.selectLogicalButton(2, true, false);
                 }
-                else if (programNum == 0x4)
+                else if (programNum == mapper.configuration.currentPrimaryControllerButtonProgramNumbers[1])
                 {
                     // Pick song patch 1 - 4
                     mbccShowSongPatches.selectLogicalButton(1, true, false);
                 }
-                else if (programNum == 0x0)
+                else if (programNum == mapper.configuration.currentPrimaryControllerButtonProgramNumbers[0])
                 {
                     // Pick song patch 1 - 4
                     mbccShowSongPatches.selectLogicalButton(0, true, false);
@@ -221,35 +221,35 @@ namespace JoeMidi1
             else if (currentlySelectedTabName.StartsWith("Random Access"))
             {
                 // Map the Casio buttons to programs 0-7
-                if (programNum == 0x3D)     // Button 8
+                if (programNum == mapper.configuration.currentPrimaryControllerButtonProgramNumbers[7])     // Button 8
                 {
                     programNum = 7;
                 }
-                else if (programNum == 0x19)
+                else if (programNum == mapper.configuration.currentPrimaryControllerButtonProgramNumbers[6])
                 {
                     programNum = 6;
                 }
-                else if (programNum == 0x30)
+                else if (programNum == mapper.configuration.currentPrimaryControllerButtonProgramNumbers[5])
                 {
                     programNum = 5;
                 }
-                else if (programNum == 0x12)
+                else if (programNum == mapper.configuration.currentPrimaryControllerButtonProgramNumbers[4])
                 {
                     programNum = 4;
                 }
-                else if (programNum == 0x7)
+                else if (programNum == mapper.configuration.currentPrimaryControllerButtonProgramNumbers[3])
                 {
                     programNum = 3;
                 }
-                else if (programNum == 0x5)
+                else if (programNum == mapper.configuration.currentPrimaryControllerButtonProgramNumbers[2])
                 {
                     programNum = 2;
                 }
-                else if (programNum == 0x4)
+                else if (programNum == mapper.configuration.currentPrimaryControllerButtonProgramNumbers[1])
                 {
                     programNum = 1;
                 }
-                else if (programNum == 0x0)
+                else if (programNum == mapper.configuration.currentPrimaryControllerButtonProgramNumbers[0])
                 {
                     programNum = 0;
                 }
