@@ -136,6 +136,17 @@ namespace JoeMidi1
                         ctlMapping.initialValue = 0;
                         perDeviceChannelMapping.controlMappings.Add(ctlMapping);
                     }
+
+                    {
+                        // Kurzweil Artis Variation Button
+                        ControlMapping ctlMapping = new ControlMapping();
+                        ctlMapping.soundGeneratorName = soundGeneratorName;
+                        ctlMapping.soundGeneratorRelativeChannel = soundGeneratorRelativeChannel;
+                        ctlMapping.sourceControlNumber = 0x1D;
+                        ctlMapping.mappedControlNumber = 0x1D;
+                        ctlMapping.initialValue = 0;
+                        perDeviceChannelMapping.controlMappings.Add(ctlMapping);
+                    }
                 }
 
                 perDeviceChannelMappings.Add(perDeviceChannelMapping.key, perDeviceChannelMapping);

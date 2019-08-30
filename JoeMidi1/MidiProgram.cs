@@ -186,6 +186,17 @@ namespace JoeMidi1
                 controlMapping.initialValue = -1;
                 perDeviceChannelMapping.controlMappings.Add(controlMapping);
 
+                // Kurzweil Artis Variation Button...
+                controlMapping = new ControlMapping();
+                controlMapping.soundGeneratorName = this.SingleSoundGeneratorName;
+                controlMapping.soundGeneratorRelativeChannel = 0;
+                controlMapping.sourceControlNumber = 0x1D;
+                controlMapping.mappedControlNumber = 0x1D;
+                controlMapping.min = 0;
+                controlMapping.max = 127;
+                controlMapping.initialValue = -1;
+                perDeviceChannelMapping.controlMappings.Add(controlMapping);
+
                 mapping.perDeviceChannelMappings.Add(perDeviceChannelMapping.key, perDeviceChannelMapping);
 
                 return mapping.bind(logicalInputDeviceDict, soundGenerators);
