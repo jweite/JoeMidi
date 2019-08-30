@@ -1745,12 +1745,21 @@ namespace JoeMidi1
             beginSetlistEdit(setlist);
         }
 
-        private void refreshLbSetlistSongs()
+        private void refreshLbSetlistSongs(String selectedItem = "")
         {
+            int selectedIndex = -1;
             lbSetlistSongs.Items.Clear();
             foreach (String songTitle in setlistBeingEdited.songTitles)
             {
                 lbSetlistSongs.Items.Add(songTitle);
+                if (songTitle == selectedItem && selectedIndex < 0)
+                {
+                    selectedIndex = lbSetlistSongs.Items.Count - 1;
+                }
+            }
+            if (selectedIndex >= 0)
+            {
+                lbSetlistSongs.SelectedIndex = selectedIndex;
             }
         }
 
@@ -1947,7 +1956,7 @@ namespace JoeMidi1
 
             setlistBeingEdited.songTitles.Add(selectedSong.name);
             
-            refreshLbSetlistSongs();
+            refreshLbSetlistSongs(selectedSong.name);
 
             pnlSetlistSongSelector.Visible = true;
 
