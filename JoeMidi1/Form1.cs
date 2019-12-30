@@ -1037,8 +1037,16 @@ namespace JoeMidi1
             form.ShowDialog();
             if (form.IsOK == true)
             {
-                currentSetlist = mapper.configuration.setlists[form.ChoiceIndex];
-                refreshShowControls();
+                String setlistName = form.Choice;
+                for (int ii = 0; ii < mapper.configuration.setlists.Count; ++ii)
+                {
+                    if (mapper.configuration.setlists[ii].name == setlistName)
+                    {
+                        currentSetlist = mapper.configuration.setlists[ii];
+                        refreshShowControls();
+                        break;
+                    }
+                }
             }
         }
 
