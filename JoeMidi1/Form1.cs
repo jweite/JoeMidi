@@ -2800,6 +2800,9 @@ namespace JoeMidi1
 
         private void cbPortaitMode_CheckedChanged(object sender, EventArgs e)
         {
+            if (mapper == null || mapper.configuration == null)
+                return;
+
             mapper.configuration.portraitMode = cbPortaitMode.Checked;
 
             if (mapper.configuration.portraitMode)
@@ -2933,6 +2936,11 @@ namespace JoeMidi1
         private void btnSaveConfig_Click(object sender, EventArgs e)
         {
             mapper.saveConfiguration();
+        }
+
+        private void Form1_SizeChanged(object sender, EventArgs e)
+        {
+            this.cbPortaitMode.Checked = (this.Height > this.Width);
         }
     }
 }
