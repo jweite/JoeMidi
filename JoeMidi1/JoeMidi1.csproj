@@ -57,10 +57,12 @@
     <Reference Include="Midi, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\midi-dot-net.1.1.0\lib\net35\Midi.dll</HintPath>
     </Reference>
-    <Reference Include="MultiButtonColControl2">
+    <Reference Include="MultiButtonColControl2, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\MultiButtonRowControl\MultiButtonColControl2\bin\Debug\MultiButtonColControl2.dll</HintPath>
     </Reference>
-    <Reference Include="MultiButtonRowControl2">
+    <Reference Include="MultiButtonRowControl2, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\MultiButtonRowControl\WindowsFormsControlLibrary1\bin\Debug\MultiButtonRowControl2.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
