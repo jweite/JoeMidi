@@ -10,6 +10,8 @@ namespace JoeMidi1
 {
     public class SoundGeneratorChannel
     {
+        // A base class for the XXXXXXMapping classes, which all have a SoundGenerator and a relative channel that they use.
+
         public String soundGeneratorName;
         public int soundGeneratorRelativeChannel;
 

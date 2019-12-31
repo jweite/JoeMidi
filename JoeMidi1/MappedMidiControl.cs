@@ -8,6 +8,8 @@ namespace JoeMidi1
 {
     class MappedMidiControl
     {
+        // Used by Mapper to capture current CC settings made by a mapping so they can be undone even after the mapping is deactivated/replaced.
+        //  Only used for Sustain Pedal at this point.
         public String sourceDeviceName;
         public Channel sourceChannel;
         public Control sourceControl;

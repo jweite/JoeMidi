@@ -10,6 +10,9 @@ namespace JoeMidi1
 {
     public class ControlMapping : SoundGeneratorChannel
     {
+        // Class for filtering and remapping a CC.  Remaps a particular CC# to a different one.  Scales CC values between declared min and max.  
+        //  Captures an initial value for the CC, to be sent out when the mapping containing it is activated.
+
         public int sourceControlNumber;
         public int mappedControlNumber;
         public int min = 0;

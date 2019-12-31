@@ -12,20 +12,30 @@ namespace JoeMidi1
 {
     class Mapper
     {
+        // Class that actually does all the mide re-mapping defined by Mapping (and destroys any sense of abstraction implied by the other 
+        //  Mapping and SoundGenerator classes).
+        //  Really needs refactoring, now that I know what this does.
+
         public Configuration configuration = new Configuration();
+
+        // Contains the current set of mappings to be done for each midi stream (aka Device-Channel), keyed by DeviceName_Channel.
         public Dictionary<String, Mapping.PerDeviceChannelMapping> m_perDeviceChannelMappings = new Dictionary<String, Mapping.PerDeviceChannelMapping>();
 
+        // Stores the current set of notes sounding, both their original and mapped values.
         List<MappedNote> m_mappedNotesList = new List<MappedNote>();
 
+        // Associates a set of midi program changes, sent by the controller's single-press program change buttons, with 8 "logical" button IDs (implied by array index).
         const int NUM_PROGRAM_BUTTONS = 8;
         int[] m_programButtonLastProgramNo = new int[NUM_PROGRAM_BUTTONS];
         int m_lastRequestedProgramNo = -1;
 
         public int masterTranspose = 0;
 
+        // Notify the interested (UI) of midi program changes requested of the mapper
         public delegate void MidiProgramChange(int programNumber);
         public MidiProgramChange midiProgramChangeNotification = null;
 
+        // Notify the interested (UI) of midi programs activated by the mapper
         public delegate void MidiProgramActivated(MidiProgram midiProgram);
         public MidiProgramActivated midiProgramActivatedNotification = null;
 
@@ -122,6 +132,9 @@ namespace JoeMidi1
 
         public void RotatingProgramChange(int requestedProgramNo)
         {
+            // This simulates my PX3 controllers ability to cycle through a set of related programs with subsequent pushes of a single-push program 
+            //  select button, which I always though was convenient.  It will cycle through a column of program in the current Random Access grid.
+
             int programNoToSwitchTo = -1;
 
             // Figure out what programNoToSwitchTo:
@@ -191,9 +204,11 @@ namespace JoeMidi1
 
         public void SetMapping(Mapping mappingToActivate) 
         {
+            // Sets what Mapping this Mapper will use to do remapping.
+
             // Step through the per-device/channel mappings contained in this mapping and add/replace them into the mapper's dict.
             //  This effectively merges the new mapping into any existing mappings on a per-device/channel basis. 
-            //   ie, if the new mapping only has one perDeviceMapping in it for a specific device/channel then any pre-existing mappings
+            //   ie, if the new mapping only has a mapping for one device-channel in it then the other current mappings
             //   in the mapper for other device/channels remain in effect.
             foreach (Mapping.PerDeviceChannelMapping perDeviceChannelMapping in mappingToActivate.perDeviceChannelMappings.Values)
             {
@@ -369,7 +384,7 @@ namespace JoeMidi1
             }
         }
 
-        // While named generically at this point in time we only record control messages about activation of the Sustain pedal.f
+        // While named generically at this point in time we only record control messages about activation of the Sustain pedal.
         IList<MappedMidiControl> mappedMidiControls = new List<MappedMidiControl>();
 
         private void recordSustainPedalDown(DeviceBase damperMsgSourceDevice, OutputDevice physicalDeviceWithDamperDown, Channel physicalChannelWithDamperDown)

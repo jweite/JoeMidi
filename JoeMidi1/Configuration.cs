@@ -9,6 +9,8 @@ namespace JoeMidi1
 {
     class Configuration
     {
+        // The overall configuration data class for JoeMidi, stored/retrieved in JSON.
+
         [JsonIgnore]
         public bool dirty = false;
 

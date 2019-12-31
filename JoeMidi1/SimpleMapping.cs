@@ -7,8 +7,12 @@ namespace JoeMidi1
 {
     public class SimpleMapping : Mapping
     {
+        // A subclass of Mapping to allow them to be more easily created, provided they're typical split/layer mappings like most keyboards offer.
+
         public class SimpleMappingDefinition
         {
+            // Configuration class capturing one zone of a simple mapping.
+
             public bool bLower = false;
             String _programName;
             public String soundGeneratorName;
@@ -36,6 +40,7 @@ namespace JoeMidi1
 
         public class PerDeviceSimpleMapping
         {
+            // Class that associates a simple mapping zone with the Input Device and Channel that will feed it.
             public String inputDeviceName;
             public int inputDeviceChannel = 0;
             public int splitPoint = -1;
@@ -46,6 +51,8 @@ namespace JoeMidi1
 
         override public bool bind(Dictionary<String, LogicalInputDevice> logicalInputDeviceDict, Dictionary<String, SoundGenerator> soundGenerators)
         {
+            // Builds out an actual Mapping based on the SimpleMapping.
+
             Dictionary<String, int> soundGeneratorChannelAssignments = new Dictionary<string, int>();
 
             perDeviceChannelMappings.Clear();

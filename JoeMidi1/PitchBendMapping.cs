@@ -10,6 +10,7 @@ namespace JoeMidi1
 {
     public class PitchBendMapping : SoundGeneratorChannel
     {
+        // Class for remapping pitch bends: simply scales them.
         public double scale;
 
         [JsonIgnore]

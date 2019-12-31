@@ -10,6 +10,8 @@ namespace JoeMidi1
 {
     public class NoteMapping : SoundGeneratorChannel
     {
+        // Class for filtering and remapping notes.  Defines the range of notes that it passes through and a pitch offset added to each.
+
         public int lowestNote;
         public int highestNote;
 

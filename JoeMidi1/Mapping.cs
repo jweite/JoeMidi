@@ -9,9 +9,18 @@ namespace JoeMidi1
 {
     public class Mapping
     {
+        // A Mapping represents a named set of of midi transformations, one per midi "stream" (a "stream" being a single channel originating from
+        //  a particular input device, awkardly referred to below as a DeviceChannel) and defined in this below inner class PerDeviceChannelMapping.
+        //  The set of PerDeviceChannelMappings in a Mapping is kept in a Dict, keyed by the PerDeviceChannelMapping's key (device name + channel).
 
         public class PerDeviceChannelMapping
         {
+            // PerDeviceChannelMapping represents a transformation of a single midi stream.  Transformation includes the remapping of notes, 
+            //  program changes (patches), rescaling pitch-bend, remapping and rescaling cc's.  Each of these "sub-transformations" is 
+            //  represented by a XXXXMapping class (i.e. NoteMapping, PitchBendMapping) appropriate for the remapping of kind of midi message.
+            //  Being "per device channel", each PerDeviceChannelMapping has both an input device and a channel# which defines the midi stream 
+            //  it services.  PerDeviceChannelMappings are uniquely identified with their "key", a concatenation of their input device name and channel.
+
             public String logicalInputDeviceName;
             public int inputDeviceChannel = 0;
 
@@ -37,10 +46,10 @@ namespace JoeMidi1
                 return deviceName + "\t" + deviceChannel;
             }
 
-            public List<MappingPatch> mappingPatches = new List<MappingPatch>();
-            public List<NoteMapping> noteMappings = new List<NoteMapping>();
-            public List<PitchBendMapping> pitchBendMappings = new List<PitchBendMapping>();
-            public List<ControlMapping> controlMappings = new List<ControlMapping>();
+            public List<MappingPatch> mappingPatches = new List<MappingPatch>();                // Program changes, to be sent on mapping activation
+            public List<NoteMapping> noteMappings = new List<NoteMapping>();                    // Note filtering/transpostion
+            public List<PitchBendMapping> pitchBendMappings = new List<PitchBendMapping>();     // Pitch bend scalings
+            public List<ControlMapping> controlMappings = new List<ControlMapping>();           // CC remapping/scaling/initial values to be sent on mapping activation.
 
             [JsonIgnore]
             public InputDevice inputDevice;

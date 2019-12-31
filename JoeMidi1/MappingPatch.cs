@@ -9,6 +9,8 @@ namespace JoeMidi1
 {
     public class MappingPatch : SoundGeneratorChannel
     {
+        // Class for capturing a bank/program change for mapping (i.e. to be sent out when the mapping is activated).
+
         public String patchName;
 
         [JsonIgnore]
