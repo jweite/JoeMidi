@@ -256,6 +256,9 @@
             this.lbOutputDevices = new System.Windows.Forms.ListBox();
             this.serviceController1 = new System.ServiceProcess.ServiceController();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.label24 = new System.Windows.Forms.Label();
+            this.nudVolMin = new System.Windows.Forms.NumericUpDown();
+            this.nudVolMax = new System.Windows.Forms.NumericUpDown();
             this.contextMenuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tpRandomAccess1.SuspendLayout();
@@ -305,6 +308,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudSoundGeneratorPatchProgramNo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSoundGeneratorPatchBankNo)).BeginInit();
             this.tpMisc.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudVolMin)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudVolMax)).BeginInit();
             this.SuspendLayout();
             // 
             // contextMenuStrip1
@@ -2920,6 +2925,9 @@
             // 
             // pnlSoundGeneratorEdit
             // 
+            this.pnlSoundGeneratorEdit.Controls.Add(this.nudVolMax);
+            this.pnlSoundGeneratorEdit.Controls.Add(this.nudVolMin);
+            this.pnlSoundGeneratorEdit.Controls.Add(this.label24);
             this.pnlSoundGeneratorEdit.Controls.Add(this.btnSoundGeneratorEditOK);
             this.pnlSoundGeneratorEdit.Controls.Add(this.btnSoundGeneratorEditCancel);
             this.pnlSoundGeneratorEdit.Controls.Add(this.btnSoundGeneratorPatchDel);
@@ -2945,7 +2953,7 @@
             // btnSoundGeneratorEditOK
             // 
             this.btnSoundGeneratorEditOK.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSoundGeneratorEditOK.Location = new System.Drawing.Point(287, 479);
+            this.btnSoundGeneratorEditOK.Location = new System.Drawing.Point(287, 503);
             this.btnSoundGeneratorEditOK.Margin = new System.Windows.Forms.Padding(4);
             this.btnSoundGeneratorEditOK.Name = "btnSoundGeneratorEditOK";
             this.btnSoundGeneratorEditOK.Size = new System.Drawing.Size(153, 64);
@@ -2957,7 +2965,7 @@
             // btnSoundGeneratorEditCancel
             // 
             this.btnSoundGeneratorEditCancel.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSoundGeneratorEditCancel.Location = new System.Drawing.Point(129, 479);
+            this.btnSoundGeneratorEditCancel.Location = new System.Drawing.Point(129, 503);
             this.btnSoundGeneratorEditCancel.Margin = new System.Windows.Forms.Padding(4);
             this.btnSoundGeneratorEditCancel.Name = "btnSoundGeneratorEditCancel";
             this.btnSoundGeneratorEditCancel.Size = new System.Drawing.Size(153, 64);
@@ -3409,6 +3417,49 @@
             // 
             this.openFileDialog1.Filter = "Chart files|*.pdf;*.rtf|All files|*.*";
             // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label24.Location = new System.Drawing.Point(4, 466);
+            this.label24.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(129, 23);
+            this.label24.TabIndex = 39;
+            this.label24.Text = "CC7 Min/Max";
+            this.label24.Click += new System.EventHandler(this.label24_Click);
+            // 
+            // nudVolMin
+            // 
+            this.nudVolMin.Location = new System.Drawing.Point(177, 457);
+            this.nudVolMin.Margin = new System.Windows.Forms.Padding(4);
+            this.nudVolMin.Maximum = new decimal(new int[] {
+            127,
+            0,
+            0,
+            0});
+            this.nudVolMin.Name = "nudVolMin";
+            this.nudVolMin.Size = new System.Drawing.Size(72, 38);
+            this.nudVolMin.TabIndex = 40;
+            // 
+            // nudVolMax
+            // 
+            this.nudVolMax.Location = new System.Drawing.Point(319, 457);
+            this.nudVolMax.Margin = new System.Windows.Forms.Padding(4);
+            this.nudVolMax.Maximum = new decimal(new int[] {
+            127,
+            0,
+            0,
+            0});
+            this.nudVolMax.Name = "nudVolMax";
+            this.nudVolMax.Size = new System.Drawing.Size(72, 38);
+            this.nudVolMax.TabIndex = 41;
+            this.nudVolMax.Value = new decimal(new int[] {
+            127,
+            0,
+            0,
+            0});
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -3480,6 +3531,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudSoundGeneratorPatchBankNo)).EndInit();
             this.tpMisc.ResumeLayout(false);
             this.tpMisc.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudVolMin)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudVolMax)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -3703,6 +3756,9 @@
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.ListBox lbPhysicalOutputDevices;
         private System.Windows.Forms.Button btnSaveConfig;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.NumericUpDown nudVolMax;
+        private System.Windows.Forms.NumericUpDown nudVolMin;
     }
 }
 

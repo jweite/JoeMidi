@@ -17,6 +17,11 @@ namespace JoeMidi1
         public String deviceName;       // JoeMidi Logical Output Device throught which the actual sound generating device is communicated with.
         public int channelBase;         // The first midi channel allocated to this SoundGenerator, over which it will communicate with the actual sound generating device.
         public int nChannels;           // Number of midi channels allocated to this SoundGenerator, typically to support multi-timbral use.
+        public int cc7Min = 0;          // For scaling cc range of sound generators
+        public int cc7Max = 127;        // For scaling cc range of sound generators
+
+        [JsonIgnore]
+        public double cc7Scale = 1.0;
 
         // Dict, by name, of Patches available on the SoundGenerators. 
         //  Most critically each would typically have a midi Bank and program# for requesting it from the actual physical device.  
@@ -30,6 +35,8 @@ namespace JoeMidi1
             deviceName = original.deviceName;
             nChannels = original.nChannels;
             channelBase = original.channelBase;
+            cc7Max = original.cc7Max;
+            cc7Min = original.cc7Min;
 
             foreach (String patchName in original.soundGeneratorPatchDict.Keys)
             {
@@ -43,6 +50,8 @@ namespace JoeMidi1
 
         public bool bind(Dictionary<String, LogicalOutputDevice> logicalOutputDeviceDict)
         {
+            cc7Scale = ((double)cc7Max - (double)cc7Min) / (double)127;     // The portion of 127 of the actual output range
+
             if (logicalOutputDeviceDict.ContainsKey(deviceName)) {
                 this.device = logicalOutputDeviceDict[deviceName].device;
 
@@ -60,6 +69,10 @@ namespace JoeMidi1
             }
         }
 
+        public bool Equals(SoundGenerator other)
+        {
+            return name.Equals(other.name);
+        }
 
         public static void createTrialConfiguration(Dictionary<String, SoundGenerator> soundGenerators)
         {

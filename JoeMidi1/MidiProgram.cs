@@ -166,15 +166,15 @@ namespace JoeMidi1
                 controlMapping.initialValue = -1;
                 perDeviceChannelMapping.controlMappings.Add(controlMapping);
 
-                //controlMapping = new ControlMapping();
-                //controlMapping.soundGeneratorName = this.SingleSoundGeneratorName;
-                //controlMapping.soundGeneratorRelativeChannel = 0;
-                //controlMapping.sourceControlNumber = 7;     // Vol
-                //controlMapping.mappedControlNumber = 7;
-                //controlMapping.min = 0;
-                //controlMapping.max = 127;
-                //controlMapping.initialValue = 127;
-                //perDeviceChannelMapping.controlMappings.Add(controlMapping);
+                controlMapping = new ControlMapping();
+                controlMapping.soundGeneratorName = this.SingleSoundGeneratorName;
+                controlMapping.soundGeneratorRelativeChannel = 0;
+                controlMapping.sourceControlNumber = -1;     
+                controlMapping.mappedControlNumber = 7;     // Vol
+                controlMapping.min = 0;
+                controlMapping.max = 127;
+                controlMapping.initialValue = 127;
+                perDeviceChannelMapping.controlMappings.Add(controlMapping);
 
                 controlMapping = new ControlMapping();
                 controlMapping.soundGeneratorName = this.SingleSoundGeneratorName;

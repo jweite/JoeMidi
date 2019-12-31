@@ -26,10 +26,17 @@ namespace JoeMidi1
         [JsonIgnore]
         public bool currentToggleState = false;
 
+        public bool Equals(ControlMapping other)
+        {
+            return (base.Equals(other)) && (sourceControlNumber == other.sourceControlNumber) && (mappedControlNumber == other.mappedControlNumber);
+        }
+
         public bool bind(Dictionary<String, LogicalInputDevice> logicalInputDeviceDict, Dictionary<String, SoundGenerator> soundGenerators)
         {
             scale = ((double)max - (double)min) / (double)127;
             currentToggleState = (bToggle == true && initialValue >= 1);
+            if (mappedControlNumber == 7 && initialValue == -1)                 // Force sound gens to max vol if not defined in the mapping.  
+                initialValue = 127;
             return base.bind(soundGenerators);
         }
 

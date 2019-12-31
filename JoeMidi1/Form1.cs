@@ -2063,6 +2063,8 @@ namespace JoeMidi1
             cbSoundGeneratorDeviceName.Text = "";
             nudSoundGeneratorBaseChannel.Value = 1;            
             nudSoundGeneratorNumChannels.Value = 1;
+            nudVolMax.Value = 127;
+            nudVolMin.Value = 0;
             refreshCbSoundGeneratorDeviceName(null);
             lbSoundGeneratorPatches.Items.Clear();
 
@@ -2100,6 +2102,8 @@ namespace JoeMidi1
             soundGeneratorBeingEdited.deviceName = cbSoundGeneratorDeviceName.Text;
             soundGeneratorBeingEdited.channelBase = (int)nudSoundGeneratorBaseChannel.Value-1;
             soundGeneratorBeingEdited.nChannels = (int)nudSoundGeneratorNumChannels.Value;
+            soundGeneratorBeingEdited.cc7Min = (int)nudVolMin.Value;
+            soundGeneratorBeingEdited.cc7Max = (int)nudVolMax.Value;
 
             if (bCreatingNewSoundGenerator == true)
             {
@@ -2112,6 +2116,8 @@ namespace JoeMidi1
                 soundGeneratorToModify.deviceName = cbSoundGeneratorDeviceName.Text;
                 soundGeneratorToModify.channelBase = (int)nudSoundGeneratorBaseChannel.Value-1;
                 soundGeneratorToModify.nChannels = (int)nudSoundGeneratorNumChannels.Value;
+                soundGeneratorToModify.cc7Min = (int)nudVolMin.Value;
+                soundGeneratorToModify.cc7Max = (int)nudVolMax.Value;
                 soundGeneratorToModify.soundGeneratorPatchDict.Clear();
                 foreach (String patchName in soundGeneratorBeingEdited.soundGeneratorPatchDict.Keys)
                 {
@@ -2228,6 +2234,8 @@ namespace JoeMidi1
                 cbSoundGeneratorDeviceName.Text = soundGeneratorBeingEdited.deviceName;
                 nudSoundGeneratorBaseChannel.Value = soundGeneratorBeingEdited.channelBase+1;
                 nudSoundGeneratorNumChannels.Value = soundGeneratorBeingEdited.nChannels;
+                nudVolMin.Value = soundGeneratorBeingEdited.cc7Min;
+                nudVolMax.Value = soundGeneratorBeingEdited.cc7Max;
 
                 lbSoundGeneratorPatches.Items.Clear();
                 foreach (SoundGeneratorPatch patch in soundGeneratorBeingEdited.soundGeneratorPatchDict.Values)
@@ -2941,6 +2949,11 @@ namespace JoeMidi1
         private void Form1_SizeChanged(object sender, EventArgs e)
         {
             this.cbPortaitMode.Checked = (this.Height > this.Width);
+        }
+
+        private void label24_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -231,11 +231,17 @@ namespace JoeMidi1
                 // Send out initial values for all mapped controls that have them
                 foreach (ControlMapping controlMapping in perDeviceChannelMapping.controlMappings)
                 {
-                    Thread.Sleep(25);       // Some weird race condition exists.  Without a pause vol is always 100%
-                    
+                    Thread.Sleep(5);       // Some weird race condition exists.  Without a pause vol is always 100%
+
                     if (controlMapping.mappedControlNumber >= 0 && controlMapping.mappedControlNumber < 127 && controlMapping.initialValue >= 0 && controlMapping.initialValue < 128)
                     {
-                        controlMapping.soundGenerator.device.SendControlChange((Channel)controlMapping.soundGeneratorPhysicalChannel, (Midi.Control)controlMapping.mappedControlNumber, controlMapping.initialValue);
+                        int scaledInitialValue = controlMapping.initialValue;
+                        if (controlMapping.mappedControlNumber == 7)
+                        {
+                            // Diff sound gens have diff cc7 response.  We re-scale cc7 for each based on its cc7 min and max settings.
+                            scaledInitialValue = (int)(scaledInitialValue * controlMapping.soundGenerator.cc7Scale) + controlMapping.soundGenerator.cc7Min;
+                        }
+                        controlMapping.soundGenerator.device.SendControlChange((Channel)controlMapping.soundGeneratorPhysicalChannel, (Midi.Control)controlMapping.mappedControlNumber, scaledInitialValue);
                     }
                 }
             }
@@ -329,6 +335,12 @@ namespace JoeMidi1
                                 // Up: un-sustain any soundGen that was previously sustained by a message originating from the source input device
                                 sendSustainPedalUpToAllDeviceChannelsWithSustainPedalDown(msg.Device);
                             }
+                        }
+                        // Special Processing for cc7: Scaling again, on a per-sound-generator basis, to accomodate diff sound generator cc7 ranges.
+                        else if (controlMapping.mappedControlNumber == (int)Midi.Control.Volume)
+                        {
+                            scaledValue = (int)(scaledValue * controlMapping.soundGenerator.cc7Scale) + controlMapping.soundGenerator.cc7Min;
+                            controlMapping.soundGenerator.device.SendControlChange((Channel)controlMapping.soundGeneratorPhysicalChannel, (Midi.Control)controlMapping.mappedControlNumber, scaledValue);
                         }
                         else {
                             controlMapping.soundGenerator.device.SendControlChange((Channel)controlMapping.soundGeneratorPhysicalChannel, (Midi.Control)controlMapping.mappedControlNumber, scaledValue);

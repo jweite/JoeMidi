@@ -112,7 +112,7 @@ namespace JoeMidi1
                         ctlMapping.soundGeneratorRelativeChannel = soundGeneratorRelativeChannel;
                         ctlMapping.sourceControlNumber = (simpleMappingDefinition.bEnaVolControl == true) ? 7 : -1;
                         ctlMapping.mappedControlNumber = 7;
-                        ctlMapping.initialValue = (simpleMappingDefinition.initialVolume >= 0) ? simpleMappingDefinition.initialVolume : -1;
+                        ctlMapping.initialValue = (simpleMappingDefinition.initialVolume >= 0) ? simpleMappingDefinition.initialVolume : 127;
                         perDeviceChannelMapping.controlMappings.Add(ctlMapping);
                     }
                     if (simpleMappingDefinition.bEnaModControl == true)

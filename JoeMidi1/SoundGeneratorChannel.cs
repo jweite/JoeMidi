@@ -13,6 +13,12 @@ namespace JoeMidi1
         public String soundGeneratorName;
         public int soundGeneratorRelativeChannel;
 
+        public bool Equals(SoundGeneratorChannel other)
+        {
+            return soundGeneratorName.Equals(other.soundGeneratorName) && soundGeneratorRelativeChannel.Equals(other.soundGeneratorRelativeChannel);
+        }
+
+
         [JsonIgnore]
         public SoundGenerator soundGenerator;
 
