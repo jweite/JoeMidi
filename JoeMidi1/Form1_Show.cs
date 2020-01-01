@@ -23,6 +23,51 @@ namespace JoeMidi1
 
         public Song currentSong;
 
+        void midiProgramChangeNotificationShow(int programNum)
+        {
+            // Map the Casio PX3 Basic Program Change buttons to show functions.
+            if (programNum == mapper.configuration.currentPrimaryControllerButtonProgramNumbers[7])     // Button 8
+            {
+                // Select Next Song Program
+                mbccShowSongPatches.selectNextLogicalButton(true);
+            }
+            else if (programNum == mapper.configuration.currentPrimaryControllerButtonProgramNumbers[6])
+            {
+                // Select Prev Song Program
+                mbccShowSongPatches.selectPrevLogicalButton(true);
+            }
+            else if (programNum == mapper.configuration.currentPrimaryControllerButtonProgramNumbers[5])
+            {
+                // Select Next Song
+                olvSongs.BeginInvoke(new MethodInvoker(selectNextSong));
+            }
+            else if (programNum == mapper.configuration.currentPrimaryControllerButtonProgramNumbers[4])
+            {
+                // Select Previous Song
+                olvSongs.BeginInvoke(new MethodInvoker(selectPrevSong));
+            }
+            else if (programNum == mapper.configuration.currentPrimaryControllerButtonProgramNumbers[3])
+            {
+                // Pick song patch 1 - 4
+                mbccShowSongPatches.selectLogicalButton(3, true, false);
+            }
+            else if (programNum == mapper.configuration.currentPrimaryControllerButtonProgramNumbers[2])
+            {
+                // Pick song patch 1 - 4
+                mbccShowSongPatches.selectLogicalButton(2, true, false);
+            }
+            else if (programNum == mapper.configuration.currentPrimaryControllerButtonProgramNumbers[1])
+            {
+                // Pick song patch 1 - 4
+                mbccShowSongPatches.selectLogicalButton(1, true, false);
+            }
+            else if (programNum == mapper.configuration.currentPrimaryControllerButtonProgramNumbers[0])
+            {
+                // Pick song patch 1 - 4
+                mbccShowSongPatches.selectLogicalButton(0, true, false);
+            }
+        }
+
         private void refreshShowControls()
         {
             olvSongs.SmallImageList = null;     // This is supposed to make the 20px gap at the left disappear... but it doesn't.

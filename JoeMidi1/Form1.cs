@@ -53,67 +53,21 @@ namespace JoeMidi1
 
             rightColDesignTimeWidth = tlpRandomAccess.ColumnStyles[tlpRandomAccess.ColumnCount-1].Width;
 
-            //-------------------------------------------
-            // Random Access Tab
-            //-------------------------------------------
             Form1_Random_Access_Load(sender, e);
 
-            //-------------------------------------------
-            // Show tab
-            //-------------------------------------------
             refreshShowControls();
 
-            //-------------------------------------------
-            // Songs tab
-            //-------------------------------------------
             refreshSongEditSelector();
 
-            //-------------------------------------------
-            // Setlists tab
-            //-------------------------------------------
             refreshSetlistEditSelector();
 
-            //-------------------------------------------
-            // Mappings Tab
-            //-------------------------------------------
             refreshMappingToEditSelector();
             btnMappingEditPatchTreeViewBySG_Click(null, null);
 
-            //-------------------------------------------
-            // SoundGenerators tab
-            //-------------------------------------------
             refreshSoundGeneratorsListView();
 
-            //-------------------------------------------
-            // Misc Tab
-            //-------------------------------------------
-            foreach (String outputDeviceLogicalName in mapper.configuration.logicalOutputDeviceDict.Keys)
-            {
-                LogicalOutputDevice logicalOutputDevice = mapper.configuration.logicalOutputDeviceDict[outputDeviceLogicalName];
-                if (logicalOutputDevice.device != null)
-                {
-                    lbOutputDevices.Items.Add(logicalOutputDevice.logicalDeviceName + " -> " + logicalOutputDevice.device.Name);
-                }
-            }
+            Form1_MiscTab_Load(sender, e);
 
-            lbPhysicalInputDevices.Items.Clear();
-            foreach (InputDevice device in InputDevice.InstalledDevices)
-            {
-                lbPhysicalInputDevices.Items.Add(device.Name);
-            }
-
-            lbPhysicalOutputDevices.Items.Clear();
-            foreach (OutputDevice device in OutputDevice.InstalledDevices)
-            {
-                lbPhysicalOutputDevices.Items.Add(device.Name);
-            }
-
-            cbPortaitMode.Checked = mapper.configuration.portraitMode;
-            cbPortaitMode_CheckedChanged(null, null);
-
-            //-------------------------------------------
-            // Activate the first MidiProgram known to the mapper
-            //-------------------------------------------
             mapper.selectFirstMidiProgram();
 
         }
@@ -122,48 +76,7 @@ namespace JoeMidi1
         {
             if (currentlySelectedTabName.Equals("Show"))
             {
-                // Map the Casio PX3 Basic Program Change buttons to show functions.
-                if (programNum == mapper.configuration.currentPrimaryControllerButtonProgramNumbers[7])     // Button 8
-                {
-                    // Select Next Song Program
-                    mbccShowSongPatches.selectNextLogicalButton(true);
-                }
-                else if (programNum == mapper.configuration.currentPrimaryControllerButtonProgramNumbers[6])
-                {
-                    // Select Prev Song Program
-                    mbccShowSongPatches.selectPrevLogicalButton(true);
-                }
-                else if (programNum == mapper.configuration.currentPrimaryControllerButtonProgramNumbers[5])
-                {
-                    // Select Next Song
-                    olvSongs.BeginInvoke(new MethodInvoker(selectNextSong));
-                }
-                else if (programNum == mapper.configuration.currentPrimaryControllerButtonProgramNumbers[4])
-                {
-                    // Select Previous Song
-                    olvSongs.BeginInvoke(new MethodInvoker(selectPrevSong));
-                }
-                else if (programNum == mapper.configuration.currentPrimaryControllerButtonProgramNumbers[3]) 
-                {
-                    // Pick song patch 1 - 4
-                    mbccShowSongPatches.selectLogicalButton(3, true, false);
-                }
-                else if (programNum == mapper.configuration.currentPrimaryControllerButtonProgramNumbers[2])
-                {
-                    // Pick song patch 1 - 4
-                    mbccShowSongPatches.selectLogicalButton(2, true, false);
-                }
-                else if (programNum == mapper.configuration.currentPrimaryControllerButtonProgramNumbers[1])
-                {
-                    // Pick song patch 1 - 4
-                    mbccShowSongPatches.selectLogicalButton(1, true, false);
-                }
-                else if (programNum == mapper.configuration.currentPrimaryControllerButtonProgramNumbers[0])
-                {
-                    // Pick song patch 1 - 4
-                    mbccShowSongPatches.selectLogicalButton(0, true, false);
-                }
-
+                midiProgramChangeNotificationShow(programNum);
             }
             else if (currentlySelectedTabName.StartsWith("Random Access"))
             {

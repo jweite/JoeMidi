@@ -13,8 +13,37 @@ using PdfiumViewer;
 
 namespace JoeMidi1
 {
+
     public partial class Form1 : Form
     {
+        private void Form1_MiscTab_Load(object sender, EventArgs e)
+        {
+            foreach (String outputDeviceLogicalName in mapper.configuration.logicalOutputDeviceDict.Keys)
+            {
+                LogicalOutputDevice logicalOutputDevice = mapper.configuration.logicalOutputDeviceDict[outputDeviceLogicalName];
+                if (logicalOutputDevice.device != null)
+                {
+                    lbOutputDevices.Items.Add(logicalOutputDevice.logicalDeviceName + " -> " + logicalOutputDevice.device.Name);
+                }
+            }
+
+            lbPhysicalInputDevices.Items.Clear();
+            foreach (InputDevice device in InputDevice.InstalledDevices)
+            {
+                lbPhysicalInputDevices.Items.Add(device.Name);
+            }
+
+            lbPhysicalOutputDevices.Items.Clear();
+            foreach (OutputDevice device in OutputDevice.InstalledDevices)
+            {
+                lbPhysicalOutputDevices.Items.Add(device.Name);
+            }
+
+            cbPortaitMode.Checked = mapper.configuration.portraitMode;
+            cbPortaitMode_CheckedChanged(null, null);
+
+        }
+
         //**************************************************************************
         // Misc Tab
         //**************************************************************************
