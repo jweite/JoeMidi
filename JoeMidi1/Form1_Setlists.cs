@@ -77,6 +77,9 @@ namespace JoeMidi1
                     selectedIndex = lbSetlistSongs.Items.Count - 1;
                 }
             }
+            // Mysteriously the last song isn't scrollable.  Adding a dummy entry
+            lbSetlistSongs.Items.Add("");
+
             if (selectedIndex >= 0)
             {
                 lbSetlistSongs.SelectedIndex = selectedIndex;
