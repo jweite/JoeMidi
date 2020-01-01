@@ -416,6 +416,7 @@ namespace JoeMidi1
             return true;
         }
 
+        [JsonIgnore]
         public List<Mapping> mappingsSorted
         {
             get

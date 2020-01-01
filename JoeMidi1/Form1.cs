@@ -126,7 +126,10 @@ namespace JoeMidi1
             if (bIncludeMappings)
             {
                 TreeNode mappingsNode = new TreeNode("Mappings");
-                foreach (String mappingName in mapper.configuration.mappings.Keys)
+                List<String> sortedMappingNames = new List<String>(mapper.configuration.mappings.Keys);
+                sortedMappingNames.Sort();
+
+                foreach (String mappingName in sortedMappingNames)
                 {
                     Mapping mapping = mapper.configuration.mappings[mappingName];
                     TreeNode mappingNode = new TreeNode(mappingName);
