@@ -1,15 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.IO;
 using System.Windows.Forms;
-using Midi;
-using Newtonsoft.Json;
-using PdfiumViewer;
 
 namespace JoeMidi1
 {
@@ -86,6 +76,8 @@ namespace JoeMidi1
         private void btnSoundGeneratorEditCancel_Click(object sender, EventArgs e)
         {
             bCreatingNewSoundGenerator = false;
+            lvSoundGenerators.SelectedIndices.Clear();
+            btnSoundGeneratorPatchEditCancel_Click(sender, e);
             pnlSoundGeneratorEdit.Visible = false;
         }
 
@@ -104,6 +96,12 @@ namespace JoeMidi1
 
         private void btnSoundGeneratorEditOK_Click(object sender, EventArgs e)
         {
+            // Complete any in-progress patch editing
+            if (pnlSoundGeneratorPatchEdit.Visible)
+            {
+                btnSoundGeneratorPatchEditOK_Click(sender, e);
+            }
+
             if (bCreatingNewSoundGenerator == true)
             {
                 soundGeneratorBeingEdited.name = tbSoundGeneratorName.Text;
