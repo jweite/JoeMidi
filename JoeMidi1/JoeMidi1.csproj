@@ -106,6 +106,27 @@
     <Compile Include="fmShowFloat.Designer.cs">
       <DependentUpon>fmShowFloat.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form1_Mappings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1_MiscTab.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1_Random_Access.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1_Setlists.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1_Show.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1_Songs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1_SoundGenerators.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="LogicalDevice.cs" />
     <Compile Include="MappedMidiControl.cs" />
     <Compile Include="MappedNote.cs" />

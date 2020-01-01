@@ -3427,7 +3427,6 @@
             this.label24.Size = new System.Drawing.Size(129, 23);
             this.label24.TabIndex = 39;
             this.label24.Text = "CC7 Min/Max";
-            this.label24.Click += new System.EventHandler(this.label24_Click);
             // 
             // nudVolMin
             // 
