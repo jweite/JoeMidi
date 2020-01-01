@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace JoeMidi1
@@ -13,7 +14,10 @@ namespace JoeMidi1
         {
             lvSoundGenerators.Items.Clear();
 
-            foreach (String soundGeneratorName in mapper.configuration.soundGenerators.Keys)
+            List<String> soundGeneratorNames = new List<String>(mapper.configuration.soundGenerators.Keys);
+            soundGeneratorNames.Sort();
+
+            foreach (String soundGeneratorName in soundGeneratorNames)
             {
                 SoundGenerator sg = mapper.configuration.soundGenerators[soundGeneratorName];
 
