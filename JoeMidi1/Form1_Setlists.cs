@@ -26,6 +26,7 @@ namespace JoeMidi1
         {
             mbccSetlistEditSelector.clearButtons();
             List<Setlist> l = mapper.configuration.getSortedSetlistList();
+            cbSetEditorSonglistSetSelector.Items.Clear();
             foreach (Setlist setlist in l)
             {
                 mbccSetlistEditSelector.addButton(setlist.name, setlist);
