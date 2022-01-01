@@ -217,6 +217,9 @@
             this.btnDeleteSoundGenerator = new System.Windows.Forms.Button();
             this.btnAddSoundGenerator = new System.Windows.Forms.Button();
             this.pnlSoundGeneratorEdit = new System.Windows.Forms.Panel();
+            this.nudVolMax = new System.Windows.Forms.NumericUpDown();
+            this.nudVolMin = new System.Windows.Forms.NumericUpDown();
+            this.label24 = new System.Windows.Forms.Label();
             this.btnSoundGeneratorEditOK = new System.Windows.Forms.Button();
             this.btnSoundGeneratorEditCancel = new System.Windows.Forms.Button();
             this.btnSoundGeneratorPatchDel = new System.Windows.Forms.Button();
@@ -256,9 +259,7 @@
             this.lbOutputDevices = new System.Windows.Forms.ListBox();
             this.serviceController1 = new System.ServiceProcess.ServiceController();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.label24 = new System.Windows.Forms.Label();
-            this.nudVolMin = new System.Windows.Forms.NumericUpDown();
-            this.nudVolMax = new System.Windows.Forms.NumericUpDown();
+            this.btnSetlistSort = new System.Windows.Forms.Button();
             this.contextMenuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tpRandomAccess1.SuspendLayout();
@@ -302,14 +303,14 @@
             this.tlpSoundGeneratorsOuter.SuspendLayout();
             this.tlpSoundGeneratorEditButtons.SuspendLayout();
             this.pnlSoundGeneratorEdit.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudVolMax)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudVolMin)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSoundGeneratorNumChannels)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSoundGeneratorBaseChannel)).BeginInit();
             this.pnlSoundGeneratorPatchEdit.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudSoundGeneratorPatchProgramNo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSoundGeneratorPatchBankNo)).BeginInit();
             this.tpMisc.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudVolMin)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudVolMax)).BeginInit();
             this.SuspendLayout();
             // 
             // contextMenuStrip1
@@ -1923,6 +1924,7 @@
             // 
             // pnlSetlistEdit
             // 
+            this.pnlSetlistEdit.Controls.Add(this.btnSetlistSort);
             this.pnlSetlistEdit.Controls.Add(this.btnSetlistDeleteSong);
             this.pnlSetlistEdit.Controls.Add(this.btnSetlistAddSong);
             this.pnlSetlistEdit.Controls.Add(this.btnSetlistSongDown);
@@ -2847,6 +2849,7 @@
             this.lvSoundGenerators.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lvSoundGenerators.FullRowSelect = true;
             this.lvSoundGenerators.GridLines = true;
+            this.lvSoundGenerators.HideSelection = false;
             this.lvSoundGenerators.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
             listViewItem1,
             listViewItem2});
@@ -2949,6 +2952,48 @@
             this.pnlSoundGeneratorEdit.Size = new System.Drawing.Size(528, 618);
             this.pnlSoundGeneratorEdit.TabIndex = 4;
             this.pnlSoundGeneratorEdit.Visible = false;
+            // 
+            // nudVolMax
+            // 
+            this.nudVolMax.Location = new System.Drawing.Point(319, 457);
+            this.nudVolMax.Margin = new System.Windows.Forms.Padding(4);
+            this.nudVolMax.Maximum = new decimal(new int[] {
+            127,
+            0,
+            0,
+            0});
+            this.nudVolMax.Name = "nudVolMax";
+            this.nudVolMax.Size = new System.Drawing.Size(72, 38);
+            this.nudVolMax.TabIndex = 41;
+            this.nudVolMax.Value = new decimal(new int[] {
+            127,
+            0,
+            0,
+            0});
+            // 
+            // nudVolMin
+            // 
+            this.nudVolMin.Location = new System.Drawing.Point(177, 457);
+            this.nudVolMin.Margin = new System.Windows.Forms.Padding(4);
+            this.nudVolMin.Maximum = new decimal(new int[] {
+            127,
+            0,
+            0,
+            0});
+            this.nudVolMin.Name = "nudVolMin";
+            this.nudVolMin.Size = new System.Drawing.Size(72, 38);
+            this.nudVolMin.TabIndex = 40;
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label24.Location = new System.Drawing.Point(4, 466);
+            this.label24.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(129, 23);
+            this.label24.TabIndex = 39;
+            this.label24.Text = "CC7 Min/Max";
             // 
             // btnSoundGeneratorEditOK
             // 
@@ -3417,47 +3462,20 @@
             // 
             this.openFileDialog1.Filter = "Chart files|*.pdf;*.rtf|All files|*.*";
             // 
-            // label24
+            // btnSetlistSort
             // 
-            this.label24.AutoSize = true;
-            this.label24.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label24.Location = new System.Drawing.Point(4, 466);
-            this.label24.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(129, 23);
-            this.label24.TabIndex = 39;
-            this.label24.Text = "CC7 Min/Max";
-            // 
-            // nudVolMin
-            // 
-            this.nudVolMin.Location = new System.Drawing.Point(177, 457);
-            this.nudVolMin.Margin = new System.Windows.Forms.Padding(4);
-            this.nudVolMin.Maximum = new decimal(new int[] {
-            127,
-            0,
-            0,
-            0});
-            this.nudVolMin.Name = "nudVolMin";
-            this.nudVolMin.Size = new System.Drawing.Size(72, 38);
-            this.nudVolMin.TabIndex = 40;
-            // 
-            // nudVolMax
-            // 
-            this.nudVolMax.Location = new System.Drawing.Point(319, 457);
-            this.nudVolMax.Margin = new System.Windows.Forms.Padding(4);
-            this.nudVolMax.Maximum = new decimal(new int[] {
-            127,
-            0,
-            0,
-            0});
-            this.nudVolMax.Name = "nudVolMax";
-            this.nudVolMax.Size = new System.Drawing.Size(72, 38);
-            this.nudVolMax.TabIndex = 41;
-            this.nudVolMax.Value = new decimal(new int[] {
-            127,
-            0,
-            0,
-            0});
+            this.btnSetlistSort.BackColor = System.Drawing.Color.DimGray;
+            this.btnSetlistSort.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSetlistSort.ForeColor = System.Drawing.Color.White;
+            this.btnSetlistSort.Location = new System.Drawing.Point(269, 391);
+            this.btnSetlistSort.Margin = new System.Windows.Forms.Padding(4);
+            this.btnSetlistSort.Name = "btnSetlistSort";
+            this.btnSetlistSort.Size = new System.Drawing.Size(149, 66);
+            this.btnSetlistSort.TabIndex = 13;
+            this.btnSetlistSort.Text = "Sort";
+            this.btnSetlistSort.UseVisualStyleBackColor = false;
+            this.btnSetlistSort.Click += new System.EventHandler(this.btnSetlistSort_Click);
+
             // 
             // Form1
             // 
@@ -3522,6 +3540,8 @@
             this.tlpSoundGeneratorEditButtons.ResumeLayout(false);
             this.pnlSoundGeneratorEdit.ResumeLayout(false);
             this.pnlSoundGeneratorEdit.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudVolMax)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudVolMin)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSoundGeneratorNumChannels)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSoundGeneratorBaseChannel)).EndInit();
             this.pnlSoundGeneratorPatchEdit.ResumeLayout(false);
@@ -3530,8 +3550,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudSoundGeneratorPatchBankNo)).EndInit();
             this.tpMisc.ResumeLayout(false);
             this.tpMisc.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudVolMin)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudVolMax)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -3758,6 +3776,7 @@
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.NumericUpDown nudVolMax;
         private System.Windows.Forms.NumericUpDown nudVolMin;
+        private System.Windows.Forms.Button btnSetlistSort;
     }
 }
 

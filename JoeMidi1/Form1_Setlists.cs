@@ -320,5 +320,20 @@ namespace JoeMidi1
                 lbSetlistSongs.SelectedIndex = songIndex + 1;
             }
         }
+
+        private void btnSetlistSort_Click(object sender, EventArgs e)
+        {
+            String selectedSong = "";
+            int songIndex = lbSetlistSongs.SelectedIndex;
+            if (songIndex > 0 && songIndex < setlistBeingEdited.songTitles.Count)
+            {
+                selectedSong = lbSetlistSongs.Items[songIndex].ToString();
+            }
+
+            setlistBeingEdited.songTitles.Sort();
+        
+            refreshLbSetlistSongs(selectedSong);
+
+        }
     }
 }
