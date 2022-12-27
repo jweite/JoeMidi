@@ -158,6 +158,10 @@ namespace JoeMidi1
         private void olvSongs_SelectedIndexChanged(object sender, EventArgs e)
         {
             currentSong = (Song)olvSongs.SelectedObject;
+            if (currentSong != null)
+            {
+                setMetronomeBPM(currentSong.bpm);
+            }
             RefreshShowSongPatches(currentSong);
         }
 

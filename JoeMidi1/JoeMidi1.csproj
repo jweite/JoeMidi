@@ -192,7 +192,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Black.ico" />
     <Content Include="README.txt" />
+    <None Include="White.ico" />
     <Content Include="x64\pdfium.dll" />
     <Content Include="x86\pdfium.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

@@ -51,7 +51,7 @@ namespace JoeMidi1
 
             mapper.startMapper();
 
-            rightColDesignTimeWidth = tlpRandomAccess.ColumnStyles[tlpRandomAccess.ColumnCount-1].Width;
+            rightColDesignTimeWidth = tlpRandomAccess.ColumnStyles[tlpRandomAccess.ColumnCount - 1].Width;
 
             Form1_Random_Access_Load(sender, e);
 
@@ -144,12 +144,18 @@ namespace JoeMidi1
         private void tabControl1_Selected(object sender, TabControlEventArgs e)
         {
             currentlySelectedTabName = e.TabPage.Text;
+            metronomeTimer.Enabled = false;
 
             if (e.TabPage.Text.Equals("Show"))
             {
                 this.Text = (currentSetlist != null) ? "Setlist: " + currentSetlist.name : "No Setlist Selected";
+                if (currentSong != null && currentSong.bpm > 0)
+                {
+                    metronomeTimer.Enabled = true;
+                }
             }
-            else if (e.TabPage.Text.StartsWith("Random Access")) {
+            else if (e.TabPage.Text.StartsWith("Random Access"))
+            {
 
                 // Get the new current bank # from the selected tab's last char.
                 String randomAccessPageNumber = e.TabPage.Text.Substring(e.TabPage.Text.Length - 1);        // Last char is page #
@@ -184,6 +190,31 @@ namespace JoeMidi1
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             mapper.stopMapper();
+        }
+
+        private void metronomeTimer_Tick(object sender, EventArgs e)
+        {
+            Icon = Properties.Resources.Black;
+            metronomeFlashTimer.Enabled = true;
+        }
+
+        private void metronomeFlashTimer_Tick(object sender, EventArgs e)
+        {
+            Icon = Properties.Resources.White;
+            metronomeFlashTimer.Enabled = false;
+        }
+
+        public void setMetronomeBPM(int bpm)
+        {
+            if (bpm > 0)
+            {
+                metronomeTimer.Interval = 60000 / bpm;
+                metronomeTimer.Enabled = true;
+            }
+            else
+            {
+                metronomeTimer.Enabled = false;
+            }
         }
     }
 }

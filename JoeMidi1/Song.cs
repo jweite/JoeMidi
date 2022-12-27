@@ -14,10 +14,12 @@ namespace JoeMidi1
         public int chartPage;
         public List<SongProgram> programs = new List<SongProgram>();
         public int songTranspose;
+        public int bpm;
 
         public Song() {
             chartPage = 1;
             songTranspose = 0;
+            bpm = 0;
         }
 
         public Song(Song orig)
@@ -27,6 +29,7 @@ namespace JoeMidi1
             chartFile = orig.chartFile;
             chartPage = orig.chartPage;
             songTranspose = orig.songTranspose;
+            bpm = orig.bpm;
 
             foreach (SongProgram program in orig.programs)
             {

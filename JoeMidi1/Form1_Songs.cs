@@ -47,6 +47,7 @@ namespace JoeMidi1
             tbSongChart.Text = "";
             nudSongChartPage.Value = 1;
             nudSongTranspose.Value = 0;
+            nudBPM.Value = 0;
             lbSongPatches.Items.Clear();
 
             // Make note for commit-time that we're creating (not updating.)
@@ -83,6 +84,7 @@ namespace JoeMidi1
             }
             nudSongChartPage.Value = songBeingEdited.chartPage;
             nudSongTranspose.Value = songBeingEdited.songTranspose;
+            nudBPM.Value = songBeingEdited.bpm;
             lbSongPatches.Items.Clear();
             foreach (SongProgram songProgram in songBeingEdited.programs)
             {
@@ -135,6 +137,7 @@ namespace JoeMidi1
             }
             songBeingEdited.chartPage = (int)nudSongChartPage.Value;
             songBeingEdited.songTranspose = (int)nudSongTranspose.Value;
+            songBeingEdited.bpm = (int)nudBPM.Value;
 
             // Make the changes to the actual model objects
             if (creatingNewSong == true)
