@@ -404,6 +404,11 @@ namespace JoeMidi1
                         mappingDefinition.transpose = 0;
                         mappingDefinition.pbScale = 1.0F;
                         mappingDefinition.bLower = receivingListBox.Name.Contains("Lower");
+                        mappingDefinition.damperRemap = 64;
+                        mappingDefinition.bEnaDamperControl = true;
+                        mappingDefinition.bEnaVolControl = true;
+                        mappingDefinition.initialVolume = -1;
+                        mappingDefinition.bEnaModControl = true;
                         receivingListBox.Items.Add(mappingDefinition);
                     }
                 }
