@@ -41,6 +41,7 @@ namespace JoeMidi1
 
         public Mapper()
         {
+            ConfigurationSubDirectory = "JoeMidi";
             for (int i = 0; i < NUM_PROGRAM_BUTTONS; ++i)
             {
                 m_programButtonLastProgramNo[i] = i;
@@ -500,11 +501,11 @@ namespace JoeMidi1
         private void loadConfiguration()
         {
             String myDocsFolder = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-            String directoryPath = myDocsFolder + @"\JoeMidi";
+            String directoryPath = myDocsFolder + @"\" + ConfigurationSubDirectory;
             String filePath = directoryPath + @"\JoeMidi.json";
             if (File.Exists(filePath) == false)
             {
-                MessageBox.Show("JoeMidi.json doesn't exist.  Creating trial configuration");
+                MessageBox.Show(filePath + " doesn't exist.  Creating trial configuration");
                 configuration.createTrialConfiguration();
             }
             else
@@ -577,7 +578,7 @@ namespace JoeMidi1
             String json = JsonConvert.SerializeObject(configuration, Formatting.Indented, serializerSettings);
 
             String myDocsFolder = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-            String directoryPath = myDocsFolder + @"\JoeMidi";
+            String directoryPath = myDocsFolder + @"\" + ConfigurationSubDirectory;
             if (!Directory.Exists(directoryPath))
             {
                 Directory.CreateDirectory(directoryPath);
@@ -675,5 +676,7 @@ namespace JoeMidi1
                 }
             }
         }
+
+        public string ConfigurationSubDirectory { get; set; }
     }
 }

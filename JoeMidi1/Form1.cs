@@ -44,6 +44,12 @@ namespace JoeMidi1
 
             mapper = new Mapper();
 
+            string[] args = Environment.GetCommandLineArgs();
+            if (args.Length > 1)
+            {
+                mapper.ConfigurationSubDirectory = args[1];
+            }
+            
             // Plug the method that we'll receive notification about midi program changes from into the mapper
             mapper.midiProgramChangeNotification = new Mapper.MidiProgramChange(midiProgramChangeNotification);
 
