@@ -68,6 +68,7 @@ namespace JoeMidi1
             nudSoundGeneratorNumChannels.Value = 1;
             nudVolMax.Value = 127;
             nudVolMin.Value = 0;
+            tbTrackName.Text = "";
             refreshCbSoundGeneratorDeviceName(null);
             lbSoundGeneratorPatches.Items.Clear();
 
@@ -115,6 +116,7 @@ namespace JoeMidi1
             soundGeneratorBeingEdited.nChannels = (int)nudSoundGeneratorNumChannels.Value;
             soundGeneratorBeingEdited.cc7Min = (int)nudVolMin.Value;
             soundGeneratorBeingEdited.cc7Max = (int)nudVolMax.Value;
+            soundGeneratorBeingEdited.track = tbTrackName.Text;
 
             if (bCreatingNewSoundGenerator == true)
             {
@@ -130,6 +132,7 @@ namespace JoeMidi1
                 soundGeneratorToModify.nChannels = (int)nudSoundGeneratorNumChannels.Value;
                 soundGeneratorToModify.cc7Min = (int)nudVolMin.Value;
                 soundGeneratorToModify.cc7Max = (int)nudVolMax.Value;
+                soundGeneratorToModify.track = tbTrackName.Text;
                 soundGeneratorToModify.soundGeneratorPatchDict.Clear();
                 foreach (String patchName in soundGeneratorBeingEdited.soundGeneratorPatchDict.Keys)
                 {
@@ -157,6 +160,30 @@ namespace JoeMidi1
             cbSoundGeneratorPatchCategory.Text = "";
             nudSoundGeneratorPatchBankNo.Value = -1;
             nudSoundGeneratorPatchProgramNo.Value = 0;
+            tbFxPreset1.Text = "";
+            tbFxPreset2.Text = "";
+            tbFxPreset3.Text = "";
+            tbFxPreset4.Text = "";
+            tbFxPreset5.Text = "";
+
+            // If this is a bank-less SG propose the next highest PC
+
+            Boolean bankless = true;
+            int maxPc = -1;
+            foreach (SoundGeneratorPatch patch in soundGeneratorBeingEdited.soundGeneratorPatchDict.Values)
+            {
+                if (patch.soundGeneratorBank >= 0) {
+                    bankless = false;
+                }
+                if (patch.soundGeneratorPatchNumber > maxPc)
+                {
+                    maxPc = patch.soundGeneratorPatchNumber;
+                }
+            }
+            if (bankless && maxPc < 127)
+            {
+                nudSoundGeneratorPatchProgramNo.Value = maxPc + 1;
+            }
 
             creatingNewSoundGeneratorPatch = true;
 
@@ -170,6 +197,14 @@ namespace JoeMidi1
             {
                 String selectedSoundGeneratorPatchName = (String)lbSoundGeneratorPatches.SelectedItem;
 
+                // Trim the added Bank/PC suffix if present.
+                int pc_suffix_start = selectedSoundGeneratorPatchName.LastIndexOf(" (");
+                if (pc_suffix_start > 0)
+                {
+                    selectedSoundGeneratorPatchName = selectedSoundGeneratorPatchName.Substring(0, pc_suffix_start);
+                }
+
+
                 SoundGeneratorPatch patch = soundGeneratorBeingEdited.soundGeneratorPatchDict[selectedSoundGeneratorPatchName];
                 tbSoundGeneratorPatchName.Text = patch.name;
                 tbSoundGeneratorPatchName.Enabled = false;
@@ -177,6 +212,14 @@ namespace JoeMidi1
                 nudSoundGeneratorPatchBankNo.Value = patch.soundGeneratorBank;
                 nudSoundGeneratorPatchProgramNo.Value = patch.soundGeneratorPatchNumber;
                 pnlSoundGeneratorPatchEdit.Visible = true;
+                if (patch.fxPresets != null)
+                {
+                    if (patch.fxPresets.Count > 0) tbFxPreset1.Text = patch.fxPresets[0];
+                    if (patch.fxPresets.Count > 1) tbFxPreset2.Text = patch.fxPresets[1];
+                    if (patch.fxPresets.Count > 2) tbFxPreset3.Text = patch.fxPresets[2];
+                    if (patch.fxPresets.Count > 3) tbFxPreset4.Text = patch.fxPresets[3];
+                    if (patch.fxPresets.Count > 4) tbFxPreset5.Text = patch.fxPresets[4];
+                }
 
                 creatingNewSoundGeneratorPatch = false;
             }
@@ -194,6 +237,12 @@ namespace JoeMidi1
             patch.patchCategoryName = cbSoundGeneratorPatchCategory.Text;
             patch.soundGeneratorBank = (int)nudSoundGeneratorPatchBankNo.Value;
             patch.soundGeneratorPatchNumber = (int)nudSoundGeneratorPatchProgramNo.Value;
+            patch.fxPresets.Clear();
+            patch.fxPresets.Add(tbFxPreset1.Text);
+            patch.fxPresets.Add(tbFxPreset2.Text);
+            patch.fxPresets.Add(tbFxPreset3.Text);
+            patch.fxPresets.Add(tbFxPreset4.Text);
+            patch.fxPresets.Add(tbFxPreset5.Text);
 
             if (creatingNewSoundGeneratorPatch == true && soundGeneratorBeingEdited.soundGeneratorPatchDict.ContainsKey(patch.name))
             {
@@ -219,7 +268,8 @@ namespace JoeMidi1
         private void refreshLbSoundGeneratorPatches()
         {
             lbSoundGeneratorPatches.Items.Clear();
-            foreach (String patchName in soundGeneratorBeingEdited.soundGeneratorPatchDict.Keys)
+            List<String> patches = new List<String>(soundGeneratorBeingEdited.soundGeneratorPatchDict.Keys);
+            foreach (String patchName in patches)
             {
                 lbSoundGeneratorPatches.Items.Add(patchName);
             }
@@ -250,11 +300,22 @@ namespace JoeMidi1
                 nudSoundGeneratorNumChannels.Value = soundGeneratorBeingEdited.nChannels;
                 nudVolMin.Value = soundGeneratorBeingEdited.cc7Min;
                 nudVolMax.Value = soundGeneratorBeingEdited.cc7Max;
+                tbTrackName.Text = soundGeneratorBeingEdited.track;
 
                 lbSoundGeneratorPatches.Items.Clear();
-                foreach (SoundGeneratorPatch patch in soundGeneratorBeingEdited.soundGeneratorPatchDict.Values)
+                lbSoundGeneratorPatches.Items.Clear();
+                List<SoundGeneratorPatch> patches = new List<SoundGeneratorPatch>(soundGeneratorBeingEdited.soundGeneratorPatchDict.Values);
+                patches.Sort((x, y) => x.name.CompareTo(y.name));
+                foreach (SoundGeneratorPatch patch in patches)
                 {
-                    lbSoundGeneratorPatches.Items.Add(patch.name);
+                    if (patch.soundGeneratorBank >= 0)
+                    {
+                        lbSoundGeneratorPatches.Items.Add(String.Format("{0} ({1}:{2})", patch.name, patch.soundGeneratorBank, patch.soundGeneratorPatchNumber));
+                    }
+                    else
+                    {
+                        lbSoundGeneratorPatches.Items.Add(String.Format("{0} ({1})", patch.name, patch.soundGeneratorPatchNumber));
+                    }
                 }
 
                 refreshCbSoundGeneratorDeviceName(null);

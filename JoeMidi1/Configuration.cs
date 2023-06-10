@@ -54,6 +54,10 @@ namespace JoeMidi1
 
         public bool portraitMode = false;
 
+        public String oscAddress = "127.0.0.1";
+
+        public int oscPort = 8000;
+
         [JsonIgnore]
         public int[] currentPrimaryControllerButtonProgramNumbers = new int[8];
 

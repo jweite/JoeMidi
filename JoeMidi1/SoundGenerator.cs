@@ -19,6 +19,7 @@ namespace JoeMidi1
         public int nChannels;           // Number of midi channels allocated to this SoundGenerator, typically to support multi-timbral use.
         public int cc7Min = 0;          // For scaling cc range of sound generators
         public int cc7Max = 127;        // For scaling cc range of sound generators
+        public string track;            // The Reaper track reference (name or #number) for OSC.
 
         [JsonIgnore]
         public double cc7Scale = 1.0;
@@ -37,6 +38,7 @@ namespace JoeMidi1
             channelBase = original.channelBase;
             cc7Max = original.cc7Max;
             cc7Min = original.cc7Min;
+            track = original.track;
 
             foreach (String patchName in original.soundGeneratorPatchDict.Keys)
             {

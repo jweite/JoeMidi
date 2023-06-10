@@ -7,6 +7,7 @@ using Midi;
 using Newtonsoft.Json;
 using System.Windows.Forms;
 using System.Threading;
+using SharpOSC;
 
 namespace JoeMidi1
 {
@@ -38,6 +39,8 @@ namespace JoeMidi1
         // Notify the interested (UI) of midi programs activated by the mapper
         public delegate void MidiProgramActivated(MidiProgram midiProgram);
         public MidiProgramActivated midiProgramActivatedNotification = null;
+
+        SharpOSC.UDPSender oscSender = null;
 
         public Mapper()
         {
@@ -223,10 +226,10 @@ namespace JoeMidi1
                 }
             }
 
-            // Step through the new per-device/channel mappings and send any program/bank/control changes required to effect them on the synths.
+            // Step through the new per-device/channel mappings and send any program/bank/OSC/control changes required to effect them on the synths.
             foreach (Mapping.PerDeviceChannelMapping perDeviceChannelMapping in mappingToActivate.perDeviceChannelMappings.Values)
             {
-                // Send out the mapping's registered bank/program change to each of that Mapping's Sound Generators.
+                // Send out the mapping's registered bank/program change/OSC messages to each of that Mapping's Sound Generators.
                 foreach (MappingPatch mappingPatch in perDeviceChannelMapping.mappingPatches)
                 {
                     if (mappingPatch.bank >= 0)
@@ -241,6 +244,47 @@ namespace JoeMidi1
                     if (mappingPatch.patchNumber >= 0 && mappingPatch.patchNumber < 128)
                     {
                         mappingPatch.soundGenerator.device.SendProgramChange((Channel)mappingPatch.soundGeneratorPhysicalChannel, (Instrument)mappingPatch.patchNumber);
+                    }
+                    if (mappingPatch.track != null && mappingPatch.track.Length > 0)
+                    {
+                        // This silently requires numeric track references prefixed with #, and fxPresets of the form fxSlotNum:presetName.  Preset name "disabled" reserved to bypass the FX.
+                        if (mappingPatch.track.StartsWith("#"))
+                        {
+                            int trackNum = 0;
+                            if (int.TryParse(mappingPatch.track.Substring(1), out trackNum) && trackNum > 0)
+                            {
+                                foreach (String fxPreset in mappingPatch.fxPresets)
+                                {
+                                    if (fxPreset.Length > 0)
+                                    {
+                                        var split = fxPreset.Split(':');
+                                        if (split.Length == 2)
+                                        {
+                                            int fxNum = 0;
+                                            if (int.TryParse(split[0], out fxNum) && fxNum > 0)
+                                            {
+                                                var presetName = split[1];
+                                                if (presetName.ToLower() == "disabled")
+                                                {
+                                                    // Disable FX
+                                                    var oscMessage = new SharpOSC.OscMessage(String.Format("/track/{0}/fx/{1}/bypass", trackNum, fxNum), 0);
+                                                    oscSender.Send(oscMessage);
+                                                }
+                                                else
+                                                {
+                                                    // Enable FX and select specified preset
+                                                    var oscMessage = new SharpOSC.OscMessage(String.Format("/track/{0}/fx/{1}/bypass", trackNum, fxNum), 1);
+                                                    oscSender.Send(oscMessage);
+                                                    // Select Preset
+                                                    oscMessage = new SharpOSC.OscMessage(String.Format("/track/{0}/fx/{1}/preset", trackNum, fxNum, split[1]), presetName);
+                                                    oscSender.Send(oscMessage);
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
 
@@ -490,6 +534,10 @@ namespace JoeMidi1
                 loadConfiguration();
                 configuration.bind();
                 openSourceDevices();
+                if (configuration.oscAddress != "" && configuration.oscPort > 0)
+                {
+                    oscSender = new SharpOSC.UDPSender(configuration.oscAddress, configuration.oscPort);
+                }
             }
             catch (Exception e)
             {

@@ -14,8 +14,11 @@ namespace JoeMidi1
         public String patchCategoryName;   
         public int soundGeneratorBank;                            // Should only sent if positive int 
         public int soundGeneratorPatchNumber;                     // Should only be sent if 0-127.
+        public List<String> fxPresets;                            // FX#:PresetName for up to 5 FX Slots, set in Reaper by OSC
 
-        public SoundGeneratorPatch() { }
+        public SoundGeneratorPatch() {
+            fxPresets = new List<string>();
+        }
 
         public SoundGeneratorPatch(SoundGeneratorPatch orig)
         {
@@ -23,6 +26,14 @@ namespace JoeMidi1
             patchCategoryName = orig.patchCategoryName;
             soundGeneratorBank = orig.soundGeneratorBank;
             soundGeneratorPatchNumber = orig.soundGeneratorPatchNumber;
+            fxPresets = new List<string>();
+            if (orig.fxPresets != null)
+            {
+                foreach (String preset in orig.fxPresets)
+                {
+                    fxPresets.Add(preset);
+                }
+            }
         }
 
         [JsonIgnore]

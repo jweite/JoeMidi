@@ -19,6 +19,12 @@ namespace JoeMidi1
         [JsonIgnore]
         public int bank;
 
+        [JsonIgnore]
+        public string track;
+
+        [JsonIgnore]
+        public List<string> fxPresets;
+
         public static void createTrialConfiguration(int whichMappingToCreate, List<MappingPatch> mappingPatches)
         {
             MappingPatch mappingPatch = new MappingPatch();
@@ -54,6 +60,25 @@ namespace JoeMidi1
                 SoundGeneratorPatch soundGeneratorPatch = soundGenerator.soundGeneratorPatchDict[patchName];
                 bank = soundGeneratorPatch.soundGeneratorBank;
                 patchNumber = soundGeneratorPatch.soundGeneratorPatchNumber;
+                track = soundGenerator.track;
+                if (fxPresets == null)
+                {
+                    fxPresets = new List<String>();
+                }
+                else
+                {
+                    fxPresets.Clear();
+                }
+                if (soundGeneratorPatch.fxPresets != null)
+                {
+                    foreach (String fxPreset in soundGeneratorPatch.fxPresets)
+                    {
+                        if (fxPreset.Length > 0)
+                        {
+                            fxPresets.Add(fxPreset);
+                        }
+                    }
+                }
                 return true;
             }
             else {

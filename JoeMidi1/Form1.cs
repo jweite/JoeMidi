@@ -112,12 +112,17 @@ namespace JoeMidi1
             }
             else
             {
-                foreach (String soundGeneratorName in mapper.configuration.soundGenerators.Keys)
+                List<String> soundGeneratorNames = new List<String>(mapper.configuration.soundGenerators.Keys);
+                soundGeneratorNames.Sort();
+
+                foreach (String soundGeneratorName in soundGeneratorNames)
                 {
                     SoundGenerator soundGenerator = mapper.configuration.soundGenerators[soundGeneratorName];
                     TreeNode sgNode = new TreeNode(soundGeneratorName);
                     sgNode.Tag = soundGenerator;
-                    foreach (String soundGeneratorPatchName in soundGenerator.soundGeneratorPatchDict.Keys)
+                    List<String> patchNames = new List<String>(soundGenerator.soundGeneratorPatchDict.Keys);
+                    patchNames.Sort();
+                    foreach (String soundGeneratorPatchName in patchNames)
                     {
                         SoundGeneratorPatch soundGeneratorPatch = soundGenerator.soundGeneratorPatchDict[soundGeneratorPatchName];
                         TreeNode sgpNode = new TreeNode(soundGeneratorPatchName);
@@ -221,6 +226,11 @@ namespace JoeMidi1
             {
                 metronomeTimer.Enabled = false;
             }
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
