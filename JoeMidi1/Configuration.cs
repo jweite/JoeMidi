@@ -58,6 +58,8 @@ namespace JoeMidi1
 
         public int oscPort = 8000;
 
+        public String lastOpenedShowSetlist = "";
+
         [JsonIgnore]
         public int[] currentPrimaryControllerButtonProgramNumbers = new int[8];
 

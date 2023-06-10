@@ -61,6 +61,8 @@ namespace JoeMidi1
 
             Form1_Random_Access_Load(sender, e);
 
+            setCurrentSetlist(mapper.configuration.lastOpenedShowSetlist);
+
             refreshShowControls();
 
             refreshSongEditSelector();
@@ -151,6 +153,11 @@ namespace JoeMidi1
             }
         }
 
+        private void setFormTitle()
+        {
+            this.Text = (currentSetlist != null) ? "Setlist: " + currentSetlist.name : "No Setlist Selected";
+        }
+
         // Tab Control tab selection events switch RandomAccess banks and customize the Form name with the current setlist name
         private void tabControl1_Selected(object sender, TabControlEventArgs e)
         {
@@ -159,7 +166,7 @@ namespace JoeMidi1
 
             if (e.TabPage.Text.Equals("Show"))
             {
-                this.Text = (currentSetlist != null) ? "Setlist: " + currentSetlist.name : "No Setlist Selected";
+                setFormTitle();
                 if (currentSong != null && currentSong.bpm > 0)
                 {
                     metronomeTimer.Enabled = true;

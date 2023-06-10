@@ -154,6 +154,8 @@ namespace JoeMidi1
                 {
                     currentSetlist = mapper.configuration.setlists[ii];
                     refreshShowControls();
+                    mapper.configuration.lastOpenedShowSetlist = setlistName;
+                    setFormTitle();
                     break;
                 }
             }
