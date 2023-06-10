@@ -145,6 +145,7 @@ namespace JoeMidi1
             
             // There are no external references to the SongPrograms so we remove/forget the old and insert the new in their place.
             originalSong.programs.Clear();
+            newSongValues.bind(logicalInputDeviceDict, soundGenerators, mappings, primaryInputDevice);
             foreach (SongProgram songProgram in newSongValues.programs)
             {
                 originalSong.programs.Add(songProgram);
@@ -156,15 +157,21 @@ namespace JoeMidi1
                 songDict.Add(originalSong.name, originalSong);
             }
 
-            // Fix up any setlist name references to this song.  (The in-place editing obviates the need to fix the bound Song pointer in the Setlist...)
+            // Fix up any setlist name references to this song.
             foreach (Setlist setlist in setlists)
             {
+                bool songFoundInSetlist = false;
                 for (int i = 0; i < setlist.songTitles.Count; ++i)
                 {
                     if (setlist.songTitles[i].Equals(originalSongName))
                     {
+                        songFoundInSetlist = true;
                         setlist.songTitles[i] = newSongValues.name;
                     }
+                }
+                if (songFoundInSetlist)
+                {
+                    setlist.bind(songDict, logicalInputDeviceDict, soundGenerators, mappings, primaryInputDevice);
                 }
             }
 

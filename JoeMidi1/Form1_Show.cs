@@ -142,17 +142,22 @@ namespace JoeMidi1
             form.ShowDialog();
             if (form.IsOK == true)
             {
-                String setlistName = form.Choice;
-                for (int ii = 0; ii < mapper.configuration.setlists.Count; ++ii)
+                setCurrentSetlist(form.Choice);
+            }
+        }
+
+        private void setCurrentSetlist(String setlistName)
+        {
+            for (int ii = 0; ii < mapper.configuration.setlists.Count; ++ii)
+            {
+                if (mapper.configuration.setlists[ii].name == setlistName)
                 {
-                    if (mapper.configuration.setlists[ii].name == setlistName)
-                    {
-                        currentSetlist = mapper.configuration.setlists[ii];
-                        refreshShowControls();
-                        break;
-                    }
+                    currentSetlist = mapper.configuration.setlists[ii];
+                    refreshShowControls();
+                    break;
                 }
             }
+
         }
 
         private void olvSongs_SelectedIndexChanged(object sender, EventArgs e)
