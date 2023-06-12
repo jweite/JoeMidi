@@ -25,6 +25,27 @@ namespace JoeMidi1
             }
         }
 
+        public int GetSongIndex(String songName)
+        {
+            var songIndex = -1;
+            foreach (String songTitle in songTitles)
+            {
+                ++songIndex;
+                if (songName == songTitle)
+                {
+                    return songIndex;
+                }
+            }
+            return songIndex;
+        }
+
+        public Song GetSong(String songName)
+        {
+            var songIndex = GetSongIndex(songName);
+            return songIndex >= 0 ? songs[songIndex] : null;
+        }
+
+
         public static void createTrialConfiguration(Dictionary<String, Song> songDict, List<Setlist> setlists)
         {
             Setlist setlist = new Setlist();

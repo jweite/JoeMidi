@@ -23,6 +23,8 @@ namespace JoeMidi1
 
         public Song currentSong;
 
+        Stream pdfStream = null;
+
         void midiProgramChangeNotificationShow(int programNum)
         {
             // Map the Casio PX3 Basic Program Change buttons to show functions.
@@ -78,8 +80,19 @@ namespace JoeMidi1
                 olvSongs.SetObjects(currentSetlist.songs);
                 if (currentSetlist.songs.Count > 0)
                 {
-                    olvSongs.SelectObject(currentSetlist.songs[0]);
+                    Song songToSelect = currentSetlist.songs[0];
                     currentSong = currentSetlist.songs[0];                      // ??? Does this make sense for all refreshes, or only the initial one ???
+                    if (mapper.configuration.lastOpenedShowSetlistSong.Length > 0)
+                    {
+                        var song = currentSetlist.GetSong(mapper.configuration.lastOpenedShowSetlistSong);
+                        if (song != null)
+                        {
+                            songToSelect = song;
+                        }
+                    }
+                    olvSongs.SelectObject(songToSelect);
+                    currentSong = (Song)olvSongs.SelectedObject;
+                    olvSongs.SelectedItem.EnsureVisible();
                 }
                 else
                 {
@@ -168,6 +181,11 @@ namespace JoeMidi1
             if (currentSong != null)
             {
                 setMetronomeBPM(currentSong.bpm);
+                mapper.configuration.lastOpenedShowSetlistSong = currentSong.name;
+            }
+            else
+            {
+                mapper.configuration.lastOpenedShowSetlistSong = "";
             }
             RefreshShowSongPatches(currentSong);
         }
@@ -227,6 +245,7 @@ namespace JoeMidi1
                 // NOTE: if patch is deleted from sound gen, the songProgram still exists, but has no mapping.  For now we do nothing,
                 //  but perhaps it'd be better to notify user...  But, maybe best not to interrupt the performance...
                 mapper.SetMapping(songProgram.mapping);
+                mapper.configuration.lastOpenedShowSetlistSongPatch = songProgram.name;
             }
         }
 
@@ -264,11 +283,30 @@ namespace JoeMidi1
                 }
                 else if (filePath.ToLower().EndsWith(".pdf"))
                 {
-                    var doc = PdfDocument.Load(filePath);
+                    var oldPdfStream = pdfStream;
+                    var fileLen = new FileInfo(filePath).Length;
+                    if (fileLen < 1024 * 1024)
+                    {
+                        // Read/close reasonably sized files as a convenience for me, so I can re-generate PDF files without closing JoeMidi
+                        pdfStream = new MemoryStream((int)fileLen);
+                        using (var fileStream = File.OpenRead(filePath))
+                        {
+                            fileStream.CopyTo(pdfStream);
+                        }
+                    }
+                    else
+                    {
+                        pdfStream = File.OpenRead(filePath);
+                    }
+                    var doc = PdfDocument.Load(pdfStream);
                     pdfChart.Load(doc);
                     pdfChart.ZoomMode = PdfiumViewer.PdfViewerZoomMode.FitWidth;
                     pdfChart.Page = chartPage - 1;
                     positionAndShowChartControl(pdfChart, rtbChart);
+                    if (oldPdfStream != null)
+                    {
+                        oldPdfStream.Dispose();     // I'm not sure how pdfiumviewer manages these, and don't want to risk a leak of MemoryStreams.
+                    }
                 }
                 else
                 {

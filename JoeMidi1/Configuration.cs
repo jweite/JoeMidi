@@ -60,6 +60,12 @@ namespace JoeMidi1
 
         public String lastOpenedShowSetlist = "";
 
+        public String lastOpenedShowSetlistSong = "";
+
+        public String lastOpenedShowSetlistSongPatch = "";
+
+        public String lastSelectedTab = "";
+
         [JsonIgnore]
         public int[] currentPrimaryControllerButtonProgramNumbers = new int[8];
 

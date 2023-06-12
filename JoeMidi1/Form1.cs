@@ -65,6 +65,19 @@ namespace JoeMidi1
 
             refreshShowControls();
 
+            Song songToSelect = currentSetlist.songs[0];
+            if (mapper.configuration.lastOpenedShowSetlistSong.Length > 0)
+            {
+                var song = currentSetlist.GetSong(mapper.configuration.lastOpenedShowSetlistSong);
+                if (song != null)
+                {
+                    songToSelect = song;
+                }
+            }
+            olvSongs.SelectObject(songToSelect);
+            olvSongs.SelectedItem.EnsureVisible();
+            currentSong = (Song)olvSongs.SelectedObject;
+
             refreshSongEditSelector();
 
             refreshSetlistEditSelector();
@@ -77,6 +90,21 @@ namespace JoeMidi1
             Form1_MiscTab_Load(sender, e);
 
             mapper.selectFirstMidiProgram();
+
+            if (mapper.configuration.lastSelectedTab.Length > 0)
+            {
+                for (int i = 0; i < tabControl1.TabPages.Count; ++i)
+                {
+                    var tabPage = tabControl1.TabPages[i];
+                    if (tabPage.Text == mapper.configuration.lastSelectedTab)
+                    {
+                        tabControl1.SelectedIndex = i;
+                        break;
+                    }
+                }
+            }
+            currentlySelectedTabName = tabControl1.TabPages[0].Text;
+
 
         }
 
@@ -162,6 +190,7 @@ namespace JoeMidi1
         private void tabControl1_Selected(object sender, TabControlEventArgs e)
         {
             currentlySelectedTabName = e.TabPage.Text;
+            mapper.configuration.lastSelectedTab = currentlySelectedTabName;
             metronomeTimer.Enabled = false;
 
             if (e.TabPage.Text.Equals("Show"))
