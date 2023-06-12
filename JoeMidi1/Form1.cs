@@ -89,8 +89,6 @@ namespace JoeMidi1
 
             Form1_MiscTab_Load(sender, e);
 
-            mapper.selectFirstMidiProgram();
-
             if (mapper.configuration.lastSelectedTab.Length > 0)
             {
                 for (int i = 0; i < tabControl1.TabPages.Count; ++i)
@@ -99,12 +97,21 @@ namespace JoeMidi1
                     if (tabPage.Text == mapper.configuration.lastSelectedTab)
                     {
                         tabControl1.SelectedIndex = i;
+                        currentlySelectedTabName = tabControl1.TabPages[i].Text;
                         break;
                     }
                 }
             }
-            currentlySelectedTabName = tabControl1.TabPages[0].Text;
+            else
+            {
+                currentlySelectedTabName = tabControl1.TabPages[0].Text;
+            }
 
+            if (currentlySelectedTabName != "Show")
+            {
+                mapper.selectFirstMidiProgram();
+
+            }
 
         }
 
