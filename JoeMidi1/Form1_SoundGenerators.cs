@@ -69,6 +69,7 @@ namespace JoeMidi1
             nudVolMax.Value = 127;
             nudVolMin.Value = 0;
             tbTrackName.Text = "";
+            tbDefaultVolume.Text = "";
             refreshCbSoundGeneratorDeviceName(null);
             lbSoundGeneratorPatches.Items.Clear();
 
@@ -99,8 +100,26 @@ namespace JoeMidi1
             }
         }
 
+
+        private bool parseNullableDouble(String s, out double? d)
+        {
+            double temp;
+            var result = double.TryParse(s, out temp);
+            // Ternary can't deal with double? return 
+            if (result) {
+                d = temp;
+            }
+            else
+            {
+                d = null;
+            }
+            return result;
+        }
+
         private void btnSoundGeneratorEditOK_Click(object sender, EventArgs e)
         {
+            double d;  
+
             // Complete any in-progress patch editing
             if (pnlSoundGeneratorPatchEdit.Visible)
             {
@@ -117,6 +136,7 @@ namespace JoeMidi1
             soundGeneratorBeingEdited.cc7Min = (int)nudVolMin.Value;
             soundGeneratorBeingEdited.cc7Max = (int)nudVolMax.Value;
             soundGeneratorBeingEdited.track = tbTrackName.Text;
+            parseNullableDouble(tbDefaultVolume.Text, out soundGeneratorBeingEdited.volume);
 
             if (bCreatingNewSoundGenerator == true)
             {
@@ -133,6 +153,8 @@ namespace JoeMidi1
                 soundGeneratorToModify.cc7Min = (int)nudVolMin.Value;
                 soundGeneratorToModify.cc7Max = (int)nudVolMax.Value;
                 soundGeneratorToModify.track = tbTrackName.Text;
+                parseNullableDouble(tbDefaultVolume.Text, out soundGeneratorToModify.volume);
+
                 soundGeneratorToModify.soundGeneratorPatchDict.Clear();
                 foreach (String patchName in soundGeneratorBeingEdited.soundGeneratorPatchDict.Keys)
                 {
@@ -165,6 +187,7 @@ namespace JoeMidi1
             tbFxPreset3.Text = "";
             tbFxPreset4.Text = "";
             tbFxPreset5.Text = "";
+            tbVolumeOverride.Text = "";
 
             // If this is a bank-less SG propose the next highest PC
 
@@ -220,6 +243,7 @@ namespace JoeMidi1
                     if (patch.fxPresets.Count > 3) tbFxPreset4.Text = patch.fxPresets[3];
                     if (patch.fxPresets.Count > 4) tbFxPreset5.Text = patch.fxPresets[4];
                 }
+                tbVolumeOverride.Text = (patch.volumeOverride != null) ? String.Format("{0:0.0}", patch.volumeOverride) : "";
 
                 creatingNewSoundGeneratorPatch = false;
             }
@@ -232,6 +256,11 @@ namespace JoeMidi1
 
         private void btnSoundGeneratorPatchEditOK_Click(object sender, EventArgs e)
         {
+            if (tbSoundGeneratorPatchName.Text.Length == 0)
+            {
+                MessageBox.Show("Patch name cannot be blank.");
+                return;
+            }
             SoundGeneratorPatch patch = new SoundGeneratorPatch();
             patch.name = tbSoundGeneratorPatchName.Text;
             patch.patchCategoryName = cbSoundGeneratorPatchCategory.Text;
@@ -243,6 +272,7 @@ namespace JoeMidi1
             patch.fxPresets.Add(tbFxPreset3.Text);
             patch.fxPresets.Add(tbFxPreset4.Text);
             patch.fxPresets.Add(tbFxPreset5.Text);
+            parseNullableDouble(tbVolumeOverride.Text, out patch.volumeOverride);
 
             if (creatingNewSoundGeneratorPatch == true && soundGeneratorBeingEdited.soundGeneratorPatchDict.ContainsKey(patch.name))
             {
@@ -301,6 +331,7 @@ namespace JoeMidi1
                 nudVolMin.Value = soundGeneratorBeingEdited.cc7Min;
                 nudVolMax.Value = soundGeneratorBeingEdited.cc7Max;
                 tbTrackName.Text = soundGeneratorBeingEdited.track;
+                tbDefaultVolume.Text = (soundGeneratorBeingEdited.volume != null) ? String.Format("{0:0.0}", soundGeneratorBeingEdited.volume) : "";
 
                 lbSoundGeneratorPatches.Items.Clear();
                 lbSoundGeneratorPatches.Items.Clear();

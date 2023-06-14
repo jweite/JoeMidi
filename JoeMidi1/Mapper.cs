@@ -283,6 +283,11 @@ namespace JoeMidi1
                                         }
                                     }
                                 }
+                                if (mappingPatch.volume != null)
+                                {
+                                    var oscMessage = new SharpOSC.OscMessage(String.Format("/track/{0}/volume/db", trackNum), (System.Single)mappingPatch.volume);
+                                    oscSender.Send(oscMessage);
+                                }
                             }
                         }
                     }

@@ -25,6 +25,9 @@ namespace JoeMidi1
         [JsonIgnore]
         public List<string> fxPresets;
 
+        [JsonIgnore]
+        public double? volume = null;
+
         public static void createTrialConfiguration(int whichMappingToCreate, List<MappingPatch> mappingPatches)
         {
             MappingPatch mappingPatch = new MappingPatch();
@@ -79,6 +82,20 @@ namespace JoeMidi1
                         }
                     }
                 }
+
+                if (soundGeneratorPatch.volumeOverride != null)
+                {
+                    volume = soundGeneratorPatch.volumeOverride;
+                }
+                else if (soundGenerator.volume != null)
+                {
+                    volume = soundGenerator.volume;
+                }
+                else
+                {
+                    volume = null;
+                }
+
                 return true;
             }
             else {

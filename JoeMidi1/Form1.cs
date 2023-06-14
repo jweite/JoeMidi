@@ -270,10 +270,5 @@ namespace JoeMidi1
                 metronomeTimer.Enabled = false;
             }
         }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }

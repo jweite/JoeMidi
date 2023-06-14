@@ -15,6 +15,7 @@ namespace JoeMidi1
         public int soundGeneratorBank;                            // Should only sent if positive int 
         public int soundGeneratorPatchNumber;                     // Should only be sent if 0-127.
         public List<String> fxPresets;                            // FX#:PresetName for up to 5 FX Slots, set in Reaper by OSC
+        public double? volumeOverride = null;                     // Reaper track volume in db, to be set via OSC for this patch.  Null == use track default (if defined).
 
         public SoundGeneratorPatch() {
             fxPresets = new List<string>();
@@ -34,6 +35,7 @@ namespace JoeMidi1
                     fxPresets.Add(preset);
                 }
             }
+            volumeOverride = orig.volumeOverride;
         }
 
         [JsonIgnore]

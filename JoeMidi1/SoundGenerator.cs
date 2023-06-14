@@ -20,6 +20,7 @@ namespace JoeMidi1
         public int cc7Min = 0;          // For scaling cc range of sound generators
         public int cc7Max = 127;        // For scaling cc range of sound generators
         public string track;            // The Reaper track reference (name or #number) for OSC.
+        public double? volume = null;   // The Reaper track volume in db.  If null, track volume will be left unchanged from the Reaper project default.
 
         [JsonIgnore]
         public double cc7Scale = 1.0;
@@ -39,6 +40,7 @@ namespace JoeMidi1
             cc7Max = original.cc7Max;
             cc7Min = original.cc7Min;
             track = original.track;
+            volume = original.volume;
 
             foreach (String patchName in original.soundGeneratorPatchDict.Keys)
             {
