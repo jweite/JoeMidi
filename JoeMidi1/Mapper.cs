@@ -41,6 +41,7 @@ namespace JoeMidi1
         public MidiProgramActivated midiProgramActivatedNotification = null;
 
         SharpOSC.UDPSender oscSender = null;
+        SharpOSC.UDPSender oscSenderLocalhost = null;
 
         public Mapper()
         {
@@ -245,6 +246,7 @@ namespace JoeMidi1
                     {
                         mappingPatch.soundGenerator.device.SendProgramChange((Channel)mappingPatch.soundGeneratorPhysicalChannel, (Instrument)mappingPatch.patchNumber);
                     }
+
                     if (mappingPatch.track != null && mappingPatch.track.Length > 0)
                     {
                         // This silently requires numeric track references prefixed with #, and fxPresets of the form fxSlotNum:presetName.  Preset name "disabled" reserved to bypass the FX.
@@ -268,16 +270,16 @@ namespace JoeMidi1
                                                 {
                                                     // Disable FX
                                                     var oscMessage = new SharpOSC.OscMessage(String.Format("/track/{0}/fx/{1}/bypass", trackNum, fxNum), 0);
-                                                    oscSender.Send(oscMessage);
+                                                    SendOSC(oscMessage);
                                                 }
                                                 else
                                                 {
                                                     // Enable FX and select specified preset
                                                     var oscMessage = new SharpOSC.OscMessage(String.Format("/track/{0}/fx/{1}/bypass", trackNum, fxNum), 1);
-                                                    oscSender.Send(oscMessage);
+                                                    SendOSC(oscMessage);
                                                     // Select Preset
                                                     oscMessage = new SharpOSC.OscMessage(String.Format("/track/{0}/fx/{1}/preset", trackNum, fxNum, split[1]), presetName);
-                                                    oscSender.Send(oscMessage);
+                                                    SendOSC(oscMessage);
                                                 }
                                             }
                                         }
@@ -286,7 +288,7 @@ namespace JoeMidi1
                                 if (mappingPatch.volume != null)
                                 {
                                     var oscMessage = new SharpOSC.OscMessage(String.Format("/track/{0}/volume/db", trackNum), (System.Single)mappingPatch.volume);
-                                    oscSender.Send(oscMessage);
+                                    SendOSC(oscMessage);
                                 }
                             }
                         }
@@ -309,6 +311,57 @@ namespace JoeMidi1
                         controlMapping.soundGenerator.device.SendControlChange((Channel)controlMapping.soundGeneratorPhysicalChannel, (Midi.Control)controlMapping.mappedControlNumber, scaledInitialValue);
                     }
                 }
+            }
+        }
+
+        private void SendOSC(OscPacket msg)
+        {
+            // This func to support continued OSC integration with Reaper even if the configured oscSender address goes away during a show.
+            //  When a true NIC-backed IP address is found, Reaper only binds to it for OSC.  When it's not available, Reaper binds to 0.0.0.0, which includes localhost.
+            //  So, if the configured, true NIC-backed IP address exists, Reaper doesn't listen to localhost.
+            //  This code prefers the the true NIC-backed IP address if its bound, else it falls back to localhost.
+            if (oscSender != null)
+            {
+                // If there's an oscSender bound to the address specified in the config, try it first.  If it fails then use the one bound to localhost if it was successfully created.
+                try
+                {
+                    oscSender.Send(msg);
+                    return;
+                }
+                catch (System.Net.Sockets.SocketException)
+                {
+                    // Fall through and try localhost
+                }
+                try
+                {
+                    if (oscSenderLocalhost != null)
+                    {
+                        oscSenderLocalhost.Send(msg);
+                        return;
+                    }
+                }
+                catch (System.Net.Sockets.SocketException)
+                {
+                    return;
+                }
+            }
+            else if (oscSenderLocalhost != null)
+            {
+                // If there's no oscSender bound to the address specified in the config, then use the one bound to localhost if it was successfully created.
+                try
+                {
+                    oscSenderLocalhost.Send(msg);
+                    return;
+                }
+                catch (System.Net.Sockets.SocketException)
+                {
+                    return;
+                }
+            }
+            else
+            {
+                // If neither oscSender exists, we do nothing.
+                return;
             }
         }
 
@@ -539,9 +592,28 @@ namespace JoeMidi1
                 loadConfiguration();
                 configuration.bind();
                 openSourceDevices();
+                var testMessage = new SharpOSC.OscMessage("/gleep");
                 if (configuration.oscAddress != "" && configuration.oscPort > 0)
                 {
                     oscSender = new SharpOSC.UDPSender(configuration.oscAddress, configuration.oscPort);
+                    try
+                    {
+                        oscSender.Send(testMessage);
+                    }
+                    catch (System.Net.Sockets.SocketException)
+                    {
+                        oscSender = null;
+                    }
+                }
+                oscSenderLocalhost = new SharpOSC.UDPSender("127.0.0.1", configuration.oscPort);
+                try
+                {
+                    oscSenderLocalhost.Send(testMessage);
+                }
+                catch (System.Net.Sockets.SocketException)
+                {
+                    MessageBox.Show("Cannot open OSC address.  Proceeding without OSC.");
+                    oscSenderLocalhost = null;
                 }
             }
             catch (Exception e)
