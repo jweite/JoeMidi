@@ -21,18 +21,25 @@ namespace JoeMidi1
         public int cc7Max = 127;        // For scaling cc range of sound generators
         public string track;            // The Reaper track reference (name or #number) for OSC.
         public double? volume = null;   // The Reaper track volume in db.  If null, track volume will be left unchanged from the Reaper project default.
+        public List<String> fxPresetDefaults;  // FX#:PresetName for up to 5 FX Slots, set in Reaper by OSC
 
         [JsonIgnore]
         public double cc7Scale = 1.0;
 
         // Dict, by name, of Patches available on the SoundGenerators. 
         //  Most critically each would typically have a midi Bank and program# for requesting it from the actual physical device.  
-        public Dictionary<String, SoundGeneratorPatch> soundGeneratorPatchDict = new Dictionary<string, SoundGeneratorPatch>();
+        public Dictionary<String, SoundGeneratorPatch> soundGeneratorPatchDict;
 
-        public SoundGenerator() { }
+        public SoundGenerator() {
+            soundGeneratorPatchDict = new Dictionary<string, SoundGeneratorPatch>();
+            fxPresetDefaults = new List<string>();
+        }
 
         public SoundGenerator(SoundGenerator original)
         {
+            soundGeneratorPatchDict = new Dictionary<string, SoundGeneratorPatch>();
+            fxPresetDefaults = new List<string>();
+
             name = original.name;
             deviceName = original.deviceName;
             nChannels = original.nChannels;
@@ -47,6 +54,10 @@ namespace JoeMidi1
                 soundGeneratorPatchDict.Add(patchName, new SoundGeneratorPatch(original.soundGeneratorPatchDict[patchName]));
             }
 
+            foreach (String fxPresetDefault in original.fxPresetDefaults)
+            {
+                fxPresetDefaults.Add(fxPresetDefault);
+            }
         }
 
         [JsonIgnore]

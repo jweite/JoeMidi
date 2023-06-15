@@ -118,8 +118,6 @@ namespace JoeMidi1
 
         private void btnSoundGeneratorEditOK_Click(object sender, EventArgs e)
         {
-            double d;  
-
             // Complete any in-progress patch editing
             if (pnlSoundGeneratorPatchEdit.Visible)
             {

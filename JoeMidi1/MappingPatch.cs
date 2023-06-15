@@ -23,7 +23,7 @@ namespace JoeMidi1
         public string track;
 
         [JsonIgnore]
-        public List<string> fxPresets;
+        public Dictionary<int, String> fxPresets;        // fxSlotNum:fxPresetName
 
         [JsonIgnore]
         public double? volume = null;
@@ -64,21 +64,49 @@ namespace JoeMidi1
                 bank = soundGeneratorPatch.soundGeneratorBank;
                 patchNumber = soundGeneratorPatch.soundGeneratorPatchNumber;
                 track = soundGenerator.track;
+
+                // FX Presets
                 if (fxPresets == null)
                 {
-                    fxPresets = new List<String>();
+                    fxPresets = new Dictionary<int, String>();
                 }
                 else
                 {
                     fxPresets.Clear();
                 }
-                if (soundGeneratorPatch.fxPresets != null)
-                {
+
+                // Merge the sound generator default FX presets with the patch's patch-specific ones by preset slot.
+                if (soundGenerator.fxPresetDefaults != null) {
+                    foreach (String fxPresetDefault in soundGenerator.fxPresetDefaults)
+                    {
+                        var split = fxPresetDefault.Split(':');     // Expected format: fxSlotNum:fxPresetName
+                        if (split.Length == 2)
+                        {
+                            int fxNum = 0;
+                            if (int.TryParse(split[0], out fxNum) && fxNum > 0)
+                            {
+                                fxPresets.Add(fxNum, split[1]);
+                            }
+                        }
+                    }
+                }
+                if (soundGeneratorPatch.fxPresets != null) {
                     foreach (String fxPreset in soundGeneratorPatch.fxPresets)
                     {
-                        if (fxPreset.Length > 0)
+                        var split = fxPreset.Split(':');     // Expected format: fxSlotNum:fxPresetName
+                        if (split.Length == 2)
                         {
-                            fxPresets.Add(fxPreset);
+                            int fxNum = 0;
+                            if (int.TryParse(split[0], out fxNum) && fxNum > 0)
+                            {
+                                if (fxPresets.ContainsKey(fxNum)) {
+                                    fxPresets[fxNum] = split[1];
+                                }
+                                else
+                                {
+                                    fxPresets.Add(fxNum, split[1]);
+                                }
+                            }
                         }
                     }
                 }

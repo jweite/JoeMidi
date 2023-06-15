@@ -255,36 +255,27 @@ namespace JoeMidi1
                             int trackNum = 0;
                             if (int.TryParse(mappingPatch.track.Substring(1), out trackNum) && trackNum > 0)
                             {
-                                foreach (String fxPreset in mappingPatch.fxPresets)
+                                foreach (int fxSlotNum in mappingPatch.fxPresets.Keys)
                                 {
-                                    if (fxPreset.Length > 0)
+                                    String presetName = mappingPatch.fxPresets[fxSlotNum];
+                                    if (presetName.ToLower() == "disabled")
                                     {
-                                        var split = fxPreset.Split(':');
-                                        if (split.Length == 2)
-                                        {
-                                            int fxNum = 0;
-                                            if (int.TryParse(split[0], out fxNum) && fxNum > 0)
-                                            {
-                                                var presetName = split[1];
-                                                if (presetName.ToLower() == "disabled")
-                                                {
-                                                    // Disable FX
-                                                    var oscMessage = new SharpOSC.OscMessage(String.Format("/track/{0}/fx/{1}/bypass", trackNum, fxNum), 0);
-                                                    SendOSC(oscMessage);
-                                                }
-                                                else
-                                                {
-                                                    // Enable FX and select specified preset
-                                                    var oscMessage = new SharpOSC.OscMessage(String.Format("/track/{0}/fx/{1}/bypass", trackNum, fxNum), 1);
-                                                    SendOSC(oscMessage);
-                                                    // Select Preset
-                                                    oscMessage = new SharpOSC.OscMessage(String.Format("/track/{0}/fx/{1}/preset", trackNum, fxNum, split[1]), presetName);
-                                                    SendOSC(oscMessage);
-                                                }
-                                            }
-                                        }
+                                        // Disable FX
+                                        var oscMessage = new SharpOSC.OscMessage(String.Format("/track/{0}/fx/{1}/bypass", trackNum, fxSlotNum), 0);
+                                        SendOSC(oscMessage);
+                                    }
+                                    else
+                                    {
+                                        // Enable FX and select specified preset
+                                        var oscMessage = new SharpOSC.OscMessage(String.Format("/track/{0}/fx/{1}/bypass", trackNum, fxSlotNum), 1);
+                                        SendOSC(oscMessage);
+                                        // Select Preset
+                                        oscMessage = new SharpOSC.OscMessage(String.Format("/track/{0}/fx/{1}/preset", trackNum, fxSlotNum), presetName);
+                                        SendOSC(oscMessage);
                                     }
                                 }
+
+                                // Set the track volume with the mapping patch volume.  (MappingPatch volume is the SG default volume possibly overridden by the SG Patch vol.
                                 if (mappingPatch.volume != null)
                                 {
                                     var oscMessage = new SharpOSC.OscMessage(String.Format("/track/{0}/volume/db", trackNum), (System.Single)mappingPatch.volume);
@@ -320,6 +311,7 @@ namespace JoeMidi1
             //  When a true NIC-backed IP address is found, Reaper only binds to it for OSC.  When it's not available, Reaper binds to 0.0.0.0, which includes localhost.
             //  So, if the configured, true NIC-backed IP address exists, Reaper doesn't listen to localhost.
             //  This code prefers the the true NIC-backed IP address if its bound, else it falls back to localhost.
+            //  TBD whether I should try localhost first, since I usually gig with Wifi off.
             if (oscSender != null)
             {
                 // If there's an oscSender bound to the address specified in the config, try it first.  If it fails then use the one bound to localhost if it was successfully created.
