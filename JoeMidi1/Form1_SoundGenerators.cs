@@ -267,11 +267,11 @@ namespace JoeMidi1
             patch.soundGeneratorBank = (int)nudSoundGeneratorPatchBankNo.Value;
             patch.soundGeneratorPatchNumber = (int)nudSoundGeneratorPatchProgramNo.Value;
             patch.fxPresets.Clear();
-            patch.fxPresets.Add(tbFxPreset1.Text);
-            patch.fxPresets.Add(tbFxPreset2.Text);
-            patch.fxPresets.Add(tbFxPreset3.Text);
-            patch.fxPresets.Add(tbFxPreset4.Text);
-            patch.fxPresets.Add(tbFxPreset5.Text);
+            if (tbFxPreset1.Text.Length > 0) patch.fxPresets.Add(tbFxPreset1.Text);
+            if (tbFxPreset2.Text.Length > 0) patch.fxPresets.Add(tbFxPreset2.Text);
+            if (tbFxPreset3.Text.Length > 0) patch.fxPresets.Add(tbFxPreset3.Text);
+            if (tbFxPreset4.Text.Length > 0) patch.fxPresets.Add(tbFxPreset4.Text);
+            if (tbFxPreset5.Text.Length > 0) patch.fxPresets.Add(tbFxPreset5.Text);
             parseNullableDouble(tbVolumeOverride.Text, out patch.volumeOverride);
 
             if (creatingNewSoundGeneratorPatch == true && soundGeneratorBeingEdited.soundGeneratorPatchDict.ContainsKey(patch.name))
