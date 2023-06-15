@@ -235,11 +235,11 @@ namespace JoeMidi1
                 pnlSoundGeneratorPatchEdit.Visible = true;
                 if (patch.fxPresets != null)
                 {
-                    if (patch.fxPresets.Count > 0) tbFxPreset1.Text = patch.fxPresets[0];
-                    if (patch.fxPresets.Count > 1) tbFxPreset2.Text = patch.fxPresets[1];
-                    if (patch.fxPresets.Count > 2) tbFxPreset3.Text = patch.fxPresets[2];
-                    if (patch.fxPresets.Count > 3) tbFxPreset4.Text = patch.fxPresets[3];
-                    if (patch.fxPresets.Count > 4) tbFxPreset5.Text = patch.fxPresets[4];
+                    tbFxPreset1.Text = (patch.fxPresets.Count > 0) ? patch.fxPresets[0] : "";
+                    tbFxPreset2.Text = (patch.fxPresets.Count > 1) ? patch.fxPresets[1] : "";
+                    tbFxPreset3.Text = (patch.fxPresets.Count > 2) ? patch.fxPresets[2] : "";
+                    tbFxPreset4.Text = (patch.fxPresets.Count > 3) ? patch.fxPresets[3] : "";
+                    tbFxPreset5.Text = (patch.fxPresets.Count > 4) ? patch.fxPresets[4] : "";
                 }
                 tbVolumeOverride.Text = (patch.volumeOverride != null) ? String.Format("{0:0.0}", patch.volumeOverride) : "";
 
