@@ -22,6 +22,7 @@ namespace JoeMidi1
         public string track;            // The Reaper track reference (name or #number) for OSC.
         public double? volume = null;   // The Reaper track volume in db.  If null, track volume will be left unchanged from the Reaper project default.
         public List<String> fxPresetDefaults;  // FX#:PresetName for up to 5 FX Slots, set in Reaper by OSC
+        public Dictionary<String, int> fxSlotNames;
 
         [JsonIgnore]
         public double cc7Scale = 1.0;
@@ -33,12 +34,14 @@ namespace JoeMidi1
         public SoundGenerator() {
             soundGeneratorPatchDict = new Dictionary<string, SoundGeneratorPatch>();
             fxPresetDefaults = new List<string>();
+            fxSlotNames = new Dictionary<string, int>();
         }
 
         public SoundGenerator(SoundGenerator original)
         {
             soundGeneratorPatchDict = new Dictionary<string, SoundGeneratorPatch>();
             fxPresetDefaults = new List<string>();
+            fxSlotNames = new Dictionary<string, int>();
 
             name = original.name;
             deviceName = original.deviceName;
@@ -57,6 +60,11 @@ namespace JoeMidi1
             foreach (String fxPresetDefault in original.fxPresetDefaults)
             {
                 fxPresetDefaults.Add(fxPresetDefault);
+            }
+
+            foreach (var fxSlotName in fxSlotNames.Keys)
+            {
+                fxSlotNames[fxSlotName] = original.fxSlotNames[fxSlotName];
             }
         }
 

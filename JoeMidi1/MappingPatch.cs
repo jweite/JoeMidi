@@ -97,7 +97,18 @@ namespace JoeMidi1
                         if (split.Length == 2)
                         {
                             int fxNum = 0;
-                            if (int.TryParse(split[0], out fxNum) && fxNum > 0)
+                            if (split[0].StartsWith("#"))
+                            {
+                                int.TryParse(split[0].Substring(1), out fxNum);
+                            }
+                            else
+                            {
+                                if (soundGenerator.fxSlotNames.ContainsKey(split[0])) {
+                                    fxNum = soundGenerator.fxSlotNames[split[0]];
+                                }
+                            }
+
+                            if (fxNum > 0)
                             {
                                 if (fxPresets.ContainsKey(fxNum)) {
                                     fxPresets[fxNum] = split[1];
