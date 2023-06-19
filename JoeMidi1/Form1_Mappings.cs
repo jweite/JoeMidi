@@ -406,8 +406,8 @@ namespace JoeMidi1
                         mappingDefinition.bLower = receivingListBox.Name.Contains("Lower");
                         mappingDefinition.damperRemap = 64;
                         mappingDefinition.bEnaDamperControl = true;
-                        mappingDefinition.bEnaVolControl = true;
-                        mappingDefinition.initialVolume = -1;
+                        mappingDefinition.bEnaCC7 = true;
+                        mappingDefinition.initialCC7 = -1;
                         mappingDefinition.bEnaModControl = true;
                         receivingListBox.Items.Add(mappingDefinition);
                     }
@@ -462,11 +462,12 @@ namespace JoeMidi1
             nudMappingDefTransposeSemis.Value = mappingDef.transpose % 12;
 
             cbMappingDefModWheelEna.Checked = mappingDef.bEnaModControl;
-            cbMappingDefVolEna.Checked = mappingDef.bEnaVolControl;
+            cbMappingDefVolEna.Checked = mappingDef.bEnaCC7;
             cbMappingDefDamperEna.Checked = mappingDef.bEnaDamperControl;
-            tbMappingDefIniVol.Value = mappingDef.initialVolume;
+            tbMappingDefIniCC7.Value = mappingDef.initialCC7;
             nudMappingDefDamperRemap.Value = (mappingDef.damperRemap >= 0) ? mappingDef.damperRemap : 64;
             cbMappingDefDamperToggle.Checked = mappingDef.bDamplerToggle;
+            tbVolume.Text = (mappingDef.volumeOverride != null) ? String.Format("{0:0.0}", mappingDef.volumeOverride) : "";
 
             showSimpleMappingDefEditorControls(true);
         }
@@ -476,6 +477,7 @@ namespace JoeMidi1
             lblMappingEditPBScale.Visible = show;
             lblMappingEditTranspose.Visible = show;
             lblMappingPBScale.Visible = show;
+            lblVolume.Visible = show;
             lblMappingTransOcts.Visible = show;
             lblMappingTransSemis.Visible = show;
             nudMappingDefTransposeOct.Visible = show;
@@ -484,9 +486,10 @@ namespace JoeMidi1
             cbMappingDefDamperToggle.Visible = show;
             cbMappingDefModWheelEna.Visible = show;
             nudMappingDefDamperRemap.Visible = show;
-            tbMappingDefIniVol.Visible = show;
+            tbMappingDefIniCC7.Visible = show;
             cbMappingDefVolEna.Visible = show;
             tbPBScale.Visible = show;
+            tbVolume.Visible = show;
         }
 
         private void nudMappingDefTranspose_ValueChanged(object sender, EventArgs e)
@@ -512,7 +515,7 @@ namespace JoeMidi1
 
         private void cbMappingDefVolEna_CheckedChanged(object sender, EventArgs e)
         {
-            simpleMappingDefBeingEdited.bEnaVolControl = cbMappingDefVolEna.Checked;
+            simpleMappingDefBeingEdited.bEnaCC7 = cbMappingDefVolEna.Checked;
         }
 
         private void cbMappingDefDamperEna_CheckedChanged(object sender, EventArgs e)
@@ -527,13 +530,27 @@ namespace JoeMidi1
 
         private void tbMappingDefIniVol_Scroll(object sender, EventArgs e)
         {
-            simpleMappingDefBeingEdited.initialVolume = tbMappingDefIniVol.Value;
+            simpleMappingDefBeingEdited.initialCC7 = tbMappingDefIniCC7.Value;
         }
 
         private void cbMappingDefDamperToggle_CheckedChanged(object sender, EventArgs e)
         {
             simpleMappingDefBeingEdited.bDamplerToggle = cbMappingDefDamperToggle.Checked;
         }
+
+        private void tbVolume_TextChanged(object sender, EventArgs e)
+        {
+            double d;
+            if (tbVolume.Text.Length > 0 && double.TryParse(tbVolume.Text, out d))
+            {
+                simpleMappingDefBeingEdited.volumeOverride = d;
+            }
+            else
+            {
+                simpleMappingDefBeingEdited.volumeOverride = null;
+            }
+        }
+
 
         private void btnMappingDelete_Click(object sender, EventArgs e)
         {

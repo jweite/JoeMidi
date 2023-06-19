@@ -13,6 +13,8 @@ namespace JoeMidi1
 
         public String patchName;
 
+        public double? volume = null;
+
         [JsonIgnore]
         public int patchNumber;
 
@@ -24,9 +26,6 @@ namespace JoeMidi1
 
         [JsonIgnore]
         public Dictionary<int, String> fxPresets;        // fxSlotNum:fxPresetName
-
-        [JsonIgnore]
-        public double? volume = null;
 
         public static void createTrialConfiguration(int whichMappingToCreate, List<MappingPatch> mappingPatches)
         {
@@ -122,19 +121,21 @@ namespace JoeMidi1
                     }
                 }
 
-                if (soundGeneratorPatch.volumeOverride != null)
+                if (volume == null)     // i.e., not already defined for the MappingPatch
                 {
-                    volume = soundGeneratorPatch.volumeOverride;
+                    if (soundGeneratorPatch.volumeOverride != null)     // i.e. defined for an individual SoundGenerator patch
+                    {
+                        volume = soundGeneratorPatch.volumeOverride;
+                    }
+                    else if (soundGenerator.volume != null)             // i.e., defined for the SoundGenerator as a whole
+                    {
+                        volume = soundGenerator.volume;
+                    }
+                    else
+                    {
+                        volume = null;
+                    }
                 }
-                else if (soundGenerator.volume != null)
-                {
-                    volume = soundGenerator.volume;
-                }
-                else
-                {
-                    volume = null;
-                }
-
                 return true;
             }
             else {

@@ -18,12 +18,13 @@ namespace JoeMidi1
             public String soundGeneratorName;
             public int transpose = 0;
             public float pbScale = 1.0F;
-            public bool bEnaVolControl = true;
+            public bool bEnaCC7 = true;
             public bool bEnaModControl = true;
             public bool bEnaDamperControl = true;
-            public int initialVolume = -1;
+            public int initialCC7 = -1;
             public int damperRemap = -1;
             public bool bDamplerToggle = false;
+            public double? volumeOverride = null;
 
             public String programName
             {
@@ -101,6 +102,7 @@ namespace JoeMidi1
                     mappingPatch.patchName = simpleMappingDefinition.programName;
                     mappingPatch.soundGeneratorName = soundGeneratorName;
                     mappingPatch.soundGeneratorRelativeChannel = soundGeneratorRelativeChannel;
+                    mappingPatch.volume = simpleMappingDefinition.volumeOverride;
                     perDeviceChannelMapping.mappingPatches.Add(mappingPatch);
 
                     if (simpleMappingDefinition.pbScale != 0) {
@@ -111,15 +113,15 @@ namespace JoeMidi1
                         perDeviceChannelMapping.pitchBendMappings.Add(pitchBendMapping);
                     }
 
-                    if (simpleMappingDefinition.bEnaVolControl == true || simpleMappingDefinition.initialVolume >= 0)
+                    if (simpleMappingDefinition.bEnaCC7 == true || simpleMappingDefinition.initialCC7 >= 0)
                     {
                         // This may be a mapping only, it may be an initial value setting only, or it may be both
                         ControlMapping ctlMapping = new ControlMapping();
                         ctlMapping.soundGeneratorName = soundGeneratorName;
                         ctlMapping.soundGeneratorRelativeChannel = soundGeneratorRelativeChannel;
-                        ctlMapping.sourceControlNumber = (simpleMappingDefinition.bEnaVolControl == true) ? 7 : -1;
+                        ctlMapping.sourceControlNumber = (simpleMappingDefinition.bEnaCC7 == true) ? 7 : -1;
                         ctlMapping.mappedControlNumber = 7;
-                        ctlMapping.initialValue = (simpleMappingDefinition.initialVolume >= 0) ? simpleMappingDefinition.initialVolume : 127;
+                        ctlMapping.initialValue = (simpleMappingDefinition.initialCC7 >= 0) ? simpleMappingDefinition.initialCC7 : 127;
                         perDeviceChannelMapping.controlMappings.Add(ctlMapping);
                     }
                     if (simpleMappingDefinition.bEnaModControl == true)

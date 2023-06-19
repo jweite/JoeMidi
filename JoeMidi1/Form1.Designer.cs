@@ -179,13 +179,15 @@
             this.label15 = new System.Windows.Forms.Label();
             this.tbMappingName = new System.Windows.Forms.TextBox();
             this.pnlMappingEdit = new System.Windows.Forms.Panel();
+            this.lblVolume = new System.Windows.Forms.Label();
+            this.tbVolume = new System.Windows.Forms.TextBox();
             this.lblMappingPBScale = new System.Windows.Forms.Label();
             this.lblMappingTransOcts = new System.Windows.Forms.Label();
             this.lblMappingTransSemis = new System.Windows.Forms.Label();
             this.cbMappingDefDamperToggle = new System.Windows.Forms.CheckBox();
             this.nudMappingDefDamperRemap = new System.Windows.Forms.NumericUpDown();
             this.cbMappingDefDamperEna = new System.Windows.Forms.CheckBox();
-            this.tbMappingDefIniVol = new System.Windows.Forms.TrackBar();
+            this.tbMappingDefIniCC7 = new System.Windows.Forms.TrackBar();
             this.cbMappingDefVolEna = new System.Windows.Forms.CheckBox();
             this.cbMappingDefModWheelEna = new System.Windows.Forms.CheckBox();
             this.lblMappingEditPBScale = new System.Windows.Forms.Label();
@@ -309,7 +311,7 @@
             this.tlpMappingEditNameAndButtons.SuspendLayout();
             this.pnlMappingEdit.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudMappingDefDamperRemap)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbMappingDefIniVol)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbMappingDefIniCC7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbPBScale)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMappingDefTransposeSemis)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMappingDefTransposeOct)).BeginInit();
@@ -2294,13 +2296,15 @@
             // 
             // pnlMappingEdit
             // 
+            this.pnlMappingEdit.Controls.Add(this.lblVolume);
+            this.pnlMappingEdit.Controls.Add(this.tbVolume);
             this.pnlMappingEdit.Controls.Add(this.lblMappingPBScale);
             this.pnlMappingEdit.Controls.Add(this.lblMappingTransOcts);
             this.pnlMappingEdit.Controls.Add(this.lblMappingTransSemis);
             this.pnlMappingEdit.Controls.Add(this.cbMappingDefDamperToggle);
             this.pnlMappingEdit.Controls.Add(this.nudMappingDefDamperRemap);
             this.pnlMappingEdit.Controls.Add(this.cbMappingDefDamperEna);
-            this.pnlMappingEdit.Controls.Add(this.tbMappingDefIniVol);
+            this.pnlMappingEdit.Controls.Add(this.tbMappingDefIniCC7);
             this.pnlMappingEdit.Controls.Add(this.cbMappingDefVolEna);
             this.pnlMappingEdit.Controls.Add(this.cbMappingDefModWheelEna);
             this.pnlMappingEdit.Controls.Add(this.lblMappingEditPBScale);
@@ -2325,6 +2329,26 @@
             this.pnlMappingEdit.Size = new System.Drawing.Size(567, 511);
             this.pnlMappingEdit.TabIndex = 6;
             this.pnlMappingEdit.Visible = false;
+            // 
+            // lblVolume
+            // 
+            this.lblVolume.AutoSize = true;
+            this.lblVolume.ForeColor = System.Drawing.Color.White;
+            this.lblVolume.Location = new System.Drawing.Point(320, 383);
+            this.lblVolume.Name = "lblVolume";
+            this.lblVolume.Size = new System.Drawing.Size(84, 25);
+            this.lblVolume.TabIndex = 31;
+            this.lblVolume.Text = "Volume";
+            this.lblVolume.Visible = false;
+            // 
+            // tbVolume
+            // 
+            this.tbVolume.Location = new System.Drawing.Point(412, 380);
+            this.tbVolume.Name = "tbVolume";
+            this.tbVolume.Size = new System.Drawing.Size(155, 32);
+            this.tbVolume.TabIndex = 30;
+            this.tbVolume.Visible = false;
+            this.tbVolume.TextChanged += new System.EventHandler(this.tbVolume_TextChanged);
             // 
             // lblMappingPBScale
             // 
@@ -2398,26 +2422,26 @@
             this.cbMappingDefDamperEna.Visible = false;
             this.cbMappingDefDamperEna.CheckedChanged += new System.EventHandler(this.cbMappingDefDamperEna_CheckedChanged);
             // 
-            // tbMappingDefIniVol
+            // tbMappingDefIniCC7
             // 
-            this.tbMappingDefIniVol.Location = new System.Drawing.Point(412, 375);
-            this.tbMappingDefIniVol.Maximum = 127;
-            this.tbMappingDefIniVol.Minimum = -1;
-            this.tbMappingDefIniVol.Name = "tbMappingDefIniVol";
-            this.tbMappingDefIniVol.Size = new System.Drawing.Size(202, 45);
-            this.tbMappingDefIniVol.TabIndex = 23;
-            this.tbMappingDefIniVol.Visible = false;
-            this.tbMappingDefIniVol.Scroll += new System.EventHandler(this.tbMappingDefIniVol_Scroll);
+            this.tbMappingDefIniCC7.Location = new System.Drawing.Point(412, 336);
+            this.tbMappingDefIniCC7.Maximum = 127;
+            this.tbMappingDefIniCC7.Minimum = -1;
+            this.tbMappingDefIniCC7.Name = "tbMappingDefIniCC7";
+            this.tbMappingDefIniCC7.Size = new System.Drawing.Size(202, 45);
+            this.tbMappingDefIniCC7.TabIndex = 23;
+            this.tbMappingDefIniCC7.Visible = false;
+            this.tbMappingDefIniCC7.Scroll += new System.EventHandler(this.tbMappingDefIniVol_Scroll);
             // 
             // cbMappingDefVolEna
             // 
             this.cbMappingDefVolEna.AutoSize = true;
             this.cbMappingDefVolEna.ForeColor = System.Drawing.Color.White;
-            this.cbMappingDefVolEna.Location = new System.Drawing.Point(302, 384);
+            this.cbMappingDefVolEna.Location = new System.Drawing.Point(302, 339);
             this.cbMappingDefVolEna.Name = "cbMappingDefVolEna";
-            this.cbMappingDefVolEna.Size = new System.Drawing.Size(103, 29);
+            this.cbMappingDefVolEna.Size = new System.Drawing.Size(75, 29);
             this.cbMappingDefVolEna.TabIndex = 22;
-            this.cbMappingDefVolEna.Text = "Volume";
+            this.cbMappingDefVolEna.Text = "CC7";
             this.cbMappingDefVolEna.UseVisualStyleBackColor = true;
             this.cbMappingDefVolEna.Visible = false;
             this.cbMappingDefVolEna.CheckedChanged += new System.EventHandler(this.cbMappingDefVolEna_CheckedChanged);
@@ -2426,7 +2450,7 @@
             // 
             this.cbMappingDefModWheelEna.AutoSize = true;
             this.cbMappingDefModWheelEna.ForeColor = System.Drawing.Color.White;
-            this.cbMappingDefModWheelEna.Location = new System.Drawing.Point(302, 337);
+            this.cbMappingDefModWheelEna.Location = new System.Drawing.Point(302, 300);
             this.cbMappingDefModWheelEna.Name = "cbMappingDefModWheelEna";
             this.cbMappingDefModWheelEna.Size = new System.Drawing.Size(141, 29);
             this.cbMappingDefModWheelEna.TabIndex = 21;
@@ -3540,7 +3564,7 @@
             this.pnlMappingEdit.ResumeLayout(false);
             this.pnlMappingEdit.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudMappingDefDamperRemap)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbMappingDefIniVol)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbMappingDefIniCC7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbPBScale)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMappingDefTransposeSemis)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMappingDefTransposeOct)).EndInit();
@@ -3756,7 +3780,7 @@
         private System.Windows.Forms.CheckBox cbMappingDefDamperToggle;
         private System.Windows.Forms.NumericUpDown nudMappingDefDamperRemap;
         private System.Windows.Forms.CheckBox cbMappingDefDamperEna;
-        private System.Windows.Forms.TrackBar tbMappingDefIniVol;
+        private System.Windows.Forms.TrackBar tbMappingDefIniCC7;
         private System.Windows.Forms.CheckBox cbMappingDefVolEna;
         private System.Windows.Forms.CheckBox cbMappingDefModWheelEna;
         private System.Windows.Forms.Label lblMappingEditPBScale;
@@ -3806,6 +3830,8 @@
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.TextBox tbVolumeOverride;
         private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.Label lblVolume;
+        private System.Windows.Forms.TextBox tbVolume;
     }
 }
 
