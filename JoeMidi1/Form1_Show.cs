@@ -31,42 +31,55 @@ namespace JoeMidi1
             if (programNum == mapper.configuration.currentPrimaryControllerButtonProgramNumbers[7])     // Button 8
             {
                 // Select Next Song Program
-                mbccShowSongPatches.selectNextLogicalButton(true);
+                // mbccShowSongPatches.selectNextLogicalButton(true);
+                mbccShowSongPatches.BeginInvoke(new MethodInvoker(() => { mbccShowSongPatches.selectNextLogicalButton(true); }));
             }
             else if (programNum == mapper.configuration.currentPrimaryControllerButtonProgramNumbers[6])
             {
                 // Select Prev Song Program
-                mbccShowSongPatches.selectPrevLogicalButton(true);
+                // mbccShowSongPatches.selectPrevLogicalButton(true);
+                mbccShowSongPatches.BeginInvoke(new MethodInvoker(() => { mbccShowSongPatches.selectPrevLogicalButton(true); }));
+
             }
             else if (programNum == mapper.configuration.currentPrimaryControllerButtonProgramNumbers[5])
             {
                 // Select Next Song
-                olvSongs.BeginInvoke(new MethodInvoker(selectNextSong));
+                // olvSongs.BeginInvoke(new MethodInvoker(selectNextSong));
+
+                // Pick song patch
+                mbccShowSongPatches.BeginInvoke(new MethodInvoker(() => { mbccShowSongPatches.selectLogicalButton(5, true, false); }));
             }
             else if (programNum == mapper.configuration.currentPrimaryControllerButtonProgramNumbers[4])
             {
                 // Select Previous Song
-                olvSongs.BeginInvoke(new MethodInvoker(selectPrevSong));
+                // olvSongs.BeginInvoke(new MethodInvoker(selectPrevSong));
+
+                // Pick song patch
+                mbccShowSongPatches.BeginInvoke(new MethodInvoker(() => { mbccShowSongPatches.selectLogicalButton(4, true, false); }));
+
             }
             else if (programNum == mapper.configuration.currentPrimaryControllerButtonProgramNumbers[3])
             {
-                // Pick song patch 1 - 4
-                mbccShowSongPatches.selectLogicalButton(3, true, false);
+                // Pick song patch
+                mbccShowSongPatches.BeginInvoke(new MethodInvoker(() => { mbccShowSongPatches.selectLogicalButton(3, true, false); }));
             }
             else if (programNum == mapper.configuration.currentPrimaryControllerButtonProgramNumbers[2])
             {
-                // Pick song patch 1 - 4
-                mbccShowSongPatches.selectLogicalButton(2, true, false);
+                // Pick song patch
+                mbccShowSongPatches.BeginInvoke(new MethodInvoker(() => { mbccShowSongPatches.selectLogicalButton(2, true, false); }));
+
             }
             else if (programNum == mapper.configuration.currentPrimaryControllerButtonProgramNumbers[1])
             {
-                // Pick song patch 1 - 4
-                mbccShowSongPatches.selectLogicalButton(1, true, false);
+                // Pick song patch
+                mbccShowSongPatches.BeginInvoke(new MethodInvoker(() => { mbccShowSongPatches.selectLogicalButton(1, true, false); }));
+
             }
             else if (programNum == mapper.configuration.currentPrimaryControllerButtonProgramNumbers[0])
             {
-                // Pick song patch 1 - 4
-                mbccShowSongPatches.selectLogicalButton(0, true, false);
+                // Pick song patch
+                mbccShowSongPatches.BeginInvoke(new MethodInvoker(() => { mbccShowSongPatches.selectLogicalButton(0, true, false); }));
+
             }
         }
 
