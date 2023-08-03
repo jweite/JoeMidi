@@ -391,6 +391,17 @@ namespace JoeMidi1
 
             bool globalControlChangeSent = false;
 
+            // Hard-mapping of sostenuto pedal down to next patch
+            if (msg.Device == this.configuration.primaryInputDevice.device &&
+                // msg.Channel == 0 &&
+                (int)msg.Control == 0x42 && 
+                msg.Value > 0x40)
+            {
+                ProgramChangeMessage pcMsg = new ProgramChangeMessage(msg.Device, msg.Channel, (Instrument)configuration.currentPrimaryControllerButtonProgramNumbers[7], msg.Time);  // Button 8's (NextProgram) program change number.
+                this.ProgramChange(pcMsg);
+                return;
+            }
+
             foreach (Mapping.PerDeviceChannelMapping globalPerDeviceChannelMappings in configuration.globalControlMappings)
             {
                 if (globalPerDeviceChannelMappings.inputDevice != null && globalPerDeviceChannelMappings.inputDevice.Equals(msg.Device) && globalPerDeviceChannelMappings.inputDeviceChannel == (int)msg.Channel)
