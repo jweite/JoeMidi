@@ -28,24 +28,24 @@ namespace JoeMidi1
         void midiProgramChangeNotificationShow(int programNum)
         {
             // Map the Casio PX3 Basic Program Change buttons to show functions.
-            if (programNum == mapper.configuration.currentPrimaryControllerButtonProgramNumbers[7])     // Button 8
+            if (programNum == mapper.configuration.currentPrimaryControllerButtonProgramNumbers[9])     // Button 10
+            {
+                // Select Next Song
+                olvSongs.BeginInvoke(new MethodInvoker(selectNextSong));
+            }
+            else if (programNum == mapper.configuration.currentPrimaryControllerButtonProgramNumbers[7])     // Button 8
             {
                 // Select Next Song Program
-                // mbccShowSongPatches.selectNextLogicalButton(true);
                 mbccShowSongPatches.BeginInvoke(new MethodInvoker(() => { mbccShowSongPatches.selectNextLogicalButton(true); }));
             }
             else if (programNum == mapper.configuration.currentPrimaryControllerButtonProgramNumbers[6])
             {
                 // Select Prev Song Program
-                // mbccShowSongPatches.selectPrevLogicalButton(true);
                 mbccShowSongPatches.BeginInvoke(new MethodInvoker(() => { mbccShowSongPatches.selectPrevLogicalButton(true); }));
 
             }
             else if (programNum == mapper.configuration.currentPrimaryControllerButtonProgramNumbers[5])
             {
-                // Select Next Song
-                // olvSongs.BeginInvoke(new MethodInvoker(selectNextSong));
-
                 // Pick song patch
                 mbccShowSongPatches.BeginInvoke(new MethodInvoker(() => { mbccShowSongPatches.selectLogicalButton(5, true, false); }));
             }

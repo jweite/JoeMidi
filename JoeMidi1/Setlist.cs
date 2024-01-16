@@ -36,13 +36,13 @@ namespace JoeMidi1
                     return songIndex;
                 }
             }
-            return songIndex;
+            return -1;
         }
 
         public Song GetSong(String songName)
         {
             var songIndex = GetSongIndex(songName);
-            return songIndex >= 0 ? songs[songIndex] : null;
+            return songIndex >= 0 && songIndex < songs.Count ? songs[songIndex] : null;
         }
 
 

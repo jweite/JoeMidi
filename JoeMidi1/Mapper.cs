@@ -618,6 +618,18 @@ namespace JoeMidi1
                     MessageBox.Show("Cannot open OSC address.  Proceeding without OSC.");
                     oscSenderLocalhost = null;
                 }
+
+                // Send global CC initial values
+                foreach (Mapping.PerDeviceChannelMapping globalPerDeviceChannelMappings in configuration.globalControlMappings)
+                {
+                    foreach (ControlMapping controlMapping in globalPerDeviceChannelMappings.controlMappings)
+                    {
+                        if (controlMapping.initialValue >= 0)
+                        {
+                            controlMapping.soundGenerator.device.SendControlChange((Channel)controlMapping.soundGeneratorPhysicalChannel, (Midi.Control)controlMapping.mappedControlNumber, controlMapping.initialValue);
+                        }
+                    }
+                }
             }
             catch (Exception e)
             {

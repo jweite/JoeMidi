@@ -430,7 +430,7 @@ namespace JoeMidi1
                 currentPrimaryControllerButtonProgramNumbers = primaryControllerButtonProgramNumbers[primaryInputDevice.device.Name];
             }
             else {
-                currentPrimaryControllerButtonProgramNumbers = new int[8] { -1, -1, -1, -1, -1, -1, -1, -1 };
+                currentPrimaryControllerButtonProgramNumbers = new int[10] { -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 };
             }
 
             return true;
