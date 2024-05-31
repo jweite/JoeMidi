@@ -65,11 +65,11 @@
     </Reference>
     <Reference Include="MultiButtonColControl2, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\MultiButtonRowControl\MultiButtonColControl2\bin\Debug\MultiButtonColControl2.dll</HintPath>
+      <HintPath>..\..\MultiButtonRowControl - 2022\MultiButtonColControl2\bin\Release\MultiButtonColControl2.dll</HintPath>
     </Reference>
     <Reference Include="MultiButtonRowControl2, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\MultiButtonRowControl\WindowsFormsControlLibrary1\bin\Debug\MultiButtonRowControl2.dll</HintPath>
+      <HintPath>..\..\MultiButtonRowControl - 2022\WindowsFormsControlLibrary1\bin\Release\MultiButtonRowControl2.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net40\Newtonsoft.Json.dll</HintPath>
@@ -80,8 +80,9 @@
     <Reference Include="PdfiumViewer, Version=2.12.0.0, Culture=neutral, PublicKeyToken=91e4789cfb0609e0, processorArchitecture=MSIL">
       <HintPath>..\packages\PdfiumViewer.2.12.0.0\lib\net20\PdfiumViewer.dll</HintPath>
     </Reference>
-    <Reference Include="SharpOSC">
-      <HintPath>..\..\SharpOSC\SharpOSC\bin\Release\SharpOSC.dll</HintPath>
+    <Reference Include="SharpOSC, Version=0.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\SharpOSC - 2022\SharpOSC\bin\Release\SharpOSC.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">

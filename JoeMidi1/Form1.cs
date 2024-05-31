@@ -81,6 +81,7 @@ namespace JoeMidi1
 
             setCurrentSetlist(mapper.configuration.lastOpenedShowSetlist);
 
+            mbccShowSongPatches.ShowLogicalButtonNumberBadge = true;
             refreshShowControls();
 
             Song songToSelect = currentSetlist.songs[0];
