@@ -71,7 +71,10 @@ namespace JoeMidi1
             tbTrackName.Text = "";
             tbDefaultVolume.Text = "";
             refreshCbSoundGeneratorDeviceName(null);
+            refreshCbSoundGeneratorCloneOf(null);
             lbSoundGeneratorPatches.Items.Clear();
+            btnSoundGeneratorPatchAdd.Enabled = true;
+            btnSoundGeneratorPatchDel.Enabled = true;
 
             bCreatingNewSoundGenerator = true;
 
@@ -100,6 +103,20 @@ namespace JoeMidi1
             }
         }
 
+        private void refreshCbSoundGeneratorCloneOf(String soundGeneratorToSelect)
+        {
+            cbSoundGeneratorCloneOf.Items.Clear();
+            cbSoundGeneratorCloneOf.Items.Add("<None>");
+
+            List<String> soundGeneratorNames = new List<String>(mapper.configuration.soundGenerators.Keys);
+            soundGeneratorNames.Sort();
+            foreach (String generatorName in soundGeneratorNames)
+            {
+                cbSoundGeneratorCloneOf.Items.Add(generatorName);
+            }
+
+            cbSoundGeneratorCloneOf.Text = soundGeneratorToSelect != null ? soundGeneratorToSelect : cbSoundGeneratorCloneOf.Items[0].ToString();
+        }
 
         private bool parseNullableDouble(String s, out double? d)
         {
@@ -135,10 +152,14 @@ namespace JoeMidi1
             soundGeneratorBeingEdited.cc7Max = (int)nudVolMax.Value;
             soundGeneratorBeingEdited.track = tbTrackName.Text;
             parseNullableDouble(tbDefaultVolume.Text, out soundGeneratorBeingEdited.volume);
+            if (cbSoundGeneratorCloneOf.Text != "<None>")
+            {
+                soundGeneratorBeingEdited.clonePatchesFrom = cbSoundGeneratorCloneOf.Text;
+            }
 
             if (bCreatingNewSoundGenerator == true)
             {
-                soundGeneratorBeingEdited.bind(mapper.configuration.logicalOutputDeviceDict);
+                soundGeneratorBeingEdited.bind(mapper.configuration.logicalOutputDeviceDict, mapper.configuration.soundGenerators);
                 mapper.configuration.soundGenerators.Add(soundGeneratorBeingEdited.name, soundGeneratorBeingEdited);
                 mapper.configuration.dirty = true;
             }
@@ -159,11 +180,11 @@ namespace JoeMidi1
                     SoundGeneratorPatch patch = soundGeneratorBeingEdited.soundGeneratorPatchDict[patchName];
                     soundGeneratorToModify.soundGeneratorPatchDict.Add(patch.name, patch);
                 }
-                soundGeneratorToModify.bind(mapper.configuration.logicalOutputDeviceDict);
+                soundGeneratorToModify.bind(mapper.configuration.logicalOutputDeviceDict, mapper.configuration.soundGenerators);
                 mapper.configuration.dirty = true;
             }
             refreshSoundGeneratorsListView();
-            populateTreeViewWithSoundGeneratorsPatchesAndMappings(tvProgramPatches, soundGenTreeViewMode, true);
+            populateTreeViewWithSoundGeneratorsPatchesAndMappings(tvMappingEditorPrograms, mappingEditorTreeViewMode, false);
 
             bCreatingNewSoundGenerator = false;
             pnlSoundGeneratorEdit.Visible = false;
@@ -331,6 +352,10 @@ namespace JoeMidi1
                 tbTrackName.Text = soundGeneratorBeingEdited.track;
                 tbDefaultVolume.Text = (soundGeneratorBeingEdited.volume != null) ? String.Format("{0:0.0}", soundGeneratorBeingEdited.volume) : "";
 
+                bool cloningPatches = soundGeneratorBeingEdited.clonePatchesFrom != null && soundGeneratorBeingEdited.clonePatchesFrom != "";
+                btnSoundGeneratorPatchDel.Enabled = !cloningPatches;
+                btnSoundGeneratorPatchAdd.Enabled = !cloningPatches;
+
                 lbSoundGeneratorPatches.Items.Clear();
                 lbSoundGeneratorPatches.Items.Clear();
                 List<SoundGeneratorPatch> patches = new List<SoundGeneratorPatch>(soundGeneratorBeingEdited.soundGeneratorPatchDict.Values);
@@ -346,8 +371,11 @@ namespace JoeMidi1
                         lbSoundGeneratorPatches.Items.Add(String.Format("{0} ({1})", patch.name, patch.soundGeneratorPatchNumber));
                     }
                 }
+                lbSoundGeneratorPatches.Enabled = !cloningPatches;
 
                 refreshCbSoundGeneratorDeviceName(null);
+                refreshCbSoundGeneratorCloneOf(soundGeneratorBeingEdited.clonePatchesFrom);
+
 
                 bCreatingNewSoundGenerator = false;
 

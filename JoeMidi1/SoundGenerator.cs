@@ -23,6 +23,7 @@ namespace JoeMidi1
         public double? volume = null;   // The Reaper track volume in db.  If null, track volume will be left unchanged from the Reaper project default.
         public List<String> fxPresetDefaults;  // FX#:PresetName for up to 5 FX Slots, set in Reaper by OSC
         public Dictionary<String, int> fxSlotNames;
+        public String clonePatchesFrom; // Another Sound Generator from which this one inherits patche definitions.
 
         [JsonIgnore]
         public double cc7Scale = 1.0;
@@ -51,6 +52,7 @@ namespace JoeMidi1
             cc7Min = original.cc7Min;
             track = original.track;
             volume = original.volume;
+            clonePatchesFrom = original.clonePatchesFrom;
 
             foreach (String patchName in original.soundGeneratorPatchDict.Keys)
             {
@@ -71,12 +73,21 @@ namespace JoeMidi1
         [JsonIgnore]
         public OutputDevice device;
 
-        public bool bind(Dictionary<String, LogicalOutputDevice> logicalOutputDeviceDict)
+        public bool bind(Dictionary<String, LogicalOutputDevice> logicalOutputDeviceDict, Dictionary<String, SoundGenerator> soundGenerators)
         {
             cc7Scale = ((double)cc7Max - (double)cc7Min) / (double)127;     // The portion of 127 of the actual output range
 
             if (logicalOutputDeviceDict.ContainsKey(deviceName)) {
                 this.device = logicalOutputDeviceDict[deviceName].device;
+
+                if (this.clonePatchesFrom != null && soundGenerators.ContainsKey(this.clonePatchesFrom)) {
+                    SoundGenerator cloneFrom = soundGenerators[this.clonePatchesFrom];
+                    soundGeneratorPatchDict.Clear();
+                    foreach (var patchName in cloneFrom.soundGeneratorPatchDict.Keys)
+                    {
+                        soundGeneratorPatchDict.Add(patchName, cloneFrom.soundGeneratorPatchDict[patchName]);
+                    }
+                }
 
                 foreach (String key in soundGeneratorPatchDict.Keys)
                 {

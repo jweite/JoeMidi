@@ -372,7 +372,7 @@ namespace JoeMidi1
             foreach (String key in soundGenerators.Keys)
             {
                 SoundGenerator soundGenerator = soundGenerators[key];
-                if (soundGenerator.bind(logicalOutputDeviceDict) == false)
+                if (soundGenerator.bind(logicalOutputDeviceDict, soundGenerators) == false)
                 {
                     return false;
                 }
