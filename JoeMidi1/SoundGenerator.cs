@@ -85,7 +85,7 @@ namespace JoeMidi1
                     soundGeneratorPatchDict.Clear();
                     foreach (var patchName in cloneFrom.soundGeneratorPatchDict.Keys)
                     {
-                        soundGeneratorPatchDict.Add(patchName, cloneFrom.soundGeneratorPatchDict[patchName]);
+                        soundGeneratorPatchDict.Add(patchName, new SoundGeneratorPatch(cloneFrom.soundGeneratorPatchDict[patchName]));
                     }
                 }
 
