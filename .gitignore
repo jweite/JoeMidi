@@ -11,6 +11,7 @@
 
 # production
 /JoeMidi1/bin
+/JoeMidi1/publish
 
 # intermediate
 /JoeMidi1/obj
@@ -18,4 +19,7 @@
 # misc
 /_UpgradeReport_Files
 /.vs
+/JoeMidi1/.vs
+/JoeMidi1/JoeMidi1.csproj.user
+/JoeMidi1/JoeMidi1_TemporaryKey.pfx
 
