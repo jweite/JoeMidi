@@ -445,11 +445,13 @@ namespace JoeMidi1
 
                         // Special processing for sustain pedal
                         if (controlMapping.mappedControlNumber == (int)Midi.Control.SustainPedal) {
-                            if (msg.Value > 0)
+                            if (msg.Value > 32)     // This value to turn continuous sus pedal into switching sus pedal.
                             {
                                 // Down: Record what physical device/channels are receiving it from the source device.
-                                recordSustainPedalDown(msg.Device, controlMapping.soundGenerator.device, (Channel)controlMapping.soundGeneratorPhysicalChannel);
-                                controlMapping.soundGenerator.device.SendControlChange((Channel)controlMapping.soundGeneratorPhysicalChannel, (Midi.Control)controlMapping.mappedControlNumber, scaledValue);
+                                if (recordSustainPedalDown(msg.Device, controlMapping.soundGenerator.device, (Channel)controlMapping.soundGeneratorPhysicalChannel) == false) {
+                                    // Only send the CC if the damper wasn't already down.
+                                    controlMapping.soundGenerator.device.SendControlChange((Channel)controlMapping.soundGeneratorPhysicalChannel, (Midi.Control)controlMapping.mappedControlNumber, 127 /* scaledValue*/ );
+                                }
                             }
                             else
                             {
@@ -493,7 +495,7 @@ namespace JoeMidi1
         // While named generically at this point in time we only record control messages about activation of the Sustain pedal.
         IList<MappedMidiControl> mappedMidiControls = new List<MappedMidiControl>();
 
-        private void recordSustainPedalDown(DeviceBase damperMsgSourceDevice, OutputDevice physicalDeviceWithDamperDown, Channel physicalChannelWithDamperDown)
+        private bool recordSustainPedalDown(DeviceBase damperMsgSourceDevice, OutputDevice physicalDeviceWithDamperDown, Channel physicalChannelWithDamperDown)
         {
             // Create a control mapping entry for this damper-down
             MappedMidiControl mappedControl = new MappedMidiControl();
@@ -502,6 +504,7 @@ namespace JoeMidi1
             mappedControl.mappedChannel = physicalChannelWithDamperDown;
             mappedControl.mappedControl = Midi.Control.SustainPedal;  // Damper
             mappedControl.mappedValue = 127;
+            bool rc = false;
 
             // If, for some reason, there's an existing mapping of this control in the list delete it.
             for (int i = mappedMidiControls.Count - 1; i >= 0; --i)
@@ -510,12 +513,13 @@ namespace JoeMidi1
                 if (ctl.sourceDeviceName == damperMsgSourceDevice.Name && ctl.mappedDevice == physicalDeviceWithDamperDown && ctl.mappedChannel == physicalChannelWithDamperDown && ctl.mappedControl == Midi.Control.SustainPedal)
                 {
                     mappedMidiControls.Remove(ctl);
+                    rc = true;
                 }
             }
 
             // Add the newly created control to the list
             mappedMidiControls.Add(mappedControl);
-
+            return rc;
         }
 
         private void sendSustainPedalUpToAllDeviceChannelsWithSustainPedalDown(DeviceBase damperMsgSourceDevice)
