@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using Midi;
 using Newtonsoft.Json;
 using PdfiumViewer;
+using static JoeMidi1.SimpleMapping;
 
 namespace JoeMidi1
 {
@@ -33,6 +34,9 @@ namespace JoeMidi1
         Mapping mappingBeingEdited2 = null;
         bool creatingNewMapping2 = false;
 
+
+        BindingList<FlattenedMapping> bindingList;
+
         // A Mapping was selected for editing
         private void mbrcMappingSelect2_Click(object sender, EventArgs e)
         {
@@ -46,7 +50,7 @@ namespace JoeMidi1
 
             var flattenedMappingList = flattenedMappings.Values.ToList<FlattenedMapping>();
 
-            var bindingList = new BindingList<FlattenedMapping>(flattenedMappingList);
+            this.bindingList = new BindingList<FlattenedMapping>(flattenedMappingList);
 
             var source = new BindingSource(bindingList, null);
             
@@ -102,53 +106,65 @@ namespace JoeMidi1
             btnMappingEditOk2.Visible = true;
         }
 
-        private void btnMappingEditOK2_Click(object sender, EventArgs e)
+        private void btnMappingEditOk2_Click(object sender, EventArgs e)
         {
+            Mapping editedMapping = new Mapping();      // Reverting from SimpleMapping to Mapping after editing here...
+
             if (creatingNewMapping == true)
             {
                 // Make sure the new mapping name entered is OK
-                if (tbMappingName.Text.Length == 0)
+                String mappingName = tbMappingName.Text.Trim();
+                if (mappingName.Length == 0)
                 {
                     MessageBox.Show("You must enter a Mapping Name");
                     return;
                 }
 
-                if (mapper.configuration.mappings.ContainsKey(tbMappingName.Text))
+                if (mapper.configuration.mappings.ContainsKey(mappingName))
                 {
-                    MessageBox.Show("Proposed mapping name " + tbMappingName.Text + " is already in use.");
+                    MessageBox.Show("Proposed mapping name " + mappingName + " is already in use.");
                     return;
                 }
 
-                mappingBeingEdited2.name = tbMappingName.Text;
+                editedMapping.name = tbMappingName.Text;
+            }
+            else
+            {
+                editedMapping.name = mappingBeingEdited2.name;
             }
 
+            var pdcmsDict = FlattenedMapping.Unflatten(this.bindingList);
+            editedMapping.perDeviceChannelMappings = pdcmsDict;
+
             // Flesh out the mapping internals
-            //mappingBeingEdited2.bind(mapper.configuration.logicalInputDeviceDict, mapper.configuration.soundGenerators);
+            editedMapping.bind(mapper.configuration.logicalInputDeviceDict, mapper.configuration.soundGenerators);
 
             // Store it
-            //if (creatingNewMapping)
-            //{
-            //    mapper.configuration.mappings.Add(mappingBeingEdited2.name, mappingBeingEdited2);
-            //}
-            //else
-            //{
-            //    mapper.configuration.mappings[mappingBeingEdited2.name] = mappingBeingEdited2;
-            //}
-            //mapper.configuration.dirty = true;
+            if (creatingNewMapping)
+            {
+                mapper.configuration.mappings.Add(editedMapping.name, editedMapping);
+            }
+            else
+            {
+                mapper.configuration.mappings[editedMapping.name] = editedMapping;
+            }
+            mapper.configuration.dirty = true;
 
             // Activate it...
-            //mapper.SetMapping(mappingBeingEdited2);
+            mapper.SetMapping(editedMapping);
+
+            mappingBeingEdited2 = null;
 
             // Hide the Mapping Editor UI elements
             hideEditorUiElements();
 
             // Refresh other selectors that may not be showing this (new) mapping
-            //if (creatingNewMapping)
-            //{
-            //    refreshMappingToEditSelector2();
-            //    refreshMappingToEditSelector();
-            //    btnPatchTreeViewBySG_Click(null, null);
-            //}
+//            if (creatingNewMapping)
+//            {
+                refreshMappingToEditSelector2();
+                refreshMappingToEditSelector();
+                btnPatchTreeViewBySG_Click(null, null);
+//            }
         }
 
 
