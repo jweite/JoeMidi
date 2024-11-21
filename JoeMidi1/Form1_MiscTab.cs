@@ -100,6 +100,10 @@ namespace JoeMidi1
                 tlpMappingEditOuter.SetColumn(tlpMappingEditorPatches, 1);
                 tlpMappingEditOuter.SetRow(tlpMappingEditorPatches, 2);
 
+                tlpMappingEditOuter2.SetRowSpan(mbrcMappingSelect2, 2);
+                tlpMappingEditOuter2.RowStyles[1].Height = 40;
+                tlpMappingEditOuter2.RowStyles[2].Height = 60;
+
                 tlpSoundGeneratorsOuter.SetRow(pnlSoundGeneratorPatchEdit, 2);
                 tlpSoundGeneratorsOuter.SetColumn(pnlSoundGeneratorPatchEdit, 1);
                 tlpSoundGeneratorsOuter.SetColumnSpan(pnlSoundGeneratorPatchEdit, 2);
@@ -139,6 +143,11 @@ namespace JoeMidi1
                 tlpMappingEditOuter.RowStyles[2].Height = 10;
                 tlpMappingEditOuter.SetColumn(tlpMappingEditorPatches, 2);
                 tlpMappingEditOuter.SetRow(tlpMappingEditorPatches, 1);
+
+                tlpMappingEditOuter2.SetRowSpan(mbrcMappingSelect2, 1);
+                tlpMappingEditOuter2.RowStyles[1].Height = 90;
+                tlpMappingEditOuter2.RowStyles[2].Height = 10;
+
 
                 tlpSoundGeneratorsOuter.SetColumnSpan(pnlSoundGeneratorPatchEdit, 1);
                 tlpSoundGeneratorsOuter.SetColumnSpan(pnlSoundGeneratorEdit, 1);

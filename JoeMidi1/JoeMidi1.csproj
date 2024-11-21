@@ -102,6 +102,12 @@
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLog.5.3.2\lib\net35\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog.Windows.Forms, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLog.Windows.Forms.5.2.3\lib\net35\NLog.Windows.Forms.dll</HintPath>
+    </Reference>
     <Reference Include="ObjectListView, Version=2.9.1.1072, Culture=neutral, PublicKeyToken=b1c5bf581481bcd4, processorArchitecture=MSIL">
       <HintPath>..\packages\ObjectListView.Official.2.9.1\lib\net20\ObjectListView.dll</HintPath>
     </Reference>
@@ -113,6 +119,7 @@
       <HintPath>..\..\SharpOSC - 2022\SharpOSC\bin\Release\SharpOSC.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -132,6 +139,7 @@
   <ItemGroup>
     <Compile Include="Configuration.cs" />
     <Compile Include="ControlMapping.cs" />
+    <Compile Include="FlattenedMapping.cs" />
     <Compile Include="fmSetlistPicker.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -143,6 +151,9 @@
     </Compile>
     <Compile Include="fmShowFloat.Designer.cs">
       <DependentUpon>fmShowFloat.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form1_Mappings2.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1_Mappings.cs">
       <SubType>Form</SubType>
@@ -218,6 +229,7 @@
     <EmbeddedResource Include="ucShowSetlist.resx">
       <DependentUpon>ucShowSetlist.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="App.config" />
     <None Include="JoeMidi1_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

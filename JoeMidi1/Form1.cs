@@ -16,6 +16,8 @@ namespace JoeMidi1
 {
     public partial class Form1 : Form
     {
+        private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
+
         [FlagsAttribute]
         public enum EXECUTION_STATE : uint
         {
@@ -51,6 +53,8 @@ namespace JoeMidi1
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            Logger.Info("Form_Load");
+
             // Prevent Screensaver
             SetThreadExecutionState(EXECUTION_STATE.ES_DISPLAY_REQUIRED | EXECUTION_STATE.ES_CONTINUOUS);
 
@@ -102,6 +106,7 @@ namespace JoeMidi1
             refreshSetlistEditSelector();
 
             refreshMappingToEditSelector();
+            refreshMappingToEditSelector2();
             btnMappingEditPatchTreeViewBySG_Click(null, null);
 
             refreshSoundGeneratorsListView();

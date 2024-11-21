@@ -364,6 +364,7 @@ namespace JoeMidi1
             if (creatingNewMapping)
             {
                 refreshMappingToEditSelector();
+                refreshMappingToEditSelector2();
                 btnPatchTreeViewBySG_Click(null, null);
             }
 
@@ -573,6 +574,7 @@ namespace JoeMidi1
             }
 
             refreshMappingToEditSelector();
+            refreshMappingToEditSelector2();
             btnPatchTreeViewBySG_Click(null, null);
 
             // Hide any editor UI elements that may be visible.
