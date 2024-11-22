@@ -141,6 +141,12 @@
     <Compile Include="ConfigurationException.cs" />
     <Compile Include="ControlMapping.cs" />
     <Compile Include="FlattenedMapping.cs" />
+    <Compile Include="fmPatchPicker.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fmPatchPicker.Designer.cs">
+      <DependentUpon>fmPatchPicker.cs</DependentUpon>
+    </Compile>
     <Compile Include="fmSetlistPicker.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -208,6 +214,9 @@
     <Compile Include="ucShowSetlist.Designer.cs">
       <DependentUpon>ucShowSetlist.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="fmPatchPicker.resx">
+      <DependentUpon>fmPatchPicker.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="fmSetlistPicker.resx">
       <DependentUpon>fmSetlistPicker.cs</DependentUpon>
     </EmbeddedResource>

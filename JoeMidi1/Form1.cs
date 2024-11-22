@@ -167,7 +167,7 @@ namespace JoeMidi1
 
         // Populates a treeview with either SoundGenerators/SoundGeneratorPatches (mode="SG") or Categories/SoundGeneratorPatches (mode="Cat")
         //  Presently used by both Random Access and Song tabs.
-        private void populateTreeViewWithSoundGeneratorsPatchesAndMappings(TreeView tv, String mode, bool bIncludeMappings)
+        public void populateTreeViewWithSoundGeneratorsPatchesAndMappings(TreeView tv, String mode, bool bIncludeMappings)
         {
             tv.Nodes.Clear();
 

@@ -223,6 +223,19 @@ namespace JoeMidi1
                     dgvMappings.Rows.RemoveAt(e.RowIndex);
                 }
             }
+            else if ((e.ColumnIndex == 2 || e.ColumnIndex == 4) && e.RowIndex >= 0)
+            {
+                fmPatchPicker fmPatchPicker = new fmPatchPicker();
+                fmPatchPicker.Init(this);
+                fmPatchPicker.SoundGeneratorName = (String)dgvMappings.Rows[e.RowIndex].Cells[2].Value;
+                fmPatchPicker.PatchName = (String)dgvMappings.Rows[e.RowIndex].Cells[4].Value;
+                fmPatchPicker.ShowMe();
+                if (fmPatchPicker.IsOK == true)
+                {
+                    dgvMappings.Rows[e.RowIndex].Cells[2].Value = fmPatchPicker.SoundGeneratorName;
+                    dgvMappings.Rows[e.RowIndex].Cells[4].Value = fmPatchPicker.PatchName;
+                }
+            }
             else {
                 MessageBox.Show("Grid DblClick: Row " + e.RowIndex + ":" + e.ColumnIndex);
             }
