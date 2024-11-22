@@ -54,14 +54,13 @@ namespace JoeMidi1
             [JsonIgnore]
             public InputDevice inputDevice;
 
-            public virtual bool bind(Dictionary<String, LogicalInputDevice> logicalInputDeviceDict, Dictionary<String, SoundGenerator> soundGenerators)
+            public virtual void bind(Dictionary<String, LogicalInputDevice> logicalInputDeviceDict, Dictionary<String, SoundGenerator> soundGenerators)
             {
                 if (!logicalInputDeviceDict.ContainsKey(logicalInputDeviceName))
                 {
-                    return false;
+                    throw new ConfigurationException("Exception binding PerDeviceChannelMapping for " + key + ": unknown logical input device " + logicalInputDeviceName);
                 }
                 inputDevice = logicalInputDeviceDict[logicalInputDeviceName].device;
-
 
                 foreach (MappingPatch mappingPatch in mappingPatches)
                 {
@@ -70,10 +69,7 @@ namespace JoeMidi1
 
                 foreach (NoteMapping noteMapping in noteMappings)
                 {
-                    if (noteMapping.bind(logicalInputDeviceDict, soundGenerators) == false)
-                    {
-                        return false;
-                    }
+                    noteMapping.bind(logicalInputDeviceDict, soundGenerators);
                 }
 
                 foreach (PitchBendMapping pitchBendMapping in pitchBendMappings)
@@ -85,24 +81,26 @@ namespace JoeMidi1
                 {
                     controlMapping.bind(logicalInputDeviceDict, soundGenerators);
                 }
-
-                return true;
             }
-
-
         }
         
         public String name;
 
         public Dictionary<String, PerDeviceChannelMapping> perDeviceChannelMappings = new Dictionary<string, PerDeviceChannelMapping>();
 
-        public virtual bool bind(Dictionary<String, LogicalInputDevice> logicalInputDeviceDict, Dictionary<String, SoundGenerator> soundGenerators)
+        public virtual void bind(Dictionary<String, LogicalInputDevice> logicalInputDeviceDict, Dictionary<String, SoundGenerator> soundGenerators)
         {
             foreach (PerDeviceChannelMapping perDeviceChannelMapping in perDeviceChannelMappings.Values)
             {
-                perDeviceChannelMapping.bind(logicalInputDeviceDict, soundGenerators);
+                try
+                {
+                    perDeviceChannelMapping.bind(logicalInputDeviceDict, soundGenerators);
+                }
+                catch (ConfigurationException ex)
+                {
+                    throw new ConfigurationException("Nested exception binding Mapping " + name + ": " + ex.Message);
+                }
             }
-            return true;
         }
 
         public static void createTrialConfiguration(Dictionary<String, Mapping> mappings)

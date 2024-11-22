@@ -51,12 +51,9 @@ namespace JoeMidi1
             }
         }
 
-        public override bool bind(Dictionary<String, SoundGenerator> soundGenerators)
+        public override void bind(Dictionary<String, SoundGenerator> soundGenerators)
         {
-            if (base.bind(soundGenerators) == false)
-            {
-                return false;
-            }
+            base.bind(soundGenerators);
 
             if (soundGenerator.soundGeneratorPatchDict.ContainsKey(patchName)) {
                 SoundGeneratorPatch soundGeneratorPatch = soundGenerator.soundGeneratorPatchDict[patchName];
@@ -86,6 +83,10 @@ namespace JoeMidi1
                             {
                                 fxPresets.Add(fxNum, split[1]);
                             }
+                            else
+                            {
+                                throw new ConfigurationException("Exception binding MappingPatch " + patchName + ": illegal inherited SOUND GENERATOR fx slot entry " +  fxPresetDefault);
+                            }
                         }
                     }
                 }
@@ -98,12 +99,19 @@ namespace JoeMidi1
                             int fxNum = 0;
                             if (split[0].StartsWith("#"))
                             {
-                                int.TryParse(split[0].Substring(1), out fxNum);
+                                if (int.TryParse(split[0].Substring(1), out fxNum) == false)
+                                {
+                                    throw new ConfigurationException("Exception binding MappingPatch " + patchName + ": illegal fx slot entry " + fxPreset);
+                                }
                             }
                             else
                             {
                                 if (soundGenerator.fxSlotNames.ContainsKey(split[0])) {
                                     fxNum = soundGenerator.fxSlotNames[split[0]];
+                                }
+                                else
+                                {
+                                    throw new ConfigurationException("Exception binding MappingPatch " + patchName + ": " + fxPreset + "references unknown SoundGenerator FX name");
                                 }
                             }
 
@@ -136,10 +144,9 @@ namespace JoeMidi1
                         volume = null;
                     }
                 }
-                return true;
             }
             else {
-                return false;
+                throw new ConfigurationException("Exception binding MappingPatch: patch " + patchName + " not in SoundGenerator " + soundGenerator.name + " patch dict ");
             }
         }
     }

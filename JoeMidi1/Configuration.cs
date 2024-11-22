@@ -332,15 +332,12 @@ namespace JoeMidi1
         }
 
 
-        public bool bind()
+        public void bind()
         {
             foreach (String key in logicalInputDeviceDict.Keys)
             {
                 LogicalInputDevice device = logicalInputDeviceDict[key];
-                if (device.bind() == false)
-                {
-                    return false;
-                }
+                device.bind();
             }
 
             // Resolve the Primary Input Device.  (If non defined, pick the first on in the dict.)
@@ -356,26 +353,19 @@ namespace JoeMidi1
             }
             else
             {
-                MessageBox.Show("Cannot find primary logical input device by configured name " + primaryInputDeviceName);
-                return false;
+                throw new ConfigurationException("Cannot find primary logical input device by configured name " + primaryInputDeviceName);
             }
 
             foreach (String key in logicalOutputDeviceDict.Keys)
             {
                 LogicalOutputDevice device = logicalOutputDeviceDict[key];
-                if (device.bind() == false)
-                {
-                    return false;
-                }
+                device.bind();
             }
 
             foreach (String key in soundGenerators.Keys)
             {
                 SoundGenerator soundGenerator = soundGenerators[key];
-                if (soundGenerator.bind(logicalOutputDeviceDict, soundGenerators) == false)
-                {
-                    return false;
-                }
+                soundGenerator.bind(logicalOutputDeviceDict, soundGenerators);
             }
 
             foreach (Mapping.PerDeviceChannelMapping perDeviceChannelMapping in globalControlMappings)
@@ -386,10 +376,7 @@ namespace JoeMidi1
             foreach (String key in mappings.Keys)
             {
                 Mapping mapping = mappings[key];
-                if (mapping.bind(logicalInputDeviceDict, soundGenerators) == false)
-                {
-                    return false;
-                }
+                mapping.bind(logicalInputDeviceDict, soundGenerators);
             }
 
             foreach (int bankAndProgram in midiPrograms.Keys)
@@ -432,8 +419,6 @@ namespace JoeMidi1
             else {
                 currentPrimaryControllerButtonProgramNumbers = new int[10] { -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 };
             }
-
-            return true;
         }
 
         [JsonIgnore]

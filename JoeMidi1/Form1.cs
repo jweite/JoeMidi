@@ -53,90 +53,102 @@ namespace JoeMidi1
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            Logger.Info("Form_Load");
-
-            // Prevent Screensaver
-            SetThreadExecutionState(EXECUTION_STATE.ES_DISPLAY_REQUIRED | EXECUTION_STATE.ES_CONTINUOUS);
-
-            // this.TopMost = true;
-            // this.FormBorderStyle = FormBorderStyle.None;
-            this.WindowState = FormWindowState.Maximized;
-
-            currentlySelectedTabName = tabControl1.TabPages[0].Text;
-
-            mapper = new Mapper();
-
-            string[] args = Environment.GetCommandLineArgs();
-            if (args.Length > 1)
+            try
             {
-                mapper.ConfigurationSubDirectory = args[1];
-            }
-            
-            // Plug the method that we'll receive notification about midi program changes from into the mapper
-            mapper.midiProgramChangeNotification = new Mapper.MidiProgramChange(midiProgramChangeNotification);
+                Logger.Info("Form_Load");
 
-            mapper.midiProgramActivatedNotification = new Mapper.MidiProgramActivated(midiProgramActivatedNotification);
+                // Prevent Screensaver
+                SetThreadExecutionState(EXECUTION_STATE.ES_DISPLAY_REQUIRED | EXECUTION_STATE.ES_CONTINUOUS);
 
-            mapper.startMapper();
+                // this.TopMost = true;
+                // this.FormBorderStyle = FormBorderStyle.None;
+                this.WindowState = FormWindowState.Maximized;
 
-            rightColDesignTimeWidth = tlpRandomAccess.ColumnStyles[tlpRandomAccess.ColumnCount - 1].Width;
+                currentlySelectedTabName = tabControl1.TabPages[0].Text;
 
-            Form1_Random_Access_Load(sender, e);
+                mapper = new Mapper();
 
-            setCurrentSetlist(mapper.configuration.lastOpenedShowSetlist);
-
-            mbccShowSongPatches.ShowLogicalButtonNumberBadge = true;
-            refreshShowControls();
-
-            Song songToSelect = currentSetlist.songs[0];
-            if (mapper.configuration.lastOpenedShowSetlistSong.Length > 0)
-            {
-                var song = currentSetlist.GetSong(mapper.configuration.lastOpenedShowSetlistSong);
-                if (song != null)
+                string[] args = Environment.GetCommandLineArgs();
+                if (args.Length > 1)
                 {
-                    songToSelect = song;
+                    mapper.ConfigurationSubDirectory = args[1];
                 }
-            }
-            olvSongs.SelectObject(songToSelect);
-            olvSongs.SelectedItem.EnsureVisible();
-            currentSong = (Song)olvSongs.SelectedObject;
 
-            refreshSongEditSelector();
+                // Plug the method that we'll receive notification about midi program changes from into the mapper
+                mapper.midiProgramChangeNotification = new Mapper.MidiProgramChange(midiProgramChangeNotification);
 
-            refreshSetlistEditSelector();
+                mapper.midiProgramActivatedNotification = new Mapper.MidiProgramActivated(midiProgramActivatedNotification);
 
-            refreshMappingToEditSelector();
-            refreshMappingToEditSelector2();
-            btnMappingEditPatchTreeViewBySG_Click(null, null);
+                mapper.startMapper();
 
-            refreshSoundGeneratorsListView();
+                rightColDesignTimeWidth = tlpRandomAccess.ColumnStyles[tlpRandomAccess.ColumnCount - 1].Width;
 
-            Form1_MiscTab_Load(sender, e);
+                Form1_Random_Access_Load(sender, e);
 
-            if (mapper.configuration.lastSelectedTab.Length > 0)
-            {
-                for (int i = 0; i < tabControl1.TabPages.Count; ++i)
+                setCurrentSetlist(mapper.configuration.lastOpenedShowSetlist);
+
+                mbccShowSongPatches.ShowLogicalButtonNumberBadge = true;
+                refreshShowControls();
+
+                Song songToSelect = currentSetlist.songs[0];
+                if (mapper.configuration.lastOpenedShowSetlistSong.Length > 0)
                 {
-                    var tabPage = tabControl1.TabPages[i];
-                    if (tabPage.Text == mapper.configuration.lastSelectedTab)
+                    var song = currentSetlist.GetSong(mapper.configuration.lastOpenedShowSetlistSong);
+                    if (song != null)
                     {
-                        tabControl1.SelectedIndex = i;
-                        currentlySelectedTabName = tabControl1.TabPages[i].Text;
-                        break;
+                        songToSelect = song;
                     }
                 }
+                olvSongs.SelectObject(songToSelect);
+                olvSongs.SelectedItem.EnsureVisible();
+                currentSong = (Song)olvSongs.SelectedObject;
+
+                refreshSongEditSelector();
+
+                refreshSetlistEditSelector();
+
+                refreshMappingToEditSelector();
+                refreshMappingToEditSelector2();
+                btnMappingEditPatchTreeViewBySG_Click(null, null);
+
+                refreshSoundGeneratorsListView();
+
+                Form1_MiscTab_Load(sender, e);
+
+                if (mapper.configuration.lastSelectedTab.Length > 0)
+                {
+                    for (int i = 0; i < tabControl1.TabPages.Count; ++i)
+                    {
+                        var tabPage = tabControl1.TabPages[i];
+                        if (tabPage.Text == mapper.configuration.lastSelectedTab)
+                        {
+                            tabControl1.SelectedIndex = i;
+                            currentlySelectedTabName = tabControl1.TabPages[i].Text;
+                            break;
+                        }
+                    }
+                }
+                else
+                {
+                    currentlySelectedTabName = tabControl1.TabPages[0].Text;
+                }
+
+                if (currentlySelectedTabName != "Show")
+                {
+                    mapper.selectFirstMidiProgram();
+
+                }
             }
-            else
+            catch (ConfigurationException ex)
             {
-                currentlySelectedTabName = tabControl1.TabPages[0].Text;
+                MessageBox.Show("Configuration Exception: " + ex.Message);
+                Application.Exit();
             }
-
-            if (currentlySelectedTabName != "Show")
+            catch (Exception ex)
             {
-                mapper.selectFirstMidiProgram();
-
+                MessageBox.Show(ex.Message);
+                Application.Exit();
             }
-
         }
 
         void midiProgramChangeNotification(int programNum)

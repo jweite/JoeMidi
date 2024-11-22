@@ -137,7 +137,15 @@ namespace JoeMidi1
             editedMapping.perDeviceChannelMappings = pdcmsDict;
 
             // Flesh out the mapping internals
-            editedMapping.bind(mapper.configuration.logicalInputDeviceDict, mapper.configuration.soundGenerators);
+            try
+            {
+                editedMapping.bind(mapper.configuration.logicalInputDeviceDict, mapper.configuration.soundGenerators);
+            }
+            catch (ConfigurationException ex) 
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
 
             // Store it
             if (creatingNewMapping)
@@ -198,12 +206,74 @@ namespace JoeMidi1
 
         private void dgvMappings_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            MessageBox.Show("Grid DblClick: Row " + e.RowIndex);
+            if (e.ColumnIndex == -1)
+            {
+                if (MessageBox.Show("Delete mapping row " + (e.RowIndex + 1) + "?", "Delete Mapping?", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                {
+                    dgvMappings.Rows.RemoveAt(e.RowIndex);
+                }
+            }
+            else {
+                MessageBox.Show("Grid DblClick: Row " + e.RowIndex + ":" + e.ColumnIndex);
+            }
         }
 
-        private void dgvMappings_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvMappings_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
+            bool valid = true;
 
+            switch (e.ColumnIndex)
+            {
+                // Source Channel
+                case 1: valid = isValidIntRange((String)e.FormattedValue, 0, 15); break;
+
+                // Dest Channel
+                case 3: valid = isValidIntRange((String)e.FormattedValue, 0, 15); break;
+
+                // Volume
+                case 5: valid = isValidDoubleRange((String)e.FormattedValue, -Double.MaxValue, 15); break;
+
+                // Low Note
+                case 6: valid = isValidIntRange((String)e.FormattedValue, 0, 127); break;
+
+                // High Note
+                case 7: valid = isValidIntRange((String)e.FormattedValue, 0, 127); break;
+
+                // PB Scale
+                case 8: valid = isValidDoubleRange((String)e.FormattedValue, -1.0, 1.0); break;
+
+                // Damper CC Remap
+                case 9: valid = isValidIntRange((String)e.FormattedValue, 0, 127); break;
+
+                // Mod CC Remap
+                case 10: valid = isValidIntRange((String)e.FormattedValue, 0, 127); break;
+            }
+
+            if (!valid)
+            {
+                MessageBox.Show(String.Format("Illegal Value of {0} in column {1}", (String)e.FormattedValue, e.ColumnIndex));
+                e.Cancel = true;
+            }
+        }
+
+        private bool isValidIntRange(String value, int min, int max)
+        {
+            int parsedVal;
+            if (Int32.TryParse(value, out parsedVal) == false)
+            {
+                return false;
+            }
+            return (parsedVal >= min && parsedVal <= max);
+        }
+
+        private bool isValidDoubleRange(String value, double min, double max)
+        {
+            int parsedVal;
+            if (Int32.TryParse(value, out parsedVal) == false)
+            {
+                return false;
+            }
+            return (parsedVal >= min && parsedVal <= max);
         }
 
     }

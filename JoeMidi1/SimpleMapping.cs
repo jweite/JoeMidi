@@ -50,7 +50,7 @@ namespace JoeMidi1
 
         public List<PerDeviceSimpleMapping> perDeviceSimpleMappings = new List<PerDeviceSimpleMapping>();
 
-        override public bool bind(Dictionary<String, LogicalInputDevice> logicalInputDeviceDict, Dictionary<String, SoundGenerator> soundGenerators)
+        override public void bind(Dictionary<String, LogicalInputDevice> logicalInputDeviceDict, Dictionary<String, SoundGenerator> soundGenerators)
         {
             // Builds out an actual Mapping based on the SimpleMapping.
 
@@ -161,12 +161,7 @@ namespace JoeMidi1
                 perDeviceChannelMappings.Add(perDeviceChannelMapping.key, perDeviceChannelMapping);
 
             }
-
-            return base.bind(logicalInputDeviceDict, soundGenerators);
-
+            base.bind(logicalInputDeviceDict, soundGenerators);
         }
-
-
-
     }
 }

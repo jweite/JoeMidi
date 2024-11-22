@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -18,7 +19,7 @@ namespace JoeMidi1
         [JsonIgnore]
         public OutputDevice device;
 
-        public bool bind()
+        public void bind()
         {
 
             foreach (String preferredDeviceName in physicalDevicePreferenceList)
@@ -31,24 +32,21 @@ namespace JoeMidi1
                         try
                         {
                             device.Open();
-                            return true;
+                            return;
                         }
                         catch (DeviceException)
                         {
-                            MessageBox.Show("Cannot open output device " + device.Name);
-                            return false;
+                            throw new ConfigurationException("Cannot open output device " + device.Name);
                         }
                         catch (InvalidOperationException)
                         {
-                            MessageBox.Show("Device " + device.Name + " already open.  Leaving it open.");
-                            return true;
+                            throw new ConfigurationException("Device " + device.Name + " already open.  Leaving it open.");
                         }
                     }
                 }
             }
-            MessageBox.Show("Could not find a preferred physical device for logical output device " + this.logicalDeviceName);
             this.device = null;
-            return false;
+            throw new ConfigurationException("Could not find a preferred physical device for logical output device " + this.logicalDeviceName);
         }
 
         public static void createTrialConfiguration(Dictionary<String, LogicalOutputDevice> logicalOutputDeviceDict)
@@ -79,7 +77,7 @@ namespace JoeMidi1
         [JsonIgnore]
         public InputDevice device;
 
-        public bool bind()
+        public void bind()
         {
 
             foreach (String preferredDeviceName in physicalDevicePreferenceList)
@@ -89,13 +87,12 @@ namespace JoeMidi1
                     if (device.Name.Equals(preferredDeviceName))
                     {
                         this.device = device;
-                        return true;
+                        return;
                     }
                 }
             }
             this.device = null;
-            MessageBox.Show("Cannot open any physical input devices configured for logical input device " + logicalDeviceName);
-            return false;
+            throw new ConfigurationException("Cannot open any physical input devices configured for logical input device " + logicalDeviceName);
         }
 
         public static void createTrialConfiguration(Dictionary<String, LogicalInputDevice> logicalInputDeviceDict)

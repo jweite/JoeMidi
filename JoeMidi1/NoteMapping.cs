@@ -20,9 +20,9 @@ namespace JoeMidi1
         [JsonIgnore]
         public InputDevice sourceDevice;
 
-        public bool  bind(Dictionary<String, LogicalInputDevice> logicalInputDeviceDict, Dictionary<String, SoundGenerator> soundGenerators)
+        public void bind(Dictionary<String, LogicalInputDevice> logicalInputDeviceDict, Dictionary<String, SoundGenerator> soundGenerators)
         {
-            return base.bind(soundGenerators);
+            base.bind(soundGenerators);
         }
 
         public static void createTrialConfiguration(int whichMappingToCreate, List<NoteMapping> noteMappings)

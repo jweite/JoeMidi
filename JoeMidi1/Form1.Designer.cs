@@ -3058,8 +3058,8 @@
             this.dgvMappings.Size = new System.Drawing.Size(1135, 631);
             this.dgvMappings.TabIndex = 4;
             this.dgvMappings.Visible = false;
-            this.dgvMappings.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMappings_CellContentClick);
             this.dgvMappings.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMappings_CellDoubleClick);
+            this.dgvMappings.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dgvMappings_CellValidating);
             // 
             // logicalInputDeviceName
             // 

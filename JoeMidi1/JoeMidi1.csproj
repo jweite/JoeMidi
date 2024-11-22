@@ -138,6 +138,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configuration.cs" />
+    <Compile Include="ConfigurationException.cs" />
     <Compile Include="ControlMapping.cs" />
     <Compile Include="FlattenedMapping.cs" />
     <Compile Include="fmSetlistPicker.cs">

@@ -73,7 +73,7 @@ namespace JoeMidi1
         [JsonIgnore]
         public OutputDevice device;
 
-        public bool bind(Dictionary<String, LogicalOutputDevice> logicalOutputDeviceDict, Dictionary<String, SoundGenerator> soundGenerators)
+        public void bind(Dictionary<String, LogicalOutputDevice> logicalOutputDeviceDict, Dictionary<String, SoundGenerator> soundGenerators)
         {
             cc7Scale = ((double)cc7Max - (double)cc7Min) / (double)127;     // The portion of 127 of the actual output range
 
@@ -94,12 +94,10 @@ namespace JoeMidi1
                     SoundGeneratorPatch patch = soundGeneratorPatchDict[key];
                     patch.bind(this);
                 }
-
-                return true;
             }
             else {
                 this.device = null;
-                return false;
+                throw new ConfigurationException("Exception binding sound generator: cannot find logical device " + deviceName);
             }
         }
 
