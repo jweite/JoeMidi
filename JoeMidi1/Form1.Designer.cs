@@ -219,19 +219,6 @@
             this.btnMappingDelete2 = new System.Windows.Forms.Button();
             this.btnMappingAdd2 = new System.Windows.Forms.Button();
             this.dgvMappings = new System.Windows.Forms.DataGridView();
-            this.logicalInputDeviceName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.inputDeviceChannel = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.soundGeneratorName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.soundGeneratorRelativeChannel = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.patchName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.volume = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lowestNote = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.highestNote = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pitchOffset = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pbScale = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.damperRemap = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.modRemap = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.additionalCCs = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tlpMappingEditNameAndButtons2 = new System.Windows.Forms.TableLayoutPanel();
             this.btnMappingEditOk2 = new System.Windows.Forms.Button();
             this.btnMappingEditCancel2 = new System.Windows.Forms.Button();
@@ -310,6 +297,19 @@
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.metronomeTimer = new System.Windows.Forms.Timer(this.components);
             this.metronomeFlashTimer = new System.Windows.Forms.Timer(this.components);
+            this.logicalInputDeviceName = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.inputDeviceChannel = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.soundGeneratorName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.soundGeneratorRelativeChannel = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.patchName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.volume = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lowestNote = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.highestNote = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pitchOffset = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pbScale = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.damperRemap = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.modRemap = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.additionalCCs = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contextMenuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tpRandomAccess1.SuspendLayout();
@@ -3061,110 +3061,6 @@
             this.dgvMappings.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMappings_CellDoubleClick);
             this.dgvMappings.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dgvMappings_CellValidating);
             // 
-            // logicalInputDeviceName
-            // 
-            this.logicalInputDeviceName.DataPropertyName = "logicalInputDeviceName";
-            this.logicalInputDeviceName.HeaderText = "Device";
-            this.logicalInputDeviceName.MinimumWidth = 6;
-            this.logicalInputDeviceName.Name = "logicalInputDeviceName";
-            this.logicalInputDeviceName.Width = 126;
-            // 
-            // inputDeviceChannel
-            // 
-            this.inputDeviceChannel.DataPropertyName = "inputDeviceChannel";
-            this.inputDeviceChannel.HeaderText = "Dev Ch";
-            this.inputDeviceChannel.MinimumWidth = 6;
-            this.inputDeviceChannel.Name = "inputDeviceChannel";
-            this.inputDeviceChannel.Width = 134;
-            // 
-            // soundGeneratorName
-            // 
-            this.soundGeneratorName.DataPropertyName = "soundGeneratorName";
-            this.soundGeneratorName.HeaderText = "SG";
-            this.soundGeneratorName.MinimumWidth = 6;
-            this.soundGeneratorName.Name = "soundGeneratorName";
-            this.soundGeneratorName.Width = 82;
-            // 
-            // soundGeneratorRelativeChannel
-            // 
-            this.soundGeneratorRelativeChannel.DataPropertyName = "soundGeneratorRelativeChannel";
-            this.soundGeneratorRelativeChannel.HeaderText = "SG Ch";
-            this.soundGeneratorRelativeChannel.MinimumWidth = 6;
-            this.soundGeneratorRelativeChannel.Name = "soundGeneratorRelativeChannel";
-            this.soundGeneratorRelativeChannel.Width = 125;
-            // 
-            // patchName
-            // 
-            this.patchName.DataPropertyName = "patchName";
-            this.patchName.HeaderText = "Patch";
-            this.patchName.MinimumWidth = 6;
-            this.patchName.Name = "patchName";
-            this.patchName.Width = 112;
-            // 
-            // volume
-            // 
-            this.volume.DataPropertyName = "volume";
-            this.volume.HeaderText = "Vol";
-            this.volume.MinimumWidth = 6;
-            this.volume.Name = "volume";
-            this.volume.Width = 80;
-            // 
-            // lowestNote
-            // 
-            this.lowestNote.DataPropertyName = "lowestNote";
-            this.lowestNote.HeaderText = "Low";
-            this.lowestNote.MinimumWidth = 6;
-            this.lowestNote.Name = "lowestNote";
-            this.lowestNote.Width = 92;
-            // 
-            // highestNote
-            // 
-            this.highestNote.DataPropertyName = "highestNote";
-            this.highestNote.HeaderText = "Hi";
-            this.highestNote.MinimumWidth = 6;
-            this.highestNote.Name = "highestNote";
-            this.highestNote.Width = 68;
-            // 
-            // pitchOffset
-            // 
-            this.pitchOffset.DataPropertyName = "pitchOffset";
-            this.pitchOffset.HeaderText = "XPose";
-            this.pitchOffset.MinimumWidth = 6;
-            this.pitchOffset.Name = "pitchOffset";
-            this.pitchOffset.Width = 121;
-            // 
-            // pbScale
-            // 
-            this.pbScale.DataPropertyName = "pbScale";
-            this.pbScale.HeaderText = " PB Scale";
-            this.pbScale.MinimumWidth = 6;
-            this.pbScale.Name = "pbScale";
-            this.pbScale.Width = 162;
-            // 
-            // damperRemap
-            // 
-            this.damperRemap.DataPropertyName = "damperRemap";
-            this.damperRemap.HeaderText = "Damper CC";
-            this.damperRemap.MinimumWidth = 6;
-            this.damperRemap.Name = "damperRemap";
-            this.damperRemap.Width = 187;
-            // 
-            // modRemap
-            // 
-            this.modRemap.DataPropertyName = "modRemap";
-            this.modRemap.HeaderText = "Mod CC";
-            this.modRemap.MinimumWidth = 6;
-            this.modRemap.Name = "modRemap";
-            this.modRemap.Width = 144;
-            // 
-            // additionalCCs
-            // 
-            this.additionalCCs.DataPropertyName = "additionalCCs";
-            this.additionalCCs.HeaderText = "CCs";
-            this.additionalCCs.MinimumWidth = 6;
-            this.additionalCCs.Name = "additionalCCs";
-            this.additionalCCs.Width = 97;
-            // 
             // tlpMappingEditNameAndButtons2
             // 
             this.tlpMappingEditNameAndButtons2.ColumnCount = 4;
@@ -4101,6 +3997,112 @@
             // 
             this.metronomeFlashTimer.Tick += new System.EventHandler(this.metronomeFlashTimer_Tick);
             // 
+            // logicalInputDeviceName
+            // 
+            this.logicalInputDeviceName.DataPropertyName = "logicalInputDeviceName";
+            this.logicalInputDeviceName.HeaderText = "Device";
+            this.logicalInputDeviceName.MinimumWidth = 6;
+            this.logicalInputDeviceName.Name = "logicalInputDeviceName";
+            this.logicalInputDeviceName.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.logicalInputDeviceName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.logicalInputDeviceName.Width = 126;
+            // 
+            // inputDeviceChannel
+            // 
+            this.inputDeviceChannel.DataPropertyName = "inputDeviceChannel";
+            this.inputDeviceChannel.HeaderText = "Dev Ch";
+            this.inputDeviceChannel.MinimumWidth = 6;
+            this.inputDeviceChannel.Name = "inputDeviceChannel";
+            this.inputDeviceChannel.Width = 134;
+            // 
+            // soundGeneratorName
+            // 
+            this.soundGeneratorName.DataPropertyName = "soundGeneratorName";
+            this.soundGeneratorName.HeaderText = "SG";
+            this.soundGeneratorName.MinimumWidth = 6;
+            this.soundGeneratorName.Name = "soundGeneratorName";
+            this.soundGeneratorName.Width = 82;
+            // 
+            // soundGeneratorRelativeChannel
+            // 
+            this.soundGeneratorRelativeChannel.DataPropertyName = "soundGeneratorRelativeChannel";
+            this.soundGeneratorRelativeChannel.HeaderText = "SG Ch";
+            this.soundGeneratorRelativeChannel.MinimumWidth = 6;
+            this.soundGeneratorRelativeChannel.Name = "soundGeneratorRelativeChannel";
+            this.soundGeneratorRelativeChannel.Width = 125;
+            // 
+            // patchName
+            // 
+            this.patchName.DataPropertyName = "patchName";
+            this.patchName.HeaderText = "Patch";
+            this.patchName.MinimumWidth = 6;
+            this.patchName.Name = "patchName";
+            this.patchName.Width = 112;
+            // 
+            // volume
+            // 
+            this.volume.DataPropertyName = "volume";
+            this.volume.HeaderText = "Vol";
+            this.volume.MinimumWidth = 6;
+            this.volume.Name = "volume";
+            this.volume.Width = 80;
+            // 
+            // lowestNote
+            // 
+            this.lowestNote.DataPropertyName = "lowestNote";
+            this.lowestNote.HeaderText = "Low";
+            this.lowestNote.MinimumWidth = 6;
+            this.lowestNote.Name = "lowestNote";
+            this.lowestNote.Width = 92;
+            // 
+            // highestNote
+            // 
+            this.highestNote.DataPropertyName = "highestNote";
+            this.highestNote.HeaderText = "Hi";
+            this.highestNote.MinimumWidth = 6;
+            this.highestNote.Name = "highestNote";
+            this.highestNote.Width = 68;
+            // 
+            // pitchOffset
+            // 
+            this.pitchOffset.DataPropertyName = "pitchOffset";
+            this.pitchOffset.HeaderText = "XPose";
+            this.pitchOffset.MinimumWidth = 6;
+            this.pitchOffset.Name = "pitchOffset";
+            this.pitchOffset.Width = 121;
+            // 
+            // pbScale
+            // 
+            this.pbScale.DataPropertyName = "pbScale";
+            this.pbScale.HeaderText = " PB Scale";
+            this.pbScale.MinimumWidth = 6;
+            this.pbScale.Name = "pbScale";
+            this.pbScale.Width = 162;
+            // 
+            // damperRemap
+            // 
+            this.damperRemap.DataPropertyName = "damperRemap";
+            this.damperRemap.HeaderText = "Damper CC";
+            this.damperRemap.MinimumWidth = 6;
+            this.damperRemap.Name = "damperRemap";
+            this.damperRemap.Width = 187;
+            // 
+            // modRemap
+            // 
+            this.modRemap.DataPropertyName = "modRemap";
+            this.modRemap.HeaderText = "Mod CC";
+            this.modRemap.MinimumWidth = 6;
+            this.modRemap.Name = "modRemap";
+            this.modRemap.Width = 144;
+            // 
+            // additionalCCs
+            // 
+            this.additionalCCs.DataPropertyName = "additionalCCs";
+            this.additionalCCs.HeaderText = "CCs";
+            this.additionalCCs.MinimumWidth = 6;
+            this.additionalCCs.Name = "additionalCCs";
+            this.additionalCCs.Width = 97;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -4445,7 +4447,7 @@
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.Button btnMappingEditOk2;
         private System.Windows.Forms.Button btnMappingEditCancel2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn logicalInputDeviceName;
+        private System.Windows.Forms.DataGridViewComboBoxColumn logicalInputDeviceName;
         private System.Windows.Forms.DataGridViewTextBoxColumn inputDeviceChannel;
         private System.Windows.Forms.DataGridViewTextBoxColumn soundGeneratorName;
         private System.Windows.Forms.DataGridViewTextBoxColumn soundGeneratorRelativeChannel;

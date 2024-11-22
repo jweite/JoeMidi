@@ -30,6 +30,16 @@ namespace JoeMidi1
             }
         }
 
+        private void SetMappingGridComboBoxChoices()
+        {
+            DataGridViewComboBoxColumn logicalInputDeviceColumn = dgvMappings.Columns[0] as DataGridViewComboBoxColumn;
+            foreach (String key in mapper.configuration.logicalInputDeviceDict.Keys)
+            {
+                LogicalInputDevice logicalInputDevice = mapper.configuration.logicalInputDeviceDict[key];
+                logicalInputDeviceColumn.Items.Add(logicalInputDevice.logicalDeviceName);
+            }
+        }
+
         // Mapping editor state varaibles
         Mapping mappingBeingEdited2 = null;
         bool creatingNewMapping2 = false;

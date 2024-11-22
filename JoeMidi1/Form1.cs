@@ -113,6 +113,8 @@ namespace JoeMidi1
 
                 refreshSoundGeneratorsListView();
 
+                SetMappingGridComboBoxChoices();
+
                 Form1_MiscTab_Load(sender, e);
 
                 if (mapper.configuration.lastSelectedTab.Length > 0)
