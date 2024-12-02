@@ -78,10 +78,9 @@ namespace JoeMidi1
             mappingBeingEdited2 = new Mapping();
             creatingNewMapping2 = true;
 
-            MessageBox.Show("A new empty mapping is created for editing");
-
             // Initialize Mapping2 Editor UI elements with this mapping
             tbMappingName2.Text = "";
+            dgvMappings.Rows.Clear();
 
             // Make Mapping2 Editor UI elements visible
             showEditorUiElements();
@@ -119,11 +118,17 @@ namespace JoeMidi1
         private void btnMappingEditOk2_Click(object sender, EventArgs e)
         {
             Mapping editedMapping = new Mapping();      // Reverting from SimpleMapping to Mapping after editing here...
+            
+            if (creatingNewMapping == false || tbMappingName2.Text.Trim() != mappingBeingEdited2.name)
+            {
+                // We're saving an existing mapping using a new name, effectively creating a new mapping.
+                creatingNewMapping = true;
+            }
 
             if (creatingNewMapping == true)
             {
                 // Make sure the new mapping name entered is OK
-                String mappingName = tbMappingName.Text.Trim();
+                String mappingName = tbMappingName2.Text.Trim();
                 if (mappingName.Length == 0)
                 {
                     MessageBox.Show("You must enter a Mapping Name");
@@ -136,7 +141,7 @@ namespace JoeMidi1
                     return;
                 }
 
-                editedMapping.name = tbMappingName.Text;
+                editedMapping.name = mappingName;
             }
             else
             {
