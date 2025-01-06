@@ -185,6 +185,7 @@ namespace JoeMidi1
             }
             refreshSoundGeneratorsListView();
             populateTreeViewWithSoundGeneratorsPatchesAndMappings(tvMappingEditorPrograms, mappingEditorTreeViewMode, false);
+            btnPatchTreeViewBySG_Click(null, null);
 
             bCreatingNewSoundGenerator = false;
             pnlSoundGeneratorEdit.Visible = false;
@@ -329,6 +330,14 @@ namespace JoeMidi1
             if (lbSoundGeneratorPatches.SelectedItem != null)
             {
                 String selectedSoundGeneratorPatchName = (String)lbSoundGeneratorPatches.SelectedItem;
+
+                // Trim the added Bank/PC suffix if present.
+                int pc_suffix_start = selectedSoundGeneratorPatchName.LastIndexOf(" (");
+                if (pc_suffix_start > 0)
+                {
+                    selectedSoundGeneratorPatchName = selectedSoundGeneratorPatchName.Substring(0, pc_suffix_start);
+                }
+
                 soundGeneratorBeingEdited.soundGeneratorPatchDict.Remove(selectedSoundGeneratorPatchName);
                 refreshLbSoundGeneratorPatches();
                 pnlSoundGeneratorPatchEdit.Visible = false;
