@@ -35,7 +35,7 @@ namespace JoeMidi1
             this.soundGeneratorName = "";
             this.soundGeneratorRelativeChannel = 0;
             this.patchName = "";
-            this.volume = 0.0;
+            this.volume = null;
             this.lowestNote = 0;
             this.highestNote = 127;
             this.pitchOffset = 0;

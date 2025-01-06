@@ -78,6 +78,16 @@ namespace JoeMidi1
             mappingBeingEdited2 = new Mapping();
             creatingNewMapping2 = true;
 
+            Dictionary<String, FlattenedMapping> flattenedMappings = FlattenedMapping.Flatten(mappingBeingEdited2);
+
+            var flattenedMappingList = flattenedMappings.Values.ToList<FlattenedMapping>();
+
+            this.bindingList = new BindingList<FlattenedMapping>(flattenedMappingList);
+
+            var source = new BindingSource(bindingList, null);
+
+            dgvMappings.DataSource = source;
+
             // Initialize Mapping2 Editor UI elements with this mapping
             tbMappingName2.Text = "";
             dgvMappings.Rows.Clear();
@@ -119,13 +129,13 @@ namespace JoeMidi1
         {
             Mapping editedMapping = new Mapping();      // Reverting from SimpleMapping to Mapping after editing here...
             
-            if (creatingNewMapping == false || tbMappingName2.Text.Trim() != mappingBeingEdited2.name)
+            if (creatingNewMapping2 == false && tbMappingName2.Text.Trim() != mappingBeingEdited2.name)
             {
                 // We're saving an existing mapping using a new name, effectively creating a new mapping.
-                creatingNewMapping = true;
+                creatingNewMapping2 = true;
             }
 
-            if (creatingNewMapping == true)
+            if (creatingNewMapping2 == true)
             {
                 // Make sure the new mapping name entered is OK
                 String mappingName = tbMappingName2.Text.Trim();
@@ -232,49 +242,67 @@ namespace JoeMidi1
             {
                 fmPatchPicker fmPatchPicker = new fmPatchPicker();
                 fmPatchPicker.Init(this);
-                fmPatchPicker.SoundGeneratorName = (String)dgvMappings.Rows[e.RowIndex].Cells[2].Value;
-                fmPatchPicker.PatchName = (String)dgvMappings.Rows[e.RowIndex].Cells[4].Value;
+                fmPatchPicker.SoundGeneratorName = (String)dgvMappings.Rows[e.RowIndex].Cells["soundGeneratorName"].Value;
+                fmPatchPicker.PatchName = (String)dgvMappings.Rows[e.RowIndex].Cells["patchName"].Value;
                 fmPatchPicker.ShowMe();
                 if (fmPatchPicker.IsOK == true)
                 {
-                    dgvMappings.Rows[e.RowIndex].Cells[2].Value = fmPatchPicker.SoundGeneratorName;
-                    dgvMappings.Rows[e.RowIndex].Cells[4].Value = fmPatchPicker.PatchName;
+                    dgvMappings.Rows[e.RowIndex].Cells["soundGeneratorName"].Value = fmPatchPicker.SoundGeneratorName;
+                    dgvMappings.Rows[e.RowIndex].Cells["patchName"].Value = fmPatchPicker.PatchName;
+                    dgvMappings.Refresh();
                 }
             }
-            else {
-                MessageBox.Show("Grid DblClick: Row " + e.RowIndex + ":" + e.ColumnIndex);
-            }
+        }
+
+        private void dgvMappings_DefaultValuesNeeded(object sender, DataGridViewRowEventArgs e)
+        {
+            // When I do this it prevents the grid's auto-creation of a new row below the current one...
+            //  The Flattened Mapping defaults seem to do the trick for all except Logical Input Device.
+
+            //e.Row.Cells["logicalInputDeviceName"].Value = "Input Device 1";        // ToDo: Get this value from the config!
+            //e.Row.Cells["inputDeviceChannel"].Value = 0;
+            //e.Row.Cells["soundGeneratorRelativeChannel"].Value = 0;
+            //e.Row.Cells["lowestNote"].Value = 0;
+            //e.Row.Cells["highestNote"].Value = 127;
+            //e.Row.Cells["pitchOffset"].Value = 0;
+            //e.Row.Cells["pbScale"].Value = 1.0;
+            //e.Row.Cells["damperRemap"].Value = 64;
+            //e.Row.Cells["modRemap"].Value = 1;
         }
 
         private void dgvMappings_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
             bool valid = true;
+            String formattedValue = (String)e.FormattedValue;
 
             switch (e.ColumnIndex)
             {
                 // Source Channel
-                case 1: valid = isValidIntRange((String)e.FormattedValue, 0, 15); break;
+                case 1: valid = isValidIntRange(formattedValue, 0, 15); break;
 
                 // Dest Channel
-                case 3: valid = isValidIntRange((String)e.FormattedValue, 0, 15); break;
+                case 3: valid = isValidIntRange(formattedValue, 0, 15); break;
 
                 // Volume
-                case 5: valid = isValidDoubleRange((String)e.FormattedValue, -Double.MaxValue, 15); break;
+                case 5: valid = isBlank(formattedValue) || isValidDoubleRange(formattedValue, -Double.MaxValue, 15); break;
 
                 // Low Note
-                case 6: valid = isValidIntRange((String)e.FormattedValue, 0, 127); break;
+                case 6: valid = isValidIntRange(formattedValue, 0, 127); break;
 
                 // High Note
-                case 7: valid = isValidIntRange((String)e.FormattedValue, 0, 127); break;
+                case 7: valid = isValidIntRange(formattedValue, 0, 127); break;
+
+                // Transpose
+                case 8: valid = isValidIntRange(formattedValue, -127, 127); break;
 
                 // PB Scale
-                case 8: valid = isValidDoubleRange((String)e.FormattedValue, -1.0, 1.0); break;
+                case 9: valid = isValidDoubleRange(formattedValue, -2.0, 2.0); break;
 
                 // Damper CC Remap
-                case 9: valid = isValidIntRange((String)e.FormattedValue, 0, 127); break;
+                case 10: valid = isBlank(formattedValue) || isValidIntRange(formattedValue, 0, 127); break;
 
                 // Mod CC Remap
-                case 10: valid = isValidIntRange((String)e.FormattedValue, 0, 127); break;
+                case 11: valid = isBlank(formattedValue) || isValidIntRange(formattedValue, 0, 127); break;
             }
 
             if (!valid)
@@ -304,5 +332,9 @@ namespace JoeMidi1
             return (parsedVal >= min && parsedVal <= max);
         }
 
+        private bool isBlank(String value)
+        {
+            return value.Trim().Length == 0;
+        }
     }
 }

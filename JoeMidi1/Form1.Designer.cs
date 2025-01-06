@@ -3032,7 +3032,6 @@
             // 
             // dgvMappings
             // 
-            this.dgvMappings.AllowUserToResizeRows = false;
             this.dgvMappings.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvMappings.BackgroundColor = System.Drawing.Color.Black;
             this.dgvMappings.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
