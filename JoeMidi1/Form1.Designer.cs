@@ -3009,6 +3009,8 @@
             // btnMappingDelete2
             // 
             this.btnMappingDelete2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnMappingDelete2.Enabled = false;
+            this.btnMappingDelete2.ForeColor = System.Drawing.Color.IndianRed;
             this.btnMappingDelete2.Location = new System.Drawing.Point(190, 4);
             this.btnMappingDelete2.Margin = new System.Windows.Forms.Padding(4);
             this.btnMappingDelete2.Name = "btnMappingDelete2";

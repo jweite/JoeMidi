@@ -21,12 +21,16 @@ namespace JoeMidi1
         //**************************************************************************
 
         // Refresh the entries in the mapping selector.
-        private void refreshMappingToEditSelector2()
+        private void refreshMappingToEditSelector2(String nameToSelect = null)
         {
             mbrcMappingSelect2.clearButtons();
             foreach (Mapping mapping in mapper.configuration.mappingsSorted)
             {
                 mbrcMappingSelect2.addButton(mapping.name, mapping);
+            }
+            if (nameToSelect != null)
+            {
+                mbrcMappingSelect2.selectByName(nameToSelect);
             }
         }
 
@@ -70,6 +74,9 @@ namespace JoeMidi1
 
             // Make Mapping2 Editor UI elements visible
             showEditorUiElements();
+            btnMappingDelete2.Enabled = true;
+            btnMappingDelete2.ForeColor = Color.Black;
+
         }
 
         private void btnMappingAdd2_Click(object sender, EventArgs e)
@@ -106,7 +113,8 @@ namespace JoeMidi1
 
             // Hide mapping editor UI controls
             hideEditorUiElements();
-
+            btnMappingDelete2.ForeColor = Color.Gray;
+            btnMappingDelete2.Enabled = false;
         }
         private void hideEditorUiElements()
         {
@@ -186,18 +194,17 @@ namespace JoeMidi1
             // Activate it...
             mapper.SetMapping(editedMapping);
 
-            mappingBeingEdited2 = null;
-
             // Hide the Mapping Editor UI elements
             hideEditorUiElements();
+            btnMappingDelete2.ForeColor = Color.Gray;
+            btnMappingDelete2.Enabled = false;
 
             // Refresh other selectors that may not be showing this (new) mapping
-//            if (creatingNewMapping)
-//            {
-                refreshMappingToEditSelector2();
-                refreshMappingToEditSelector();
-                btnPatchTreeViewBySG_Click(null, null);
-//            }
+            refreshMappingToEditSelector2(editedMapping.name);
+            refreshMappingToEditSelector(editedMapping.name);
+            btnPatchTreeViewBySG_Click(null, null);
+
+            mappingBeingEdited2 = null;
         }
 
 
@@ -227,6 +234,8 @@ namespace JoeMidi1
 
             // Hide any editor UI elements that may be visible.
             hideEditorUiElements();
+            btnMappingDelete2.ForeColor = Color.Gray;
+            btnMappingDelete2.Enabled = false;
         }
 
         private void dgvMappings_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -324,8 +333,8 @@ namespace JoeMidi1
 
         private bool isValidDoubleRange(String value, double min, double max)
         {
-            int parsedVal;
-            if (Int32.TryParse(value, out parsedVal) == false)
+            double parsedVal;
+            if (Double.TryParse(value, out parsedVal) == false)
             {
                 return false;
             }
