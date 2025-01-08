@@ -28,9 +28,9 @@ namespace JoeMidi1
 
         const int MOD_CC = 1;
 
-        public FlattenedMapping()
+        public FlattenedMapping(String defaultLogicalInputDeviceName = "")
         {
-            this.logicalInputDeviceName = "";
+            this.logicalInputDeviceName = defaultLogicalInputDeviceName;
             this.inputDeviceChannel = 0;
             this.soundGeneratorName = "";
             this.soundGeneratorRelativeChannel = 0;
@@ -40,8 +40,8 @@ namespace JoeMidi1
             this.highestNote = 127;
             this.pitchOffset = 0;
             this.pbScale = 1.0;
-            this.damperRemap = 64;
-            this.modRemap = 1;
+            this.damperRemap = DAMPER_CC;
+            this.modRemap = MOD_CC;
             this.additionalCCs = "";
         }
 
@@ -57,8 +57,8 @@ namespace JoeMidi1
             this.highestNote = 127;
             this.pitchOffset = 0;
             this.pbScale = 1.0;
-            this.damperRemap = 64;
-            this.modRemap = 1;
+            this.damperRemap = DAMPER_CC;
+            this.modRemap = MOD_CC;
             this.additionalCCs = "";
         }
 

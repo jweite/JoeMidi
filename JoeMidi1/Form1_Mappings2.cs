@@ -305,7 +305,7 @@ namespace JoeMidi1
                 case 8: valid = isValidIntRange(formattedValue, -127, 127); break;
 
                 // PB Scale
-                case 9: valid = isValidDoubleRange(formattedValue, -2.0, 2.0); break;
+                case 9: valid = isValidDoubleRange(formattedValue, 0.0, 1.0); break;
 
                 // Damper CC Remap
                 case 10: valid = isBlank(formattedValue) || isValidIntRange(formattedValue, 0, 127); break;
