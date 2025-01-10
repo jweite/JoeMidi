@@ -316,8 +316,10 @@ namespace JoeMidi1
 
             if (!valid)
             {
-                MessageBox.Show(String.Format("Illegal Value of {0} in column {1}", (String)e.FormattedValue, e.ColumnIndex));
+                String colName = dgvMappings.Columns[e.ColumnIndex].HeaderText;
+                MessageBox.Show(String.Format("Illegal Value {0} in {1}", (String)e.FormattedValue, colName));
                 e.Cancel = true;
+                dgvMappings.CancelEdit();
             }
         }
 
