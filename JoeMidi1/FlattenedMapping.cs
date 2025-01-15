@@ -28,7 +28,11 @@ namespace JoeMidi1
 
         const int MOD_CC = 1;
 
-        public FlattenedMapping(String defaultLogicalInputDeviceName = "")
+        public FlattenedMapping() : this("")    // Defaulting the param to "" doesn't satisfy the BindingSource.
+        {
+        }
+
+        public FlattenedMapping(String defaultLogicalInputDeviceName)
         {
             this.logicalInputDeviceName = defaultLogicalInputDeviceName;
             this.inputDeviceChannel = 0;

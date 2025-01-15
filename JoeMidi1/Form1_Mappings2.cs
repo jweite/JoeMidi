@@ -67,7 +67,8 @@ namespace JoeMidi1
             this.bindingList = new BindingList<FlattenedMapping>(flattenedMappingList);
 
             var source = new BindingSource(bindingList, null);
-            
+            source.AllowNew = true;
+
             dgvMappings.DataSource = source;
 
             tbMappingName2.Text = mapping.name;
@@ -92,6 +93,7 @@ namespace JoeMidi1
             this.bindingList = new BindingList<FlattenedMapping>(flattenedMappingList);
 
             var source = new BindingSource(bindingList, null);
+            source.AllowNew = true;
 
             dgvMappings.DataSource = source;
 
