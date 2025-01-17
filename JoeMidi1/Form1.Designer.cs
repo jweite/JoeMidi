@@ -110,7 +110,9 @@
             this.vsbVol2 = new System.Windows.Forms.VScrollBar();
             this.tpSongs = new System.Windows.Forms.TabPage();
             this.pnlPatchEdit = new System.Windows.Forms.Panel();
+            this.tbSongRelVol = new System.Windows.Forms.TextBox();
             this.tvSongPatchPatches = new System.Windows.Forms.TreeView();
+            this.label31 = new System.Windows.Forms.Label();
             this.lblSongPatchPart = new System.Windows.Forms.Label();
             this.nudSongPatchProgramNo = new System.Windows.Forms.NumericUpDown();
             this.lblSongPatchProgramNo = new System.Windows.Forms.Label();
@@ -405,7 +407,7 @@
             this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1540, 828);
+            this.tabControl1.Size = new System.Drawing.Size(1757, 828);
             this.tabControl1.TabIndex = 9;
             this.tabControl1.Selected += new System.Windows.Forms.TabControlEventHandler(this.tabControl1_Selected);
             // 
@@ -419,7 +421,7 @@
             this.tpRandomAccess1.Margin = new System.Windows.Forms.Padding(4);
             this.tpRandomAccess1.Name = "tpRandomAccess1";
             this.tpRandomAccess1.Padding = new System.Windows.Forms.Padding(4);
-            this.tpRandomAccess1.Size = new System.Drawing.Size(1532, 780);
+            this.tpRandomAccess1.Size = new System.Drawing.Size(1749, 780);
             this.tpRandomAccess1.TabIndex = 0;
             this.tpRandomAccess1.Tag = "0";
             this.tpRandomAccess1.Text = "Random Access 1";
@@ -468,7 +470,7 @@
             this.tlpRandomAccess.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
             this.tlpRandomAccess.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
             this.tlpRandomAccess.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 57F));
-            this.tlpRandomAccess.Size = new System.Drawing.Size(1524, 772);
+            this.tlpRandomAccess.Size = new System.Drawing.Size(1741, 772);
             this.tlpRandomAccess.TabIndex = 13;
             this.tlpRandomAccess.DragDrop += new System.Windows.Forms.DragEventHandler(this.tlpRandomAccess_DragDrop);
             this.tlpRandomAccess.DragEnter += new System.Windows.Forms.DragEventHandler(this.tlpRandomAccess_DragEnter);
@@ -481,10 +483,10 @@
             this.btnExpandRightPane.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnExpandRightPane.FlatAppearance.BorderColor = System.Drawing.Color.LightGreen;
             this.btnExpandRightPane.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnExpandRightPane.Location = new System.Drawing.Point(1407, 4);
+            this.btnExpandRightPane.Location = new System.Drawing.Point(1623, 4);
             this.btnExpandRightPane.Margin = new System.Windows.Forms.Padding(4);
             this.btnExpandRightPane.Name = "btnExpandRightPane";
-            this.btnExpandRightPane.Size = new System.Drawing.Size(113, 49);
+            this.btnExpandRightPane.Size = new System.Drawing.Size(114, 49);
             this.btnExpandRightPane.TabIndex = 17;
             this.btnExpandRightPane.Text = "<<";
             this.btnExpandRightPane.UseVisualStyleBackColor = false;
@@ -498,10 +500,10 @@
             this.btnRandAccessCol8.FlatAppearance.BorderColor = System.Drawing.Color.LightGreen;
             this.btnRandAccessCol8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRandAccessCol8.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRandAccessCol8.Location = new System.Drawing.Point(1240, 4);
+            this.btnRandAccessCol8.Location = new System.Drawing.Point(1429, 4);
             this.btnRandAccessCol8.Margin = new System.Windows.Forms.Padding(4);
             this.btnRandAccessCol8.Name = "btnRandAccessCol8";
-            this.btnRandAccessCol8.Size = new System.Drawing.Size(159, 49);
+            this.btnRandAccessCol8.Size = new System.Drawing.Size(186, 49);
             this.btnRandAccessCol8.TabIndex = 16;
             this.btnRandAccessCol8.Text = "8";
             this.btnRandAccessCol8.UseVisualStyleBackColor = false;
@@ -517,10 +519,10 @@
             this.btnRandAccessCol7.FlatAppearance.BorderColor = System.Drawing.Color.LightGreen;
             this.btnRandAccessCol7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRandAccessCol7.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRandAccessCol7.Location = new System.Drawing.Point(1073, 4);
+            this.btnRandAccessCol7.Location = new System.Drawing.Point(1235, 4);
             this.btnRandAccessCol7.Margin = new System.Windows.Forms.Padding(4);
             this.btnRandAccessCol7.Name = "btnRandAccessCol7";
-            this.btnRandAccessCol7.Size = new System.Drawing.Size(159, 49);
+            this.btnRandAccessCol7.Size = new System.Drawing.Size(186, 49);
             this.btnRandAccessCol7.TabIndex = 15;
             this.btnRandAccessCol7.Text = "7";
             this.btnRandAccessCol7.UseVisualStyleBackColor = false;
@@ -536,10 +538,10 @@
             this.btnRandAccessCol6.FlatAppearance.BorderColor = System.Drawing.Color.LightGreen;
             this.btnRandAccessCol6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRandAccessCol6.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRandAccessCol6.Location = new System.Drawing.Point(906, 4);
+            this.btnRandAccessCol6.Location = new System.Drawing.Point(1041, 4);
             this.btnRandAccessCol6.Margin = new System.Windows.Forms.Padding(4);
             this.btnRandAccessCol6.Name = "btnRandAccessCol6";
-            this.btnRandAccessCol6.Size = new System.Drawing.Size(159, 49);
+            this.btnRandAccessCol6.Size = new System.Drawing.Size(186, 49);
             this.btnRandAccessCol6.TabIndex = 14;
             this.btnRandAccessCol6.Text = "6";
             this.btnRandAccessCol6.UseVisualStyleBackColor = false;
@@ -555,10 +557,10 @@
             this.btnRandAccessCol5.FlatAppearance.BorderColor = System.Drawing.Color.LightGreen;
             this.btnRandAccessCol5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRandAccessCol5.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRandAccessCol5.Location = new System.Drawing.Point(739, 4);
+            this.btnRandAccessCol5.Location = new System.Drawing.Point(847, 4);
             this.btnRandAccessCol5.Margin = new System.Windows.Forms.Padding(4);
             this.btnRandAccessCol5.Name = "btnRandAccessCol5";
-            this.btnRandAccessCol5.Size = new System.Drawing.Size(159, 49);
+            this.btnRandAccessCol5.Size = new System.Drawing.Size(186, 49);
             this.btnRandAccessCol5.TabIndex = 13;
             this.btnRandAccessCol5.Text = "5";
             this.btnRandAccessCol5.UseVisualStyleBackColor = false;
@@ -574,10 +576,10 @@
             this.btnRandAccessCol4.FlatAppearance.BorderColor = System.Drawing.Color.LightGreen;
             this.btnRandAccessCol4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRandAccessCol4.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRandAccessCol4.Location = new System.Drawing.Point(572, 4);
+            this.btnRandAccessCol4.Location = new System.Drawing.Point(653, 4);
             this.btnRandAccessCol4.Margin = new System.Windows.Forms.Padding(4);
             this.btnRandAccessCol4.Name = "btnRandAccessCol4";
-            this.btnRandAccessCol4.Size = new System.Drawing.Size(159, 49);
+            this.btnRandAccessCol4.Size = new System.Drawing.Size(186, 49);
             this.btnRandAccessCol4.TabIndex = 12;
             this.btnRandAccessCol4.Text = "4";
             this.btnRandAccessCol4.UseVisualStyleBackColor = false;
@@ -593,10 +595,10 @@
             this.btnRandAccessCol3.FlatAppearance.BorderColor = System.Drawing.Color.LightGreen;
             this.btnRandAccessCol3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRandAccessCol3.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRandAccessCol3.Location = new System.Drawing.Point(405, 4);
+            this.btnRandAccessCol3.Location = new System.Drawing.Point(459, 4);
             this.btnRandAccessCol3.Margin = new System.Windows.Forms.Padding(4);
             this.btnRandAccessCol3.Name = "btnRandAccessCol3";
-            this.btnRandAccessCol3.Size = new System.Drawing.Size(159, 49);
+            this.btnRandAccessCol3.Size = new System.Drawing.Size(186, 49);
             this.btnRandAccessCol3.TabIndex = 11;
             this.btnRandAccessCol3.Text = "3";
             this.btnRandAccessCol3.UseVisualStyleBackColor = false;
@@ -612,10 +614,10 @@
             this.btnRandAccessCol2.FlatAppearance.BorderColor = System.Drawing.Color.LightGreen;
             this.btnRandAccessCol2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRandAccessCol2.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRandAccessCol2.Location = new System.Drawing.Point(238, 4);
+            this.btnRandAccessCol2.Location = new System.Drawing.Point(265, 4);
             this.btnRandAccessCol2.Margin = new System.Windows.Forms.Padding(4);
             this.btnRandAccessCol2.Name = "btnRandAccessCol2";
-            this.btnRandAccessCol2.Size = new System.Drawing.Size(159, 49);
+            this.btnRandAccessCol2.Size = new System.Drawing.Size(186, 49);
             this.btnRandAccessCol2.TabIndex = 10;
             this.btnRandAccessCol2.Text = "2";
             this.btnRandAccessCol2.UseVisualStyleBackColor = false;
@@ -634,7 +636,7 @@
             this.btnRandAccessCol1.Location = new System.Drawing.Point(71, 4);
             this.btnRandAccessCol1.Margin = new System.Windows.Forms.Padding(4);
             this.btnRandAccessCol1.Name = "btnRandAccessCol1";
-            this.btnRandAccessCol1.Size = new System.Drawing.Size(159, 49);
+            this.btnRandAccessCol1.Size = new System.Drawing.Size(186, 49);
             this.btnRandAccessCol1.TabIndex = 9;
             this.btnRandAccessCol1.Text = "1";
             this.btnRandAccessCol1.UseVisualStyleBackColor = false;
@@ -651,14 +653,14 @@
             this.tlpSoundGenTreeview.Controls.Add(this.btnPatchTreeViewBySG, 0, 1);
             this.tlpSoundGenTreeview.Controls.Add(this.btnPatchTreeViewByCategory, 1, 1);
             this.tlpSoundGenTreeview.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpSoundGenTreeview.Location = new System.Drawing.Point(1407, 61);
+            this.tlpSoundGenTreeview.Location = new System.Drawing.Point(1623, 61);
             this.tlpSoundGenTreeview.Margin = new System.Windows.Forms.Padding(4);
             this.tlpSoundGenTreeview.Name = "tlpSoundGenTreeview";
             this.tlpSoundGenTreeview.RowCount = 2;
             this.tlpRandomAccess.SetRowSpan(this.tlpSoundGenTreeview, 8);
             this.tlpSoundGenTreeview.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tlpSoundGenTreeview.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 62F));
-            this.tlpSoundGenTreeview.Size = new System.Drawing.Size(113, 648);
+            this.tlpSoundGenTreeview.Size = new System.Drawing.Size(114, 648);
             this.tlpSoundGenTreeview.TabIndex = 19;
             this.tlpSoundGenTreeview.Visible = false;
             // 
@@ -670,7 +672,7 @@
             this.tvProgramPatches.Location = new System.Drawing.Point(4, 4);
             this.tvProgramPatches.Margin = new System.Windows.Forms.Padding(4);
             this.tvProgramPatches.Name = "tvProgramPatches";
-            this.tvProgramPatches.Size = new System.Drawing.Size(105, 578);
+            this.tvProgramPatches.Size = new System.Drawing.Size(106, 578);
             this.tvProgramPatches.TabIndex = 18;
             this.tvProgramPatches.Visible = false;
             this.tvProgramPatches.ItemDrag += new System.Windows.Forms.ItemDragEventHandler(this.tvProgramPatches_ItemDrag);
@@ -682,7 +684,7 @@
             this.btnPatchTreeViewBySG.Location = new System.Drawing.Point(4, 590);
             this.btnPatchTreeViewBySG.Margin = new System.Windows.Forms.Padding(4);
             this.btnPatchTreeViewBySG.Name = "btnPatchTreeViewBySG";
-            this.btnPatchTreeViewBySG.Size = new System.Drawing.Size(48, 54);
+            this.btnPatchTreeViewBySG.Size = new System.Drawing.Size(49, 54);
             this.btnPatchTreeViewBySG.TabIndex = 19;
             this.btnPatchTreeViewBySG.Text = "SG";
             this.btnPatchTreeViewBySG.UseVisualStyleBackColor = true;
@@ -691,7 +693,7 @@
             // btnPatchTreeViewByCategory
             // 
             this.btnPatchTreeViewByCategory.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnPatchTreeViewByCategory.Location = new System.Drawing.Point(60, 590);
+            this.btnPatchTreeViewByCategory.Location = new System.Drawing.Point(61, 590);
             this.btnPatchTreeViewByCategory.Margin = new System.Windows.Forms.Padding(4);
             this.btnPatchTreeViewByCategory.Name = "btnPatchTreeViewByCategory";
             this.btnPatchTreeViewByCategory.Size = new System.Drawing.Size(49, 54);
@@ -707,7 +709,7 @@
             this.label18.Location = new System.Drawing.Point(71, 713);
             this.label18.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(159, 59);
+            this.label18.Size = new System.Drawing.Size(186, 32);
             this.label18.TabIndex = 22;
             this.label18.Text = "Input Device:";
             this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -722,10 +724,10 @@
             this.cbRandomAccessInputDevice.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cbRandomAccessInputDevice.ForeColor = System.Drawing.Color.White;
             this.cbRandomAccessInputDevice.FormattingEnabled = true;
-            this.cbRandomAccessInputDevice.Location = new System.Drawing.Point(238, 717);
+            this.cbRandomAccessInputDevice.Location = new System.Drawing.Point(265, 717);
             this.cbRandomAccessInputDevice.Margin = new System.Windows.Forms.Padding(4);
             this.cbRandomAccessInputDevice.Name = "cbRandomAccessInputDevice";
-            this.cbRandomAccessInputDevice.Size = new System.Drawing.Size(493, 39);
+            this.cbRandomAccessInputDevice.Size = new System.Drawing.Size(574, 39);
             this.cbRandomAccessInputDevice.TabIndex = 23;
             this.cbRandomAccessInputDevice.SelectedIndexChanged += new System.EventHandler(this.cbRandomAccessInputDevice_SelectedIndexChanged);
             // 
@@ -734,7 +736,7 @@
             this.nudRandomAccessTranspose.BackColor = System.Drawing.Color.DimGray;
             this.nudRandomAccessTranspose.Dock = System.Windows.Forms.DockStyle.Fill;
             this.nudRandomAccessTranspose.ForeColor = System.Drawing.Color.White;
-            this.nudRandomAccessTranspose.Location = new System.Drawing.Point(1073, 717);
+            this.nudRandomAccessTranspose.Location = new System.Drawing.Point(1235, 717);
             this.nudRandomAccessTranspose.Margin = new System.Windows.Forms.Padding(4);
             this.nudRandomAccessTranspose.Maximum = new decimal(new int[] {
             12,
@@ -747,7 +749,7 @@
             0,
             -2147483648});
             this.nudRandomAccessTranspose.Name = "nudRandomAccessTranspose";
-            this.nudRandomAccessTranspose.Size = new System.Drawing.Size(159, 38);
+            this.nudRandomAccessTranspose.Size = new System.Drawing.Size(186, 38);
             this.nudRandomAccessTranspose.TabIndex = 20;
             this.nudRandomAccessTranspose.ValueChanged += new System.EventHandler(this.nudRandomAccessTranspose_ValueChanged);
             // 
@@ -755,10 +757,10 @@
             // 
             this.label17.AutoSize = true;
             this.label17.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label17.Location = new System.Drawing.Point(906, 713);
+            this.label17.Location = new System.Drawing.Point(1041, 713);
             this.label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(159, 32);
+            this.label17.Size = new System.Drawing.Size(186, 32);
             this.label17.TabIndex = 21;
             this.label17.Text = "Transpose:";
             this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -781,7 +783,7 @@
             this.tpRandomAccess2.Location = new System.Drawing.Point(4, 44);
             this.tpRandomAccess2.Margin = new System.Windows.Forms.Padding(4);
             this.tpRandomAccess2.Name = "tpRandomAccess2";
-            this.tpRandomAccess2.Size = new System.Drawing.Size(1532, 780);
+            this.tpRandomAccess2.Size = new System.Drawing.Size(1749, 780);
             this.tpRandomAccess2.TabIndex = 6;
             this.tpRandomAccess2.Tag = "1";
             this.tpRandomAccess2.Text = "Random Access 2";
@@ -792,7 +794,7 @@
             this.tpRandomAccess3.Location = new System.Drawing.Point(4, 44);
             this.tpRandomAccess3.Margin = new System.Windows.Forms.Padding(4);
             this.tpRandomAccess3.Name = "tpRandomAccess3";
-            this.tpRandomAccess3.Size = new System.Drawing.Size(1532, 780);
+            this.tpRandomAccess3.Size = new System.Drawing.Size(1749, 780);
             this.tpRandomAccess3.TabIndex = 7;
             this.tpRandomAccess3.Tag = "2";
             this.tpRandomAccess3.Text = "Random Access 3";
@@ -803,7 +805,7 @@
             this.tpRandomAccess4.Location = new System.Drawing.Point(4, 44);
             this.tpRandomAccess4.Margin = new System.Windows.Forms.Padding(4);
             this.tpRandomAccess4.Name = "tpRandomAccess4";
-            this.tpRandomAccess4.Size = new System.Drawing.Size(1532, 780);
+            this.tpRandomAccess4.Size = new System.Drawing.Size(1749, 780);
             this.tpRandomAccess4.TabIndex = 8;
             this.tpRandomAccess4.Tag = "3";
             this.tpRandomAccess4.Text = "Random Access 4";
@@ -817,7 +819,7 @@
             this.tpShow.Margin = new System.Windows.Forms.Padding(4);
             this.tpShow.Name = "tpShow";
             this.tpShow.Padding = new System.Windows.Forms.Padding(4);
-            this.tpShow.Size = new System.Drawing.Size(1532, 780);
+            this.tpShow.Size = new System.Drawing.Size(1749, 780);
             this.tpShow.TabIndex = 1;
             this.tpShow.Tag = "";
             this.tpShow.Text = "Show";
@@ -841,7 +843,7 @@
             this.tlpShowOuter.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tlpShowOuter.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 369F));
             this.tlpShowOuter.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tlpShowOuter.Size = new System.Drawing.Size(1524, 772);
+            this.tlpShowOuter.Size = new System.Drawing.Size(1741, 772);
             this.tlpShowOuter.TabIndex = 2;
             // 
             // pdfChart
@@ -853,7 +855,7 @@
             this.pdfChart.Name = "pdfChart";
             this.pdfChart.Page = 0;
             this.pdfChart.Rotation = PdfiumViewer.PdfRotation.Rotate0;
-            this.pdfChart.Size = new System.Drawing.Size(726, 401);
+            this.pdfChart.Size = new System.Drawing.Size(835, 401);
             this.pdfChart.TabIndex = 16;
             this.pdfChart.Text = "pdfRenderer1";
             this.pdfChart.Visible = false;
@@ -862,10 +864,10 @@
             // rtbChart
             // 
             this.rtbChart.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.rtbChart.Location = new System.Drawing.Point(799, 4);
+            this.rtbChart.Location = new System.Drawing.Point(908, 4);
             this.rtbChart.Margin = new System.Windows.Forms.Padding(4);
             this.rtbChart.Name = "rtbChart";
-            this.rtbChart.Size = new System.Drawing.Size(721, 395);
+            this.rtbChart.Size = new System.Drawing.Size(829, 395);
             this.rtbChart.TabIndex = 15;
             this.rtbChart.Text = "";
             // 
@@ -893,7 +895,7 @@
             this.tlpSongSetlistOuter.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 69F));
             this.tlpSongSetlistOuter.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tlpSongSetlistOuter.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tlpSongSetlistOuter.Size = new System.Drawing.Size(720, 361);
+            this.tlpSongSetlistOuter.Size = new System.Drawing.Size(829, 361);
             this.tlpSongSetlistOuter.TabIndex = 13;
             // 
             // btnSetlistExpand
@@ -904,10 +906,10 @@
             this.btnSetlistExpand.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSetlistExpand.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSetlistExpand.ForeColor = System.Drawing.Color.White;
-            this.btnSetlistExpand.Location = new System.Drawing.Point(397, 4);
+            this.btnSetlistExpand.Location = new System.Drawing.Point(460, 4);
             this.btnSetlistExpand.Margin = new System.Windows.Forms.Padding(4);
             this.btnSetlistExpand.Name = "btnSetlistExpand";
-            this.btnSetlistExpand.Size = new System.Drawing.Size(123, 61);
+            this.btnSetlistExpand.Size = new System.Drawing.Size(144, 61);
             this.btnSetlistExpand.TabIndex = 6;
             this.btnSetlistExpand.Text = "^^^";
             this.btnSetlistExpand.UseVisualStyleBackColor = false;
@@ -935,7 +937,7 @@
             this.olvSongs.PersistentCheckBoxes = false;
             this.olvSongs.RowHeight = 50;
             this.olvSongs.ShowGroups = false;
-            this.olvSongs.Size = new System.Drawing.Size(647, 284);
+            this.olvSongs.Size = new System.Drawing.Size(752, 284);
             this.olvSongs.TabIndex = 0;
             this.olvSongs.UseCompatibleStateImageBehavior = false;
             this.olvSongs.View = System.Windows.Forms.View.Details;
@@ -957,10 +959,10 @@
             this.btnSetlists.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSetlists.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSetlists.ForeColor = System.Drawing.Color.White;
-            this.btnSetlists.Location = new System.Drawing.Point(135, 4);
+            this.btnSetlists.Location = new System.Drawing.Point(156, 4);
             this.btnSetlists.Margin = new System.Windows.Forms.Padding(4);
             this.btnSetlists.Name = "btnSetlists";
-            this.btnSetlists.Size = new System.Drawing.Size(123, 61);
+            this.btnSetlists.Size = new System.Drawing.Size(144, 61);
             this.btnSetlists.TabIndex = 1;
             this.btnSetlists.Text = "SetL";
             this.btnSetlists.UseVisualStyleBackColor = false;
@@ -974,10 +976,10 @@
             this.btnNextSong.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNextSong.Font = new System.Drawing.Font("Wingdings", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
             this.btnNextSong.ForeColor = System.Drawing.Color.White;
-            this.btnNextSong.Location = new System.Drawing.Point(528, 4);
+            this.btnNextSong.Location = new System.Drawing.Point(612, 4);
             this.btnNextSong.Margin = new System.Windows.Forms.Padding(4);
             this.btnNextSong.Name = "btnNextSong";
-            this.btnNextSong.Size = new System.Drawing.Size(123, 61);
+            this.btnNextSong.Size = new System.Drawing.Size(144, 61);
             this.btnNextSong.TabIndex = 2;
             this.btnNextSong.Text = "ê";
             this.btnNextSong.UseVisualStyleBackColor = false;
@@ -991,10 +993,10 @@
             this.btnSetlistSongOrderToggle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSetlistSongOrderToggle.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSetlistSongOrderToggle.ForeColor = System.Drawing.Color.White;
-            this.btnSetlistSongOrderToggle.Location = new System.Drawing.Point(266, 4);
+            this.btnSetlistSongOrderToggle.Location = new System.Drawing.Point(308, 4);
             this.btnSetlistSongOrderToggle.Margin = new System.Windows.Forms.Padding(4);
             this.btnSetlistSongOrderToggle.Name = "btnSetlistSongOrderToggle";
-            this.btnSetlistSongOrderToggle.Size = new System.Drawing.Size(123, 61);
+            this.btnSetlistSongOrderToggle.Size = new System.Drawing.Size(144, 61);
             this.btnSetlistSongOrderToggle.TabIndex = 4;
             this.btnSetlistSongOrderToggle.Text = "Alpha";
             this.btnSetlistSongOrderToggle.UseVisualStyleBackColor = false;
@@ -1011,7 +1013,7 @@
             this.btnPrevSong.Location = new System.Drawing.Point(4, 4);
             this.btnPrevSong.Margin = new System.Windows.Forms.Padding(4);
             this.btnPrevSong.Name = "btnPrevSong";
-            this.btnPrevSong.Size = new System.Drawing.Size(123, 61);
+            this.btnPrevSong.Size = new System.Drawing.Size(144, 61);
             this.btnPrevSong.TabIndex = 5;
             this.btnPrevSong.Text = "é";
             this.btnPrevSong.UseVisualStyleBackColor = false;
@@ -1047,11 +1049,11 @@
             this.flpAlphaButtons.Controls.Add(this.btnAlphaY);
             this.flpAlphaButtons.Controls.Add(this.btnAlphaZ);
             this.flpAlphaButtons.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flpAlphaButtons.Location = new System.Drawing.Point(658, 2);
+            this.flpAlphaButtons.Location = new System.Drawing.Point(763, 2);
             this.flpAlphaButtons.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.flpAlphaButtons.Name = "flpAlphaButtons";
             this.tlpSongSetlistOuter.SetRowSpan(this.flpAlphaButtons, 2);
-            this.flpAlphaButtons.Size = new System.Drawing.Size(59, 357);
+            this.flpAlphaButtons.Size = new System.Drawing.Size(63, 357);
             this.flpAlphaButtons.TabIndex = 7;
             this.flpAlphaButtons.Resize += new System.EventHandler(this.flpAlphaButtons_Resize);
             // 
@@ -1383,16 +1385,17 @@
             // 
             this.mbccShowSongPatches.ButtonBackColor = System.Drawing.SystemColors.Control;
             this.mbccShowSongPatches.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mbccShowSongPatches.Location = new System.Drawing.Point(795, 403);
+            this.mbccShowSongPatches.Location = new System.Drawing.Point(904, 403);
             this.mbccShowSongPatches.Margin = new System.Windows.Forms.Padding(0);
             this.mbccShowSongPatches.Name = "mbccShowSongPatches";
             this.mbccShowSongPatches.ShowAlphaButtons = false;
             this.mbccShowSongPatches.ShowArrowButtons = true;
             this.mbccShowSongPatches.ShowLogicalButtonNumberBadge = false;
             this.mbccShowSongPatches.ShowScrollbar = false;
-            this.mbccShowSongPatches.Size = new System.Drawing.Size(729, 369);
+            this.mbccShowSongPatches.Size = new System.Drawing.Size(837, 369);
             this.mbccShowSongPatches.TabIndex = 10;
             this.mbccShowSongPatches.Click += new System.EventHandler(this.mbccShowSongPatches_Click);
+            this.mbccShowSongPatches.RightClick += new System.EventHandler(this.mbccShowSongPatches_RightClick);
             // 
             // vsbVol2
             // 
@@ -1416,13 +1419,15 @@
             this.tpSongs.Margin = new System.Windows.Forms.Padding(4);
             this.tpSongs.Name = "tpSongs";
             this.tpSongs.Padding = new System.Windows.Forms.Padding(4);
-            this.tpSongs.Size = new System.Drawing.Size(1532, 780);
+            this.tpSongs.Size = new System.Drawing.Size(1749, 780);
             this.tpSongs.TabIndex = 2;
             this.tpSongs.Text = "Songs";
             // 
             // pnlPatchEdit
             // 
+            this.pnlPatchEdit.Controls.Add(this.tbSongRelVol);
             this.pnlPatchEdit.Controls.Add(this.tvSongPatchPatches);
+            this.pnlPatchEdit.Controls.Add(this.label31);
             this.pnlPatchEdit.Controls.Add(this.lblSongPatchPart);
             this.pnlPatchEdit.Controls.Add(this.nudSongPatchProgramNo);
             this.pnlPatchEdit.Controls.Add(this.lblSongPatchProgramNo);
@@ -1438,6 +1443,16 @@
             this.pnlPatchEdit.TabIndex = 2;
             this.pnlPatchEdit.Visible = false;
             // 
+            // tbSongRelVol
+            // 
+            this.tbSongRelVol.BackColor = System.Drawing.Color.DimGray;
+            this.tbSongRelVol.ForeColor = System.Drawing.Color.White;
+            this.tbSongRelVol.Location = new System.Drawing.Point(452, 96);
+            this.tbSongRelVol.Margin = new System.Windows.Forms.Padding(4);
+            this.tbSongRelVol.Name = "tbSongRelVol";
+            this.tbSongRelVol.Size = new System.Drawing.Size(101, 38);
+            this.tbSongRelVol.TabIndex = 27;
+            // 
             // tvSongPatchPatches
             // 
             this.tvSongPatchPatches.BackColor = System.Drawing.Color.DimGray;
@@ -1449,6 +1464,19 @@
             this.tvSongPatchPatches.Size = new System.Drawing.Size(421, 347);
             this.tvSongPatchPatches.TabIndex = 27;
             this.tvSongPatchPatches.DoubleClick += new System.EventHandler(this.tvSongPatchPatches_DoubleClick);
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label31.ForeColor = System.Drawing.Color.White;
+            this.label31.Location = new System.Drawing.Point(407, 108);
+            this.label31.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(47, 17);
+            this.label31.TabIndex = 23;
+            this.label31.Text = "R-Vol:";
+            this.label31.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // lblSongPatchPart
             // 
@@ -1466,7 +1494,7 @@
             // 
             this.nudSongPatchProgramNo.BackColor = System.Drawing.Color.DimGray;
             this.nudSongPatchProgramNo.ForeColor = System.Drawing.Color.White;
-            this.nudSongPatchProgramNo.Location = new System.Drawing.Point(437, 98);
+            this.nudSongPatchProgramNo.Location = new System.Drawing.Point(285, 97);
             this.nudSongPatchProgramNo.Margin = new System.Windows.Forms.Padding(4);
             this.nudSongPatchProgramNo.Maximum = new decimal(new int[] {
             127,
@@ -1479,7 +1507,7 @@
             0,
             -2147483648});
             this.nudSongPatchProgramNo.Name = "nudSongPatchProgramNo";
-            this.nudSongPatchProgramNo.Size = new System.Drawing.Size(116, 38);
+            this.nudSongPatchProgramNo.Size = new System.Drawing.Size(105, 38);
             this.nudSongPatchProgramNo.TabIndex = 26;
             this.nudSongPatchProgramNo.Value = new decimal(new int[] {
             1,
@@ -1492,12 +1520,12 @@
             this.lblSongPatchProgramNo.AutoSize = true;
             this.lblSongPatchProgramNo.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSongPatchProgramNo.ForeColor = System.Drawing.Color.White;
-            this.lblSongPatchProgramNo.Location = new System.Drawing.Point(344, 107);
+            this.lblSongPatchProgramNo.Location = new System.Drawing.Point(233, 108);
             this.lblSongPatchProgramNo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSongPatchProgramNo.Name = "lblSongPatchProgramNo";
-            this.lblSongPatchProgramNo.Size = new System.Drawing.Size(81, 17);
+            this.lblSongPatchProgramNo.Size = new System.Drawing.Size(55, 17);
             this.lblSongPatchProgramNo.TabIndex = 25;
-            this.lblSongPatchProgramNo.Text = "Program #:";
+            this.lblSongPatchProgramNo.Text = "Pgm #:";
             // 
             // nudSongPatchBank
             // 
@@ -1516,7 +1544,7 @@
             0,
             -2147483648});
             this.nudSongPatchBank.Name = "nudSongPatchBank";
-            this.nudSongPatchBank.Size = new System.Drawing.Size(116, 38);
+            this.nudSongPatchBank.Size = new System.Drawing.Size(83, 38);
             this.nudSongPatchBank.TabIndex = 24;
             this.nudSongPatchBank.Value = new decimal(new int[] {
             1,
@@ -1817,7 +1845,7 @@
             this.lbSongPatches.Location = new System.Drawing.Point(132, 240);
             this.lbSongPatches.Margin = new System.Windows.Forms.Padding(4);
             this.lbSongPatches.Name = "lbSongPatches";
-            this.lbSongPatches.Size = new System.Drawing.Size(355, 97);
+            this.lbSongPatches.Size = new System.Drawing.Size(355, 252);
             this.lbSongPatches.TabIndex = 16;
             this.lbSongPatches.DoubleClick += new System.EventHandler(this.lbSongPatches_DoubleClick);
             // 
@@ -1974,7 +2002,7 @@
             this.tpSetlists.Location = new System.Drawing.Point(4, 44);
             this.tpSetlists.Margin = new System.Windows.Forms.Padding(4);
             this.tpSetlists.Name = "tpSetlists";
-            this.tpSetlists.Size = new System.Drawing.Size(1532, 780);
+            this.tpSetlists.Size = new System.Drawing.Size(1749, 780);
             this.tpSetlists.TabIndex = 3;
             this.tpSetlists.Text = "Setlists";
             // 
@@ -2268,7 +2296,7 @@
             this.tpMappings.Location = new System.Drawing.Point(4, 44);
             this.tpMappings.Margin = new System.Windows.Forms.Padding(4);
             this.tpMappings.Name = "tpMappings";
-            this.tpMappings.Size = new System.Drawing.Size(1532, 780);
+            this.tpMappings.Size = new System.Drawing.Size(1749, 780);
             this.tpMappings.TabIndex = 9;
             this.tpMappings.Text = "Mappings";
             // 
@@ -2291,7 +2319,7 @@
             this.tlpMappingEditOuter.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 62F));
             this.tlpMappingEditOuter.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 90F));
             this.tlpMappingEditOuter.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tlpMappingEditOuter.Size = new System.Drawing.Size(1532, 780);
+            this.tlpMappingEditOuter.Size = new System.Drawing.Size(1749, 780);
             this.tlpMappingEditOuter.TabIndex = 0;
             // 
             // mbrcMappingSelect
@@ -2306,7 +2334,7 @@
             this.mbrcMappingSelect.ShowArrowButtons = true;
             this.mbrcMappingSelect.ShowLogicalButtonNumberBadge = false;
             this.mbrcMappingSelect.ShowScrollbar = true;
-            this.mbrcMappingSelect.Size = new System.Drawing.Size(351, 614);
+            this.mbrcMappingSelect.Size = new System.Drawing.Size(405, 614);
             this.mbrcMappingSelect.TabIndex = 2;
             this.mbrcMappingSelect.Click += new System.EventHandler(this.mbrcMappingSelect_Click);
             // 
@@ -2323,16 +2351,16 @@
             this.tlpMappingEditButtons.Name = "tlpMappingEditButtons";
             this.tlpMappingEditButtons.RowCount = 1;
             this.tlpMappingEditButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpMappingEditButtons.Size = new System.Drawing.Size(375, 54);
+            this.tlpMappingEditButtons.Size = new System.Drawing.Size(429, 54);
             this.tlpMappingEditButtons.TabIndex = 2;
             // 
             // btnMappingDelete
             // 
             this.btnMappingDelete.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnMappingDelete.Location = new System.Drawing.Point(191, 4);
+            this.btnMappingDelete.Location = new System.Drawing.Point(218, 4);
             this.btnMappingDelete.Margin = new System.Windows.Forms.Padding(4);
             this.btnMappingDelete.Name = "btnMappingDelete";
-            this.btnMappingDelete.Size = new System.Drawing.Size(180, 46);
+            this.btnMappingDelete.Size = new System.Drawing.Size(207, 46);
             this.btnMappingDelete.TabIndex = 1;
             this.btnMappingDelete.Text = "-";
             this.btnMappingDelete.UseVisualStyleBackColor = true;
@@ -2344,7 +2372,7 @@
             this.btnMappingAdd.Location = new System.Drawing.Point(4, 4);
             this.btnMappingAdd.Margin = new System.Windows.Forms.Padding(4);
             this.btnMappingAdd.Name = "btnMappingAdd";
-            this.btnMappingAdd.Size = new System.Drawing.Size(179, 46);
+            this.btnMappingAdd.Size = new System.Drawing.Size(206, 46);
             this.btnMappingAdd.TabIndex = 0;
             this.btnMappingAdd.Text = "+";
             this.btnMappingAdd.UseVisualStyleBackColor = true;
@@ -2362,12 +2390,12 @@
             this.tlpMappingEditNameAndButtons.Controls.Add(this.label15, 0, 0);
             this.tlpMappingEditNameAndButtons.Controls.Add(this.tbMappingName, 1, 0);
             this.tlpMappingEditNameAndButtons.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpMappingEditNameAndButtons.Location = new System.Drawing.Point(387, 4);
+            this.tlpMappingEditNameAndButtons.Location = new System.Drawing.Point(441, 4);
             this.tlpMappingEditNameAndButtons.Margin = new System.Windows.Forms.Padding(4);
             this.tlpMappingEditNameAndButtons.Name = "tlpMappingEditNameAndButtons";
             this.tlpMappingEditNameAndButtons.RowCount = 1;
             this.tlpMappingEditNameAndButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpMappingEditNameAndButtons.Size = new System.Drawing.Size(758, 54);
+            this.tlpMappingEditNameAndButtons.Size = new System.Drawing.Size(866, 54);
             this.tlpMappingEditNameAndButtons.TabIndex = 5;
             this.tlpMappingEditNameAndButtons.Visible = false;
             // 
@@ -2378,7 +2406,7 @@
             this.btnMappingEditOK.FlatAppearance.BorderColor = System.Drawing.Color.LightGreen;
             this.btnMappingEditOK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMappingEditOK.ForeColor = System.Drawing.Color.White;
-            this.btnMappingEditOK.Location = new System.Drawing.Point(629, 4);
+            this.btnMappingEditOK.Location = new System.Drawing.Point(737, 4);
             this.btnMappingEditOK.Margin = new System.Windows.Forms.Padding(4);
             this.btnMappingEditOK.Name = "btnMappingEditOK";
             this.btnMappingEditOK.Size = new System.Drawing.Size(125, 46);
@@ -2394,7 +2422,7 @@
             this.btnMappingEditCancel.FlatAppearance.BorderColor = System.Drawing.Color.LightGreen;
             this.btnMappingEditCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMappingEditCancel.ForeColor = System.Drawing.Color.White;
-            this.btnMappingEditCancel.Location = new System.Drawing.Point(496, 4);
+            this.btnMappingEditCancel.Location = new System.Drawing.Point(604, 4);
             this.btnMappingEditCancel.Margin = new System.Windows.Forms.Padding(4);
             this.btnMappingEditCancel.Name = "btnMappingEditCancel";
             this.btnMappingEditCancel.Size = new System.Drawing.Size(125, 46);
@@ -2425,7 +2453,7 @@
             this.tbMappingName.Location = new System.Drawing.Point(231, 8);
             this.tbMappingName.Margin = new System.Windows.Forms.Padding(4);
             this.tbMappingName.Name = "tbMappingName";
-            this.tbMappingName.Size = new System.Drawing.Size(257, 38);
+            this.tbMappingName.Size = new System.Drawing.Size(365, 38);
             this.tbMappingName.TabIndex = 4;
             // 
             // pnlMappingEdit
@@ -2458,7 +2486,7 @@
             this.pnlMappingEdit.Controls.Add(this.lblMappingInputDevice1);
             this.pnlMappingEdit.Controls.Add(this.lbMappingDevice1LowerPatches);
             this.pnlMappingEdit.Controls.Add(this.lbMappingDevice1UpperPatches);
-            this.pnlMappingEdit.Location = new System.Drawing.Point(387, 66);
+            this.pnlMappingEdit.Location = new System.Drawing.Point(441, 66);
             this.pnlMappingEdit.Margin = new System.Windows.Forms.Padding(4);
             this.pnlMappingEdit.Name = "pnlMappingEdit";
             this.pnlMappingEdit.Size = new System.Drawing.Size(756, 629);
@@ -2876,7 +2904,7 @@
             this.tlpMappingEditorPatches.Controls.Add(this.tableLayoutPanel1, 0, 1);
             this.tlpMappingEditorPatches.Controls.Add(this.tvMappingEditorPrograms, 0, 0);
             this.tlpMappingEditorPatches.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpMappingEditorPatches.Location = new System.Drawing.Point(1152, 64);
+            this.tlpMappingEditorPatches.Location = new System.Drawing.Point(1314, 64);
             this.tlpMappingEditorPatches.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tlpMappingEditorPatches.Name = "tlpMappingEditorPatches";
             this.tlpMappingEditorPatches.RowCount = 2;
@@ -2885,7 +2913,7 @@
             this.tlpMappingEditorPatches.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tlpMappingEditorPatches.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tlpMappingEditorPatches.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tlpMappingEditorPatches.Size = new System.Drawing.Size(377, 642);
+            this.tlpMappingEditorPatches.Size = new System.Drawing.Size(432, 642);
             this.tlpMappingEditorPatches.TabIndex = 8;
             // 
             // tableLayoutPanel1
@@ -2901,7 +2929,7 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(369, 62);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(424, 62);
             this.tableLayoutPanel1.TabIndex = 9;
             // 
             // btnMappingEditPatchTreeViewBySG
@@ -2910,7 +2938,7 @@
             this.btnMappingEditPatchTreeViewBySG.Location = new System.Drawing.Point(4, 4);
             this.btnMappingEditPatchTreeViewBySG.Margin = new System.Windows.Forms.Padding(4);
             this.btnMappingEditPatchTreeViewBySG.Name = "btnMappingEditPatchTreeViewBySG";
-            this.btnMappingEditPatchTreeViewBySG.Size = new System.Drawing.Size(176, 54);
+            this.btnMappingEditPatchTreeViewBySG.Size = new System.Drawing.Size(204, 54);
             this.btnMappingEditPatchTreeViewBySG.TabIndex = 16;
             this.btnMappingEditPatchTreeViewBySG.Text = "SG";
             this.btnMappingEditPatchTreeViewBySG.UseVisualStyleBackColor = true;
@@ -2919,10 +2947,10 @@
             // btnMappingEditPatchTreeViewByCategory
             // 
             this.btnMappingEditPatchTreeViewByCategory.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnMappingEditPatchTreeViewByCategory.Location = new System.Drawing.Point(188, 4);
+            this.btnMappingEditPatchTreeViewByCategory.Location = new System.Drawing.Point(216, 4);
             this.btnMappingEditPatchTreeViewByCategory.Margin = new System.Windows.Forms.Padding(4);
             this.btnMappingEditPatchTreeViewByCategory.Name = "btnMappingEditPatchTreeViewByCategory";
-            this.btnMappingEditPatchTreeViewByCategory.Size = new System.Drawing.Size(177, 54);
+            this.btnMappingEditPatchTreeViewByCategory.Size = new System.Drawing.Size(204, 54);
             this.btnMappingEditPatchTreeViewByCategory.TabIndex = 17;
             this.btnMappingEditPatchTreeViewByCategory.Text = "Cat";
             this.btnMappingEditPatchTreeViewByCategory.UseVisualStyleBackColor = true;
@@ -2936,7 +2964,7 @@
             this.tvMappingEditorPrograms.Location = new System.Drawing.Point(4, 4);
             this.tvMappingEditorPrograms.Margin = new System.Windows.Forms.Padding(4);
             this.tvMappingEditorPrograms.Name = "tvMappingEditorPrograms";
-            this.tvMappingEditorPrograms.Size = new System.Drawing.Size(369, 564);
+            this.tvMappingEditorPrograms.Size = new System.Drawing.Size(424, 564);
             this.tvMappingEditorPrograms.TabIndex = 8;
             this.tvMappingEditorPrograms.ItemDrag += new System.Windows.Forms.ItemDragEventHandler(this.tvMappingEditorPrograms_ItemDrag);
             // 
@@ -2947,7 +2975,7 @@
             this.tbMappings2.Margin = new System.Windows.Forms.Padding(4);
             this.tbMappings2.Name = "tbMappings2";
             this.tbMappings2.Padding = new System.Windows.Forms.Padding(4);
-            this.tbMappings2.Size = new System.Drawing.Size(1532, 780);
+            this.tbMappings2.Size = new System.Drawing.Size(1749, 780);
             this.tbMappings2.TabIndex = 10;
             this.tbMappings2.Text = "Mappings2";
             this.tbMappings2.UseVisualStyleBackColor = true;
@@ -2970,7 +2998,7 @@
             this.tlpMappingEditOuter2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 62F));
             this.tlpMappingEditOuter2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 90F));
             this.tlpMappingEditOuter2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tlpMappingEditOuter2.Size = new System.Drawing.Size(1524, 772);
+            this.tlpMappingEditOuter2.Size = new System.Drawing.Size(1741, 772);
             this.tlpMappingEditOuter2.TabIndex = 0;
             // 
             // mbrcMappingSelect2
@@ -2985,7 +3013,7 @@
             this.mbrcMappingSelect2.ShowArrowButtons = true;
             this.mbrcMappingSelect2.ShowLogicalButtonNumberBadge = false;
             this.mbrcMappingSelect2.ShowScrollbar = true;
-            this.mbrcMappingSelect2.Size = new System.Drawing.Size(349, 607);
+            this.mbrcMappingSelect2.Size = new System.Drawing.Size(403, 607);
             this.mbrcMappingSelect2.TabIndex = 3;
             this.mbrcMappingSelect2.Click += new System.EventHandler(this.mbrcMappingSelect2_Click);
             // 
@@ -3003,7 +3031,7 @@
             this.tlpMappingEditButtons2.RowCount = 1;
             this.tlpMappingEditButtons2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tlpMappingEditButtons2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 54F));
-            this.tlpMappingEditButtons2.Size = new System.Drawing.Size(373, 54);
+            this.tlpMappingEditButtons2.Size = new System.Drawing.Size(427, 54);
             this.tlpMappingEditButtons2.TabIndex = 0;
             // 
             // btnMappingDelete2
@@ -3011,10 +3039,10 @@
             this.btnMappingDelete2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnMappingDelete2.Enabled = false;
             this.btnMappingDelete2.ForeColor = System.Drawing.Color.IndianRed;
-            this.btnMappingDelete2.Location = new System.Drawing.Point(190, 4);
+            this.btnMappingDelete2.Location = new System.Drawing.Point(217, 4);
             this.btnMappingDelete2.Margin = new System.Windows.Forms.Padding(4);
             this.btnMappingDelete2.Name = "btnMappingDelete2";
-            this.btnMappingDelete2.Size = new System.Drawing.Size(179, 46);
+            this.btnMappingDelete2.Size = new System.Drawing.Size(206, 46);
             this.btnMappingDelete2.TabIndex = 2;
             this.btnMappingDelete2.Text = "-";
             this.btnMappingDelete2.UseVisualStyleBackColor = true;
@@ -3026,7 +3054,7 @@
             this.btnMappingAdd2.Location = new System.Drawing.Point(4, 4);
             this.btnMappingAdd2.Margin = new System.Windows.Forms.Padding(4);
             this.btnMappingAdd2.Name = "btnMappingAdd2";
-            this.btnMappingAdd2.Size = new System.Drawing.Size(178, 46);
+            this.btnMappingAdd2.Size = new System.Drawing.Size(205, 46);
             this.btnMappingAdd2.TabIndex = 1;
             this.btnMappingAdd2.Text = "+";
             this.btnMappingAdd2.UseVisualStyleBackColor = true;
@@ -3052,11 +3080,11 @@
             this.modRemap,
             this.additionalCCs});
             this.dgvMappings.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvMappings.Location = new System.Drawing.Point(385, 66);
+            this.dgvMappings.Location = new System.Drawing.Point(439, 66);
             this.dgvMappings.Margin = new System.Windows.Forms.Padding(4);
             this.dgvMappings.Name = "dgvMappings";
             this.dgvMappings.RowHeadersWidth = 51;
-            this.dgvMappings.Size = new System.Drawing.Size(1135, 631);
+            this.dgvMappings.Size = new System.Drawing.Size(1298, 631);
             this.dgvMappings.TabIndex = 4;
             this.dgvMappings.Visible = false;
             this.dgvMappings.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMappings_CellDoubleClick);
@@ -3179,7 +3207,7 @@
             this.tlpMappingEditNameAndButtons2.Controls.Add(this.btnMappingEditCancel2, 2, 0);
             this.tlpMappingEditNameAndButtons2.Controls.Add(this.tbMappingName2, 1, 0);
             this.tlpMappingEditNameAndButtons2.Controls.Add(this.label30, 0, 0);
-            this.tlpMappingEditNameAndButtons2.Location = new System.Drawing.Point(385, 4);
+            this.tlpMappingEditNameAndButtons2.Location = new System.Drawing.Point(439, 4);
             this.tlpMappingEditNameAndButtons2.Margin = new System.Windows.Forms.Padding(4);
             this.tlpMappingEditNameAndButtons2.Name = "tlpMappingEditNameAndButtons2";
             this.tlpMappingEditNameAndButtons2.RowCount = 1;
@@ -3254,7 +3282,7 @@
             this.tpSoundGenerators.Location = new System.Drawing.Point(4, 44);
             this.tpSoundGenerators.Margin = new System.Windows.Forms.Padding(4);
             this.tpSoundGenerators.Name = "tpSoundGenerators";
-            this.tpSoundGenerators.Size = new System.Drawing.Size(1532, 780);
+            this.tpSoundGenerators.Size = new System.Drawing.Size(1749, 780);
             this.tpSoundGenerators.TabIndex = 5;
             this.tpSoundGenerators.Text = "SoundGenerators";
             this.tpSoundGenerators.UseVisualStyleBackColor = true;
@@ -3277,7 +3305,7 @@
             this.tlpSoundGeneratorsOuter.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 49F));
             this.tlpSoundGeneratorsOuter.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 90F));
             this.tlpSoundGeneratorsOuter.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tlpSoundGeneratorsOuter.Size = new System.Drawing.Size(1532, 780);
+            this.tlpSoundGeneratorsOuter.Size = new System.Drawing.Size(1749, 780);
             this.tlpSoundGeneratorsOuter.TabIndex = 0;
             // 
             // lvSoundGenerators
@@ -3298,7 +3326,7 @@
             this.lvSoundGenerators.Margin = new System.Windows.Forms.Padding(4);
             this.lvSoundGenerators.MultiSelect = false;
             this.lvSoundGenerators.Name = "lvSoundGenerators";
-            this.lvSoundGenerators.Size = new System.Drawing.Size(604, 649);
+            this.lvSoundGenerators.Size = new System.Drawing.Size(691, 649);
             this.lvSoundGenerators.TabIndex = 2;
             this.lvSoundGenerators.UseCompatibleStateImageBehavior = false;
             this.lvSoundGenerators.View = System.Windows.Forms.View.Details;
@@ -3337,7 +3365,7 @@
             this.tlpSoundGeneratorEditButtons.Name = "tlpSoundGeneratorEditButtons";
             this.tlpSoundGeneratorEditButtons.RowCount = 1;
             this.tlpSoundGeneratorEditButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpSoundGeneratorEditButtons.Size = new System.Drawing.Size(604, 41);
+            this.tlpSoundGeneratorEditButtons.Size = new System.Drawing.Size(691, 41);
             this.tlpSoundGeneratorEditButtons.TabIndex = 3;
             // 
             // btnDeleteSoundGenerator
@@ -3345,10 +3373,10 @@
             this.btnDeleteSoundGenerator.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnDeleteSoundGenerator.Enabled = false;
             this.btnDeleteSoundGenerator.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDeleteSoundGenerator.Location = new System.Drawing.Point(306, 4);
+            this.btnDeleteSoundGenerator.Location = new System.Drawing.Point(349, 4);
             this.btnDeleteSoundGenerator.Margin = new System.Windows.Forms.Padding(4);
             this.btnDeleteSoundGenerator.Name = "btnDeleteSoundGenerator";
-            this.btnDeleteSoundGenerator.Size = new System.Drawing.Size(294, 33);
+            this.btnDeleteSoundGenerator.Size = new System.Drawing.Size(338, 33);
             this.btnDeleteSoundGenerator.TabIndex = 2;
             this.btnDeleteSoundGenerator.Text = "-";
             this.btnDeleteSoundGenerator.UseVisualStyleBackColor = true;
@@ -3361,7 +3389,7 @@
             this.btnAddSoundGenerator.Location = new System.Drawing.Point(4, 4);
             this.btnAddSoundGenerator.Margin = new System.Windows.Forms.Padding(4);
             this.btnAddSoundGenerator.Name = "btnAddSoundGenerator";
-            this.btnAddSoundGenerator.Size = new System.Drawing.Size(294, 33);
+            this.btnAddSoundGenerator.Size = new System.Drawing.Size(337, 33);
             this.btnAddSoundGenerator.TabIndex = 1;
             this.btnAddSoundGenerator.Text = "+";
             this.btnAddSoundGenerator.UseVisualStyleBackColor = true;
@@ -3393,10 +3421,10 @@
             this.pnlSoundGeneratorEdit.Controls.Add(this.tbSoundGeneratorName);
             this.pnlSoundGeneratorEdit.Controls.Add(this.label10);
             this.pnlSoundGeneratorEdit.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlSoundGeneratorEdit.Location = new System.Drawing.Point(616, 53);
+            this.pnlSoundGeneratorEdit.Location = new System.Drawing.Point(703, 53);
             this.pnlSoundGeneratorEdit.Margin = new System.Windows.Forms.Padding(4);
             this.pnlSoundGeneratorEdit.Name = "pnlSoundGeneratorEdit";
-            this.pnlSoundGeneratorEdit.Size = new System.Drawing.Size(451, 649);
+            this.pnlSoundGeneratorEdit.Size = new System.Drawing.Size(516, 649);
             this.pnlSoundGeneratorEdit.TabIndex = 4;
             this.pnlSoundGeneratorEdit.Visible = false;
             // 
@@ -3698,10 +3726,10 @@
             this.pnlSoundGeneratorPatchEdit.Controls.Add(this.tbSoundGeneratorPatchName);
             this.pnlSoundGeneratorPatchEdit.Controls.Add(this.label14);
             this.pnlSoundGeneratorPatchEdit.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlSoundGeneratorPatchEdit.Location = new System.Drawing.Point(1075, 53);
+            this.pnlSoundGeneratorPatchEdit.Location = new System.Drawing.Point(1227, 53);
             this.pnlSoundGeneratorPatchEdit.Margin = new System.Windows.Forms.Padding(4);
             this.pnlSoundGeneratorPatchEdit.Name = "pnlSoundGeneratorPatchEdit";
-            this.pnlSoundGeneratorPatchEdit.Size = new System.Drawing.Size(453, 649);
+            this.pnlSoundGeneratorPatchEdit.Size = new System.Drawing.Size(518, 649);
             this.pnlSoundGeneratorPatchEdit.TabIndex = 5;
             this.pnlSoundGeneratorPatchEdit.Visible = false;
             // 
@@ -3926,7 +3954,7 @@
             this.tpMisc.Location = new System.Drawing.Point(4, 44);
             this.tpMisc.Margin = new System.Windows.Forms.Padding(4);
             this.tpMisc.Name = "tpMisc";
-            this.tpMisc.Size = new System.Drawing.Size(1532, 780);
+            this.tpMisc.Size = new System.Drawing.Size(1749, 780);
             this.tpMisc.TabIndex = 4;
             this.tpMisc.Text = "Misc";
             this.tpMisc.UseVisualStyleBackColor = true;
@@ -4109,7 +4137,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(1540, 828);
+            this.ClientSize = new System.Drawing.Size(1757, 828);
             this.Controls.Add(this.tabControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
@@ -4461,6 +4489,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn damperRemap;
         private System.Windows.Forms.DataGridViewTextBoxColumn modRemap;
         private System.Windows.Forms.DataGridViewTextBoxColumn additionalCCs;
+        private System.Windows.Forms.TextBox tbSongRelVol;
+        private System.Windows.Forms.Label label31;
     }
 }
 
