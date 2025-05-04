@@ -44,8 +44,8 @@ namespace JoeMidi1
             this.highestNote = 127;
             this.pitchOffset = 0;
             this.pbScale = 1.0;
-            this.damperRemap = DAMPER_CC;
-            this.modRemap = MOD_CC;
+            this.damperRemap = null;
+            this.modRemap = null;
             this.additionalCCs = "";
         }
 
@@ -61,8 +61,8 @@ namespace JoeMidi1
             this.highestNote = 127;
             this.pitchOffset = 0;
             this.pbScale = 1.0;
-            this.damperRemap = DAMPER_CC;
-            this.modRemap = MOD_CC;
+            this.damperRemap = null;
+            this.modRemap = null;
             this.additionalCCs = "";
         }
 

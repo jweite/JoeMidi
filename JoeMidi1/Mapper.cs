@@ -598,6 +598,7 @@ namespace JoeMidi1
         public void startMapper()
         {
             loadConfiguration();
+            configuration.AutoGeneratePatchesFromReaperPresets();
             configuration.bind();
             openSourceDevices();
             var testMessage = new SharpOSC.OscMessage("/gleep");

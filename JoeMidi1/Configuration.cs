@@ -436,5 +436,14 @@ namespace JoeMidi1
             }
         }
 
+        public void AutoGeneratePatchesFromReaperPresets()
+        {
+            foreach (var sg in soundGenerators.Values)
+            {
+                sg.AutoGeneratePatchesFromReaperPresets();
+            }
+
+        }
+
     }
 }
