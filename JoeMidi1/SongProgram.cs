@@ -8,12 +8,16 @@ namespace JoeMidi1
     public class SongProgram : MidiProgram
     {
         public String part;
+        public double relativeVolume;
 
-        public SongProgram() { }
+        public SongProgram() {
+            relativeVolume = 0.0;
+        }
 
         public SongProgram(SongProgram orig) : base(orig)
         {
             part = orig.part;
+            relativeVolume = orig.relativeVolume;
         }
 
         public static void createTrialConfiguration(Song song)

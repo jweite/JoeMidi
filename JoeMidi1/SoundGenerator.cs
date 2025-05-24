@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Newtonsoft.Json;
 using Midi;
+using System.IO;
 
 namespace JoeMidi1
 {
@@ -24,6 +25,7 @@ namespace JoeMidi1
         public List<String> fxPresetDefaults;  // FX#:PresetName for up to 5 FX Slots, set in Reaper by OSC
         public Dictionary<String, int> fxSlotNames;
         public String clonePatchesFrom; // Another Sound Generator from which this one inherits patche definitions.
+        public String reaperPresetFilePath; // To enable auto-generation of SoundGeneratorPatches from Reaper presets.
 
         [JsonIgnore]
         public double cc7Scale = 1.0;
@@ -73,7 +75,7 @@ namespace JoeMidi1
         [JsonIgnore]
         public OutputDevice device;
 
-        public bool bind(Dictionary<String, LogicalOutputDevice> logicalOutputDeviceDict, Dictionary<String, SoundGenerator> soundGenerators)
+        public void bind(Dictionary<String, LogicalOutputDevice> logicalOutputDeviceDict, Dictionary<String, SoundGenerator> soundGenerators)
         {
             cc7Scale = ((double)cc7Max - (double)cc7Min) / (double)127;     // The portion of 127 of the actual output range
 
@@ -94,18 +96,39 @@ namespace JoeMidi1
                     SoundGeneratorPatch patch = soundGeneratorPatchDict[key];
                     patch.bind(this);
                 }
-
-                return true;
             }
             else {
                 this.device = null;
-                return false;
+                throw new ConfigurationException("Exception binding sound generator: cannot find logical device " + deviceName);
             }
         }
 
         public bool Equals(SoundGenerator other)
         {
             return name.Equals(other.name);
+        }
+
+        public void AutoGeneratePatchesFromReaperPresets()
+        {
+            if (File.Exists(this.reaperPresetFilePath))
+            {
+                var lines = File.ReadLines(this.reaperPresetFilePath);
+                foreach (var line in lines) {
+                    if (line.StartsWith("Name="))
+                    {
+                        var presetName = line.Substring(5);     // Length of "Name="
+                        if (!this.soundGeneratorPatchDict.ContainsKey(presetName)) {
+                            var patch = new SoundGeneratorPatch();
+                            patch.name = presetName;
+                            patch.soundGeneratorBank = -1;
+                            patch.soundGeneratorPatchNumber = -1;       // Enables OSC-based Preset Changing
+                            patch.fxPresets.Add("VSTi:" + presetName);  // Defines OSC-based Preset to select.
+                            patch.bind(this);
+                            this.soundGeneratorPatchDict.Add(presetName, patch);
+                        }
+                    }
+                }
+            }
         }
 
         public static void createTrialConfiguration(Dictionary<String, SoundGenerator> soundGenerators)

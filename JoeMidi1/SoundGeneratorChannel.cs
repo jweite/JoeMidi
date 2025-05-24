@@ -27,7 +27,7 @@ namespace JoeMidi1
         [JsonIgnore]
         public int soundGeneratorPhysicalChannel;
 
-        public virtual bool bind(Dictionary<String, SoundGenerator> soundGenerators)
+        public virtual void bind(Dictionary<String, SoundGenerator> soundGenerators)
         {
             if (soundGenerators.ContainsKey(soundGeneratorName))
             {
@@ -36,16 +36,14 @@ namespace JoeMidi1
                 if (soundGeneratorRelativeChannel >= 0 && soundGeneratorRelativeChannel < soundGenerator.nChannels)
                 {
                     soundGeneratorPhysicalChannel = soundGeneratorRelativeChannel + soundGenerator.channelBase;
-                    return true;
                 }
                 else {
-                    MessageBox.Show("Illegal soundGeneratorRelativeChannel of " + soundGeneratorRelativeChannel + " in mappping");
-                    return false;
+                    throw new ConfigurationException("Exception binding SoundGeneratorChannel: Illegal soundGeneratorRelativeChannel: " + soundGeneratorRelativeChannel);
                 }
             }
             else
             {
-                return false;
+                throw new ConfigurationException("Exception binding SoundGeneratorChannel: unknown SoundGeneratorName " + soundGeneratorName);
             }
         }
     }

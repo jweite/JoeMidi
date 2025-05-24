@@ -207,7 +207,7 @@ namespace JoeMidi1
             }
         }
 
-        public void SetMapping(Mapping mappingToActivate) 
+        public void SetMapping(Mapping mappingToActivate, double volumeTweak = 0.0) 
         {
             // Sets what Mapping this Mapper will use to do remapping.
 
@@ -275,10 +275,13 @@ namespace JoeMidi1
                                     }
                                 }
 
-                                // Set the track volume with the mapping patch volume.  (MappingPatch volume is the SG default volume possibly overridden by the SG Patch vol.
+                                // Set the track volume with the mapping patch volume.  (MappingPatch volume is the SG
+                                // default volume possibly overridden by the SG Patch vol. VolumeTweak to support
+                                // SongRelativeVolume adjustment.)
                                 if (mappingPatch.volume != null)
                                 {
-                                    var oscMessage = new SharpOSC.OscMessage(String.Format("/track/{0}/volume/db", trackNum), (System.Single)mappingPatch.volume);
+                                    var volume = (System.Single)(mappingPatch.volume + volumeTweak);
+                                    var oscMessage = new SharpOSC.OscMessage(String.Format("/track/{0}/volume/db", trackNum), volume);
                                     SendOSC(oscMessage);
                                 }
                             }
@@ -594,51 +597,44 @@ namespace JoeMidi1
 
         public void startMapper()
         {
-            try
+            loadConfiguration();
+            configuration.AutoGeneratePatchesFromReaperPresets();
+            configuration.bind();
+            openSourceDevices();
+            var testMessage = new SharpOSC.OscMessage("/gleep");
+            if (configuration.oscAddress != "" && configuration.oscPort > 0)
             {
-                loadConfiguration();
-                configuration.bind();
-                openSourceDevices();
-                var testMessage = new SharpOSC.OscMessage("/gleep");
-                if (configuration.oscAddress != "" && configuration.oscPort > 0)
-                {
-                    oscSender = new SharpOSC.UDPSender(configuration.oscAddress, configuration.oscPort);
-                    try
-                    {
-                        oscSender.Send(testMessage);
-                    }
-                    catch (System.Net.Sockets.SocketException)
-                    {
-                        oscSender = null;
-                    }
-                }
-                oscSenderLocalhost = new SharpOSC.UDPSender("127.0.0.1", configuration.oscPort);
+                oscSender = new SharpOSC.UDPSender(configuration.oscAddress, configuration.oscPort);
                 try
                 {
-                    oscSenderLocalhost.Send(testMessage);
+                    oscSender.Send(testMessage);
                 }
                 catch (System.Net.Sockets.SocketException)
                 {
-                    MessageBox.Show("Cannot open OSC address.  Proceeding without OSC.");
-                    oscSenderLocalhost = null;
-                }
-
-                // Send global CC initial values
-                foreach (Mapping.PerDeviceChannelMapping globalPerDeviceChannelMappings in configuration.globalControlMappings)
-                {
-                    foreach (ControlMapping controlMapping in globalPerDeviceChannelMappings.controlMappings)
-                    {
-                        if (controlMapping.initialValue >= 0)
-                        {
-                            controlMapping.soundGenerator.device.SendControlChange((Channel)controlMapping.soundGeneratorPhysicalChannel, (Midi.Control)controlMapping.mappedControlNumber, controlMapping.initialValue);
-                        }
-                    }
+                    oscSender = null;
                 }
             }
-            catch (Exception e)
+            oscSenderLocalhost = new SharpOSC.UDPSender("127.0.0.1", configuration.oscPort);
+            try
             {
-                MessageBox.Show("Exception starting mapper: " + e);
-                return;
+                oscSenderLocalhost.Send(testMessage);
+            }
+            catch (System.Net.Sockets.SocketException)
+            {
+                MessageBox.Show("Cannot open OSC address.  Proceeding without OSC.");
+                oscSenderLocalhost = null;
+            }
+
+            // Send global CC initial values
+            foreach (Mapping.PerDeviceChannelMapping globalPerDeviceChannelMappings in configuration.globalControlMappings)
+            {
+                foreach (ControlMapping controlMapping in globalPerDeviceChannelMappings.controlMappings)
+                {
+                    if (controlMapping.initialValue >= 0)
+                    {
+                        controlMapping.soundGenerator.device.SendControlChange((Channel)controlMapping.soundGeneratorPhysicalChannel, (Midi.Control)controlMapping.mappedControlNumber, controlMapping.initialValue);
+                    }
+                }
             }
         }
 

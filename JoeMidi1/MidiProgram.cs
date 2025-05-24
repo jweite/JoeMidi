@@ -101,7 +101,7 @@ namespace JoeMidi1
 
         }
 
-        virtual public bool bind(Dictionary<String, LogicalInputDevice> logicalInputDeviceDict, Dictionary<String, SoundGenerator> soundGenerators, Dictionary<String, Mapping> mappings, LogicalInputDevice primaryInputDevice)
+        virtual public void bind(Dictionary<String, LogicalInputDevice> logicalInputDeviceDict, Dictionary<String, SoundGenerator> soundGenerators, Dictionary<String, Mapping> mappings, LogicalInputDevice primaryInputDevice)
         {
             // Find or create a Mapping for this MidiProgram that it will point to
 
@@ -110,12 +110,10 @@ namespace JoeMidi1
                 if (mappings.ContainsKey(this.MappingName))
                 {
                     mapping = mappings[this.MappingName];
-                    return true;
                 }
                 else
                 {
-                    MessageBox.Show("MidiProgram Mapping " + this.MappingName + " not defined in this configuration.");
-                    return false;
+                    throw new ConfigurationException("Exception binding MidiProgram: Mapping " + this.MappingName + " not defined in this configuration.");
                 }
             }
             else
@@ -199,7 +197,7 @@ namespace JoeMidi1
 
                 mapping.perDeviceChannelMappings.Add(perDeviceChannelMapping.key, perDeviceChannelMapping);
 
-                return mapping.bind(logicalInputDeviceDict, soundGenerators);
+                mapping.bind(logicalInputDeviceDict, soundGenerators);
             }
         }
 

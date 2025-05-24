@@ -257,7 +257,7 @@ namespace JoeMidi1
             {
                 // NOTE: if patch is deleted from sound gen, the songProgram still exists, but has no mapping.  For now we do nothing,
                 //  but perhaps it'd be better to notify user...  But, maybe best not to interrupt the performance...
-                mapper.SetMapping(songProgram.mapping);
+                mapper.SetMapping(songProgram.mapping, songProgram.relativeVolume);
                 mapper.configuration.lastOpenedShowSetlistSongPatch = songProgram.name;
             }
         }
@@ -493,6 +493,11 @@ namespace JoeMidi1
             vsbVol1.Value = vsbVol2.Value;      // Vol Control on Random Access tabs track this one.
             int vol = 127 - vsbVol2.Value;
             mapper.changeMasterVol(vol);
+        }
+        private void mbccShowSongPatches_RightClick(object sender, EventArgs e)
+        {
+            // This is where I'll pop-up a dialog for tweaking patch/mapping volumes.
+            MessageBox.Show("Right click: " + ((Button)sender).Text);
         }
     }
 }

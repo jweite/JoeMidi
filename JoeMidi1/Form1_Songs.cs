@@ -227,6 +227,7 @@ namespace JoeMidi1
             tbSongPatchPart.Text = "";
             nudSongPatchBank.Value = -1;
             nudSongPatchProgramNo.Value = -1;
+            tbSongRelVol.Text = "0.0";
             populateTreeViewWithSoundGeneratorsPatchesAndMappings(tvSongPatchPatches, "SG", true);
             creatingNewSongProgram = true;
             pnlPatchEdit.Visible = true;
@@ -246,6 +247,7 @@ namespace JoeMidi1
 
                 tbSongPatchPart.Text = songProgramBeingEdited.part;
                 nudSongPatchBank.Value = songProgramBeingEdited.myBankNumber;
+                tbSongRelVol.Text = songProgramBeingEdited.relativeVolume.ToString();
                 nudSongPatchProgramNo.Value = songProgramBeingEdited.myPatchNumber;
                 populateTreeViewWithSoundGeneratorsPatchesAndMappings(tvSongPatchPatches, "SG", true);
 
@@ -291,7 +293,18 @@ namespace JoeMidi1
                 return;
             }
 
+            double relativeVolume = 0.0;
+            if (tbSongRelVol.Text.Trim().Length > 0)
+            {
+                if (!double.TryParse(tbSongRelVol.Text.Trim(), out relativeVolume))
+                {
+                    MessageBox.Show("Illegal Relative Volume value entered: " + tbSongRelVol.Text);
+                    return;
+                }
+            }
+
             songProgramBeingEdited.part = tbSongPatchPart.Text;
+            songProgramBeingEdited.relativeVolume = relativeVolume;
             songProgramBeingEdited.myBankNumber = (int)nudSongPatchBank.Value;
             songProgramBeingEdited.myPatchNumber = (int)nudSongPatchProgramNo.Value;
 

@@ -39,7 +39,7 @@ namespace JoeMidi1
         }
 
         // Refresh the entries in the mapping selector.  We only expose SimpleMappings in the UI.  (Hand-authored Mappings can be more sophisticated than the UI can display today)
-        private void refreshMappingToEditSelector()
+        private void refreshMappingToEditSelector(String nameToSelect = null)
         {
             mbrcMappingSelect.clearButtons();
             foreach (Mapping mapping in mapper.configuration.mappingsSorted)
@@ -48,6 +48,10 @@ namespace JoeMidi1
                 {
                     mbrcMappingSelect.addButton(mapping.name, (SimpleMapping)mapping);
                 }
+            }
+            if (nameToSelect != null)
+            {
+                mbrcMappingSelect.selectByName(nameToSelect);
             }
         }
 
@@ -363,7 +367,8 @@ namespace JoeMidi1
             // Refresh selectors that may not be showing this (new) mapping
             if (creatingNewMapping)
             {
-                refreshMappingToEditSelector();
+                refreshMappingToEditSelector(mappingBeingEdited.name);
+                refreshMappingToEditSelector2(mappingBeingEdited.name);
                 btnPatchTreeViewBySG_Click(null, null);
             }
 
@@ -573,6 +578,7 @@ namespace JoeMidi1
             }
 
             refreshMappingToEditSelector();
+            refreshMappingToEditSelector2();
             btnPatchTreeViewBySG_Click(null, null);
 
             // Hide any editor UI elements that may be visible.
