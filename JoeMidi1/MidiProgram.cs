@@ -197,7 +197,7 @@ namespace JoeMidi1
 
                 mapping.perDeviceChannelMappings.Add(perDeviceChannelMapping.key, perDeviceChannelMapping);
 
-                mapping.bind(logicalInputDeviceDict, soundGenerators);
+                mapping.bind(logicalInputDeviceDict, soundGenerators, "");  // Third param is a hack since Mapper is not available here.  LUA won't work for these trial MidiPrograms.
             }
         }
 

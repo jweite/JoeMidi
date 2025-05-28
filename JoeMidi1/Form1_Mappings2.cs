@@ -174,7 +174,7 @@ namespace JoeMidi1
             // Flesh out the mapping internals
             try
             {
-                editedMapping.bind(mapper.configuration.logicalInputDeviceDict, mapper.configuration.soundGenerators);
+                editedMapping.bind(mapper.configuration.logicalInputDeviceDict, mapper.configuration.soundGenerators, mapper.JoeMidiDirectory);
             }
             catch (ConfigurationException ex) 
             {

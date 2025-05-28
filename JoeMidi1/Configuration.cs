@@ -332,7 +332,7 @@ namespace JoeMidi1
         }
 
 
-        public void bind()
+        public void bind(String JoeMidiDirectory)
         {
             foreach (String key in logicalInputDeviceDict.Keys)
             {
@@ -370,13 +370,13 @@ namespace JoeMidi1
 
             foreach (Mapping.PerDeviceChannelMapping perDeviceChannelMapping in globalControlMappings)
             {
-                perDeviceChannelMapping.bind(logicalInputDeviceDict, soundGenerators);
+                perDeviceChannelMapping.bind(logicalInputDeviceDict, soundGenerators, null);
             }
 
             foreach (String key in mappings.Keys)
             {
                 Mapping mapping = mappings[key];
-                mapping.bind(logicalInputDeviceDict, soundGenerators);
+                mapping.bind(logicalInputDeviceDict, soundGenerators, JoeMidiDirectory);
             }
 
             foreach (int bankAndProgram in midiPrograms.Keys)
