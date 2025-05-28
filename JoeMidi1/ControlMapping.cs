@@ -5,6 +5,7 @@ using System.Text;
 using System.Windows.Forms;
 using Newtonsoft.Json;
 using Midi;
+using NLua;
 
 namespace JoeMidi1
 {
@@ -29,13 +30,22 @@ namespace JoeMidi1
         [JsonIgnore]
         public bool currentToggleState = false;
 
+        [JsonIgnore]
+        public LuaFunction ccLuaFunction;
+
         public bool Equals(ControlMapping other)
         {
             return (base.Equals(other)) && (sourceControlNumber == other.sourceControlNumber) && (mappedControlNumber == other.mappedControlNumber);
         }
 
-        public void bind(Dictionary<String, LogicalInputDevice> logicalInputDeviceDict, Dictionary<String, SoundGenerator> soundGenerators)
+        public void bind(Dictionary<String, LogicalInputDevice> logicalInputDeviceDict, Dictionary<String, SoundGenerator> soundGenerators, Mapping mapping)
         {
+            if (mapping != null)
+            {
+                String luaFunctionBaseName = this.soundGeneratorName.ToLower().Replace(" ", "_");
+                ccLuaFunction = (LuaFunction)mapping.luaState[luaFunctionBaseName + "__cc"];
+            }
+
             scale = ((double)max - (double)min) / (double)127;
             currentToggleState = (bToggle == true && initialValue >= 1);
             if (mappedControlNumber == 7 && initialValue == -1)                 // Force sound gens to max vol if not defined in the mapping.  

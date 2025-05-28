@@ -347,7 +347,7 @@ namespace JoeMidi1
             }
 
             // Flesh out the mapping internals
-            mappingBeingEdited.bind(mapper.configuration.logicalInputDeviceDict, mapper.configuration.soundGenerators);
+            mappingBeingEdited.bind(mapper.configuration.logicalInputDeviceDict, mapper.configuration.soundGenerators, mapper.JoeMidiDirectory);
 
             // Store it
             if (creatingNewMapping)

@@ -5,6 +5,7 @@ using System.Text;
 using System.Windows.Forms;
 using Midi;
 using Newtonsoft.Json;
+using NLua;
 
 namespace JoeMidi1
 {
@@ -20,8 +21,15 @@ namespace JoeMidi1
         [JsonIgnore]
         public InputDevice sourceDevice;
 
-        public void bind(Dictionary<String, LogicalInputDevice> logicalInputDeviceDict, Dictionary<String, SoundGenerator> soundGenerators)
+        [JsonIgnore]
+        public LuaFunction noteOnLuaFunction;
+        public LuaFunction noteOffLuaFunction;
+
+        public void bind(Dictionary<String, LogicalInputDevice> logicalInputDeviceDict, Dictionary<String, SoundGenerator> soundGenerators, Mapping mapping)
         {
+            String luaFunctionBaseName = this.soundGeneratorName.ToLower().Replace(" ", "_");
+            noteOnLuaFunction = (LuaFunction)mapping.luaState[luaFunctionBaseName + "__noteon"];
+            noteOffLuaFunction = (LuaFunction)mapping.luaState[luaFunctionBaseName + "__noteoff"];
             base.bind(soundGenerators);
         }
 

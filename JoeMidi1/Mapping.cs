@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.IO;
 using Newtonsoft.Json;
 using Midi;
+using NLua;
 
 namespace JoeMidi1
 {
@@ -54,8 +56,28 @@ namespace JoeMidi1
             [JsonIgnore]
             public InputDevice inputDevice;
 
-            public virtual void bind(Dictionary<String, LogicalInputDevice> logicalInputDeviceDict, Dictionary<String, SoundGenerator> soundGenerators)
+            [JsonIgnore]
+            public LuaFunction noteOnLuaFunction;
+
+            [JsonIgnore]
+            public LuaFunction noteOffLuaFunction;
+
+            [JsonIgnore]
+            public LuaFunction ccLuaFunction;
+
+            [JsonIgnore]
+            public LuaFunction pbLuaFunction;
+
+            public virtual void bind(Dictionary<String, LogicalInputDevice> logicalInputDeviceDict, Dictionary<String, SoundGenerator> soundGenerators, Mapping mapping)
             {
+                if (mapping != null)
+                {
+                    noteOnLuaFunction = (LuaFunction)mapping.luaState["noteon"];
+                    noteOffLuaFunction = (LuaFunction)mapping.luaState["noteoff"];
+                    ccLuaFunction = (LuaFunction)mapping.luaState["cc"];
+                    pbLuaFunction = (LuaFunction)mapping.luaState["pitchbend"];
+                }
+
                 if (!logicalInputDeviceDict.ContainsKey(logicalInputDeviceName))
                 {
                     throw new ConfigurationException("Exception binding PerDeviceChannelMapping for " + key + ": unknown logical input device " + logicalInputDeviceName);
@@ -69,7 +91,7 @@ namespace JoeMidi1
 
                 foreach (NoteMapping noteMapping in noteMappings)
                 {
-                    noteMapping.bind(logicalInputDeviceDict, soundGenerators);
+                    noteMapping.bind(logicalInputDeviceDict, soundGenerators, mapping);
                 }
 
                 foreach (PitchBendMapping pitchBendMapping in pitchBendMappings)
@@ -79,7 +101,7 @@ namespace JoeMidi1
 
                 foreach (ControlMapping controlMapping in controlMappings)
                 {
-                    controlMapping.bind(logicalInputDeviceDict, soundGenerators);
+                    controlMapping.bind(logicalInputDeviceDict, soundGenerators, mapping);
                 }
             }
         }
@@ -88,13 +110,26 @@ namespace JoeMidi1
 
         public Dictionary<String, PerDeviceChannelMapping> perDeviceChannelMappings = new Dictionary<string, PerDeviceChannelMapping>();
 
-        public virtual void bind(Dictionary<String, LogicalInputDevice> logicalInputDeviceDict, Dictionary<String, SoundGenerator> soundGenerators)
+        [JsonIgnore]
+        public Lua luaState = new Lua();
+
+        [JsonIgnore]
+        public LuaFunction initLuaFunction;
+
+        public virtual void bind(Dictionary<String, LogicalInputDevice> logicalInputDeviceDict, Dictionary<String, SoundGenerator> soundGenerators, String JoeMidiDirectory)
         {
+            // If there's a lua script defined for this mapping, load it.
+            String luaFilename = JoeMidiDirectory + @"\" + ReplaceInvalidFilenameChars(name) + ".lua";
+            if (File.Exists(luaFilename)) {
+                luaState.DoFile(luaFilename);
+                initLuaFunction = (LuaFunction)luaState["init"];
+            }
+
             foreach (PerDeviceChannelMapping perDeviceChannelMapping in perDeviceChannelMappings.Values)
             {
                 try
                 {
-                    perDeviceChannelMapping.bind(logicalInputDeviceDict, soundGenerators);
+                    perDeviceChannelMapping.bind(logicalInputDeviceDict, soundGenerators, this);
                 }
                 catch (ConfigurationException ex)
                 {
@@ -134,5 +169,11 @@ namespace JoeMidi1
             mapping.perDeviceChannelMappings.Add(perDeviceChannelMapping.key, perDeviceChannelMapping);
             mappings.Add(mapping.name, mapping);
         }
+
+        public static String ReplaceInvalidFilenameChars(String filename)
+        {
+            return String.Join("_", filename.Split(Path.GetInvalidFileNameChars()));
+        }
+
     }
 }
