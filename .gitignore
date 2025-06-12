@@ -21,5 +21,5 @@
 /.vs
 /JoeMidi1/.vs
 /JoeMidi1/JoeMidi1.csproj.user
-/JoeMidi1/JoeMidi1_TemporaryKey.pfx
+/JoeMidi1/*.pfx
 

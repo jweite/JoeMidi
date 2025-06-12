@@ -183,7 +183,7 @@ namespace JoeMidi1
             }
 
             // Store it
-            if (creatingNewMapping)
+            if (creatingNewMapping2)
             {
                 mapper.configuration.mappings.Add(editedMapping.name, editedMapping);
             }

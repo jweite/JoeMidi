@@ -68,6 +68,10 @@ namespace JoeMidi1
                 SimpleMapping mapping = (SimpleMapping)(((Button)sender).Tag);
 
                 // In case it's a direct-switch from one mapping to another.
+                lbMappingDevice1LowerPatches.Items.Clear();
+                lbMappingDevice1UpperPatches.Items.Clear();
+                lbMappingDevice2LowerPatches.Items.Clear();
+                lbMappingDevice2UpperPatches.Items.Clear();
                 showSimpleMappingDefEditorControls(false);
 
                 // Update the editor state variables to communicate to the OK method.
