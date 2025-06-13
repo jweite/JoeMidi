@@ -8,6 +8,9 @@ using Newtonsoft.Json;
 using System.Windows.Forms;
 using System.Threading;
 using SharpOSC;
+using NLua;
+using System.Collections;
+using System.ComponentModel.Design.Serialization;
 
 namespace JoeMidi1
 {
@@ -52,15 +55,112 @@ namespace JoeMidi1
             }
         }
 
+        IList<ChannelMessage> parseLuaReturn(Object luaReturn, ChannelMessage originalMsg)
+        {
+            // Expecting the luaReturn to be a table of tables.  Each outer table value is a midi message.
+            //  Inner tables contain 3 or 4 longs each, representing an actual message: type, ch, d0 and optionally d1.
+
+            IList<ChannelMessage> returnMessages = new List<ChannelMessage>();
+
+            if (luaReturn is Object[] && ((Object[])luaReturn).Length >= 1 && ((Object[])luaReturn)[0] is LuaTable)
+            {
+                LuaTable luaReturnOuter = ((LuaTable)((Object[])luaReturn)[0]);
+                foreach (var inner in luaReturnOuter.Values)
+                {
+                    if (inner is LuaTable && ((LuaTable)inner).Values.Count >= 3)   // midiType, ch, d0
+                    {
+                        var luaReturnInner = ((IEnumerable<object>)((LuaTable)inner).Values).ToList();
+                        if (luaReturnInner[0] is long && luaReturnInner[1] is long && luaReturnInner[2] is long)
+                        {
+                            long midiType = (long)luaReturnInner[0];
+                            long ch = (long)luaReturnInner[1];
+                            long d0 = (long)luaReturnInner[2];
+                            if (ch >= 0 && ch < 16 && d0 >= 0 && d0 < 128) 
+                            {
+                                if ((midiType == 0x90 || midiType == 0x80 || midiType == 0xB0)
+                                    && luaReturnInner.Count >= 4    // midiType, ch, d0, d1  
+                                    && luaReturnInner[3] is long)
+                                {
+                                    long d1 = (long)luaReturnInner[3];
+                                    if (d1 >= 0 && d1 < 128)
+                                    {
+                                        if (midiType == 0x90)
+                                        {
+                                            returnMessages.Add(new NoteOnMessage(originalMsg.Device, (Channel)ch, (Pitch)d0, (int)d1, originalMsg.Time));
+                                        }
+                                        else if (midiType == 0x80)
+                                        {
+                                            returnMessages.Add(new NoteOffMessage(originalMsg.Device, (Channel)ch, (Pitch)d0, (int)d1, originalMsg.Time));
+                                        }
+                                        else if (midiType == 0xB0)
+                                        {
+                                            returnMessages.Add(new ControlChangeMessage(originalMsg.Device, (Channel)ch, (Midi.Control)d0, (int)d1, originalMsg.Time));
+                                        }
+                                    }
+                                }
+                                else if (midiType == 0xC0)
+                                {
+                                    returnMessages.Add(new ProgramChangeMessage(originalMsg.Device, (Channel)ch, (Instrument)d0, originalMsg.Time));
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            return returnMessages;
+        }
+
         public void NoteOn(NoteOnMessage msg)
         {
             // Find the per-device/channel mappings for the message's Device/Channel.  If there's none, nothing to do.
             String deviceKey = Mapping.PerDeviceChannelMapping.createKey(msg.Device.Name, (int)msg.Channel);
-            if (!m_perDeviceChannelMappings.ContainsKey(deviceKey)) {
+            if (!m_perDeviceChannelMappings.ContainsKey(deviceKey))
+            {
                 return;
             }
             Mapping.PerDeviceChannelMapping perDeviceChannelMapping = m_perDeviceChannelMappings[deviceKey];
 
+            if (perDeviceChannelMapping.noteOnLuaFunction != null)
+            {
+                var luaReturnRaw = perDeviceChannelMapping.noteOnLuaFunction.Call((int)msg.Channel, (int)msg.Pitch, msg.Velocity);
+                IList<ChannelMessage> luaReturnMidiMessages = parseLuaReturn(luaReturnRaw, msg);
+                handleChannelMessages(luaReturnMidiMessages, perDeviceChannelMapping);
+            }
+            else
+            {
+                HandleNoteOn(msg, perDeviceChannelMapping);
+            }
+        }
+
+        void handleChannelMessages(IList<ChannelMessage> msgs, Mapping.PerDeviceChannelMapping perDeviceChannelMapping)
+        {
+            foreach (ChannelMessage msg in msgs)
+            {
+                if (msg is NoteOnMessage)
+                {
+                    HandleNoteOn((NoteOnMessage)msg, perDeviceChannelMapping);
+                }
+                else if (msg is NoteOffMessage)
+                {
+                    HandleNoteOff((NoteOffMessage)msg);
+                }
+                else if (msg is ControlChangeMessage)
+                {
+                    HandleCC((ControlChangeMessage)msg, perDeviceChannelMapping);
+                }
+                else if (msg is PitchBendMessage)
+                {
+                    HandlePB((PitchBendMessage)msg, perDeviceChannelMapping);
+                }
+                else if (msg is ProgramChangeMessage)
+                {
+                    HandlePC((ProgramChangeMessage)msg);
+                }
+            }
+        }
+
+        void HandleNoteOn(NoteOnMessage msg, Mapping.PerDeviceChannelMapping perDeviceChannelMapping)
+        {
             // Iterate over the NoteMappings for this device/channel
             foreach (NoteMapping mapping in perDeviceChannelMapping.noteMappings)
             {
@@ -100,9 +200,30 @@ namespace JoeMidi1
                 }
             }
         }
-        
 
         public void NoteOff(NoteOffMessage msg)
+        {
+            // Find the per-device/channel mappings for the message's Device/Channel.  If there's none, nothing to do.
+            String deviceKey = Mapping.PerDeviceChannelMapping.createKey(msg.Device.Name, (int)msg.Channel);
+            if (!m_perDeviceChannelMappings.ContainsKey(deviceKey))
+            {
+                return;
+            }
+            Mapping.PerDeviceChannelMapping perDeviceChannelMapping = m_perDeviceChannelMappings[deviceKey];
+
+            if (perDeviceChannelMapping.noteOffLuaFunction != null)
+            {
+                var luaReturnRaw = perDeviceChannelMapping.noteOffLuaFunction.Call((int)msg.Channel, (int)msg.Pitch, msg.Velocity);
+                IList<ChannelMessage> luaReturnMidiMessages = parseLuaReturn(luaReturnRaw, msg);
+                handleChannelMessages(luaReturnMidiMessages, perDeviceChannelMapping);
+            }
+            else
+            {
+                HandleNoteOff(msg);
+            }
+        }
+
+        public void HandleNoteOff(NoteOffMessage msg)
         {
             // This note should be in the mapped notes dict from it's note-on.  Build the key to find what it was mapped to.
             String sourceDeviceName = msg.Device.Name;
@@ -128,6 +249,27 @@ namespace JoeMidi1
 
         public void ProgramChange(ProgramChangeMessage msg)
         {
+            // Find the per-device/channel mappings for the message's Device/Channel.  If there's none, nothing to do.
+            String deviceKey = Mapping.PerDeviceChannelMapping.createKey(msg.Device.Name, (int)msg.Channel);
+            if (!m_perDeviceChannelMappings.ContainsKey(deviceKey))
+            {
+                return;
+            }
+            Mapping.PerDeviceChannelMapping perDeviceChannelMapping = m_perDeviceChannelMappings[deviceKey];
+
+            if (perDeviceChannelMapping.pcLuaFunction != null)
+            {
+                var luaReturnRaw = perDeviceChannelMapping.pcLuaFunction.Call((int)msg.Channel, (int)msg.Instrument);
+                IList<ChannelMessage> luaReturnMidiMessages = parseLuaReturn(luaReturnRaw, msg);
+                handleChannelMessages(luaReturnMidiMessages, perDeviceChannelMapping);
+            }
+            else
+            {
+                HandlePC(msg);
+            }
+        }
+
+        void HandlePC(ProgramChangeMessage msg) { 
             int requestedProgramNo = (int)msg.Instrument;
             if (midiProgramChangeNotification != null)
             {
@@ -369,6 +511,20 @@ namespace JoeMidi1
             }
             Mapping.PerDeviceChannelMapping perDeviceChannelMapping = m_perDeviceChannelMappings[deviceKey];
 
+            if (perDeviceChannelMapping.pbLuaFunction != null)
+            {
+                var luaReturnRaw = perDeviceChannelMapping.pbLuaFunction.Call((int)msg.Channel, (int)msg.Value);
+                IList<ChannelMessage> luaReturnMidiMessages = parseLuaReturn(luaReturnRaw, msg);
+                handleChannelMessages(luaReturnMidiMessages, perDeviceChannelMapping);
+            }
+            else
+            {
+                HandlePB(msg, perDeviceChannelMapping);
+            }
+        }
+
+        void HandlePB(PitchBendMessage msg, Mapping.PerDeviceChannelMapping perDeviceChannelMapping)
+        {
             // Iterate over the pitch-bend mappings for this device/channel and send the pitch bend, scaled per the mapping, to the target device
             foreach (PitchBendMapping pitchBendMapping in perDeviceChannelMapping.pitchBendMappings)
             {
@@ -397,7 +553,7 @@ namespace JoeMidi1
             // Hard-mapping of sostenuto pedal down to next patch
             if (msg.Device == this.configuration.primaryInputDevice.device &&
                 // msg.Channel == 0 &&
-                (int)msg.Control == 0x42 && 
+                (int)msg.Control == 0x42 &&
                 msg.Value > 0x40)
             {
                 ProgramChangeMessage pcMsg = new ProgramChangeMessage(msg.Device, msg.Channel, (Instrument)configuration.currentPrimaryControllerButtonProgramNumbers[7], msg.Time);  // Button 8's (NextProgram) program change number.
@@ -434,6 +590,20 @@ namespace JoeMidi1
             }
             Mapping.PerDeviceChannelMapping perDeviceChannelMapping = m_perDeviceChannelMappings[deviceKey];
 
+            if (perDeviceChannelMapping.ccLuaFunction != null)
+            {
+                var luaReturnRaw = perDeviceChannelMapping.ccLuaFunction.Call((int)msg.Channel, (int)msg.Control, msg.Value);
+                IList<ChannelMessage> luaReturnMidiMessages = parseLuaReturn(luaReturnRaw, msg);
+                handleChannelMessages(luaReturnMidiMessages, perDeviceChannelMapping);
+            }
+            else
+            {
+                HandleCC(msg, perDeviceChannelMapping);
+            }
+        }
+
+        void HandleCC(ControlChangeMessage msg, Mapping.PerDeviceChannelMapping perDeviceChannelMapping)
+        {
             // Iterate over the control mappings ...
             foreach (ControlMapping controlMapping in perDeviceChannelMapping.controlMappings)
             {
@@ -599,7 +769,7 @@ namespace JoeMidi1
         {
             loadConfiguration();
             configuration.AutoGeneratePatchesFromReaperPresets();
-            configuration.bind();
+            configuration.bind(JoeMidiDirectory);
             openSourceDevices();
             var testMessage = new SharpOSC.OscMessage("/gleep");
             if (configuration.oscAddress != "" && configuration.oscPort > 0)
@@ -640,9 +810,7 @@ namespace JoeMidi1
 
         private void loadConfiguration()
         {
-            String myDocsFolder = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-            String directoryPath = myDocsFolder + @"\" + ConfigurationSubDirectory;
-            String filePath = directoryPath + @"\JoeMidi.json";
+            String filePath = JoeMidiDirectory + @"\JoeMidi.json";
             if (File.Exists(filePath) == false)
             {
                 MessageBox.Show(filePath + " doesn't exist.  Creating trial configuration");
@@ -717,14 +885,12 @@ namespace JoeMidi1
 
             String json = JsonConvert.SerializeObject(configuration, Formatting.Indented, serializerSettings);
 
-            String myDocsFolder = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-            String directoryPath = myDocsFolder + @"\" + ConfigurationSubDirectory;
-            if (!Directory.Exists(directoryPath))
+            if (!Directory.Exists(JoeMidiDirectory))
             {
-                Directory.CreateDirectory(directoryPath);
+                Directory.CreateDirectory(JoeMidiDirectory);
             }
 
-            String filePath = directoryPath + @"\JoeMidi.json";
+            String filePath = JoeMidiDirectory + @"\JoeMidi.json";
 
             String backupFilePath = filePath + String.Format(".{0:yyyyMMddHHmmss}", DateTime.Now);
             if (File.Exists(filePath))
@@ -818,5 +984,19 @@ namespace JoeMidi1
         }
 
         public string ConfigurationSubDirectory { get; set; }
+
+        public string JoeMidiDirectory
+        {
+            get
+            {
+                String myDocsFolder = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+                if (ConfigurationSubDirectory == "")
+                {
+                    return myDocsFolder;
+                }
+
+                return myDocsFolder + @"\" + ConfigurationSubDirectory;
+            }
+        }
     }
 }

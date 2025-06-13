@@ -255,7 +255,6 @@
     </EmbeddedResource>
     <None Include="App.config" />
     <None Include="JoeMidi1_1_TemporaryKey.pfx" />
-    <None Include="JoeMidi1_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

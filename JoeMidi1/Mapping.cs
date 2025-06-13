@@ -68,6 +68,9 @@ namespace JoeMidi1
             [JsonIgnore]
             public LuaFunction pbLuaFunction;
 
+            [JsonIgnore]
+            public LuaFunction pcLuaFunction;
+
             public virtual void bind(Dictionary<String, LogicalInputDevice> logicalInputDeviceDict, Dictionary<String, SoundGenerator> soundGenerators, Mapping mapping)
             {
                 if (mapping != null)
@@ -76,6 +79,7 @@ namespace JoeMidi1
                     noteOffLuaFunction = (LuaFunction)mapping.luaState["noteoff"];
                     ccLuaFunction = (LuaFunction)mapping.luaState["cc"];
                     pbLuaFunction = (LuaFunction)mapping.luaState["pitchbend"];
+                    pcLuaFunction = (LuaFunction)mapping.luaState["programchange"];
                 }
 
                 if (!logicalInputDeviceDict.ContainsKey(logicalInputDeviceName))
