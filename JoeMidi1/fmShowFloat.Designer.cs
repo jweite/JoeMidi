@@ -33,19 +33,22 @@
             // 
             // ucShowSetlist1
             // 
-            this.ucShowSetlist1.Location = new System.Drawing.Point(-2, 142);
+            this.ucShowSetlist1.Location = new System.Drawing.Point(-3, 175);
+            this.ucShowSetlist1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.ucShowSetlist1.Name = "ucShowSetlist1";
-            this.ucShowSetlist1.Size = new System.Drawing.Size(375, 279);
+            this.ucShowSetlist1.Size = new System.Drawing.Size(500, 343);
             this.ucShowSetlist1.TabIndex = 0;
             // 
             // fmShowFloat
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(841, 422);
+            this.ClientSize = new System.Drawing.Size(1121, 519);
             this.Controls.Add(this.ucShowSetlist1);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "fmShowFloat";
             this.Text = "fmShowPop";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.fmShowFloat_FormClosing);
             this.Load += new System.EventHandler(this.fmShowFloat_Load);
             this.ResumeLayout(false);
 

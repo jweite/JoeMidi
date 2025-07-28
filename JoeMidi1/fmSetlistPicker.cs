@@ -54,5 +54,10 @@ namespace JoeMidi1
         {
 
         }
+
+        private void fmSetlistPicker_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            this.Hide();
+        }
     }
 }

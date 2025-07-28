@@ -436,7 +436,7 @@ namespace JoeMidi1
                 {
                     Thread.Sleep(5);       // Some weird race condition exists.  Without a pause vol is always 100%
 
-                    if (controlMapping.mappedControlNumber >= 0 && controlMapping.mappedControlNumber < 127 && controlMapping.initialValue >= 0 && controlMapping.initialValue < 128)
+                    if (controlMapping.mappedControlNumber >= 0 && controlMapping.mappedControlNumber < 128 && controlMapping.initialValue >= 0 && controlMapping.initialValue < 128)
                     {
                         int scaledInitialValue = controlMapping.initialValue;
                         if (controlMapping.mappedControlNumber == 7)

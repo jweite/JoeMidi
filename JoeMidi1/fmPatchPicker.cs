@@ -106,5 +106,10 @@ namespace JoeMidi1
         {
             btnOK_Click(sender, e);
         }
+
+        private void fmPatchPicker_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            this.Hide();
+        }
     }
 }

@@ -43,20 +43,22 @@
             this.tableLayoutPanel1.Controls.Add(this.btnOK, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnCancel, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 211);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 259);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(284, 51);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(379, 63);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // btnOK
             // 
             this.btnOK.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnOK.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOK.Location = new System.Drawing.Point(145, 3);
+            this.btnOK.Location = new System.Drawing.Point(193, 4);
+            this.btnOK.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(136, 45);
+            this.btnOK.Size = new System.Drawing.Size(182, 55);
             this.btnOK.TabIndex = 0;
             this.btnOK.Text = "OK";
             this.btnOK.UseVisualStyleBackColor = true;
@@ -66,9 +68,10 @@
             // 
             this.btnCancel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancel.Location = new System.Drawing.Point(3, 3);
+            this.btnCancel.Location = new System.Drawing.Point(4, 4);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(136, 45);
+            this.btnCancel.Size = new System.Drawing.Size(181, 55);
             this.btnCancel.TabIndex = 1;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
@@ -79,23 +82,26 @@
             this.lbSetlists.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbSetlists.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbSetlists.FormattingEnabled = true;
-            this.lbSetlists.ItemHeight = 25;
+            this.lbSetlists.ItemHeight = 30;
             this.lbSetlists.Location = new System.Drawing.Point(0, 0);
+            this.lbSetlists.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.lbSetlists.Name = "lbSetlists";
-            this.lbSetlists.Size = new System.Drawing.Size(284, 211);
+            this.lbSetlists.Size = new System.Drawing.Size(379, 259);
             this.lbSetlists.TabIndex = 1;
             this.lbSetlists.SelectedIndexChanged += new System.EventHandler(this.lbSetlists_SelectedIndexChanged);
             this.lbSetlists.DoubleClick += new System.EventHandler(this.lbSetlists_DoubleClick);
             // 
             // fmSetlistPicker
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 262);
+            this.ClientSize = new System.Drawing.Size(379, 322);
             this.Controls.Add(this.lbSetlists);
             this.Controls.Add(this.tableLayoutPanel1);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "fmSetlistPicker";
             this.Text = "fmSetlistPicker";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.fmSetlistPicker_FormClosing);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 

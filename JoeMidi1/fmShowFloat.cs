@@ -22,5 +22,10 @@ namespace JoeMidi1
             // this.FormBorderStyle = FormBorderStyle.None;
             this.WindowState = FormWindowState.Maximized;
         }
+
+        private void fmShowFloat_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            this.Hide();
+        }
     }
 }

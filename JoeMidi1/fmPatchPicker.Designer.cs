@@ -105,6 +105,7 @@
             this.Controls.Add(this.tvFmPatchPickerPrograms);
             this.Name = "fmPatchPicker";
             this.Text = "fmPatchPicker";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.fmPatchPicker_FormClosing);
             this.ResumeLayout(false);
 
         }
