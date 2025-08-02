@@ -11,10 +11,11 @@ using SharpOSC;
 using NLua;
 using System.Collections;
 using System.ComponentModel.Design.Serialization;
+using System.Xml.Serialization;
 
 namespace JoeMidi1
 {
-    class Mapper
+    public class Mapper
     {
         // Class that actually does all the mide re-mapping defined by Mapping (and destroys any sense of abstraction implied by the other 
         //  Mapping and SoundGenerator classes).
@@ -361,6 +362,15 @@ namespace JoeMidi1
             {
                 if (m_perDeviceChannelMappings.ContainsKey(perDeviceChannelMapping.key))
                 {
+                    var mappingToBeReplaced = m_perDeviceChannelMappings[perDeviceChannelMapping.key];
+
+                    if (configuration.disableUnusedVSTIs == true)
+                    {
+                        foreach (NoteMapping noteMapping in mappingToBeReplaced.noteMappings)
+                        {
+                            DeferredDisableSoundGenerator(ref noteMapping.soundGenerator, 10);
+                        }
+                    }
                     m_perDeviceChannelMappings[perDeviceChannelMapping.key] = perDeviceChannelMapping;
                 }
                 else
@@ -372,6 +382,14 @@ namespace JoeMidi1
             // Step through the new per-device/channel mappings and send any program/bank/OSC/control changes required to effect them on the synths.
             foreach (Mapping.PerDeviceChannelMapping perDeviceChannelMapping in mappingToActivate.perDeviceChannelMappings.Values)
             {
+                // Enable the VSTis needed
+                foreach (NoteMapping noteMapping in perDeviceChannelMapping.noteMappings)
+                {
+                    cancelAnyPendingDisablesOfThisSoundGenerator(ref noteMapping.soundGenerator);
+                    noteMapping.soundGenerator.EnableVSTi(this);
+                }
+                Thread.Sleep(20);   // Give OSC/Reaper a chance to actually enable the VSTI before moving on.  Empirically sufficient on current HP Envy.
+
                 // Send out the mapping's registered bank/program change/OSC messages to each of that Mapping's Sound Generators.
                 foreach (MappingPatch mappingPatch in perDeviceChannelMapping.mappingPatches)
                 {
@@ -450,7 +468,7 @@ namespace JoeMidi1
             }
         }
 
-        private void SendOSC(OscPacket msg)
+        public void SendOSC(OscPacket msg)
         {
             // This func to support continued OSC integration with Reaper even if the configured oscSender address goes away during a show.
             //  When a true NIC-backed IP address is found, Reaper only binds to it for OSC.  When it's not available, Reaper binds to 0.0.0.0, which includes localhost.
@@ -795,6 +813,8 @@ namespace JoeMidi1
                 oscSenderLocalhost = null;
             }
 
+            disableAllVSTIs();
+
             // Send global CC initial values
             foreach (Mapping.PerDeviceChannelMapping globalPerDeviceChannelMappings in configuration.globalControlMappings)
             {
@@ -808,9 +828,19 @@ namespace JoeMidi1
             }
         }
 
+        private void disableAllVSTIs()
+        {
+            foreach (var soundGeneratoDictEntry in this.configuration.soundGenerators)
+            {
+                soundGeneratoDictEntry.Value.DisableVSTi(this);
+            }
+        }
+
         private void loadConfiguration()
         {
             String filePath = JoeMidiDirectory + @"\JoeMidi.json";
+            String localFilePath = JoeMidiDirectory + @"\JoeMidiLocal.json";
+
             if (File.Exists(filePath) == false)
             {
                 MessageBox.Show(filePath + " doesn't exist.  Creating trial configuration");
@@ -819,6 +849,14 @@ namespace JoeMidi1
             else
             {
                 configuration = JsonConvert.DeserializeObject<Configuration>(File.ReadAllText(filePath));
+
+                try
+                {
+                    LocalConfiguration localConfiguration = JsonConvert.DeserializeObject<LocalConfiguration>(File.ReadAllText(localFilePath));
+                    configuration.MergeLocalConfigurationOverrides(localConfiguration);
+                }
+                catch { };  // Local configuration file is not mandatory
+
                 addAllPseudoSetlist();
             }
         }
@@ -996,6 +1034,42 @@ namespace JoeMidi1
                 }
 
                 return myDocsFolder + @"\" + ConfigurationSubDirectory;
+            }
+        }
+
+        List<Tuple<SoundGenerator, long>> soundGeneratorsToEventuallyDeactivate = new List<Tuple<SoundGenerator, long>>();
+
+        void DeferredDisableSoundGenerator(ref SoundGenerator sg, long delayInSeconds)
+        {
+            soundGeneratorsToEventuallyDeactivate.Add(Tuple.Create(sg, this.tickCount + delayInSeconds));
+        }
+        
+        void cancelAnyPendingDisablesOfThisSoundGenerator(ref SoundGenerator sg)
+        {
+            if (configuration.disableUnusedVSTIs == true)
+            {
+                var sgName = sg.name;
+                soundGeneratorsToEventuallyDeactivate.RemoveAll(tuple => tuple.Item1.name == sgName);
+            }
+        }
+
+
+        private long tickCount = 0;
+
+        public void tick()
+        {
+            tickCount = tickCount + 1;
+
+            if (configuration.disableUnusedVSTIs == true)
+            {
+                foreach (var tuple in soundGeneratorsToEventuallyDeactivate)
+                {
+                    if (tuple.Item2 <= tickCount)
+                    {
+                        tuple.Item1.DisableVSTi(this);
+                    }
+                }
+                soundGeneratorsToEventuallyDeactivate.RemoveAll(tuple => tuple.Item2 <= tickCount);
             }
         }
     }

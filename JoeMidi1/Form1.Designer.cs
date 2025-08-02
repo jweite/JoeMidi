@@ -312,6 +312,7 @@
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.metronomeTimer = new System.Windows.Forms.Timer(this.components);
             this.metronomeFlashTimer = new System.Windows.Forms.Timer(this.components);
+            this.mapper1sTickTimer = new System.Windows.Forms.Timer(this.components);
             this.contextMenuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tpRandomAccess1.SuspendLayout();
@@ -4132,6 +4133,12 @@
             // 
             this.metronomeFlashTimer.Tick += new System.EventHandler(this.metronomeFlashTimer_Tick);
             // 
+            // mapper1sTickTimer
+            // 
+            this.mapper1sTickTimer.Enabled = true;
+            this.mapper1sTickTimer.Interval = 1000;
+            this.mapper1sTickTimer.Tick += new System.EventHandler(this.mapper1sTickTimer_Tick);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -4442,6 +4449,7 @@
         private System.Windows.Forms.Button btnSetlistSort;
         private System.Windows.Forms.Timer metronomeTimer;
         private System.Windows.Forms.Timer metronomeFlashTimer;
+        private System.Windows.Forms.Timer mapper1sTickTimer;
         private System.Windows.Forms.NumericUpDown nudBPM;
         private System.Windows.Forms.Label lblBpm;
         private System.Windows.Forms.TextBox tbTrackName;

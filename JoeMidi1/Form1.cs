@@ -308,5 +308,13 @@ namespace JoeMidi1
                 metronomeTimer.Enabled = false;
             }
         }
+
+        private void mapper1sTickTimer_Tick(object sender, EventArgs e)
+        {
+            if (mapper != null)
+            {
+                mapper.tick();
+            }
+        }
     }
 }

@@ -131,6 +131,68 @@ namespace JoeMidi1
             }
         }
 
+        public void DisableVSTi(Mapper mapper)
+        {
+            int? trackIndex = this.GetTrackIndex();
+            if (trackIndex != null)
+            {
+                int? vstiSlotIndex = this.GetVSTiIndex();
+                if (vstiSlotIndex != null)
+                {
+                    var oscMessage = new SharpOSC.OscMessage(String.Format("/track/{0}/fx/{1}/bypass", trackIndex, vstiSlotIndex), 0);
+                    mapper.SendOSC(oscMessage);
+                }
+            }
+        }
+
+        public void EnableVSTi(Mapper mapper)
+        {
+            int? trackIndex = this.GetTrackIndex();
+            if (trackIndex != null)
+            {
+                int? vstiSlotIndex = this.GetVSTiIndex();
+                if (vstiSlotIndex != null)
+                {
+                    var oscMessage = new SharpOSC.OscMessage(String.Format("/track/{0}/fx/{1}/bypass", trackIndex, vstiSlotIndex), 1);
+                    mapper.SendOSC(oscMessage);
+                }
+            }
+        }
+
+        private int? GetVSTiIndex()
+        {
+            if (this.fxSlotNames.ContainsKey("VSTi"))
+            {
+                return this.fxSlotNames["VSTi"];
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public int? GetTrackIndex()
+        {
+            if (this.track != null && this.track.StartsWith("#"))
+            {
+                int trackIndex = 0;
+                if (int.TryParse(this.track.Substring(1), out trackIndex) && trackIndex > 0)
+                {
+                    return trackIndex;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            else
+            {
+                // Eventually this should look up track index by track name...
+                return null;
+            }
+        }
+
+
         public static void createTrialConfiguration(Dictionary<String, SoundGenerator> soundGenerators)
         {
             // SoundGenerators

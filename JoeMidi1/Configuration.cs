@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 
 namespace JoeMidi1
 {
-    class Configuration
+    public class Configuration
     {
         // The overall configuration data class for JoeMidi, stored/retrieved in JSON.
 
@@ -65,6 +65,8 @@ namespace JoeMidi1
         public String lastOpenedShowSetlistSongPatch = "";
 
         public String lastSelectedTab = "";
+
+        public bool disableUnusedVSTIs = false;
 
         [JsonIgnore]
         public int[] currentPrimaryControllerButtonProgramNumbers = new int[8];
@@ -444,6 +446,21 @@ namespace JoeMidi1
             }
 
         }
+
+        public void MergeLocalConfigurationOverrides(LocalConfiguration localConfiguration)
+        {
+            this.oscAddress = localConfiguration.oscAddress;
+            this.oscPort = localConfiguration.oscPort;
+            this.disableUnusedVSTIs = localConfiguration.disableUnusedVSTIs;
+        }
+    }
+
+    public class LocalConfiguration {
+        public String oscAddress = "127.0.0.1";
+
+        public int oscPort = 8000;
+
+        public bool disableUnusedVSTIs = false;
 
     }
 }
