@@ -163,12 +163,14 @@ namespace JoeMidi1
 
         private void btnSetlists_Click(object sender, EventArgs e)
         {
-            fmSetlistPicker form = new fmSetlistPicker();
-            form.Init(mapper.configuration.getSortedSetlistList());
-            form.ShowDialog();
-            if (form.IsOK == true)
+            using (fmSetlistPicker form = new fmSetlistPicker())
             {
-                setCurrentSetlist(form.Choice);
+                form.Init(mapper.configuration.getSortedSetlistList());
+                form.ShowDialog();
+                if (form.IsOK == true)
+                {
+                    setCurrentSetlist(form.Choice);
+                }
             }
         }
 

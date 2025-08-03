@@ -388,7 +388,7 @@ namespace JoeMidi1
                     cancelAnyPendingDisablesOfThisSoundGenerator(ref noteMapping.soundGenerator);
                     noteMapping.soundGenerator.EnableVSTi(this);
                 }
-                Thread.Sleep(20);   // Give OSC/Reaper a chance to actually enable the VSTI before moving on.  Empirically sufficient on current HP Envy.
+                Thread.Sleep(100);   // Give OSC/Reaper a chance to actually enable the VSTI before moving on.  Empirically sufficient on current HP Envy.
 
                 // Send out the mapping's registered bank/program change/OSC messages to each of that Mapping's Sound Generators.
                 foreach (MappingPatch mappingPatch in perDeviceChannelMapping.mappingPatches)

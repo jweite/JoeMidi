@@ -251,16 +251,18 @@ namespace JoeMidi1
             }
             else if ((e.ColumnIndex == 2 || e.ColumnIndex == 4) && e.RowIndex >= 0)
             {
-                fmPatchPicker fmPatchPicker = new fmPatchPicker();
-                fmPatchPicker.Init(this);
-                fmPatchPicker.SoundGeneratorName = (String)dgvMappings.Rows[e.RowIndex].Cells["soundGeneratorName"].Value;
-                fmPatchPicker.PatchName = (String)dgvMappings.Rows[e.RowIndex].Cells["patchName"].Value;
-                fmPatchPicker.ShowMe();
-                if (fmPatchPicker.IsOK == true)
+                using (fmPatchPicker fmPatchPicker = new fmPatchPicker())
                 {
-                    dgvMappings.Rows[e.RowIndex].Cells["soundGeneratorName"].Value = fmPatchPicker.SoundGeneratorName;
-                    dgvMappings.Rows[e.RowIndex].Cells["patchName"].Value = fmPatchPicker.PatchName;
-                    dgvMappings.Refresh();
+                    fmPatchPicker.Init(this);
+                    fmPatchPicker.SoundGeneratorName = (String)dgvMappings.Rows[e.RowIndex].Cells["soundGeneratorName"].Value;
+                    fmPatchPicker.PatchName = (String)dgvMappings.Rows[e.RowIndex].Cells["patchName"].Value;
+                    fmPatchPicker.ShowMe();
+                    if (fmPatchPicker.IsOK == true)
+                    {
+                        dgvMappings.Rows[e.RowIndex].Cells["soundGeneratorName"].Value = fmPatchPicker.SoundGeneratorName;
+                        dgvMappings.Rows[e.RowIndex].Cells["patchName"].Value = fmPatchPicker.PatchName;
+                        dgvMappings.Refresh();
+                    }
                 }
             }
         }
