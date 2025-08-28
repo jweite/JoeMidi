@@ -15,6 +15,8 @@ namespace JoeMidi1
 
         public double? volume = null;
 
+        public int? send = 1;
+
         [JsonIgnore]
         public int patchNumber;
 

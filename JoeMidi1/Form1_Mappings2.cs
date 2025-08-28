@@ -316,6 +316,10 @@ namespace JoeMidi1
 
                 // Mod CC Remap
                 case 11: valid = isBlank(formattedValue) || isValidIntRange(formattedValue, 0, 127); break;
+                
+                // Send
+                case 13: valid = isBlank(formattedValue) || isValidIntRange(formattedValue, 1, 4); break;
+
             }
 
             if (!valid)

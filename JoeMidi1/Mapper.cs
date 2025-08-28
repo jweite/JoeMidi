@@ -47,6 +47,8 @@ namespace JoeMidi1
         SharpOSC.UDPSender oscSender = null;
         SharpOSC.UDPSender oscSenderLocalhost = null;
 
+        const int MAX_SENDS = 4;
+
         public Mapper()
         {
             ConfigurationSubDirectory = "JoeMidi";
@@ -415,6 +417,7 @@ namespace JoeMidi1
                             int trackNum = 0;
                             if (int.TryParse(mappingPatch.track.Substring(1), out trackNum) && trackNum > 0)
                             {
+                                // Enable/Disable the track's FX, and select the mapping-specified preset 
                                 foreach (int fxSlotNum in mappingPatch.fxPresets.Keys)
                                 {
                                     String presetName = mappingPatch.fxPresets[fxSlotNum];
@@ -442,6 +445,15 @@ namespace JoeMidi1
                                 {
                                     var volume = (System.Single)(mappingPatch.volume + volumeTweak);
                                     var oscMessage = new SharpOSC.OscMessage(String.Format("/track/{0}/volume/db", trackNum), volume);
+                                    SendOSC(oscMessage);
+                                }
+
+                                // Set the track send volumes to send the track to its mapping-specified submix send.
+                                for (int i = 1; i <= MAX_SENDS; ++i)
+                                {
+                                    var sendVolume =
+                                        (System.Single)((i == mappingPatch.send || (mappingPatch.send == null && i == 1)) ? 0.6 : 0.0);
+                                    var oscMessage = new SharpOSC.OscMessage(String.Format("/track/{0}/send/{1}/volume", trackNum, i), sendVolume);
                                     SendOSC(oscMessage);
                                 }
                             }

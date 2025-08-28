@@ -23,6 +23,7 @@ namespace JoeMidi1
         public int? damperRemap { get; set; }
         public int? modRemap { get; set; }
         public String additionalCCs { get; set; }
+        public int? send { get; set; }
 
         const int DAMPER_CC = 64;
 
@@ -47,6 +48,7 @@ namespace JoeMidi1
             this.damperRemap = null;
             this.modRemap = null;
             this.additionalCCs = "";
+            this.send = 1;
         }
 
         public FlattenedMapping(String logicalInputDeviceName, int inputDeviceChannel, String soundGeneratorName, int soundGeneratorRelativeChannel)
@@ -64,6 +66,7 @@ namespace JoeMidi1
             this.damperRemap = null;
             this.modRemap = null;
             this.additionalCCs = "";
+            this.send = 1;
         }
 
         public static Dictionary<String, FlattenedMapping> Flatten(Mapping mapping)
@@ -84,6 +87,7 @@ namespace JoeMidi1
                     );
                     flattenedMapping.patchName = mappingPatch.patchName;
                     flattenedMapping.volume = mappingPatch.volume;
+                    flattenedMapping.send = mappingPatch.send;
                 }
                 foreach (NoteMapping noteMapping in pdcm.noteMappings)
                 {
@@ -187,6 +191,7 @@ namespace JoeMidi1
                 mappingPatch.soundGeneratorRelativeChannel = flattenedMapping.soundGeneratorRelativeChannel;
                 mappingPatch.patchName = flattenedMapping.patchName;
                 mappingPatch.volume = flattenedMapping.volume;
+                mappingPatch.send = flattenedMapping.send;
                 pdcm.mappingPatches.Add(mappingPatch);
 
                 NoteMapping noteMapping = new NoteMapping();
