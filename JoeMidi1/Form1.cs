@@ -46,6 +46,8 @@ namespace JoeMidi1
 
         String currentlySelectedTabName = "";
 
+        String buildDateTime;
+
         public Form1()
         {
             InitializeComponent();
@@ -59,6 +61,10 @@ namespace JoeMidi1
 
                 // Prevent Screensaver
                 SetThreadExecutionState(EXECUTION_STATE.ES_DISPLAY_REQUIRED | EXECUTION_STATE.ES_CONTINUOUS);
+
+                // Get Build Date/Time
+                buildDateTime = Properties.Resources.BuildDate.Trim();
+                this.Text = "JoeMidi: " + buildDateTime;
 
                 // this.TopMost = true;
                 // this.FormBorderStyle = FormBorderStyle.None;
@@ -260,7 +266,7 @@ namespace JoeMidi1
                 refreshRandomAccessButtonGrid();
 
                 // Standard Form Name
-                this.Text = "JoeMidi";
+                this.Text = "JoeMidi: " + buildDateTime;
 
                 // Change the Input Device Dropdown selection to be the one currently set for this tab.
                 if (e.TabPage.Tag != null && e.TabPage.Tag is LogicalInputDevice)
@@ -275,7 +281,7 @@ namespace JoeMidi1
             else
             {
                 // Standard Form Name
-                this.Text = "JoeMidi";
+                this.Text = "JoeMidi: " + buildDateTime;
             }
         }
 

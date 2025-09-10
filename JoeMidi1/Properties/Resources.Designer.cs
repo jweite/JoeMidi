@@ -71,6 +71,16 @@ namespace JoeMidi1.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Wed 09/10/2025 17:30:44.03 
+        ///.
+        /// </summary>
+        internal static string BuildDate {
+            get {
+                return ResourceManager.GetString("BuildDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
         internal static System.Drawing.Icon White {
