@@ -236,7 +236,7 @@ namespace JoeMidi1
 
         private void selectNextSong()
         {
-            if (olvSongs.SelectedIndex < olvSongs.Items.Count)
+            if (olvSongs.SelectedIndex < (olvSongs.Items.Count-1))
             {
                 ++olvSongs.SelectedIndex;
                 olvSongs.SelectedItem.EnsureVisible();
