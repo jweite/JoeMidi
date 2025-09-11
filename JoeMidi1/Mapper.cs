@@ -370,7 +370,7 @@ namespace JoeMidi1
                     {
                         foreach (NoteMapping noteMapping in mappingToBeReplaced.noteMappings)
                         {
-                            DeferredDisableSoundGenerator(ref noteMapping.soundGenerator, 10);
+                                DeferredDisableSoundGenerator(ref noteMapping.soundGenerator, 10);
                         }
                     }
                     m_perDeviceChannelMappings[perDeviceChannelMapping.key] = perDeviceChannelMapping;

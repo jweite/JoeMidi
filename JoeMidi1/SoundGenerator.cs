@@ -26,6 +26,11 @@ namespace JoeMidi1
         public Dictionary<String, int> fxSlotNames;
         public String clonePatchesFrom; // Another Sound Generator from which this one inherits patche definitions.
         public String reaperPresetFilePath; // To enable auto-generation of SoundGeneratorPatches from Reaper presets.
+        public bool dontDisable = false;    // To address subtle bug if a single VST services multiple SGs: if two SGs are in use, and only
+                                            //  one will be replaced by setMapping(), the non-replaced one will (naturally) still be disabled,
+                                            //  but that disables the replaced one too, since they're from the same VST.
+                                            //  The new 'dontDisable' flag in SG is meant to work around this for such SGs (albeit sacrificing
+                                            //  the ability to disable them when not in use.
 
         [JsonIgnore]
         public double cc7Scale = 1.0;
@@ -47,7 +52,7 @@ namespace JoeMidi1
             fxSlotNames = new Dictionary<string, int>();
 
             name = original.name;
-            deviceName = original.deviceName;
+            deviceName = original.deviceName;   
             nChannels = original.nChannels;
             channelBase = original.channelBase;
             cc7Max = original.cc7Max;
@@ -55,6 +60,7 @@ namespace JoeMidi1
             track = original.track;
             volume = original.volume;
             clonePatchesFrom = original.clonePatchesFrom;
+            dontDisable = original.dontDisable;     // Typically where a single Reaper channel services more than one SG.
 
             foreach (String patchName in original.soundGeneratorPatchDict.Keys)
             {
@@ -134,7 +140,7 @@ namespace JoeMidi1
         public void DisableVSTi(Mapper mapper)
         {
             int? trackIndex = this.GetTrackIndex();
-            if (trackIndex != null)
+            if (trackIndex != null && this.dontDisable == false)
             {
                 int? vstiSlotIndex = this.GetVSTiIndex();
                 if (vstiSlotIndex != null)
