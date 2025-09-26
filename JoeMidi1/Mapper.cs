@@ -452,7 +452,7 @@ namespace JoeMidi1
                                 for (int i = 1; i <= MAX_SENDS; ++i)
                                 {
                                     var sendVolume =
-                                        (System.Single)((i == mappingPatch.send || (mappingPatch.send == null && i == 1)) ? 0.6 : 0.0);
+                                        (System.Single)((i == mappingPatch.send || (mappingPatch.send == null && i == 1)) ? 0.715 : 0.0);
                                     var oscMessage = new SharpOSC.OscMessage(String.Format("/track/{0}/send/{1}/volume", trackNum, i), sendVolume);
                                     SendOSC(oscMessage);
                                 }
