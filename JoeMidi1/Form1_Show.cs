@@ -240,6 +240,10 @@ namespace JoeMidi1
             {
                 ++olvSongs.SelectedIndex;
                 olvSongs.SelectedItem.EnsureVisible();
+                if (olvSongs.SelectedIndex < (olvSongs.Items.Count - 1))
+                {
+                    olvSongs.EnsureVisible(olvSongs.SelectedIndex + 1);  // Try to make the "next song" also visible.
+                }
             }
         }
 
@@ -249,6 +253,7 @@ namespace JoeMidi1
             {
                 --olvSongs.SelectedIndex;
                 olvSongs.SelectedItem.EnsureVisible();
+                olvSongs.EnsureVisible(olvSongs.SelectedIndex + 1);  // Try to make the "next song" also visible.
             }
         }
 
@@ -261,6 +266,10 @@ namespace JoeMidi1
                 //  but perhaps it'd be better to notify user...  But, maybe best not to interrupt the performance...
                 mapper.SetMapping(songProgram.mapping, songProgram.relativeVolume);
                 mapper.configuration.lastOpenedShowSetlistSongPatch = songProgram.name;
+                if (olvSongs.SelectedIndex < (olvSongs.Items.Count - 1))
+                {
+                    olvSongs.EnsureVisible(olvSongs.SelectedIndex + 1);  // Try to make the "next song" also visible.
+                }
             }
         }
 
