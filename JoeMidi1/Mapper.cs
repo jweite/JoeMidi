@@ -798,6 +798,7 @@ namespace JoeMidi1
         public void startMapper()
         {
             loadConfiguration();
+            configuration.portraitMode = (SystemInformation.ScreenOrientation == ScreenOrientation.Angle90 || SystemInformation.ScreenOrientation == ScreenOrientation.Angle270);
             configuration.AutoGeneratePatchesFromReaperPresets();
             configuration.bind(JoeMidiDirectory);
             openSourceDevices();
