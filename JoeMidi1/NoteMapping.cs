@@ -18,6 +18,8 @@ namespace JoeMidi1
 
         public int pitchOffset;
 
+        public int? secondaryPC = null;     // When set, this Note Mapping only active if current PC for this device/chan matches this value.
+
         [JsonIgnore]
         public InputDevice sourceDevice;
 

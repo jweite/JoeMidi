@@ -74,6 +74,18 @@ namespace JoeMidi1
             perControllerPCs[perDeviceChannelMapping.logicalInputDeviceName] = programNum;
         }
 
+       int? GetCurrentPC(Mapping.PerDeviceChannelMapping perDeviceChannelMapping)
+        {
+            if (perControllerPCs.ContainsKey(perDeviceChannelMapping.logicalInputDeviceName))
+            {
+                return perControllerPCs[perDeviceChannelMapping.logicalInputDeviceName];
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         IList<ChannelMessage> parseLuaReturn(Object luaReturn, ChannelMessage originalMsg)
         {
             // Expecting the luaReturn to be a table of tables.  Each outer table value is a midi message.
@@ -183,6 +195,13 @@ namespace JoeMidi1
             // Iterate over the NoteMappings for this device/channel
             foreach (NoteMapping mapping in perDeviceChannelMapping.noteMappings)
             {
+                // If there's a Secondary PC defined for this NoteMapping, we only sound notes when the current PC
+                //  of the InputDevice originating these notes is that Secondary PC
+                if (mapping.secondaryPC != null && mapping.secondaryPC != GetCurrentPC(perDeviceChannelMapping))
+                {
+                    continue;
+                }
+
                 // See if the note received is in range for the NoteMapping currently under consideration
                 if (msg.Pitch >= (Pitch)mapping.lowestNote && msg.Pitch <= (Pitch)mapping.highestNote)
                 {

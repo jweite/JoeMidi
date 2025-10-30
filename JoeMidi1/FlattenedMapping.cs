@@ -24,6 +24,7 @@ namespace JoeMidi1
         public int? modRemap { get; set; }
         public String additionalCCs { get; set; }
         public int? send { get; set; }
+        public int? secondaryPC { get; set; }
 
         const int DAMPER_CC = 64;
 
@@ -49,6 +50,7 @@ namespace JoeMidi1
             this.modRemap = null;
             this.additionalCCs = "";
             this.send = 1;
+            this.secondaryPC = null;
         }
 
         public FlattenedMapping(String logicalInputDeviceName, int inputDeviceChannel, String soundGeneratorName, int soundGeneratorRelativeChannel)
@@ -67,6 +69,7 @@ namespace JoeMidi1
             this.modRemap = null;
             this.additionalCCs = "";
             this.send = 1;
+            this.secondaryPC = null;
         }
 
         public static Dictionary<String, FlattenedMapping> Flatten(Mapping mapping)
@@ -101,6 +104,7 @@ namespace JoeMidi1
                     flattenedMapping.lowestNote = noteMapping.lowestNote;
                     flattenedMapping.highestNote = noteMapping.highestNote;
                     flattenedMapping.pitchOffset = noteMapping.pitchOffset;
+                    flattenedMapping.secondaryPC = noteMapping.secondaryPC;
                 }
                 foreach (PitchBendMapping pbMapping in pdcm.pitchBendMappings)
                 {
@@ -186,6 +190,7 @@ namespace JoeMidi1
                 {
                     pdcm = pdcmDict[pdcm.key];
                 }
+
                 MappingPatch mappingPatch = new MappingPatch();
                 mappingPatch.soundGeneratorName = flattenedMapping.soundGeneratorName;
                 mappingPatch.soundGeneratorRelativeChannel = flattenedMapping.soundGeneratorRelativeChannel;
@@ -200,6 +205,7 @@ namespace JoeMidi1
                 noteMapping.lowestNote = flattenedMapping.lowestNote;
                 noteMapping.highestNote = flattenedMapping.highestNote;
                 noteMapping.pitchOffset = flattenedMapping.pitchOffset;
+                noteMapping.secondaryPC = flattenedMapping.secondaryPC;
                 pdcm.noteMappings.Add(noteMapping);
 
                 PitchBendMapping pitchBendMapping = new PitchBendMapping();

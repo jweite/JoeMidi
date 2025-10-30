@@ -320,6 +320,9 @@ namespace JoeMidi1
                 // Send
                 case 13: valid = isBlank(formattedValue) || isValidIntRange(formattedValue, 1, 4); break;
 
+                // Secondary CC
+                case 14: valid = isBlank(formattedValue) || isValidIntRange(formattedValue, 0, 127); break;
+
             }
 
             if (!valid)
