@@ -49,6 +49,8 @@ namespace JoeMidi1
 
         const int MAX_SENDS = 4;
 
+        IDictionary<String, int> perControllerPCs = new Dictionary<String, int>();
+
         public Mapper()
         {
             ConfigurationSubDirectory = "JoeMidi";
@@ -56,6 +58,20 @@ namespace JoeMidi1
             {
                 m_programButtonLastProgramNo[i] = i;
             }
+        }
+
+        void ResetPerControllerPCs()
+        {
+            perControllerPCs.Clear();
+            foreach (String logicalInputDeviceName in configuration.logicalInputDeviceDict.Keys)
+            {
+                perControllerPCs.Add(logicalInputDeviceName, 0);
+            }
+        }
+
+        void SetCurrentPC(int programNum, Mapping.PerDeviceChannelMapping perDeviceChannelMapping)
+        {
+            perControllerPCs[perDeviceChannelMapping.logicalInputDeviceName] = programNum;
         }
 
         IList<ChannelMessage> parseLuaReturn(Object luaReturn, ChannelMessage originalMsg)
@@ -157,7 +173,7 @@ namespace JoeMidi1
                 }
                 else if (msg is ProgramChangeMessage)
                 {
-                    HandlePC((ProgramChangeMessage)msg);
+                    HandlePC((ProgramChangeMessage)msg, perDeviceChannelMapping);
                 }
             }
         }
@@ -268,15 +284,26 @@ namespace JoeMidi1
             }
             else
             {
-                HandlePC(msg);
+                HandlePC(msg, perDeviceChannelMapping);
             }
         }
 
-        void HandlePC(ProgramChangeMessage msg) { 
+        bool IsFromPrimaryController(ChannelMessage msg)
+        {
+            return msg.Device.Name.Equals(configuration.primaryInputDevice.device.Name);
+        }
+
+        void HandlePC(ProgramChangeMessage msg, Mapping.PerDeviceChannelMapping perDeviceChannelMapping) { 
             int requestedProgramNo = (int)msg.Instrument;
+
+            SetCurrentPC(requestedProgramNo, perDeviceChannelMapping);
+
             if (midiProgramChangeNotification != null)
             {
-                midiProgramChangeNotification(requestedProgramNo);
+                if (IsFromPrimaryController(msg))
+                {
+                    midiProgramChangeNotification(requestedProgramNo);
+                }
             }
         }
 
@@ -355,6 +382,9 @@ namespace JoeMidi1
         public void SetMapping(Mapping mappingToActivate, double volumeTweak = 0.0) 
         {
             // Sets what Mapping this Mapper will use to do remapping.
+
+            // On mapping activation, all current secy controller PCs reset to zero.
+            ResetPerControllerPCs();      
 
             // Step through the per-device/channel mappings contained in this mapping and add/replace them into the mapper's dict.
             //  This effectively merges the new mapping into any existing mappings on a per-device/channel basis. 
@@ -798,6 +828,7 @@ namespace JoeMidi1
         public void startMapper()
         {
             loadConfiguration();
+            ResetPerControllerPCs();
             configuration.portraitMode = (SystemInformation.ScreenOrientation == ScreenOrientation.Angle90 || SystemInformation.ScreenOrientation == ScreenOrientation.Angle270);
             configuration.AutoGeneratePatchesFromReaperPresets();
             configuration.bind(JoeMidiDirectory);
@@ -890,6 +921,7 @@ namespace JoeMidi1
         {
             Setlist setList = configuration.setlists.Find(sl => sl.name == "(All)");
             if (setList != null)
+
             {
                 setList.songs.Clear();
                 setList.songTitles.Clear();
