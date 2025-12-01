@@ -114,6 +114,7 @@ namespace JoeMidi1
                 refreshSetlistEditSelector();
 
                 refreshMappingToEditSelector();
+                mbrcMappingSelect2.ShowAlphaButtons = true;
                 refreshMappingToEditSelector2();
                 btnMappingEditPatchTreeViewBySG_Click(null, null);
 
