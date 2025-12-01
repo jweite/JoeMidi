@@ -100,8 +100,8 @@ namespace JoeMidi1
             }
             tvFmPatchPickerPrograms.Focus();
             var dialogResult = this.ShowDialog(parentForm);
-            this.Activate();
-            this.BringToFront();
+            parentForm.Activate();
+            parentForm.BringToFront();
             return dialogResult;
         }
 
