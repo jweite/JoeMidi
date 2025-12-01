@@ -166,7 +166,9 @@ namespace JoeMidi1
             using (fmSetlistPicker form = new fmSetlistPicker())
             {
                 form.Init(mapper.configuration.getSortedSetlistList());
-                form.ShowDialog();
+                form.ShowDialog(this);
+                this.Activate();
+                this.BringToFront();
                 if (form.IsOK == true)
                 {
                     setCurrentSetlist(form.Choice);

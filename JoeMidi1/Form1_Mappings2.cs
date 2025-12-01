@@ -256,7 +256,7 @@ namespace JoeMidi1
                     fmPatchPicker.Init(this);
                     fmPatchPicker.SoundGeneratorName = (String)dgvMappings.Rows[e.RowIndex].Cells["soundGeneratorName"].Value;
                     fmPatchPicker.PatchName = (String)dgvMappings.Rows[e.RowIndex].Cells["patchName"].Value;
-                    fmPatchPicker.ShowMe();
+                    fmPatchPicker.ShowMe(this);
                     if (fmPatchPicker.IsOK == true)
                     {
                         dgvMappings.Rows[e.RowIndex].Cells["soundGeneratorName"].Value = fmPatchPicker.SoundGeneratorName;

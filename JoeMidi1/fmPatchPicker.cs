@@ -82,7 +82,7 @@ namespace JoeMidi1
             this.Hide();
         }
 
-        public DialogResult ShowMe()
+        public DialogResult ShowMe(Form parentForm)
         {
             foreach (TreeNode parent in tvFmPatchPickerPrograms.Nodes)
             {
@@ -99,7 +99,10 @@ namespace JoeMidi1
                 }
             }
             tvFmPatchPickerPrograms.Focus();
-            return this.ShowDialog();
+            var dialogResult = this.ShowDialog(parentForm);
+            this.Activate();
+            this.BringToFront();
+            return dialogResult;
         }
 
         private void tvFmPatchPickerPrograms_DoubleClick(object sender, EventArgs e)
