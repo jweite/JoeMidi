@@ -697,7 +697,7 @@ namespace JoeMidi1
 
                         // Special processing for sustain pedal
                         if (controlMapping.mappedControlNumber == (int)Midi.Control.SustainPedal) {
-                            if (msg.Value > 32)     // This value to turn continuous sus pedal into switching sus pedal.
+                            if (msg.Value > 0x60)     // This value to turn continuous sus pedal into switching sus pedal.
                             {
                                 // Down: Record what physical device/channels are receiving it from the source device.
                                 if (recordSustainPedalDown(msg.Device, controlMapping.soundGenerator.device, (Channel)controlMapping.soundGeneratorPhysicalChannel) == false) {
@@ -705,11 +705,12 @@ namespace JoeMidi1
                                     controlMapping.soundGenerator.device.SendControlChange((Channel)controlMapping.soundGeneratorPhysicalChannel, (Midi.Control)controlMapping.mappedControlNumber, 127 /* scaledValue*/ );
                                 }
                             }
-                            else
+                            else if (msg.Value < 0x20)
                             {
                                 // Up: un-sustain any soundGen that was previously sustained by a message originating from the source input device
                                 sendSustainPedalUpToAllDeviceChannelsWithSustainPedalDown(msg.Device);
                             }
+                            // Ignore in-between values.
                         }
                         // Special Processing for cc7: Scaling again, on a per-sound-generator basis, to accomodate diff sound generator cc7 ranges.
                         else if (controlMapping.mappedControlNumber == (int)Midi.Control.Volume)
