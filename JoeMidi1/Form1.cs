@@ -87,6 +87,8 @@ namespace JoeMidi1
 
                 mapper.startMapper();
 
+                mapper.AllNotesOffAllSoundGenerators();
+
                 rightColDesignTimeWidth = tlpRandomAccess.ColumnStyles[tlpRandomAccess.ColumnCount - 1].Width;
 
                 Form1_Random_Access_Load(sender, e);
@@ -156,6 +158,7 @@ namespace JoeMidi1
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+                Logger.Fatal(ex);
                 Application.Exit();
             }
         }

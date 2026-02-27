@@ -12,11 +12,14 @@ using NLua;
 using System.Collections;
 using System.ComponentModel.Design.Serialization;
 using System.Xml.Serialization;
+using Microsoft.VisualBasic;
 
 namespace JoeMidi1
 {
     public class Mapper
     {
+        private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
+
         // Class that actually does all the mide re-mapping defined by Mapping (and destroys any sense of abstraction implied by the other 
         //  Mapping and SoundGenerator classes).
         //  Really needs refactoring, now that I know what this does.
@@ -205,6 +208,13 @@ namespace JoeMidi1
                 // See if the note received is in range for the NoteMapping currently under consideration
                 if (msg.Pitch >= (Pitch)mapping.lowestNote && msg.Pitch <= (Pitch)mapping.highestNote)
                 {
+                    // Make sure the mapped note is in valid midi range. Skip it if it's not.
+                    var newPitch = msg.Pitch + mapping.pitchOffset + masterTranspose;
+                    if (newPitch < 0 || newPitch > (Pitch)127)
+                    {
+                        continue;
+                    }
+
                     // It is.
                     // Create mapped note record 
                     MappedNote mappedNoteRecord = new MappedNote();
@@ -214,27 +224,41 @@ namespace JoeMidi1
                     SoundGenerator soundGenerator = mapping.soundGenerator;
                     mappedNoteRecord.mappedDevice = soundGenerator.device;
                     mappedNoteRecord.mappedChannel = (Channel)mapping.soundGeneratorPhysicalChannel;
-                    mappedNoteRecord.mappedNote = msg.Pitch + mapping.pitchOffset + masterTranspose;
-
-                    if (mappedNoteRecord.mappedNote < 0 || mappedNoteRecord.mappedNote > (Pitch)127)
-                    {
-                        continue;
-                    }
+                    mappedNoteRecord.mappedNote = newPitch;
 
                     // See if this note is already sounding.  Look it up based on it's unmapped device, channel and note#.
-                    MappedNote matchingMappedNoteAlreadySounding = FindMappedNote(mappedNoteRecord);
-                    if (matchingMappedNoteAlreadySounding != null)
+
+                    //  I've had mysterious NullReferenceException and InvalidOperationException crashes
+                    //  originating from FindMappedNote().  Bad if the app stops.  Better to just skips the note...
+
+                    // Trying some multi-thread locking to see if that helps...
+                    lock (m_mappedNotesList)
                     {
-                        matchingMappedNoteAlreadySounding.mappedDevice.SendNoteOff(matchingMappedNoteAlreadySounding.mappedChannel, matchingMappedNoteAlreadySounding.mappedNote, 127);
-                        m_mappedNotesList.Remove(matchingMappedNoteAlreadySounding);
+                        MappedNote matchingMappedNoteAlreadySounding = null;
+                        try
+                        {
+                            matchingMappedNoteAlreadySounding = FindMappedNote(mappedNoteRecord);
+                        }
+                        catch (Exception e)
+                        {
+                            Logger.Error("FindMappedNote exception occurred: " + e.Message);
+                            Logger.Info("mappedNoteRecord is " + ((mappedNoteRecord == null) ? "null" : "not null"));
+                            Logger.Info("m_mappedNotesList is " + ((m_mappedNotesList == null) ? "null" : "not null"));
+                            continue;
+                        }
+
+                        if (matchingMappedNoteAlreadySounding != null)
+                        {
+                            matchingMappedNoteAlreadySounding.mappedDevice.SendNoteOff(matchingMappedNoteAlreadySounding.mappedChannel, matchingMappedNoteAlreadySounding.mappedNote, 127);
+                            m_mappedNotesList.Remove(matchingMappedNoteAlreadySounding);
+                        }
+
+                        // Now, play the new mapping of the source note.
+                        mappedNoteRecord.mappedDevice.SendNoteOn(mappedNoteRecord.mappedChannel, mappedNoteRecord.mappedNote, msg.Velocity);
+
+                        // And add it to the dictionary of sounding notes.
+                        m_mappedNotesList.Add(mappedNoteRecord);
                     }
-
-                    // Now, play the new mapping of the source note.
-                    mappedNoteRecord.mappedDevice.SendNoteOn(mappedNoteRecord.mappedChannel, mappedNoteRecord.mappedNote, msg.Velocity);
-
-                    // And add it to the dictionary of sounding notes.
-                    m_mappedNotesList.Add(mappedNoteRecord);
-
                 }
             }
         }
@@ -276,7 +300,10 @@ namespace JoeMidi1
                 {
                     // Send a note off for what it was mapped to, and remove this entry from the mapped notes dict.
                     noteToSilence.mappedDevice.SendNoteOff(noteToSilence.mappedChannel, noteToSilence.mappedNote, msg.Velocity);
-                    m_mappedNotesList.Remove(noteToSilence);
+                    lock (m_mappedNotesList)
+                    {
+                        m_mappedNotesList.Remove(noteToSilence);
+                    }
                 }
             }
             else
@@ -1062,6 +1089,10 @@ namespace JoeMidi1
 
         MappedNote FindMappedNote(MappedNote noteToRemove)
         {
+            // I've had mysterious NullReferenceException occur in this function, as well as InvalidOperationException
+            //  within the list's iterator.  Almost feels like a multi-thread access error, but AFAIK the NoteOn/Off
+            //  event handlers won't fire concurrently.  For now I'm letting the caller catch the exception.
+            //  NoteOn has historically been the only culprit.  
             foreach (MappedNote note in m_mappedNotesList)
             {
                 if (note.sourceDeviceName == noteToRemove.sourceDeviceName && note.sourceChannel == noteToRemove.sourceChannel && note.origNote == noteToRemove.origNote &&
@@ -1135,6 +1166,22 @@ namespace JoeMidi1
                     }
                 }
                 soundGeneratorsToEventuallyDeactivate.RemoveAll(tuple => tuple.Item2 <= tickCount);
+            }
+        }
+
+        void AllNotesOff(SoundGenerator sg)
+        {
+            for (int channelOffset = 0; channelOffset < sg.nChannels; ++channelOffset)
+            {
+                sg.device.SendControlChange((Channel)(sg.channelBase + channelOffset), Midi.Control.AllNotesOff, 0);
+            }
+        }
+
+        public void AllNotesOffAllSoundGenerators()
+        {
+            foreach (SoundGenerator sg in configuration.soundGenerators.Values)
+            {
+                AllNotesOff(sg);
             }
         }
     }
