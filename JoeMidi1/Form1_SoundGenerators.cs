@@ -309,19 +309,42 @@ namespace JoeMidi1
                 soundGeneratorBeingEdited.soundGeneratorPatchDict[patch.name] = patch;
             }
 
-            refreshLbSoundGeneratorPatches();
+            refreshLbSoundGeneratorPatches(patch.name);
 
             pnlSoundGeneratorPatchEdit.Visible = false;
 
         }
 
-        private void refreshLbSoundGeneratorPatches()
+        private void refreshLbSoundGeneratorPatches(String patchToSelect)
         {
             lbSoundGeneratorPatches.Items.Clear();
-            List<String> patches = new List<String>(soundGeneratorBeingEdited.soundGeneratorPatchDict.Keys);
-            foreach (String patchName in patches)
+            List<SoundGeneratorPatch> patches = new List<SoundGeneratorPatch>(soundGeneratorBeingEdited.soundGeneratorPatchDict.Values);
+            patches.Sort((x, y) => x.name.CompareTo(y.name));
+            String patchToSelectFullName = null;
+            foreach (SoundGeneratorPatch patch in patches)
             {
-                lbSoundGeneratorPatches.Items.Add(patchName);
+                if (patch.soundGeneratorBank >= 0)
+                {
+                    var patchFullName = String.Format("{0} ({1}:{2})", patch.name, patch.soundGeneratorBank, patch.soundGeneratorPatchNumber);
+                    lbSoundGeneratorPatches.Items.Add(patchFullName);
+                    if (patch.name == patchToSelect)
+                    {
+                        patchToSelectFullName = patchFullName;
+                    }
+                }
+                else
+                {
+                    var patchFullName = String.Format("{0} ({1})", patch.name, patch.soundGeneratorPatchNumber);
+                    lbSoundGeneratorPatches.Items.Add(patchFullName);
+                    if (patch.name == patchToSelect)
+                    {
+                        patchToSelectFullName = patchFullName;
+                    }
+                }
+            }
+            if (patchToSelectFullName != null)
+            {
+                lbSoundGeneratorPatches.SelectedItem = patchToSelectFullName;
             }
         }
 
@@ -339,7 +362,7 @@ namespace JoeMidi1
                 }
 
                 soundGeneratorBeingEdited.soundGeneratorPatchDict.Remove(selectedSoundGeneratorPatchName);
-                refreshLbSoundGeneratorPatches();
+                refreshLbSoundGeneratorPatches(null);
                 pnlSoundGeneratorPatchEdit.Visible = false;
             }
 
