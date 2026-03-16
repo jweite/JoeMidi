@@ -1,9 +1,11 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Windows.Forms;
-using Newtonsoft.Json;
 
 namespace JoeMidi1
 {
@@ -56,6 +58,8 @@ namespace JoeMidi1
 
         public String oscAddress = "127.0.0.1";
 
+        public String networkAdapterName = null;
+
         public int oscPort = 8000;
 
         public String lastOpenedShowSetlist = "";
@@ -67,6 +71,10 @@ namespace JoeMidi1
         public String lastSelectedTab = "";
 
         public bool disableUnusedVSTIs = false;
+
+        public int disableUsusedVSTITimeoutSecs = 10;
+
+        public int programChangeDelayMs = 100;
 
         [JsonIgnore]
         public int[] currentPrimaryControllerButtonProgramNumbers = new int[8];
@@ -447,20 +455,56 @@ namespace JoeMidi1
 
         }
 
+
+        public String GetOscAddress()
+        {
+            if (networkAdapterName == null)
+            {
+                return oscAddress;
+            }
+
+            foreach (NetworkInterface nic in NetworkInterface.GetAllNetworkInterfaces())
+            {
+                if (nic.Description == networkAdapterName)
+                {
+                    foreach (var addr in nic.GetIPProperties().UnicastAddresses)
+                    {
+                        if (addr.Address.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
+                        {
+                            return addr.Address.ToString();
+                        }
+                    }
+                }
+            }
+
+            return oscAddress;
+        }
+
+
         public void MergeLocalConfigurationOverrides(LocalConfiguration localConfiguration)
         {
             this.oscAddress = localConfiguration.oscAddress;
+            this.networkAdapterName = localConfiguration.networkAdapterName;
             this.oscPort = localConfiguration.oscPort;
             this.disableUnusedVSTIs = localConfiguration.disableUnusedVSTIs;
+            this.disableUsusedVSTITimeoutSecs = localConfiguration.disableUsusedVSTITimeoutSecs;
+            this.programChangeDelayMs = localConfiguration.programChangeDelayMs;
         }
     }
 
     public class LocalConfiguration {
         public String oscAddress = "127.0.0.1";
 
+        public String networkAdapterName = null;
+
         public int oscPort = 8000;
 
         public bool disableUnusedVSTIs = false;
+
+        public int disableUsusedVSTITimeoutSecs = 10;
+
+        public int programChangeDelayMs = 100;
+
 
     }
 }

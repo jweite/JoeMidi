@@ -1,18 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
+﻿using Microsoft.VisualBasic;
 using Midi;
 using Newtonsoft.Json;
-using System.Windows.Forms;
-using System.Threading;
-using SharpOSC;
 using NLua;
+using SharpOSC;
+using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel.Design.Serialization;
+using System.IO;
+using System.Linq;
+using System.Net.NetworkInformation;
+using System.Text;
+using System.Threading;
+using System.Windows.Forms;
 using System.Xml.Serialization;
-using Microsoft.VisualBasic;
 
 namespace JoeMidi1
 {
@@ -446,7 +447,7 @@ namespace JoeMidi1
                     {
                         foreach (NoteMapping noteMapping in mappingToBeReplaced.noteMappings)
                         {
-                                DeferredDisableSoundGenerator(ref noteMapping.soundGenerator, 10);
+                                DeferredDisableSoundGenerator(ref noteMapping.soundGenerator, configuration.disableUsusedVSTITimeoutSecs);
                         }
                     }
                     m_perDeviceChannelMappings[perDeviceChannelMapping.key] = perDeviceChannelMapping;
@@ -466,7 +467,7 @@ namespace JoeMidi1
                     cancelAnyPendingDisablesOfThisSoundGenerator(ref noteMapping.soundGenerator);
                     noteMapping.soundGenerator.EnableVSTi(this);
                 }
-                Thread.Sleep(100);   // Give OSC/Reaper a chance to actually enable the VSTI before moving on.  Empirically sufficient on current HP Envy.
+                Thread.Sleep(configuration.programChangeDelayMs);   // Give OSC/Reaper a chance to actually enable the VSTI before moving on.  Empirically sufficient on current HP Envy.
 
                 // Send out the mapping's registered bank/program change/OSC messages to each of that Mapping's Sound Generators.
                 foreach (MappingPatch mappingPatch in perDeviceChannelMapping.mappingPatches)
@@ -881,7 +882,8 @@ namespace JoeMidi1
             configuration.bind(JoeMidiDirectory);
             openSourceDevices();
             var testMessage = new SharpOSC.OscMessage("/gleep");
-            if (configuration.oscAddress != "" && configuration.oscPort > 0)
+            var oscAddress = configuration.GetOscAddress();
+            if (oscAddress != "" && configuration.oscPort > 0)
             {
                 oscSender = new SharpOSC.UDPSender(configuration.oscAddress, configuration.oscPort);
                 try
