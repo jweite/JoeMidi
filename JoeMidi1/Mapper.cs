@@ -885,7 +885,7 @@ namespace JoeMidi1
             var oscAddress = configuration.GetOscAddress();
             if (oscAddress != "" && configuration.oscPort > 0)
             {
-                oscSender = new SharpOSC.UDPSender(configuration.oscAddress, configuration.oscPort);
+                oscSender = new SharpOSC.UDPSender(oscAddress, configuration.oscPort);
                 try
                 {
                     oscSender.Send(testMessage);
@@ -906,7 +906,13 @@ namespace JoeMidi1
                 oscSenderLocalhost = null;
             }
 
-            disableAllVSTIs();
+            if (configuration.disableUnusedVSTIs) {
+                disableAllVSTIs();
+            }
+            else
+            {
+                enableAllVSTIs();
+            }
 
             // Send global CC initial values
             foreach (Mapping.PerDeviceChannelMapping globalPerDeviceChannelMappings in configuration.globalControlMappings)
@@ -926,6 +932,14 @@ namespace JoeMidi1
             foreach (var soundGeneratoDictEntry in this.configuration.soundGenerators)
             {
                 soundGeneratoDictEntry.Value.DisableVSTi(this);
+            }
+        }
+
+        private void enableAllVSTIs()
+        {
+            foreach (var soundGeneratoDictEntry in this.configuration.soundGenerators)
+            {
+                soundGeneratoDictEntry.Value.EnableVSTi(this);
             }
         }
 
