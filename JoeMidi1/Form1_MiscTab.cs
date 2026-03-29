@@ -196,7 +196,7 @@ namespace JoeMidi1
             var dialogResult = openFileDialog1.ShowDialog(this);
             this.Activate();
             this.BringToFront();
-            if (DialogResult == DialogResult.OK)
+            if (dialogResult == DialogResult.OK)
             {
                 if (openFileDialog1.FileName.ToLower().StartsWith(defaultChartFolder))
                 {
