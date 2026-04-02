@@ -242,7 +242,7 @@ namespace JoeMidi1
                         }
                         catch (Exception e)
                         {
-                            Logger.Error("FindMappedNote exception occurred: " + e.Message);
+                            Logger.Error("FindMappedNote exception (NoteOn) occurred: " + e.Message);
                             Logger.Info("mappedNoteRecord is " + ((mappedNoteRecord == null) ? "null" : "not null"));
                             Logger.Info("m_mappedNotesList is " + ((m_mappedNotesList == null) ? "null" : "not null"));
                             continue;
@@ -293,23 +293,38 @@ namespace JoeMidi1
             Channel sourceChannel = msg.Channel;
             Pitch origNote = msg.Pitch;
 
-            // Look up this note in the mapped notes dict to find what it was mapped to
-            List<MappedNote> mappedNotesAlreadySounding = FindMappedNote(sourceDeviceName, sourceChannel, origNote);
-            if (mappedNotesAlreadySounding.Count > 0)
+            lock (m_mappedNotesList)
             {
-                foreach(MappedNote noteToSilence in mappedNotesAlreadySounding)
+                List<MappedNote> mappedNotesAlreadySounding = null;
+                try
                 {
-                    // Send a note off for what it was mapped to, and remove this entry from the mapped notes dict.
-                    noteToSilence.mappedDevice.SendNoteOff(noteToSilence.mappedChannel, noteToSilence.mappedNote, msg.Velocity);
-                    lock (m_mappedNotesList)
+                    // Look up this note in the mapped notes dict to find what it was mapped to
+                    mappedNotesAlreadySounding = FindMappedNote(sourceDeviceName, sourceChannel, origNote);
+                }
+                catch (Exception e)
+                {
+                    Logger.Error("FindMappedNote exception (NoteOff) occurred: " + e.Message);
+                    Logger.Info("origNote is " + origNote);
+                    Logger.Info("m_mappedNotesList is " + ((m_mappedNotesList == null) ? "null" : "not null"));
+                    return;     // This may leave a note hanging...  Maybe send All Notes Off to all SGs...  Sucks too, but better than a hang.
+                }
+
+                if (mappedNotesAlreadySounding != null && mappedNotesAlreadySounding.Count > 0)
+                {
+                    foreach (MappedNote noteToSilence in mappedNotesAlreadySounding)
                     {
-                        m_mappedNotesList.Remove(noteToSilence);
+                        // Send a note off for what it was mapped to, and remove this entry from the mapped notes dict.
+                        noteToSilence.mappedDevice.SendNoteOff(noteToSilence.mappedChannel, noteToSilence.mappedNote, msg.Velocity);
+                        lock (m_mappedNotesList)
+                        {
+                            m_mappedNotesList.Remove(noteToSilence);
+                        }
                     }
                 }
-            }
-            else
-            {
-                // No mapping in the mapped notes dict...  worth logging, but I'm not sure about the overhead of doing that in a midi event handler.
+                else
+                {
+                    // No mapping in the mapped notes dict...  worth logging, but I'm not sure about the overhead of doing that in a midi event handler.
+                }
             }
         }
 
@@ -1109,6 +1124,7 @@ namespace JoeMidi1
             //  within the list's iterator.  Almost feels like a multi-thread access error, but AFAIK the NoteOn/Off
             //  event handlers won't fire concurrently.  For now I'm letting the caller catch the exception.
             //  NoteOn has historically been the only culprit.  
+            //  4/1/26: NoteOff has failed this way too.
             foreach (MappedNote note in m_mappedNotesList)
             {
                 if (note.sourceDeviceName == noteToRemove.sourceDeviceName && note.sourceChannel == noteToRemove.sourceChannel && note.origNote == noteToRemove.origNote &&
