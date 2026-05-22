@@ -26,6 +26,12 @@ namespace JoeMidi1
             public String logicalInputDeviceName;
             public int inputDeviceChannel = 0;
 
+            [JsonIgnore]
+            public Lua luaState = new Lua();
+
+            [JsonIgnore]
+            public LuaFunction initLuaFunction;
+
             public PerDeviceChannelMapping() { }
             
             public PerDeviceChannelMapping(String _logicalInputDeviceName, int _inputDeviceChannel)
@@ -71,17 +77,23 @@ namespace JoeMidi1
             [JsonIgnore]
             public LuaFunction pcLuaFunction;
 
-            public virtual void bind(Dictionary<String, LogicalInputDevice> logicalInputDeviceDict, Dictionary<String, SoundGenerator> soundGenerators, Mapping mapping)
+            public virtual void bind(Dictionary<String, LogicalInputDevice> logicalInputDeviceDict, Dictionary<String, SoundGenerator> soundGenerators, String joeMidiDirectory, Mapping mapping)
             {
                 if (mapping != null)
                 {
-                    noteOnLuaFunction = (LuaFunction)mapping.luaState["noteon"];
-                    noteOffLuaFunction = (LuaFunction)mapping.luaState["noteoff"];
-                    ccLuaFunction = (LuaFunction)mapping.luaState["cc"];
-                    pbLuaFunction = (LuaFunction)mapping.luaState["pitchbend"];
-                    pcLuaFunction = (LuaFunction)mapping.luaState["programchange"];
+                    // If there's a lua script defined for this mapping, load it.
+                    String luaFilename = joeMidiDirectory + @"\" + ReplaceInvalidFilenameChars(mapping.name + "_" + logicalInputDeviceName + "_" + inputDeviceChannel.ToString()) + ".lua";
+                    if (File.Exists(luaFilename))
+                    {
+                        luaState.DoFile(luaFilename);
+                        initLuaFunction = (LuaFunction)luaState["init"];
+                        noteOnLuaFunction = (LuaFunction)luaState["noteon"];
+                        noteOffLuaFunction = (LuaFunction)luaState["noteoff"];
+                        ccLuaFunction = (LuaFunction)luaState["cc"];
+                        pbLuaFunction = (LuaFunction)luaState["pitchbend"];
+                        pcLuaFunction = (LuaFunction)luaState["programchange"];
+                    }
                 }
-
                 if (!logicalInputDeviceDict.ContainsKey(logicalInputDeviceName))
                 {
                     throw new ConfigurationException("Exception binding PerDeviceChannelMapping for " + key + ": unknown logical input device " + logicalInputDeviceName);
@@ -95,7 +107,7 @@ namespace JoeMidi1
 
                 foreach (NoteMapping noteMapping in noteMappings)
                 {
-                    noteMapping.bind(logicalInputDeviceDict, soundGenerators, mapping);
+                    noteMapping.bind(logicalInputDeviceDict, soundGenerators, this);
                 }
 
                 foreach (PitchBendMapping pitchBendMapping in pitchBendMappings)
@@ -105,7 +117,7 @@ namespace JoeMidi1
 
                 foreach (ControlMapping controlMapping in controlMappings)
                 {
-                    controlMapping.bind(logicalInputDeviceDict, soundGenerators, mapping);
+                    controlMapping.bind(logicalInputDeviceDict, soundGenerators, this);
                 }
             }
         }
@@ -114,26 +126,13 @@ namespace JoeMidi1
 
         public Dictionary<String, PerDeviceChannelMapping> perDeviceChannelMappings = new Dictionary<string, PerDeviceChannelMapping>();
 
-        [JsonIgnore]
-        public Lua luaState = new Lua();
-
-        [JsonIgnore]
-        public LuaFunction initLuaFunction;
-
-        public virtual void bind(Dictionary<String, LogicalInputDevice> logicalInputDeviceDict, Dictionary<String, SoundGenerator> soundGenerators, String JoeMidiDirectory)
+        public virtual void bind(Dictionary<String, LogicalInputDevice> logicalInputDeviceDict, Dictionary<String, SoundGenerator> soundGenerators, String joeMidiDirectory)
         {
-            // If there's a lua script defined for this mapping, load it.
-            String luaFilename = JoeMidiDirectory + @"\" + ReplaceInvalidFilenameChars(name) + ".lua";
-            if (File.Exists(luaFilename)) {
-                luaState.DoFile(luaFilename);
-                initLuaFunction = (LuaFunction)luaState["init"];
-            }
-
             foreach (PerDeviceChannelMapping perDeviceChannelMapping in perDeviceChannelMappings.Values)
             {
                 try
                 {
-                    perDeviceChannelMapping.bind(logicalInputDeviceDict, soundGenerators, this);
+                    perDeviceChannelMapping.bind(logicalInputDeviceDict, soundGenerators, joeMidiDirectory, this);
                 }
                 catch (ConfigurationException ex)
                 {

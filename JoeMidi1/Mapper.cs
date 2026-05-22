@@ -441,12 +441,20 @@ namespace JoeMidi1
             }
         }
 
-        public void SetMapping(Mapping mappingToActivate, double volumeTweak = 0.0) 
+        public void SetMapping(Mapping mappingToActivate, double volumeTweak = 0.0)
         {
             // Sets what Mapping this Mapper will use to do remapping.
 
             // On mapping activation, all current secy controller PCs reset to zero.
-            ResetPerControllerPCs();      
+            ResetPerControllerPCs();
+
+            // Initialize any LUA modules for this mapping
+            foreach (Mapping.PerDeviceChannelMapping perDeviceChannelMapping in mappingToActivate.perDeviceChannelMappings.Values) {
+                if (perDeviceChannelMapping.initLuaFunction != null)
+                {
+                    perDeviceChannelMapping.initLuaFunction.Call();
+                }
+            }
 
             // Step through the per-device/channel mappings contained in this mapping and add/replace them into the mapper's dict.
             //  This effectively merges the new mapping into any existing mappings on a per-device/channel basis. 

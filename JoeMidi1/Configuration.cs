@@ -380,7 +380,7 @@ namespace JoeMidi1
 
             foreach (Mapping.PerDeviceChannelMapping perDeviceChannelMapping in globalControlMappings)
             {
-                perDeviceChannelMapping.bind(logicalInputDeviceDict, soundGenerators, null);
+                perDeviceChannelMapping.bind(logicalInputDeviceDict, soundGenerators, JoeMidiDirectory, null);
             }
 
             foreach (String key in mappings.Keys)

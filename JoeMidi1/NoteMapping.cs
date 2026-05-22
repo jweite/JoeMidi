@@ -25,13 +25,14 @@ namespace JoeMidi1
 
         [JsonIgnore]
         public LuaFunction noteOnLuaFunction;
+        [JsonIgnore]
         public LuaFunction noteOffLuaFunction;
 
-        public void bind(Dictionary<String, LogicalInputDevice> logicalInputDeviceDict, Dictionary<String, SoundGenerator> soundGenerators, Mapping mapping)
+        public void bind(Dictionary<String, LogicalInputDevice> logicalInputDeviceDict, Dictionary<String, SoundGenerator> soundGenerators, Mapping.PerDeviceChannelMapping pdcm)
         {
             String luaFunctionBaseName = this.soundGeneratorName.ToLower().Replace(" ", "_");
-            noteOnLuaFunction = (LuaFunction)mapping.luaState[luaFunctionBaseName + "__noteon"];
-            noteOffLuaFunction = (LuaFunction)mapping.luaState[luaFunctionBaseName + "__noteoff"];
+            noteOnLuaFunction = (LuaFunction)pdcm.luaState[luaFunctionBaseName + "__noteon"];
+            noteOffLuaFunction = (LuaFunction)pdcm.luaState[luaFunctionBaseName + "__noteoff"];
             base.bind(soundGenerators);
         }
 

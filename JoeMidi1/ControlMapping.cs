@@ -38,12 +38,12 @@ namespace JoeMidi1
             return (base.Equals(other)) && (sourceControlNumber == other.sourceControlNumber) && (mappedControlNumber == other.mappedControlNumber);
         }
 
-        public void bind(Dictionary<String, LogicalInputDevice> logicalInputDeviceDict, Dictionary<String, SoundGenerator> soundGenerators, Mapping mapping)
+        public void bind(Dictionary<String, LogicalInputDevice> logicalInputDeviceDict, Dictionary<String, SoundGenerator> soundGenerators, Mapping.PerDeviceChannelMapping pdcm)
         {
-            if (mapping != null)
+            if (pdcm != null)
             {
                 String luaFunctionBaseName = this.soundGeneratorName.ToLower().Replace(" ", "_");
-                ccLuaFunction = (LuaFunction)mapping.luaState[luaFunctionBaseName + "__cc"];
+                ccLuaFunction = (LuaFunction)pdcm.luaState[luaFunctionBaseName + "__cc"];
             }
 
             scale = ((double)max - (double)min) / (double)127;
