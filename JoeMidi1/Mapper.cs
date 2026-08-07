@@ -481,16 +481,22 @@ namespace JoeMidi1
                 }
             }
 
-            // Step through the new per-device/channel mappings and send any program/bank/OSC/control changes required to effect them on the synths.
+            // Enable the Reaper plugins that will be used
             foreach (Mapping.PerDeviceChannelMapping perDeviceChannelMapping in mappingToActivate.perDeviceChannelMappings.Values)
             {
-                // Enable the VSTis needed
                 foreach (NoteMapping noteMapping in perDeviceChannelMapping.noteMappings)
                 {
                     cancelAnyPendingDisablesOfThisSoundGenerator(ref noteMapping.soundGenerator);
                     noteMapping.soundGenerator.EnableVSTi(this);
                 }
-                Thread.Sleep(configuration.programChangeDelayMs);   // Give OSC/Reaper a chance to actually enable the VSTI before moving on.  Empirically sufficient on current HP Envy.
+            }
+
+            // Give OSC/Reaper a chance to actually enable the VSTI before moving on.
+            Thread.Sleep(configuration.programChangeDelayMs);
+
+            // Step through the new per-device/channel mappings and send any program/bank/OSC/control changes required to effect them on the synths.
+            foreach (Mapping.PerDeviceChannelMapping perDeviceChannelMapping in mappingToActivate.perDeviceChannelMappings.Values)
+            {
 
                 // Send out the mapping's registered bank/program change/OSC messages to each of that Mapping's Sound Generators.
                 foreach (MappingPatch mappingPatch in perDeviceChannelMapping.mappingPatches)
