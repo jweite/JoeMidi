@@ -490,6 +490,21 @@ namespace JoeMidi1
             this.disableUsusedVSTITimeoutSecs = localConfiguration.disableUsusedVSTITimeoutSecs;
             this.programChangeDelayMs = localConfiguration.programChangeDelayMs;
         }
+
+        public void CloseAllMidiDevices()
+        {
+            foreach (String key in logicalInputDeviceDict.Keys)
+            {
+                LogicalInputDevice device = logicalInputDeviceDict[key];
+                device.close();
+            }
+            foreach (String key in logicalOutputDeviceDict.Keys)
+            {
+                LogicalOutputDevice device = logicalOutputDeviceDict[key];
+                device.close();
+            }
+        }
+
     }
 
     public class LocalConfiguration {

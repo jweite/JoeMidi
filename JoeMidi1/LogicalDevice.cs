@@ -49,6 +49,14 @@ namespace JoeMidi1
             throw new ConfigurationException("Could not find a preferred physical device for logical output device " + this.logicalDeviceName);
         }
 
+        public void close()
+        {
+            if (device != null)
+            {
+                device.Close();
+            }
+        }
+
         public static void createTrialConfiguration(Dictionary<String, LogicalOutputDevice> logicalOutputDeviceDict)
         {
             logicalOutputDeviceDict.Clear();
@@ -93,6 +101,14 @@ namespace JoeMidi1
             }
             this.device = null;
             throw new ConfigurationException("Cannot open any physical input devices configured for logical input device " + logicalDeviceName);
+        }
+
+        public void close()
+        {
+            if (device != null)
+            {
+                device.Close();
+            }
         }
 
         public static void createTrialConfiguration(Dictionary<String, LogicalInputDevice> logicalInputDeviceDict)

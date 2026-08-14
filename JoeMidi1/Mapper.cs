@@ -1033,17 +1033,27 @@ namespace JoeMidi1
                 saveConfiguration();
             }
 
-            if (configuration != null && configuration.logicalInputDeviceDict != null)
-            {
-                foreach (LogicalInputDevice inputDevice in configuration.logicalInputDeviceDict.Values) 
+            if (configuration != null) {
+                if (configuration.logicalInputDeviceDict != null)
                 {
-                    if (inputDevice.device != null)
+                    foreach (LogicalInputDevice inputDevice in configuration.logicalInputDeviceDict.Values)
                     {
-                        if (inputDevice.device.IsReceiving == true)
+                        if (inputDevice.device != null)
                         {
-                            inputDevice.device.StopReceiving();
+                            if (inputDevice.device.IsReceiving == true)
+                            {
+                                inputDevice.device.StopReceiving();
+                            }
+                            inputDevice.device.RemoveAllEventHandlers();
+                            inputDevice.close();
                         }
-                        inputDevice.device.RemoveAllEventHandlers();
+                    }
+                }
+                if (configuration.logicalOutputDeviceDict != null) {
+                    foreach (String key in configuration.logicalOutputDeviceDict.Keys)
+                    {
+                        LogicalOutputDevice device = configuration.logicalOutputDeviceDict[key];
+                        device.close();
                     }
                 }
             }
