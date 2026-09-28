@@ -191,6 +191,10 @@ namespace JoeMidi1
                 {
                     HandlePC((ProgramChangeMessage)msg, perDeviceChannelMapping);
                 }
+                else if (msg is ChannelPressureMessage)
+                {
+                    HandleChannelPressure((ChannelPressureMessage)msg, perDeviceChannelMapping);
+                }
             }
         }
 
@@ -802,6 +806,50 @@ namespace JoeMidi1
             }
         }
 
+        public void ChannelPressure(Midi.ChannelPressureMessage msg)
+        {
+            // Find the per-device/channel mappings for the message's Device/Channel.  If there's none, nothing to do.
+            String deviceKey = Mapping.PerDeviceChannelMapping.createKey(msg.Device.Name, (int)msg.Channel);
+            if (!m_perDeviceChannelMappings.ContainsKey(deviceKey))
+            {
+                return;
+            }
+            Mapping.PerDeviceChannelMapping perDeviceChannelMapping = m_perDeviceChannelMappings[deviceKey];
+
+            if (perDeviceChannelMapping.cpLuaFunction != null)
+            {
+                var luaReturnRaw = perDeviceChannelMapping.cpLuaFunction.Call((int)msg.Channel, (int)msg.Value);
+                IList<ChannelMessage> luaReturnMidiMessages = parseLuaReturn(luaReturnRaw, msg);
+                handleChannelMessages(luaReturnMidiMessages, perDeviceChannelMapping);
+            }
+            else
+            {
+                HandleChannelPressure(msg, perDeviceChannelMapping);
+            }
+        }
+
+        void HandleChannelPressure(ChannelPressureMessage msg, Mapping.PerDeviceChannelMapping perDeviceChannelMapping)
+        {
+            // Iterate over the channel mappings for this device/channel and send the channel pressure (pseudo CC 128) or a CC (0..127)
+            foreach (ChannelPressureMapping channelPressureMapping in perDeviceChannelMapping.channelPressureMappings)
+            {
+                if (channelPressureMapping.CC > 0 && channelPressureMapping.CC < 128)
+                {
+                    channelPressureMapping.soundGenerator.device.SendControlChange(
+                        (Channel)channelPressureMapping.soundGeneratorPhysicalChannel,
+                        (Midi.Control)channelPressureMapping.CC,
+                        msg.Value
+                    );
+                }
+                else if (channelPressureMapping.CC == 128)
+                {
+                    channelPressureMapping.soundGenerator.device.SendChannelPressure((Channel)channelPressureMapping.soundGeneratorPhysicalChannel, msg.Value);
+                }
+                // Ignore anything else
+            }
+        }
+
+
         // While named generically at this point in time we only record control messages about activation of the Sustain pedal.
         IList<MappedMidiControl> mappedMidiControls = new List<MappedMidiControl>();
 
@@ -1100,6 +1148,7 @@ namespace JoeMidi1
                     inputDevice.PitchBend += new InputDevice.PitchBendHandler(this.PitchBend);
                     inputDevice.ProgramChange += new InputDevice.ProgramChangeHandler(this.ProgramChange);
                     inputDevice.ControlChange += new InputDevice.ControlChangeHandler(this.ControlChange);
+                    inputDevice.ChannelPressure += new InputDevice.ChannelPressureHandler(this.ChannelPressure);
                     try
                     {
                         inputDevice.Open();

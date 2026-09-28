@@ -99,7 +99,8 @@
       <HintPath>..\packages\VisualBasic.PowerPacks.Vs.1.0.0\lib\Microsoft.VisualBasic.PowerPacks.Vs.dll</HintPath>
     </Reference>
     <Reference Include="Midi, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\midi-dot-net.1.1.0\lib\net35\Midi.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\midi-dot-net\Midi\bin\Release\Midi.dll</HintPath>
     </Reference>
     <Reference Include="MultiButtonColControl2, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -151,6 +152,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChannelPressureMapping.cs" />
     <Compile Include="Configuration.cs" />
     <Compile Include="ConfigurationException.cs" />
     <Compile Include="ControlMapping.cs" />

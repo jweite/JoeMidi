@@ -58,6 +58,7 @@ namespace JoeMidi1
             public List<NoteMapping> noteMappings = new List<NoteMapping>();                    // Note filtering/transpostion
             public List<PitchBendMapping> pitchBendMappings = new List<PitchBendMapping>();     // Pitch bend scalings
             public List<ControlMapping> controlMappings = new List<ControlMapping>();           // CC remapping/scaling/initial values to be sent on mapping activation.
+            public List<ChannelPressureMapping> channelPressureMappings = new List<ChannelPressureMapping>();
 
             [JsonIgnore]
             public InputDevice inputDevice;
@@ -77,6 +78,9 @@ namespace JoeMidi1
             [JsonIgnore]
             public LuaFunction pcLuaFunction;
 
+            [JsonIgnore]
+            public LuaFunction cpLuaFunction;
+
             public virtual void bind(Dictionary<String, LogicalInputDevice> logicalInputDeviceDict, Dictionary<String, SoundGenerator> soundGenerators, String joeMidiDirectory, Mapping mapping)
             {
                 if (mapping != null)
@@ -92,6 +96,7 @@ namespace JoeMidi1
                         ccLuaFunction = (LuaFunction)luaState["cc"];
                         pbLuaFunction = (LuaFunction)luaState["pitchbend"];
                         pcLuaFunction = (LuaFunction)luaState["programchange"];
+                        cpLuaFunction = (LuaFunction)luaState["channelpressure"];
                     }
                 }
                 if (!logicalInputDeviceDict.ContainsKey(logicalInputDeviceName))
@@ -118,6 +123,11 @@ namespace JoeMidi1
                 foreach (ControlMapping controlMapping in controlMappings)
                 {
                     controlMapping.bind(logicalInputDeviceDict, soundGenerators, this);
+                }
+
+                foreach (ChannelPressureMapping channelPressureMapping in channelPressureMappings)
+                {
+                    channelPressureMapping.bind(logicalInputDeviceDict, soundGenerators);
                 }
             }
         }
@@ -154,6 +164,7 @@ namespace JoeMidi1
             MappingPatch.createTrialConfiguration(2, perDeviceChannelMapping.mappingPatches);
             PitchBendMapping.createTrialConfiguration(2, perDeviceChannelMapping.pitchBendMappings);
             ControlMapping.createTrialConfiguration(2, perDeviceChannelMapping.controlMappings);
+            ChannelPressureMapping.createTrialConfiguration(2, perDeviceChannelMapping.channelPressureMappings);
             mapping.perDeviceChannelMappings.Add(perDeviceChannelMapping.key, perDeviceChannelMapping);
             mappings.Add(mapping.name, mapping);
 
@@ -169,6 +180,7 @@ namespace JoeMidi1
             MappingPatch.createTrialConfiguration(3, perDeviceChannelMapping.mappingPatches);
             PitchBendMapping.createTrialConfiguration(3, perDeviceChannelMapping.pitchBendMappings);
             ControlMapping.createTrialConfiguration(3, perDeviceChannelMapping.controlMappings);
+            ChannelPressureMapping.createTrialConfiguration(3, perDeviceChannelMapping.channelPressureMappings);
             mapping.perDeviceChannelMappings.Add(perDeviceChannelMapping.key, perDeviceChannelMapping);
             mappings.Add(mapping.name, mapping);
         }

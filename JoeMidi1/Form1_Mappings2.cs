@@ -311,17 +311,20 @@ namespace JoeMidi1
                 // PB Scale
                 case 9: valid = isValidDoubleRange(formattedValue, 0.0, 1.0); break;
 
+                // Channel Pressure Mapping
+                case 10: valid = isBlank(formattedValue) || isValidIntRange(formattedValue, 0, 128); break;
+
                 // Damper CC Remap
-                case 10: valid = isBlank(formattedValue) || isValidIntRange(formattedValue, 0, 127); break;
+                case 11: valid = isBlank(formattedValue) || isValidIntRange(formattedValue, 0, 127); break;
 
                 // Mod CC Remap
-                case 11: valid = isBlank(formattedValue) || isValidIntRange(formattedValue, 0, 127); break;
+                case 12: valid = isBlank(formattedValue) || isValidIntRange(formattedValue, 0, 127); break;
                 
                 // Send
-                case 13: valid = isBlank(formattedValue) || isValidIntRange(formattedValue, 1, 4); break;
+                case 14: valid = isBlank(formattedValue) || isValidIntRange(formattedValue, 1, 4); break;
 
                 // Secondary CC
-                case 14: valid = isBlank(formattedValue) || isValidIntRange(formattedValue, 0, 127); break;
+                case 15: valid = isBlank(formattedValue) || isValidIntRange(formattedValue, 0, 127); break;
 
             }
 

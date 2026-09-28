@@ -20,6 +20,7 @@ namespace JoeMidi1
         public int highestNote { get; set; }
         public int pitchOffset { get; set; }
         public double pbScale { get; set; }
+        public int? channelPressureMapping { get; set; }
         public int? damperRemap { get; set; }
         public int? modRemap { get; set; }
         public String additionalCCs { get; set; }
@@ -51,6 +52,7 @@ namespace JoeMidi1
             this.additionalCCs = "";
             this.send = 1;
             this.secondaryPC = null;
+            this.channelPressureMapping = null;
         }
 
         public FlattenedMapping(String logicalInputDeviceName, int inputDeviceChannel, String soundGeneratorName, int soundGeneratorRelativeChannel)
@@ -70,6 +72,7 @@ namespace JoeMidi1
             this.additionalCCs = "";
             this.send = 1;
             this.secondaryPC = null;
+            this.channelPressureMapping = null;
         }
 
         public static Dictionary<String, FlattenedMapping> Flatten(Mapping mapping)
@@ -153,6 +156,17 @@ namespace JoeMidi1
                         flattenedMapping.additionalCCs += formattedCcMapping;
                     }
                 }
+                foreach (ChannelPressureMapping cpMapping in pdcm.channelPressureMappings)
+                {
+                    FlattenedMapping flattenedMapping = AssureFlattenedMappingExists(
+                        flattenedMappings,
+                        pdcm.logicalInputDeviceName,
+                        pdcm.inputDeviceChannel,
+                        cpMapping.soundGeneratorName,
+                        cpMapping.soundGeneratorRelativeChannel
+                    );
+                    flattenedMapping.channelPressureMapping = cpMapping.CC;
+                }
             }
             return flattenedMappings;
         }
@@ -213,6 +227,15 @@ namespace JoeMidi1
                 pitchBendMapping.soundGeneratorRelativeChannel = flattenedMapping.soundGeneratorRelativeChannel;
                 pitchBendMapping.scale = flattenedMapping.pbScale;
                 pdcm.pitchBendMappings.Add(pitchBendMapping);
+
+                if (flattenedMapping.channelPressureMapping.HasValue && flattenedMapping.channelPressureMapping >= 0 && flattenedMapping.channelPressureMapping <= 128)
+                {
+                    ChannelPressureMapping channelPressureMapping = new ChannelPressureMapping();
+                    channelPressureMapping.soundGeneratorName = flattenedMapping.soundGeneratorName;
+                    channelPressureMapping.soundGeneratorRelativeChannel = flattenedMapping.soundGeneratorRelativeChannel;
+                    channelPressureMapping.CC = (int)flattenedMapping.channelPressureMapping;
+                    pdcm.channelPressureMappings.Add(channelPressureMapping);
+                }
 
                 if (flattenedMapping.damperRemap.HasValue)
                 {

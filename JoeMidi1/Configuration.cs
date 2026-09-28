@@ -283,6 +283,7 @@ namespace JoeMidi1
                     perDeviceChannelMapping.noteMappings.RemoveAll(o => o.soundGeneratorName.Equals(soundGeneratorName));
                     perDeviceChannelMapping.pitchBendMappings.RemoveAll(o => o.soundGeneratorName.Equals(soundGeneratorName));
                     perDeviceChannelMapping.controlMappings.RemoveAll(o => o.soundGeneratorName.Equals(soundGeneratorName));
+                    perDeviceChannelMapping.channelPressureMappings.RemoveAll(o => o.soundGeneratorName.Equals(soundGeneratorName));
                 }
             }
 

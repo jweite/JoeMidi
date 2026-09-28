@@ -164,6 +164,14 @@ namespace JoeMidi1
                 controlMapping.initialValue = -1;
                 perDeviceChannelMapping.controlMappings.Add(controlMapping);
 
+                ChannelPressureMapping channelPressureMapping = new ChannelPressureMapping();
+                channelPressureMapping.soundGeneratorName = this.SingleSoundGeneratorName;
+                channelPressureMapping.soundGeneratorRelativeChannel = 0;
+                channelPressureMapping.CC = 128;    // Pseudo CC for normal channel pressure (0xD0)
+                perDeviceChannelMapping.channelPressureMappings.Add(channelPressureMapping);
+
+
+
                 controlMapping = new ControlMapping();
                 controlMapping.soundGeneratorName = this.SingleSoundGeneratorName;
                 controlMapping.soundGeneratorRelativeChannel = 0;

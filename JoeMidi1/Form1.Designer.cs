@@ -231,6 +231,7 @@
             this.highestNote = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pitchOffset = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pbScale = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.channelPressureMapping = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.damperRemap = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.modRemap = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.additionalCCs = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -2950,6 +2951,7 @@
             this.highestNote,
             this.pitchOffset,
             this.pbScale,
+            this.channelPressureMapping,
             this.damperRemap,
             this.modRemap,
             this.additionalCCs});
@@ -3040,10 +3042,18 @@
             // pbScale
             // 
             this.pbScale.DataPropertyName = "pbScale";
-            this.pbScale.HeaderText = " PB Scale";
+            this.pbScale.HeaderText = "PB Scale";
             this.pbScale.MinimumWidth = 6;
             this.pbScale.Name = "pbScale";
             this.pbScale.Width = 133;
+            // 
+            // channelPressureMapping
+            // 
+            this.channelPressureMapping.DataPropertyName = "channelPressureMapping";
+            this.channelPressureMapping.HeaderText = "AT CC";
+            this.channelPressureMapping.MinimumWidth = 6;
+            this.channelPressureMapping.Name = "channelPressureMapping";
+            this.channelPressureMapping.Width = 133;
             // 
             // damperRemap
             // 
@@ -4302,6 +4312,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn highestNote;
         private System.Windows.Forms.DataGridViewTextBoxColumn pitchOffset;
         private System.Windows.Forms.DataGridViewTextBoxColumn pbScale;
+        private System.Windows.Forms.DataGridViewTextBoxColumn channelPressureMapping;
         private System.Windows.Forms.DataGridViewTextBoxColumn damperRemap;
         private System.Windows.Forms.DataGridViewTextBoxColumn modRemap;
         private System.Windows.Forms.DataGridViewTextBoxColumn additionalCCs;
